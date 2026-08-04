@@ -92,6 +92,95 @@ const quizBank = {
       "Speaking": [
         { type: "mcq", q: "Where is the cat?", options: ["It's behind the door.", "It is cat door.", "Door behind."], ans: "It's behind the door." }
       ]
+    },
+    "Module 6: Food, food!": {
+      "Reading": [
+        { type: "mcq", q: "Read the text:\n'Omelettes are delicious! To make an omelette, you need eggs, milk, cheese, and some butter.'\n\nWhat do you need to make an omelette?", options: ["Eggs, milk, cheese, and butter", "Flour, sugar, and apples", "Rice, chicken, and water"], ans: "Eggs, milk, cheese, and butter" },
+        { type: "tf", q: "Based on the text: You don't need eggs to make an omelette.", options: ["True", "False"], ans: "False" }
+      ],
+      "Writing": [
+        { type: "mcq", q: "Choose the correct sentence.", options: ["There is some milk in the fridge.", "There are some milk in the fridge.", "There be some milk in the fridge."], ans: "There is some milk in the fridge." },
+        { type: "mcq", q: "Choose the correct sentence.", options: ["Are there any onions on the table?", "Is there any onions on the table?", "Do there any onions on the table?"], ans: "Are there any onions on the table?" }
+      ],
+      "Spelling": [
+        { type: "mcq", q: "Choose the correct spelling:", options: ["Omelette", "Omlet", "Omeletting"], ans: "Omelette" },
+        { type: "mcq", q: "Choose the correct spelling:", options: ["Chocolate", "Chocolat", "Choclate"], ans: "Chocolate" }
+      ],
+      "Grammar": [
+        { type: "mcq", q: "Is there _______ sugar in the tea?", options: ["any", "some", "many"], ans: "any" },
+        { type: "mcq", q: "There are _______ tomatoes in the basket.", options: ["some", "any", "much"], ans: "some" }
+      ],
+      "Speaking": [
+        { type: "mcq", q: "How do you order food politely?", options: ["I would like a pancake, please.", "Give me pancake.", "Pancake now."], ans: "I would like a pancake, please." }
+      ]
+    },
+    "Module 7: Out and about": {
+      "Reading": [
+        { type: "mcq", q: "Read the text:\n'Yesterday, Kevin went to the cinema. He bought popcorn and watched a funny movie with his brother.'\n\nWhere did Kevin go yesterday?", options: ["To the park", "To the cinema", "To the museum"], ans: "To the cinema" }
+      ],
+      "Writing": [
+        { type: "mcq", q: "Choose the correct past tense sentence.", options: ["They bought two tickets yesterday.", "They buyed two tickets yesterday.", "They buy two tickets yesterday."], ans: "They bought two tickets yesterday." }
+      ],
+      "Spelling": [
+        { type: "mcq", q: "Choose the correct spelling:", options: ["Popcorn", "Popcornn", "Popcorne"], ans: "Popcorn" }
+      ],
+      "Grammar": [
+        { type: "mcq", q: "We _______ a scary movie last night.", options: ["watched", "watch", "watching"], ans: "watched" }
+      ],
+      "Speaking": [
+        { type: "mcq", q: "What did you do last weekend?", options: ["I visited my grandparents.", "I visit my grandparents.", "I visiting my grandparents."], ans: "I visited my grandparents." }
+      ]
+    },
+    "Module 8: Where were you yesterday?": {
+      "Reading": [
+        { type: "mcq", q: "Read the text:\n'In the morning, Stacy was at the shopping center. In the afternoon, she was at the zoo.'\n\nWhere was Stacy in the afternoon?", options: ["At the zoo", "At the cinema", "At home"], ans: "At the zoo" }
+      ],
+      "Writing": [
+        { type: "mcq", q: "Choose the correct sentence.", options: ["He was quiet at the library.", "He were quiet at the library.", "He is quiet yesterday."], ans: "He was quiet at the library." }
+      ],
+      "Spelling": [
+        { type: "mcq", q: "Choose the correct spelling:", options: ["Library", "Libary", "Librery"], ans: "Library" }
+      ],
+      "Grammar": [
+        { type: "mcq", q: "Where _______ you yesterday afternoon?", options: ["were", "was", "are"], ans: "were" }
+      ],
+      "Speaking": [
+        { type: "mcq", q: "Were you at home yesterday?", options: ["Yes, I was.", "Yes, I am.", "Yes, I were."], ans: "Yes, I was." }
+      ]
+    },
+    "Module 9: On holiday": {
+      "Reading": [
+        { type: "mcq", q: "Read the text:\n'Last holiday, Tom swam in the sea and found a big shell on the beach.'\n\nWhat did Tom find?", options: ["A fish", "A big shell", "A boat"], ans: "A big shell" }
+      ],
+      "Writing": [
+        { type: "mcq", q: "Choose the correct sentence.", options: ["She didn't pack her suit.", "She didn't packed her suit.", "She don't pack her suit."], ans: "She didn't pack her suit." }
+      ],
+      "Spelling": [
+        { type: "mcq", q: "Choose the correct spelling:", options: ["Holiday", "Holidai", "Holeday"], ans: "Holiday" }
+      ],
+      "Grammar": [
+        { type: "mcq", q: "They _______ camping on their holiday.", options: ["went", "go", "going"], ans: "went" }
+      ],
+      "Speaking": [
+        { type: "mcq", q: "Did you take photos during the trip?", options: ["Yes, I did.", "Yes, I was.", "Yes, I do."], ans: "Yes, I did." }
+      ]
+    },
+    "Module 10: The world around us": {
+      "Reading": [
+        { type: "mcq", q: "Read the text:\n'Blue whales are the largest animals in the world. They are bigger than any dinosaur.'\n\nWhich animal is the largest in the world?", options: ["Blue whale", "Elephant", "Dinosaur"], ans: "Blue whale" }
+      ],
+      "Writing": [
+        { type: "mcq", q: "Choose the correct superlative sentence.", options: ["The cheetah is the fastest animal.", "The cheetah is the most fast animal.", "The cheetah is faster animal."], ans: "The cheetah is the fastest animal." }
+      ],
+      "Spelling": [
+        { type: "mcq", q: "Choose the correct spelling:", options: ["Whale", "Wayle", "Whael"], ans: "Whale" }
+      ],
+      "Grammar": [
+        { type: "mcq", q: "Mount Everest is the _______ mountain in the world.", options: ["highest", "higher", "high"], ans: "highest" }
+      ],
+      "Speaking": [
+        { type: "mcq", q: "Which animal is bigger, a hippo or a monkey?", options: ["A hippo is bigger.", "A monkey is bigger.", "They are same."], ans: "A hippo is bigger." }
+      ]
     }
   },
 
@@ -156,7 +245,7 @@ const quizBank = {
         { type: "mcq", q: "Fill in the blank: The sun is _______.", options: ["hot", "cold"], ans: "hot" }
       ],
       "Spelling": [
-        { type: "mcq", q: "Choose the correct spelling:", options: ["Sun", "Sonn"], ans: "Sun" }
+        { type: "mcq", q: "Choose the correct spelling:", options: ["Sun", "Snn"], ans: "Sun" }
       ],
       "Grammar": [
         { type: "mcq", q: "It _______ raining today.", options: ["is", "are"], ans: "is" }
@@ -181,188 +270,91 @@ const quizBank = {
       "Speaking": [
         { type: "mcq", q: "Where is the ball?", options: ["In the box.", "Yes, it is."], ans: "In the box." }
       ]
+    },
+    "Module 6: Food, food!": {
+      "Reading": [
+        { type: "visual", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=300", q: "Is this milk?", options: ["Yes, it is.", "No, it isn't."], ans: "Yes, it is." }
+      ],
+      "Writing": [
+        { type: "mcq", q: "Complete: I like to eat _______.", options: ["apples", "chairs"], ans: "apples" }
+      ],
+      "Spelling": [
+        { type: "mcq", q: "Choose the correct spelling:", options: ["Milk", "Mylk"], ans: "Milk" }
+      ],
+      "Grammar": [
+        { type: "mcq", q: "There _______ some rice.", options: ["is", "are"], ans: "is" }
+      ],
+      "Speaking": [
+        { type: "mcq", q: "Do you like pizza?", options: ["Yes, I do.", "Yes, I am."], ans: "Yes, I do." }
+      ]
+    },
+    "Module 7: Out and about": {
+      "Reading": [
+        { type: "tf", q: "We watch movies at the cinema.", options: ["True", "False"], ans: "True" }
+      ],
+      "Writing": [
+        { type: "mcq", q: "Complete: Yesterday, I _______ to the park.", options: ["went", "go"], ans: "went" }
+      ],
+      "Spelling": [
+        { type: "mcq", q: "Choose the correct spelling:", options: ["Park", "Pärk"], ans: "Park" }
+      ],
+      "Grammar": [
+        { type: "mcq", q: "He _______ a book yesterday.", options: ["read", "reads"], ans: "read" }
+      ],
+      "Speaking": [
+        { type: "mcq", q: "Did you play yesterday?", options: ["Yes, I did.", "Yes, I do."], ans: "Yes, I did." }
+      ]
+    },
+    "Module 8: Where were you yesterday?": {
+      "Reading": [
+        { type: "tf", q: "A library is a quiet place.", options: ["True", "False"], ans: "True" }
+      ],
+      "Writing": [
+        { type: "mcq", q: "Complete: I _______ at home yesterday.", options: ["was", "were"], ans: "was" }
+      ],
+      "Spelling": [
+        { type: "mcq", q: "Choose the correct spelling:", options: ["Zoo", "Zu"], ans: "Zoo" }
+      ],
+      "Grammar": [
+        { type: "mcq", q: "They _______ at school yesterday.", options: ["were", "was"], ans: "were" }
+      ],
+      "Speaking": [
+        { type: "mcq", q: "Where were you yesterday?", options: ["I was at home.", "I am happy."], ans: "I was at home." }
+      ]
+    },
+    "Module 9: On holiday": {
+      "Reading": [
+        { type: "visual", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300", q: "Is this a beach?", options: ["Yes, it is.", "No, it isn't."], ans: "Yes, it is." }
+      ],
+      "Writing": [
+        { type: "mcq", q: "Complete: We swam in the _______.", options: ["sea", "sky"], ans: "sea" }
+      ],
+      "Spelling": [
+        { type: "mcq", q: "Choose the correct spelling:", options: ["Sea", "See"], ans: "Sea" }
+      ],
+      "Grammar": [
+        { type: "mcq", q: "She _______ photos on her holiday.", options: ["took", "take"], ans: "took" }
+      ],
+      "Speaking": [
+        { type: "mcq", q: "Do you like holidays?", options: ["Yes, I do.", "Yes, I am."], ans: "Yes, I do." }
+      ]
+    },
+    "Module 10: The world around us": {
+      "Reading": [
+        { type: "tf", q: "An elephant is big.", options: ["True", "False"], ans: "True" }
+      ],
+      "Writing": [
+        { type: "mcq", q: "Complete: The sun is _______ than the moon.", options: ["bigger", "big"], ans: "bigger" }
+      ],
+      "Spelling": [
+        { type: "mcq", q: "Choose the correct spelling:", options: ["Sun", "Snn"], ans: "Sun" }
+      ],
+      "Grammar": [
+        { type: "mcq", q: "A lion is _______ than a cat.", options: ["bigger", "biggest"], ans: "bigger" }
+      ],
+      "Speaking": [
+        { type: "mcq", q: "Is a mouse big or small?", options: ["It is small.", "It is big."], ans: "It is small." }
+      ]
     }
   }
-};// ==========================================
-// TAMBAHAN UNTUK "GET SMART SET"
-// (Masukkan ke dalam GET SMART SET)
-// ==========================================
-"Module 6: Food, food!": {
-  "Reading": [
-    { type: "mcq", q: "Read the text:\n'Omelettes are delicious! To make an omelette, you need eggs, milk, cheese, and some butter.'\n\nWhat do you need to make an omelette?", options: ["Eggs, milk, cheese, and butter", "Flour, sugar, and apples", "Rice, chicken, and water"], ans: "Eggs, milk, cheese, and butter" },
-    { type: "tf", q: "Based on the text: You don't need eggs to make an omelette.", options: ["True", "False"], ans: "False" }
-  ],
-  "Writing": [
-    { type: "mcq", q: "Choose the correct sentence.", options: ["There is some milk in the fridge.", "There are some milk in the fridge.", "There be some milk in the fridge."], ans: "There is some milk in the fridge." },
-    { type: "mcq", q: "Choose the correct sentence.", options: ["Are there any onions on the table?", "Is there any onions on the table?", "Do there any onions on the table?"], ans: "Are there any onions on the table?" }
-  ],
-  "Spelling": [
-    { type: "mcq", q: "Choose the correct spelling:", options: ["Omelette", "Omlet", "Omeletting"], ans: "Omelette" },
-    { type: "mcq", q: "Choose the correct spelling:", options: ["Chocolate", "Chocolat", "Choclate"], ans: "Chocolate" }
-  ],
-  "Grammar": [
-    { type: "mcq", q: "Is there _______ sugar in the tea?", options: ["any", "some", "many"], ans: "any" },
-    { type: "mcq", q: "There are _______ tomatoes in the basket.", options: ["some", "any", "much"], ans: "some" }
-  ],
-  "Speaking": [
-    { type: "mcq", q: "How do you order food politely?", options: ["I would like a pancake, please.", "Give me pancake.", "Pancake now."], ans: "I would like a pancake, please." }
-  ]
-},
-"Module 7: Out and about": {
-  "Reading": [
-    { type: "mcq", q: "Read the text:\n'Yesterday, Kevin went to the cinema. He bought popcorn and watched a funny movie with his brother.'\n\nWhere did Kevin go yesterday?", options: ["To the park", "To the cinema", "To the museum"], ans: "To the cinema" }
-  ],
-  "Writing": [
-    { type: "mcq", q: "Choose the correct past tense sentence.", options: ["They bought two tickets yesterday.", "They buyed two tickets yesterday.", "They buy two tickets yesterday."], ans: "They bought two tickets yesterday." }
-  ],
-  "Spelling": [
-    { type: "mcq", q: "Choose the correct spelling:", options: ["Popcorn", "Popcornn", "Popcorne"], ans: "Popcorn" }
-  ],
-  "Grammar": [
-    { type: "mcq", q: "We _______ a scary movie last night.", options: ["watched", "watch", "watching"], ans: "watched" }
-  ],
-  "Speaking": [
-    { type: "mcq", q: "What did you do last weekend?", options: ["I visited my grandparents.", "I visit my grandparents.", "I visiting my grandparents."], ans: "I visited my grandparents." }
-  ]
-},
-"Module 8: Where were you yesterday?": {
-  "Reading": [
-    { type: "mcq", q: "Read the text:\n'In the morning, Stacy was at the shopping center. In the afternoon, she was at the zoo.'\n\nWhere was Stacy in the afternoon?", options: ["At the zoo", "At the cinema", "At home"], ans: "At the zoo" }
-  ],
-  "Writing": [
-    { type: "mcq", q: "Choose the correct sentence.", options: ["He was quiet at the library.", "He were quiet at the library.", "He is quiet yesterday."], ans: "He was quiet at the library." }
-  ],
-  "Spelling": [
-    { type: "mcq", q: "Choose the correct spelling:", options: ["Library", "Libary", "Librery"], ans: "Library" }
-  ],
-  "Grammar": [
-    { type: "mcq", q: "Where _______ you yesterday afternoon?", options: ["were", "was", "are"], ans: "were" }
-  ],
-  "Speaking": [
-    { type: "mcq", q: "Were you at home yesterday?", options: ["Yes, I was.", "Yes, I am.", "Yes, I were."], ans: "Yes, I was." }
-  ]
-},
-"Module 9: On holiday": {
-  "Reading": [
-    { type: "mcq", q: "Read the text:\n'Last holiday, Tom swam in the sea and found a big shell on the beach.'\n\nWhat did Tom find?", options: ["A fish", "A big shell", "A boat"], ans: "A big shell" }
-  ],
-  "Writing": [
-    { type: "mcq", q: "Choose the correct sentence.", options: ["She didn't pack her suit.", "She didn't packed her suit.", "She don't pack her suit."], ans: "She didn't pack her suit." }
-  ],
-  "Spelling": [
-    { type: "mcq", q: "Choose the correct spelling:", options: ["Holiday", "Holidai", "Holeday"], ans: "Holiday" }
-  ],
-  "Grammar": [
-    { type: "mcq", q: "They _______ camping on their holiday.", options: ["went", "go", "going"], ans: "went" }
-  ],
-  "Speaking": [
-    { type: "mcq", q: "Did you take photos during the trip?", options: ["Yes, I did.", "Yes, I was.", "Yes, I do."], ans: "Yes, I did." }
-  ]
-},
-"Module 10: The world around us": {
-  "Reading": [
-    { type: "mcq", q: "Read the text:\n'Blue whales are the largest animals in the world. They are bigger than any dinosaur.'\n\nWhich animal is the largest in the world?", options: ["Blue whale", "Elephant", "Dinosaur"], ans: "Blue whale" }
-  ],
-  "Writing": [
-    { type: "mcq", q: "Choose the correct superlative sentence.", options: ["The cheetah is the fastest animal.", "The cheetah is the most fast animal.", "The cheetah is faster animal."], ans: "The cheetah is the fastest animal." }
-  ],
-  "Spelling": [
-    { type: "mcq", q: "Choose the correct spelling:", options: ["Whale", "Wayle", "Whael"], ans: "Whale" }
-  ],
-  "Grammar": [
-    { type: "mcq", q: "Mount Everest is the _______ mountain in the world.", options: ["highest", "higher", "high"], ans: "highest" }
-  ],
-  "Speaking": [
-    { type: "mcq", q: "Which animal is bigger, a hippo or a monkey?", options: ["A hippo is bigger.", "A monkey is bigger.", "They are same."], ans: "A hippo is bigger." }
-  ]
-},
-
-// ==========================================
-// TAMBAHAN UNTUK "REMEDIAL SET"
-// (Masukkan ke dalam REMEDIAL SET)
-// ==========================================
-"Module 6: Food, food!": {
-  "Reading": [
-    { type: "visual", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=300", q: "Is this milk?", options: ["Yes, it is.", "No, it isn't."], ans: "Yes, it is." }
-  ],
-  "Writing": [
-    { type: "mcq", q: "Complete: I like to eat _______.", options: ["apples", "chairs"], ans: "apples" }
-  ],
-  "Spelling": [
-    { type: "mcq", q: "Choose the correct spelling:", options: ["Milk", "Mylk"], ans: "Milk" }
-  ],
-  "Grammar": [
-    { type: "mcq", q: "There _______ some rice.", options: ["is", "are"], ans: "is" }
-  ],
-  "Speaking": [
-    { type: "mcq", q: "Do you like pizza?", options: ["Yes, I do.", "Yes, I am."], ans: "Yes, I do." }
-  ]
-},
-"Module 7: Out and about": {
-  "Reading": [
-    { type: "tf", q: "We watch movies at the cinema.", options: ["True", "False"], ans: "True" }
-  ],
-  "Writing": [
-    { type: "mcq", q: "Complete: Yesterday, I _______ to the park.", options: ["went", "go"], ans: "went" }
-  ],
-  "Spelling": [
-    { type: "mcq", q: "Choose the correct spelling:", options: ["Park", "Pärk"], ans: "Park" }
-  ],
-  "Grammar": [
-    { type: "mcq", q: "He _______ a book yesterday.", options: ["read", "reads"], ans: "read" }
-  ],
-  "Speaking": [
-    { type: "mcq", q: "Did you play yesterday?", options: ["Yes, I did.", "Yes, I do."], ans: "Yes, I did." }
-  ]
-},
-"Module 8: Where were you yesterday?": {
-  "Reading": [
-    { type: "tf", q: "A library is a quiet place.", options: ["True", "False"], ans: "True" }
-  ],
-  "Writing": [
-    { type: "mcq", q: "Complete: I _______ at home yesterday.", options: ["was", "were"], ans: "was" }
-  ],
-  "Spelling": [
-    { type: "mcq", q: "Choose the correct spelling:", options: ["Zoo", "Zu"], ans: "Zoo" }
-  ],
-  "Grammar": [
-    { type: "mcq", q: "They _______ at school yesterday.", options: ["were", "was"], ans: "were" }
-  ],
-  "Speaking": [
-    { type: "mcq", q: "Where were you yesterday?", options: ["I was at home.", "I am happy."], ans: "I was at home." }
-  ]
-},
-"Module 9: On holiday": {
-  "Reading": [
-    { type: "visual", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300", q: "Is this a beach?", options: ["Yes, it is.", "No, it isn't."], ans: "Yes, it is." }
-  ],
-  "Writing": [
-    { type: "mcq", q: "Complete: We swam in the _______.", options: ["sea", "sky"], ans: "sea" }
-  ],
-  "Spelling": [
-    { type: "mcq", q: "Choose the correct spelling:", options: ["Sea", "See"], ans: "Sea" }
-  ],
-  "Grammar": [
-    { type: "mcq", q: "She _______ photos on her holiday.", options: ["took", "take"], ans: "took" }
-  ],
-  "Speaking": [
-    { type: "mcq", q: "Do you like holidays?", options: ["Yes, I do.", "Yes, I am."], ans: "Yes, I do." }
-  ]
-},
-"Module 10: The world around us": {
-  "Reading": [
-    { type: "tf", q: "An elephant is big.", options: ["True", "False"], ans: "True" }
-  ],
-  "Writing": [
-    { type: "mcq", q: "Complete: The sun is _______ than the moon.", options: ["bigger", "big"], ans: "bigger" }
-  ],
-  "Spelling": [
-    { type: "mcq", q: "Choose the correct spelling:", options: ["Sun", "Snn"], ans: "Sun" }
-  ],
-  "Grammar": [
-    { type: "mcq", q: "A lion is _______ than a cat.", options: ["bigger", "biggest"], ans: "bigger" }
-  ],
-  "Speaking": [
-    { type: "mcq", q: "Is a mouse big or small?", options: ["It is small.", "It is big."], ans: "It is small." }
-  ]
-}
+};
