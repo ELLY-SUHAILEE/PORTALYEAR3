@@ -5,167 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PORTAL YEAR 3 - ENGLISH QUIZ</title>
   <style>
-    :root {
-      --primary: #4f46e5;
-      --primary-hover: #4338ca;
-      --bg: #f3f4f6;
-      --card-bg: #ffffff;
-      --text: #1f2937;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      margin: 0;
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: var(--card-bg);
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    }
-
-    h1, h2, h3 {
-      text-align: center;
-      color: var(--primary);
-    }
-
+    :root { --primary: #4f46e5; --bg: #f3f4f6; --card-bg: #ffffff; }
+    body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg); margin: 0; padding: 20px; }
+    .container { max-width: 800px; margin: 0 auto; background: var(--card-bg); padding: 30px; border-radius: 16px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+    h1, h2 { text-align: center; color: var(--primary); }
     .hidden { display: none; }
-
-    /* Card Set Selection */
-    .set-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .set-card {
-      background: #e0e7ff;
-      border: 2px solid var(--primary);
-      padding: 25px;
-      border-radius: 12px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .set-card:hover {
-      background: var(--primary);
-      color: white;
-      transform: translateY(-3px);
-    }
-
+    .set-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+    .set-card { background: #e0e7ff; border: 2px solid var(--primary); padding: 20px; border-radius: 12px; text-align: center; cursor: pointer; }
+    .set-card:hover { background: var(--primary); color: white; }
     .set-card h2 { color: inherit; margin: 0; }
-
-    /* Form Inputs */
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-sizing: border-box;
-      font-size: 16px;
-    }
-
-    button {
-      width: 100%;
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 15px;
-    }
-
-    button:hover {
-      background-color: var(--primary-hover);
-    }
-
-    /* Quiz Area */
-    .question-card {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    .question-card img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-
-    .options-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .options-list li {
-      margin-bottom: 8px;
-    }
-
-    .options-list label {
-      font-weight: normal;
-      cursor: pointer;
-      background: #fff;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      display: block;
-    }
-
-    .options-list input {
-      width: auto;
-      margin-right: 10px;
-    }
-
-    /* Results & Admin */
-    .score-badge {
-      font-size: 28px;
-      font-weight: bold;
-      text-align: center;
-      color: var(--primary);
-      margin: 20px 0;
-    }
-
-    .top-nav {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .nav-btn {
-      width: auto;
-      padding: 6px 15px;
-      font-size: 14px;
-      background: #6b7280;
-    }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; font-weight: bold; margin-bottom: 5px; }
+    input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+    button { width: 100%; background-color: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+    .question-card { background: #f9fafb; border: 1px solid #e5e7eb; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+    .question-card img { max-width: 100%; border-radius: 8px; }
+    .options-list { list-style: none; padding: 0; }
+    .options-list label { cursor: pointer; background: #fff; padding: 10px; border: 1px solid #ddd; border-radius: 6px; display: block; margin-bottom: 8px; }
+    .options-list input { width: auto; margin-right: 10px; }
+    .top-nav { display: flex; justify-content: space-between; margin-bottom: 20px; }
+    .nav-btn { width: auto; padding: 6px 15px; font-size: 14px; background: #6b7280; }
   </style>
 </head>
 <body>
 
 <div class="container">
-  
   <div class="top-nav">
     <button class="nav-btn" onclick="goHome()">🏠 Halaman Utama</button>
     <button class="nav-btn" style="background:#059669;" onclick="showAdmin()">🔐 Rekod Guru</button>
@@ -187,7 +51,7 @@
     </div>
   </div>
 
-  <!-- VIEW 2: Maklumat Murid & Pilih Modul -->
+  <!-- VIEW 2: Maklumat Murid & Pilih Modul SAHAJA -->
   <div id="view-student-info" class="hidden">
     <h2 id="selected-set-title"></h2>
     <div class="form-group">
@@ -199,16 +63,15 @@
       <input type="text" id="student-class" placeholder="Contoh: 3 Cemerlang">
     </div>
     <div class="form-group">
-      <label>Pilih Modul / Topik:</label>
+      <label>Pilih Topik / Modul:</label>
       <select id="select-module"></select>
     </div>
     <button onclick="startQuiz()">Mula Jawab Kuiz 🚀</button>
   </div>
 
-  <!-- VIEW 3: Paparan Soalan -->
+  <!-- VIEW 3: Soalan -->
   <div id="view-quiz" class="hidden">
     <h2 id="quiz-module-title"></h2>
-    <p style="text-align:center; color:#6b7280;">Jawab semua soalan di bawah:</p>
     <form id="quiz-form">
       <div id="questions-container"></div>
       <button type="button" onclick="submitQuiz()">Hantar & Semak Keputusan 📝</button>
@@ -217,8 +80,8 @@
 
   <!-- VIEW 4: Keputusan -->
   <div id="view-result" class="hidden">
-    🎉 <h2>Tahniah! Anda telah selesai.</h2>
-    <div class="score-badge" id="score-display"></div>
+    <h2>🎉 Tahniah! Anda telah selesai.</h2>
+    <h1 style="text-align: center; color: var(--primary);" id="score-display"></h1>
     <p style="text-align: center;" id="result-detail"></p>
     <button onclick="goHome()">Jawab Modul Lain 🔄</button>
   </div>
@@ -227,51 +90,28 @@
   <div id="view-admin" class="hidden">
     <h2>🔐 Rekod Keputusan Murid (Guru)</h2>
     <div id="admin-login">
-      <div class="form-group">
-        <label>Masukkan PIN Guru:</label>
-        <input type="password" id="admin-pin" placeholder="****">
-      </div>
+      <input type="password" id="admin-pin" placeholder="Masukkan PIN (1234)">
       <button onclick="checkPin()">Log Masuk</button>
     </div>
     <div id="admin-content" class="hidden">
-      <button onclick="downloadCSV()" style="background:#10b981; margin-bottom:15px;">📥 Muat Turun Rekod (CSV)</button>
-      <div style="overflow-x:auto;">
-        <table border="1" style="width:100%; border-collapse:collapse; text-align:left;" id="records-table">
-          <thead>
-            <tr style="background:#e0e7ff;">
-              <th style="padding:8px;">Masa</th>
-              <th style="padding:8px;">Nama</th>
-              <th style="padding:8px;">Kelas</th>
-              <th style="padding:8px;">Set</th>
-              <th style="padding:8px;">Modul</th>
-              <th style="padding:8px;">Markah</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
+      <button onclick="downloadCSV()" style="background:#10b981;">📥 Muat Turun CSV</button>
+      <table border="1" style="width:100%; margin-top:15px; border-collapse:collapse;" id="records-table">
+        <thead><tr style="background:#e0e7ff;"><th>Masa</th><th>Nama</th><th>Kelas</th><th>Set</th><th>Modul</th><th>Markah</th></tr></thead>
+        <tbody></tbody>
+      </table>
     </div>
   </div>
-
 </div>
 
-<!-- Memanggil fail soalan -->
-<script src="questions.js"></script>
+<script src="question.js"></script>
 
 <script>
-  let currentSet = "";
-  let currentModule = "";
-  let activeQuestions = [];
-
-  // Pautan Web App Google Apps Script Anda (Untuk simpan ke Google Sheets)
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxeo8i-9bWmsUj3GgGvK5mK037R2M0zM_O_7vIn0Ym8p9XmN8e1R3N5vQ_EXAMPLE/exec";
+  let currentSet = "", currentModule = "", activeQuestions = [];
 
   function hideAllViews() {
-    document.getElementById('view-set').classList.add('hidden');
-    document.getElementById('view-student-info').classList.add('hidden');
-    document.getElementById('view-quiz').classList.add('hidden');
-    document.getElementById('view-result').classList.add('hidden');
-    document.getElementById('view-admin').classList.add('hidden');
+    ['view-set','view-student-info','view-quiz','view-result','view-admin'].forEach(id => {
+      document.getElementById(id).classList.add('hidden');
+    });
   }
 
   function goHome() {
@@ -285,13 +125,11 @@
     document.getElementById('view-student-info').classList.remove('hidden');
     document.getElementById('selected-set-title').innerText = setName;
 
-    // Isi pilihan modul berdasarkan Set yang dipilih
     const moduleSelect = document.getElementById('select-module');
     moduleSelect.innerHTML = "";
     
     if (typeof quizBank !== 'undefined' && quizBank[setName]) {
-      const modules = Object.keys(quizBank[setName]);
-      modules.forEach(mod => {
+      Object.keys(quizBank[setName]).forEach(mod => {
         let opt = document.createElement('option');
         opt.value = mod;
         opt.innerText = mod;
@@ -306,11 +144,10 @@
     currentModule = document.getElementById('select-module').value;
 
     if (!name || !studentClass) {
-      alert("Sila masukkan Nama dan Kelas anda terlebih dahulu!");
+      alert("Sila masukkan Nama dan Kelas!");
       return;
     }
 
-    // Gabungkan SEMUA soalan dari pelbagai Skill di bawah modul ini!
     activeQuestions = [];
     if (quizBank[currentSet] && quizBank[currentSet][currentModule]) {
       const moduleSkills = quizBank[currentSet][currentModule];
@@ -319,33 +156,17 @@
       });
     }
 
-    if (activeQuestions.length === 0) {
-      alert("Tiada soalan dalam topik ini lagi.");
-      return;
-    }
-
-    // Bina paparan soalan
     const container = document.getElementById('questions-container');
     container.innerHTML = "";
 
     activeQuestions.forEach((q, idx) => {
-      let qHtml = `<div class="question-card">
-        <p><strong>Soalan ${idx + 1}:</strong> ${q.q.replace(/\n/g, '<br>')}</p>`;
-      
-      if(q.img) {
-        qHtml += `<img src="${q.img}" alt="Illustration">`;
-      }
-
+      let qHtml = `<div class="question-card"><p><strong>Soalan ${idx + 1}:</strong> ${q.q.replace(/\n/g, '<br>')}</p>`;
+      if(q.img) qHtml += `<img src="${q.img}">`;
       qHtml += `<ul class="options-list">`;
       q.options.forEach(opt => {
-        qHtml += `<li>
-          <label>
-            <input type="radio" name="q_${idx}" value="${opt}"> ${opt}
-          </label>
-        </li>`;
+        qHtml += `<li><label><input type="radio" name="q_${idx}" value="${opt}"> ${opt}</label></li>`;
       });
       qHtml += `</ul></div>`;
-
       container.innerHTML += qHtml;
     });
 
@@ -356,110 +177,55 @@
 
   function submitQuiz() {
     let score = 0;
-    let answered = 0;
-
     activeQuestions.forEach((q, idx) => {
       const selected = document.querySelector(`input[name="q_${idx}"]:checked`);
-      if (selected) {
-        answered++;
-        if (selected.value === q.ans) {
-          score++;
-        }
-      }
+      if (selected && selected.value === q.ans) score++;
     });
-
-    if (answered < activeQuestions.length) {
-      if (!confirm("Anda belum menjawab semua soalan. Adakah anda pasti mahu hantar?")) {
-        return;
-      }
-    }
 
     const total = activeQuestions.length;
     const percentage = Math.round((score / total) * 100);
-    const studentName = document.getElementById('student-name').value;
-    const studentClass = document.getElementById('student-class').value;
 
-    // Papar Keputusan
     hideAllViews();
     document.getElementById('view-result').classList.remove('hidden');
     document.getElementById('score-display').innerText = `${score} / ${total} (${percentage}%)`;
-    document.getElementById('result-detail').innerText = `Tahniah ${studentName}! Anda telah menyelesaikan modul ${currentModule}.`;
-
-    // Simpan ke LocalStorage Guru
-    const resultRecord = {
-      time: new Date().toLocaleString(),
-      name: studentName,
-      class: studentClass,
-      set: currentSet,
-      module: currentModule,
-      score: `${score}/${total} (${percentage}%)`
-    };
+    document.getElementById('result-detail').innerText = `Tahniah ${document.getElementById('student-name').value}!`;
 
     let localData = JSON.parse(localStorage.getItem('quizRecords') || '[]');
-    localData.push(resultRecord);
+    localData.push({
+      time: new Date().toLocaleString(),
+      name: document.getElementById('student-name').value,
+      class: document.getElementById('student-class').value,
+      set: currentSet,
+      module: currentModule,
+      score: `${score}/${total}`
+    });
     localStorage.setItem('quizRecords', JSON.stringify(localData));
-
-    // Hantar data ke Google Sheets secara senyap (Background)
-    if(SCRIPT_URL && !SCRIPT_URL.includes("EXAMPLE")) {
-      fetch(SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(resultRecord)
-      }).catch(err => console.log(err));
-    }
   }
 
-  // Admin Section
   function showAdmin() {
     hideAllViews();
     document.getElementById('view-admin').classList.remove('hidden');
-    document.getElementById('admin-login').classList.remove('hidden');
-    document.getElementById('admin-content').classList.add('hidden');
   }
 
   function checkPin() {
-    const pin = document.getElementById('admin-pin').value;
-    if (pin === "1234") {
+    if (document.getElementById('admin-pin').value === "1234") {
       document.getElementById('admin-login').classList.add('hidden');
       document.getElementById('admin-content').classList.remove('hidden');
-      loadRecords();
+      const records = JSON.parse(localStorage.getItem('quizRecords') || '[]');
+      const tbody = document.querySelector('#records-table tbody');
+      tbody.innerHTML = records.map(r => `<tr><td>${r.time}</td><td>${r.name}</td><td>${r.class}</td><td>${r.set}</td><td>${r.module}</td><td>${r.score}</td></tr>`).join('');
     } else {
       alert("PIN Salah!");
     }
   }
 
-  function loadRecords() {
-    const records = JSON.parse(localStorage.getItem('quizRecords') || '[]');
-    const tbody = document.querySelector('#records-table tbody');
-    tbody.innerHTML = "";
-
-    records.reverse().forEach(r => {
-      tbody.innerHTML += `<tr>
-        <td style="padding:8px;">${r.time}</td>
-        <td style="padding:8px;">${r.name}</td>
-        <td style="padding:8px;">${r.class}</td>
-        <td style="padding:8px;">${r.set}</td>
-        <td style="padding:8px;">${r.module}</td>
-        <td style="padding:8px;">${r.score}</td>
-      </tr>`;
-    });
-  }
-
   function downloadCSV() {
     const records = JSON.parse(localStorage.getItem('quizRecords') || '[]');
-    if(records.length === 0) { alert("Tiada rekod untuk dimuat turun."); return; }
-
-    let csv = "Masa,Nama,Kelas,Set,Modul,Markah\n";
-    records.forEach(r => {
-      csv += `"${r.time}","${r.name}","${r.class}","${r.set}","${r.module}","${r.score}"\n`;
-    });
-
+    let csv = "Masa,Nama,Kelas,Set,Modul,Markah\n" + records.map(r => `"${r.time}","${r.name}","${r.class}","${r.set}","${r.module}","${r.score}"`).join('\n');
     const blob = new Blob([csv], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.setAttribute('href', url);
-    a.setAttribute('download', 'Rekod_Kuiz_English_Year3.csv');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'Rekod_Kuiz.csv';
     a.click();
   }
 </script>
