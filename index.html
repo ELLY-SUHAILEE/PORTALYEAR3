@@ -118,46 +118,12 @@
   </div>
 </div>
 
+<!-- Memanggil fail soalan 20 soalan cikgu -->
+<script src="questions.js"></script>
+
 <script>
-const quizBank = {
-  "GET SMART SET": {
-    "Module 1: Welcome!": [
-      { type: "mcq", q: "Read the text:\n'Hi, I'm Anna. I'm ten years old. I have got brown hair and green eyes. I can play the piano.'\n\nHow old is Anna?", options: ["Eight years old", "Ten years old", "Twelve years old"], ans: "Ten years old" },
-      { type: "tf", q: "Based on the text: Anna has got blonde hair.", options: ["True", "False"], ans: "False" },
-      { type: "mcq", q: "Choose the correct sentence.", options: ["She have got straight hair.", "She has got straight hair."], ans: "She has got straight hair." },
-      { type: "mcq", q: "Tim _______ got curly hair.", options: ["has", "have"], ans: "has" }
-    ],
-    "Module 2: Every day": [
-      { type: "mcq", q: "Where does a firefighter work?", options: ["Hospital", "Fire station"], ans: "Fire station" }
-    ],
-    "Module 3: Right now": [
-      { type: "mcq", q: "What is Mark doing?", options: ["Playing baseball", "Swimming"], ans: "Playing baseball" }
-    ],
-    "Module 4: Year in, year out": [
-      { type: "mcq", q: "My favorite season _______ summer.", options: ["is", "are"], ans: "is" }
-    ],
-    "Module 5: My new house": [
-      { type: "mcq", q: "Whose coat is this? It's _______.", options: ["mine", "my"], ans: "mine" }
-    ]
-  },
-  "REMEDIAL SET": {
-    "Module 1: Welcome!": [
-      { type: "tf", q: "A cat has got two legs.", options: ["True", "False"], ans: "False" },
-      { type: "mcq", q: "I _______ swim.", options: ["can", "am"], ans: "can" }
-    ],
-    "Module 2: Every day": [
-      { type: "tf", q: "A chef works in a kitchen.", options: ["True", "False"], ans: "True" }
-    ],
-    "Module 3: Right now": [
-      { type: "mcq", q: "They _______ dancing.", options: ["are", "is"], ans: "are" }
-    ]
-  }
-};
-
   let currentSet = "", currentModule = "", activeQuestions = [];
-
-  // Pautan Web App Apps Script (Lemparkan data ke Google Sheet jika ada)
-  const SCRIPT_URL = "";
+  const SCRIPT_URL = ""; 
 
   function hideAllViews() {
     ['view-set','view-student-info','view-quiz','view-result','view-admin'].forEach(id => {
@@ -171,6 +137,11 @@ const quizBank = {
   }
 
   function selectSet(setName) {
+    if (typeof quizBank === 'undefined') {
+      alert("Ralat: Fail questions.js tidak ditemui!");
+      return;
+    }
+
     currentSet = setName;
     hideAllViews();
     document.getElementById('view-student-info').classList.remove('hidden');
@@ -204,7 +175,24 @@ const quizBank = {
       return;
     }
 
-    activeQuestions = quizBank[currentSet][currentModule] || [];
+    // Mengumpul SEMUA 20 SOALAN dari semua Skill dalam modul tersebut!
+    activeQuestions = [];
+    const targetModule = quizBank[currentSet][currentModule];
+
+    if (Array.isArray(targetModule)) {
+      activeQuestions = targetModule;
+    } else if (typeof targetModule === 'object') {
+      Object.keys(targetModule).forEach(skill => {
+        if (Array.isArray(targetModule[skill])) {
+          activeQuestions = activeQuestions.concat(targetModule[skill]);
+        }
+      });
+    }
+
+    if(activeQuestions.length === 0) {
+      alert("Tiada soalan dalam modul ini.");
+      return;
+    }
 
     const container = document.getElementById('questions-container');
     container.innerHTML = "";
@@ -222,7 +210,7 @@ const quizBank = {
 
     hideAllViews();
     document.getElementById('view-quiz').classList.remove('hidden');
-    document.getElementById('quiz-module-title').innerText = `${currentSet} - ${currentModule}`;
+    document.getElementById('quiz-module-title').innerText = `${currentSet} - ${currentModule} (${activeQuestions.length} Soalan)`;
   }
 
   function submitQuiz() {
@@ -251,12 +239,10 @@ const quizBank = {
       score: `${score}/${total} (${percentage}%)`
     };
 
-    // 1. Simpan dalam LocalStorage Browser
     let localData = JSON.parse(localStorage.getItem('quizRecords') || '[]');
     localData.push(recordData);
     localStorage.setItem('quizRecords', JSON.stringify(localData));
 
-    // 2. Hantar ke Google Sheets jika SCRIPT_URL diisi
     if (SCRIPT_URL) {
       fetch(SCRIPT_URL, {
         method: 'POST',
@@ -278,7 +264,7 @@ const quizBank = {
       document.getElementById('admin-content').classList.remove('hidden');
       loadRecordsTable();
     } else {
-      alert("PIN Salah! Sila guna 1234");
+      alert("PIN Salah!");
     }
   }
 
