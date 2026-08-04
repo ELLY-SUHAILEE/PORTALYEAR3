@@ -11,13 +11,14 @@
     h1, h2 { text-align: center; color: var(--primary); }
     .hidden { display: none; }
     .set-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-    .set-card { background: #e0e7ff; border: 2px solid var(--primary); padding: 20px; border-radius: 12px; text-align: center; cursor: pointer; }
-    .set-card:hover { background: var(--primary); color: white; }
+    .set-card { background: #e0e7ff; border: 2px solid var(--primary); padding: 20px; border-radius: 12px; text-align: center; cursor: pointer; transition: 0.2s; }
+    .set-card:hover { background: var(--primary); color: white; transform: translateY(-3px); }
     .set-card h2 { color: inherit; margin: 0; }
     .form-group { margin-bottom: 15px; }
     label { display: block; font-weight: bold; margin-bottom: 5px; }
     input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
     button { width: 100%; background-color: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+    button:hover { opacity: 0.9; }
     .question-card { background: #f9fafb; border: 1px solid #e5e7eb; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
     .question-card img { max-width: 100%; border-radius: 8px; margin-bottom: 10px; }
     .options-list { list-style: none; padding: 0; }
@@ -105,10 +106,86 @@
   </div>
 </div>
 
-<!-- Memanggil fail questions.js -->
-<script src="questions.js"></script>
-
 <script>
+// BANK SOALAN DISATUKAN DI SINI
+const quizBank = {
+  "GET SMART SET": {
+    "Module 1: Welcome!": {
+      "Reading": [
+        { type: "mcq", q: "Read the text:\n'Hi, I'm Anna. I'm ten years old. I have got brown hair and green eyes. I can play the piano.'\n\nHow old is Anna?", options: ["Eight years old", "Ten years old", "Twelve years old"], ans: "Ten years old" },
+        { type: "tf", q: "Based on the text: Anna has got blonde hair.", options: ["True", "False"], ans: "False" }
+      ],
+      "Writing": [
+        { type: "mcq", q: "Choose the correct sentence.", options: ["She have got straight hair.", "She has got straight hair."], ans: "She has got straight hair." }
+      ],
+      "Grammar": [
+        { type: "mcq", q: "Tim _______ got curly hair.", options: ["has", "have"], ans: "has" }
+      ]
+    },
+    "Module 2: Every day": {
+      "Reading": [{ type: "mcq", q: "Where does a firefighter work?", options: ["Hospital", "Fire station"], ans: "Fire station" }]
+    },
+    "Module 3: Right now": {
+      "Reading": [{ type: "mcq", q: "What is Mark doing?", options: ["Playing baseball", "Swimming"], ans: "Playing baseball" }]
+    },
+    "Module 4: Year in, year out": {
+      "Grammar": [{ type: "mcq", q: "My favorite season _______ summer.", options: ["is", "are"], ans: "is" }]
+    },
+    "Module 5: My new house": {
+      "Grammar": [{ type: "mcq", q: "Whose coat is this? It's _______.", options: ["mine", "my"], ans: "mine" }]
+    },
+    "Module 6: Food, food!": {
+      "Reading": [{ type: "mcq", q: "What do you need to make an omelette?", options: ["Eggs, milk, cheese, butter", "Flour, sugar"], ans: "Eggs, milk, cheese, butter" }]
+    },
+    "Module 7: Out and about": {
+      "Writing": [{ type: "mcq", q: "Choose the correct past tense sentence.", options: ["They bought two tickets yesterday.", "They buyed two tickets yesterday."], ans: "They bought two tickets yesterday." }]
+    },
+    "Module 8: Where were you yesterday?": {
+      "Grammar": [{ type: "mcq", q: "Where _______ you yesterday afternoon?", options: ["were", "was"], ans: "were" }]
+    },
+    "Module 9: On holiday": {
+      "Grammar": [{ type: "mcq", q: "They _______ camping on their holiday.", options: ["went", "go"], ans: "went" }]
+    },
+    "Module 10: The world around us": {
+      "Grammar": [{ type: "mcq", q: "Mount Everest is the _______ mountain in the world.", options: ["highest", "higher"], ans: "highest" }]
+    }
+  },
+
+  "REMEDIAL SET": {
+    "Module 1: Welcome!": {
+      "Reading": [{ type: "tf", q: "A cat has got two legs.", options: ["True", "False"], ans: "False" }],
+      "Grammar": [{ type: "mcq", q: "I _______ swim.", options: ["can", "am"], ans: "can" }]
+    },
+    "Module 2: Every day": {
+      "Reading": [{ type: "tf", q: "A chef works in a kitchen.", options: ["True", "False"], ans: "True" }]
+    },
+    "Module 3: Right now": {
+      "Grammar": [{ type: "mcq", q: "They _______ dancing.", options: ["are", "is"], ans: "are" }]
+    },
+    "Module 4: Year in, year out": {
+      "Reading": [{ type: "tf", q: "It is cold in winter.", options: ["True", "False"], ans: "True" }]
+    },
+    "Module 5: My new house": {
+      "Grammar": [{ type: "mcq", q: "There _______ a lamp.", options: ["is", "are"], ans: "is" }]
+    },
+    "Module 6: Food, food!": {
+      "Grammar": [{ type: "mcq", q: "There _______ some rice.", options: ["is", "are"], ans: "is" }]
+    },
+    "Module 7: Out and about": {
+      "Grammar": [{ type: "mcq", q: "He _______ a book yesterday.", options: ["read", "reads"], ans: "read" }]
+    },
+    "Module 8: Where were you yesterday?": {
+      "Grammar": [{ type: "mcq", q: "They _______ at school yesterday.", options: ["were", "was"], ans: "were" }]
+    },
+    "Module 9: On holiday": {
+      "Grammar": [{ type: "mcq", q: "She _______ photos on her holiday.", options: ["took", "take"], ans: "took" }]
+    },
+    "Module 10: The world around us": {
+      "Grammar": [{ type: "mcq", q: "A lion is _______ than a cat.", options: ["bigger", "biggest"], ans: "bigger" }]
+    }
+  }
+};
+
   let currentSet = "", currentModule = "", activeQuestions = [];
 
   function hideAllViews() {
@@ -123,11 +200,6 @@
   }
 
   function selectSet(setName) {
-    if (typeof quizBank === 'undefined') {
-      alert("Ralat: Fail questions.js tidak dapat dikesan!");
-      return;
-    }
-
     currentSet = setName;
     hideAllViews();
     document.getElementById('view-student-info').classList.remove('hidden');
@@ -137,8 +209,7 @@
     moduleSelect.innerHTML = '<option value="">-- Sila Pilih Topik --</option>';
     
     if (quizBank[setName]) {
-      const modules = Object.keys(quizBank[setName]);
-      modules.forEach(mod => {
+      Object.keys(quizBank[setName]).forEach(mod => {
         let opt = document.createElement('option');
         opt.value = mod;
         opt.innerText = mod;
@@ -173,11 +244,6 @@
           activeQuestions = activeQuestions.concat(targetModule[skill]);
         }
       });
-    }
-
-    if (activeQuestions.length === 0) {
-      alert("Tiada soalan ditemui untuk modul ini.");
-      return;
     }
 
     const container = document.getElementById('questions-container');
