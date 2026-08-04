@@ -98,95 +98,66 @@
     </div>
     <div id="admin-content" class="hidden">
       <button onclick="downloadCSV()" style="background:#10b981; margin-bottom: 10px;">📥 Muat Turun CSV</button>
-      <table border="1" style="width:100%; border-collapse:collapse;" id="records-table">
-        <thead><tr style="background:#e0e7ff;"><th>Masa</th><th>Nama</th><th>Kelas</th><th>Set</th><th>Modul</th><th>Markah</th></tr></thead>
-        <tbody></tbody>
-      </table>
+      <button onclick="clearRecords()" style="background:#ef4444; margin-bottom: 10px; width:auto; float:right;">🗑️ Padam Semua Rekod</button>
+      <div style="overflow-x:auto;">
+        <table border="1" style="width:100%; border-collapse:collapse;" id="records-table">
+          <thead>
+            <tr style="background:#e0e7ff;">
+              <th style="padding:8px;">Masa</th>
+              <th style="padding:8px;">Nama</th>
+              <th style="padding:8px;">Kelas</th>
+              <th style="padding:8px;">Set</th>
+              <th style="padding:8px;">Modul</th>
+              <th style="padding:8px;">Markah</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-// BANK SOALAN DISATUKAN DI SINI
 const quizBank = {
   "GET SMART SET": {
-    "Module 1: Welcome!": {
-      "Reading": [
-        { type: "mcq", q: "Read the text:\n'Hi, I'm Anna. I'm ten years old. I have got brown hair and green eyes. I can play the piano.'\n\nHow old is Anna?", options: ["Eight years old", "Ten years old", "Twelve years old"], ans: "Ten years old" },
-        { type: "tf", q: "Based on the text: Anna has got blonde hair.", options: ["True", "False"], ans: "False" }
-      ],
-      "Writing": [
-        { type: "mcq", q: "Choose the correct sentence.", options: ["She have got straight hair.", "She has got straight hair."], ans: "She has got straight hair." }
-      ],
-      "Grammar": [
-        { type: "mcq", q: "Tim _______ got curly hair.", options: ["has", "have"], ans: "has" }
-      ]
-    },
-    "Module 2: Every day": {
-      "Reading": [{ type: "mcq", q: "Where does a firefighter work?", options: ["Hospital", "Fire station"], ans: "Fire station" }]
-    },
-    "Module 3: Right now": {
-      "Reading": [{ type: "mcq", q: "What is Mark doing?", options: ["Playing baseball", "Swimming"], ans: "Playing baseball" }]
-    },
-    "Module 4: Year in, year out": {
-      "Grammar": [{ type: "mcq", q: "My favorite season _______ summer.", options: ["is", "are"], ans: "is" }]
-    },
-    "Module 5: My new house": {
-      "Grammar": [{ type: "mcq", q: "Whose coat is this? It's _______.", options: ["mine", "my"], ans: "mine" }]
-    },
-    "Module 6: Food, food!": {
-      "Reading": [{ type: "mcq", q: "What do you need to make an omelette?", options: ["Eggs, milk, cheese, butter", "Flour, sugar"], ans: "Eggs, milk, cheese, butter" }]
-    },
-    "Module 7: Out and about": {
-      "Writing": [{ type: "mcq", q: "Choose the correct past tense sentence.", options: ["They bought two tickets yesterday.", "They buyed two tickets yesterday."], ans: "They bought two tickets yesterday." }]
-    },
-    "Module 8: Where were you yesterday?": {
-      "Grammar": [{ type: "mcq", q: "Where _______ you yesterday afternoon?", options: ["were", "was"], ans: "were" }]
-    },
-    "Module 9: On holiday": {
-      "Grammar": [{ type: "mcq", q: "They _______ camping on their holiday.", options: ["went", "go"], ans: "went" }]
-    },
-    "Module 10: The world around us": {
-      "Grammar": [{ type: "mcq", q: "Mount Everest is the _______ mountain in the world.", options: ["highest", "higher"], ans: "highest" }]
-    }
+    "Module 1: Welcome!": [
+      { type: "mcq", q: "Read the text:\n'Hi, I'm Anna. I'm ten years old. I have got brown hair and green eyes. I can play the piano.'\n\nHow old is Anna?", options: ["Eight years old", "Ten years old", "Twelve years old"], ans: "Ten years old" },
+      { type: "tf", q: "Based on the text: Anna has got blonde hair.", options: ["True", "False"], ans: "False" },
+      { type: "mcq", q: "Choose the correct sentence.", options: ["She have got straight hair.", "She has got straight hair."], ans: "She has got straight hair." },
+      { type: "mcq", q: "Tim _______ got curly hair.", options: ["has", "have"], ans: "has" }
+    ],
+    "Module 2: Every day": [
+      { type: "mcq", q: "Where does a firefighter work?", options: ["Hospital", "Fire station"], ans: "Fire station" }
+    ],
+    "Module 3: Right now": [
+      { type: "mcq", q: "What is Mark doing?", options: ["Playing baseball", "Swimming"], ans: "Playing baseball" }
+    ],
+    "Module 4: Year in, year out": [
+      { type: "mcq", q: "My favorite season _______ summer.", options: ["is", "are"], ans: "is" }
+    ],
+    "Module 5: My new house": [
+      { type: "mcq", q: "Whose coat is this? It's _______.", options: ["mine", "my"], ans: "mine" }
+    ]
   },
-
   "REMEDIAL SET": {
-    "Module 1: Welcome!": {
-      "Reading": [{ type: "tf", q: "A cat has got two legs.", options: ["True", "False"], ans: "False" }],
-      "Grammar": [{ type: "mcq", q: "I _______ swim.", options: ["can", "am"], ans: "can" }]
-    },
-    "Module 2: Every day": {
-      "Reading": [{ type: "tf", q: "A chef works in a kitchen.", options: ["True", "False"], ans: "True" }]
-    },
-    "Module 3: Right now": {
-      "Grammar": [{ type: "mcq", q: "They _______ dancing.", options: ["are", "is"], ans: "are" }]
-    },
-    "Module 4: Year in, year out": {
-      "Reading": [{ type: "tf", q: "It is cold in winter.", options: ["True", "False"], ans: "True" }]
-    },
-    "Module 5: My new house": {
-      "Grammar": [{ type: "mcq", q: "There _______ a lamp.", options: ["is", "are"], ans: "is" }]
-    },
-    "Module 6: Food, food!": {
-      "Grammar": [{ type: "mcq", q: "There _______ some rice.", options: ["is", "are"], ans: "is" }]
-    },
-    "Module 7: Out and about": {
-      "Grammar": [{ type: "mcq", q: "He _______ a book yesterday.", options: ["read", "reads"], ans: "read" }]
-    },
-    "Module 8: Where were you yesterday?": {
-      "Grammar": [{ type: "mcq", q: "They _______ at school yesterday.", options: ["were", "was"], ans: "were" }]
-    },
-    "Module 9: On holiday": {
-      "Grammar": [{ type: "mcq", q: "She _______ photos on her holiday.", options: ["took", "take"], ans: "took" }]
-    },
-    "Module 10: The world around us": {
-      "Grammar": [{ type: "mcq", q: "A lion is _______ than a cat.", options: ["bigger", "biggest"], ans: "bigger" }]
-    }
+    "Module 1: Welcome!": [
+      { type: "tf", q: "A cat has got two legs.", options: ["True", "False"], ans: "False" },
+      { type: "mcq", q: "I _______ swim.", options: ["can", "am"], ans: "can" }
+    ],
+    "Module 2: Every day": [
+      { type: "tf", q: "A chef works in a kitchen.", options: ["True", "False"], ans: "True" }
+    ],
+    "Module 3: Right now": [
+      { type: "mcq", q: "They _______ dancing.", options: ["are", "is"], ans: "are" }
+    ]
   }
 };
 
   let currentSet = "", currentModule = "", activeQuestions = [];
+
+  // Pautan Web App Apps Script (Lemparkan data ke Google Sheet jika ada)
+  const SCRIPT_URL = "";
 
   function hideAllViews() {
     ['view-set','view-student-info','view-quiz','view-result','view-admin'].forEach(id => {
@@ -233,18 +204,7 @@ const quizBank = {
       return;
     }
 
-    activeQuestions = [];
-    const targetModule = quizBank[currentSet][currentModule];
-
-    if (Array.isArray(targetModule)) {
-      activeQuestions = targetModule;
-    } else if (typeof targetModule === 'object') {
-      Object.keys(targetModule).forEach(skill => {
-        if (Array.isArray(targetModule[skill])) {
-          activeQuestions = activeQuestions.concat(targetModule[skill]);
-        }
-      });
-    }
+    activeQuestions = quizBank[currentSet][currentModule] || [];
 
     const container = document.getElementById('questions-container');
     container.innerHTML = "";
@@ -274,22 +234,37 @@ const quizBank = {
 
     const total = activeQuestions.length;
     const percentage = Math.round((score / total) * 100);
+    const sName = document.getElementById('student-name').value.trim();
+    const sClass = document.getElementById('student-class').value.trim();
 
     hideAllViews();
     document.getElementById('view-result').classList.remove('hidden');
     document.getElementById('score-display').innerText = `${score} / ${total} (${percentage}%)`;
-    document.getElementById('result-detail').innerText = `Tahniah ${document.getElementById('student-name').value}!`;
+    document.getElementById('result-detail').innerText = `Tahniah ${sName}! Keputusan anda telah direkodkan.`;
 
-    let localData = JSON.parse(localStorage.getItem('quizRecords') || '[]');
-    localData.push({
-      time: new Date().toLocaleString(),
-      name: document.getElementById('student-name').value,
-      class: document.getElementById('student-class').value,
+    const recordData = {
+      time: new Date().toLocaleString('ms-MY'),
+      name: sName,
+      class: sClass,
       set: currentSet,
       module: currentModule,
-      score: `${score}/${total}`
-    });
+      score: `${score}/${total} (${percentage}%)`
+    };
+
+    // 1. Simpan dalam LocalStorage Browser
+    let localData = JSON.parse(localStorage.getItem('quizRecords') || '[]');
+    localData.push(recordData);
     localStorage.setItem('quizRecords', JSON.stringify(localData));
+
+    // 2. Hantar ke Google Sheets jika SCRIPT_URL diisi
+    if (SCRIPT_URL) {
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(recordData)
+      }).catch(err => console.log(err));
+    }
   }
 
   function showAdmin() {
@@ -301,22 +276,55 @@ const quizBank = {
     if (document.getElementById('admin-pin').value === "1234") {
       document.getElementById('admin-login').classList.add('hidden');
       document.getElementById('admin-content').classList.remove('hidden');
-      const records = JSON.parse(localStorage.getItem('quizRecords') || '[]');
-      const tbody = document.querySelector('#records-table tbody');
-      tbody.innerHTML = records.map(r => `<tr><td>${r.time}</td><td>${r.name}</td><td>${r.class}</td><td>${r.set}</td><td>${r.module}</td><td>${r.score}</td></tr>`).join('');
+      loadRecordsTable();
     } else {
-      alert("PIN Salah!");
+      alert("PIN Salah! Sila guna 1234");
     }
+  }
+
+  function loadRecordsTable() {
+    const records = JSON.parse(localStorage.getItem('quizRecords') || '[]');
+    const tbody = document.querySelector('#records-table tbody');
+    tbody.innerHTML = "";
+
+    if (records.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:15px;">Tiada rekod ditemui pada peranti ini.</td></tr>';
+      return;
+    }
+
+    records.slice().reverse().forEach(r => {
+      tbody.innerHTML += `<tr>
+        <td style="padding:8px;">${r.time}</td>
+        <td style="padding:8px;">${r.name}</td>
+        <td style="padding:8px;">${r.class}</td>
+        <td style="padding:8px;">${r.set}</td>
+        <td style="padding:8px;">${r.module}</td>
+        <td style="padding:8px;">${r.score}</td>
+      </tr>`;
+    });
   }
 
   function downloadCSV() {
     const records = JSON.parse(localStorage.getItem('quizRecords') || '[]');
-    let csv = "Masa,Nama,Kelas,Set,Modul,Markah\n" + records.map(r => `"${r.time}","${r.name}","${r.class}","${r.set}","${r.module}","${r.score}"`).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
+    if(records.length === 0) { alert("Tiada rekod untuk dimuat turun."); return; }
+
+    let csv = "Masa,Nama,Kelas,Set,Modul,Markah\n";
+    records.forEach(r => {
+      csv += `"${r.time}","${r.name}","${r.class}","${r.set}","${r.module}","${r.score}"\n`;
+    });
+
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'Rekod_Kuiz.csv';
+    a.download = 'Rekod_Kuiz_Year3.csv';
     a.click();
+  }
+
+  function clearRecords() {
+    if (confirm("Adakah anda pasti mahu memadam semua rekod murid pada peranti ini?")) {
+      localStorage.removeItem('quizRecords');
+      loadRecordsTable();
+    }
   }
 </script>
 
