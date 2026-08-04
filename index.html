@@ -118,7 +118,7 @@
   </div>
 </div>
 
-<!-- Memanggil fail soalan 20 soalan cikgu -->
+<!-- Mengambil fail questions.js dari GitHub -->
 <script src="questions.js"></script>
 
 <script>
@@ -138,7 +138,7 @@
 
   function selectSet(setName) {
     if (typeof quizBank === 'undefined') {
-      alert("Ralat: Fail questions.js tidak ditemui!");
+      alert("Ralat: Fail questions.js tidak dapat dibaca oleh sistem!");
       return;
     }
 
@@ -160,6 +160,21 @@
     }
   }
 
+  // FUNGSI UTAMA MEMBACA KESEMUA 20 SOALAN (Termasuk Sub-skil)
+  function extractAllQuestions(node) {
+    let results = [];
+    if (!node) return results;
+
+    if (Array.isArray(node)) {
+      return node;
+    } else if (typeof node === 'object') {
+      Object.keys(node).forEach(key => {
+        results = results.concat(extractAllQuestions(node[key]));
+      });
+    }
+    return results;
+  }
+
   function startQuiz() {
     const name = document.getElementById('student-name').value.trim();
     const studentClass = document.getElementById('student-class').value.trim();
@@ -175,22 +190,12 @@
       return;
     }
 
-    // Mengumpul SEMUA 20 SOALAN dari semua Skill dalam modul tersebut!
-    activeQuestions = [];
-    const targetModule = quizBank[currentSet][currentModule];
-
-    if (Array.isArray(targetModule)) {
-      activeQuestions = targetModule;
-    } else if (typeof targetModule === 'object') {
-      Object.keys(targetModule).forEach(skill => {
-        if (Array.isArray(targetModule[skill])) {
-          activeQuestions = activeQuestions.concat(targetModule[skill]);
-        }
-      });
-    }
+    // Mengumpul SEMUA soalan dalam modul tersebut
+    const rawModuleData = quizBank[currentSet][currentModule];
+    activeQuestions = extractAllQuestions(rawModuleData);
 
     if(activeQuestions.length === 0) {
-      alert("Tiada soalan dalam modul ini.");
+      alert("Tiada soalan ditemui dalam modul ini.");
       return;
     }
 
@@ -198,10 +203,13 @@
     container.innerHTML = "";
 
     activeQuestions.forEach((q, idx) => {
-      let qHtml = `<div class="question-card"><p><strong>Soalan ${idx + 1}:</strong> ${q.q.replace(/\n/g, '<br>')}</p>`;
-      if(q.img) qHtml += `<img src="${q.img}">`;
+      let qText = q.q || q.question || "";
+      let qOpts = q.options || q.choices || [];
+      
+      let qHtml = `<div class="question-card"><p><strong>Soalan ${idx + 1}:</strong> ${qText.replace(/\n/g, '<br>')}</p>`;
+      if(q.img || q.image) qHtml += `<img src="${q.img || q.image}">`;
       qHtml += `<ul class="options-list">`;
-      q.options.forEach(opt => {
+      qOpts.forEach(opt => {
         qHtml += `<li><label><input type="radio" name="q_${idx}" value="${opt}"> ${opt}</label></li>`;
       });
       qHtml += `</ul></div>`;
@@ -217,7 +225,8 @@
     let score = 0;
     activeQuestions.forEach((q, idx) => {
       const selected = document.querySelector(`input[name="q_${idx}"]:checked`);
-      if (selected && selected.value === q.ans) score++;
+      const correctAns = q.ans || q.answer;
+      if (selected && selected.value === correctAns) score++;
     });
 
     const total = activeQuestions.length;
@@ -230,6 +239,7 @@
     document.getElementById('score-display').innerText = `${score} / ${total} (${percentage}%)`;
     document.getElementById('result-detail').innerText = `Tahniah ${sName}! Keputusan anda telah direkodkan.`;
 
+    // SISTEM REKOD GURU (TIDAK DIUBAH / DIUSIK)
     const recordData = {
       time: new Date().toLocaleString('ms-MY'),
       name: sName,
