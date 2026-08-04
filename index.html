@@ -19,7 +19,7 @@
     input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
     button { width: 100%; background-color: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }
     .question-card { background: #f9fafb; border: 1px solid #e5e7eb; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-    .question-card img { max-width: 100%; border-radius: 8px; }
+    .question-card img { max-width: 100%; border-radius: 8px; margin-bottom: 10px; }
     .options-list { list-style: none; padding: 0; }
     .options-list label { cursor: pointer; background: #fff; padding: 10px; border: 1px solid #ddd; border-radius: 6px; display: block; margin-bottom: 8px; }
     .options-list input { width: auto; margin-right: 10px; }
@@ -51,7 +51,7 @@
     </div>
   </div>
 
-  <!-- VIEW 2: Maklumat Murid & Pilih Modul SAHAJA -->
+  <!-- VIEW 2: Maklumat Murid & Pilih Modul -->
   <div id="view-student-info" class="hidden">
     <h2 id="selected-set-title"></h2>
     <div class="form-group">
@@ -64,7 +64,9 @@
     </div>
     <div class="form-group">
       <label>Pilih Topik / Modul:</label>
-      <select id="select-module"></select>
+      <select id="select-module">
+        <option value="">-- Sila Pilih Topik --</option>
+      </select>
     </div>
     <button onclick="startQuiz()">Mula Jawab Kuiz 🚀</button>
   </div>
@@ -94,8 +96,8 @@
       <button onclick="checkPin()">Log Masuk</button>
     </div>
     <div id="admin-content" class="hidden">
-      <button onclick="downloadCSV()" style="background:#10b981;">📥 Muat Turun CSV</button>
-      <table border="1" style="width:100%; margin-top:15px; border-collapse:collapse;" id="records-table">
+      <button onclick="downloadCSV()" style="background:#10b981; margin-bottom: 10px;">📥 Muat Turun CSV</button>
+      <table border="1" style="width:100%; border-collapse:collapse;" id="records-table">
         <thead><tr style="background:#e0e7ff;"><th>Masa</th><th>Nama</th><th>Kelas</th><th>Set</th><th>Modul</th><th>Markah</th></tr></thead>
         <tbody></tbody>
       </table>
@@ -103,7 +105,8 @@
   </div>
 </div>
 
-<script src="question.js"></script>
+<!-- Memanggil fail questions.js -->
+<script src="questions.js"></script>
 
 <script>
   let currentSet = "", currentModule = "", activeQuestions = [];
@@ -120,16 +123,22 @@
   }
 
   function selectSet(setName) {
+    if (typeof quizBank === 'undefined') {
+      alert("Ralat: Fail questions.js tidak dapat dikesan!");
+      return;
+    }
+
     currentSet = setName;
     hideAllViews();
     document.getElementById('view-student-info').classList.remove('hidden');
     document.getElementById('selected-set-title').innerText = setName;
 
     const moduleSelect = document.getElementById('select-module');
-    moduleSelect.innerHTML = "";
+    moduleSelect.innerHTML = '<option value="">-- Sila Pilih Topik --</option>';
     
-    if (typeof quizBank !== 'undefined' && quizBank[setName]) {
-      Object.keys(quizBank[setName]).forEach(mod => {
+    if (quizBank[setName]) {
+      const modules = Object.keys(quizBank[setName]);
+      modules.forEach(mod => {
         let opt = document.createElement('option');
         opt.value = mod;
         opt.innerText = mod;
@@ -144,16 +153,31 @@
     currentModule = document.getElementById('select-module').value;
 
     if (!name || !studentClass) {
-      alert("Sila masukkan Nama dan Kelas!");
+      alert("Sila masukkan Nama dan Kelas anda!");
+      return;
+    }
+
+    if (!currentModule) {
+      alert("Sila pilih Topik / Modul!");
       return;
     }
 
     activeQuestions = [];
-    if (quizBank[currentSet] && quizBank[currentSet][currentModule]) {
-      const moduleSkills = quizBank[currentSet][currentModule];
-      Object.keys(moduleSkills).forEach(skill => {
-        activeQuestions = activeQuestions.concat(moduleSkills[skill]);
+    const targetModule = quizBank[currentSet][currentModule];
+
+    if (Array.isArray(targetModule)) {
+      activeQuestions = targetModule;
+    } else if (typeof targetModule === 'object') {
+      Object.keys(targetModule).forEach(skill => {
+        if (Array.isArray(targetModule[skill])) {
+          activeQuestions = activeQuestions.concat(targetModule[skill]);
+        }
       });
+    }
+
+    if (activeQuestions.length === 0) {
+      alert("Tiada soalan ditemui untuk modul ini.");
+      return;
     }
 
     const container = document.getElementById('questions-container');
