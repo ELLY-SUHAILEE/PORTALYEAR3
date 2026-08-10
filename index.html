@@ -3,153 +3,470 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PORTAL YEAR 3 - ENGLISH QUIZ</title>
+  <title>PORTAL YEAR 3 | SMART ENGLISH QUIZ SYSTEM</title>
   <style>
-    :root { --primary: #4f46e5; --bg: #f3f4f6; --card-bg: #ffffff; }
-    body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg); margin: 0; padding: 20px; }
-    .container { max-width: 800px; margin: 0 auto; background: var(--card-bg); padding: 30px; border-radius: 16px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
-    h1, h2 { text-align: center; color: var(--primary); }
-    .hidden { display: none; }
-    .set-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px; }
-    .set-card { background: #e0e7ff; border: 2px solid var(--primary); padding: 20px; border-radius: 12px; text-align: center; cursor: pointer; transition: 0.2s; }
+    :root {
+      --primary: #1976d2;
+      --primary-dark: #0d47a1;
+      --bg: #eef6ff;
+      --card-bg: #ffffff;
+      --text: #17324d;
+      --border: #ccd8e5;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 40px; }
+    
+    header { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 25px 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    header h1 { margin: 0; font-size: 32px; letter-spacing: 2px; }
+    header p { margin: 5px 0 0; font-size: 15px; opacity: 0.9; }
+
+    .container { max-width: 1100px; margin: 20px auto; padding: 0 15px; }
+    .hidden { display: none !important; }
+
+    /* CARD STYLES */
+    .card-box { background: white; border-radius: 16px; padding: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 22px; }
+    h2.section-heading { margin: 25px 0 12px; color: var(--primary-dark); font-size: 20px; display: flex; align-items: center; gap: 8px; }
+
+    /* STUDENT VIEWS */
+    .set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 15px; }
+    .set-card { background: #e8f3ff; border: 2px solid var(--primary); padding: 22px; border-radius: 14px; text-align: center; cursor: pointer; transition: 0.2s; }
     .set-card:hover { background: var(--primary); color: white; transform: translateY(-3px); }
-    .set-card h2 { color: inherit; margin: 0; }
+    .set-card h3 { margin: 0 0 8px; color: inherit; }
+    
     .form-group { margin-bottom: 15px; }
-    label { display: block; font-weight: bold; margin-bottom: 5px; }
-    input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
-    button { width: 100%; background-color: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }
-    button:hover { opacity: 0.9; }
-    .question-card { background: #f9fafb; border: 1px solid #e5e7eb; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-    .question-card img { max-width: 100%; border-radius: 8px; margin-bottom: 10px; }
-    .options-list { list-style: none; padding: 0; }
-    .options-list label { cursor: pointer; background: #fff; padding: 10px; border: 1px solid #ddd; border-radius: 6px; display: block; margin-bottom: 8px; }
-    .options-list input { width: auto; margin-right: 10px; }
-    .top-nav { display: flex; justify-content: space-between; margin-bottom: 20px; }
-    .nav-btn { width: auto; padding: 6px 15px; font-size: 14px; background: #6b7280; }
+    label { display: block; font-weight: bold; margin-bottom: 6px; font-size: 14px; }
+    input[type="text"], input[type="password"], select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 9px; font-size: 15px; background: white; }
+    
+    .btn { display: inline-block; width: 100%; background: var(--primary); color: white; border: none; padding: 13px; border-radius: 25px; font-size: 15px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; transition: 0.2s; }
+    .btn:hover { background: var(--primary-dark); }
+    .btn-secondary { background: #607080; }
+    .btn-secondary:hover { background: #455a64; }
+    .btn-green { background: #2e7d32; }
+    .btn-green:hover { background: #1b5e20; }
+
+    /* TOP NAVIGATION */
+    .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .nav-btn { width: auto; padding: 8px 18px; font-size: 14px; border-radius: 20px; }
+
+    /* QUIZ CARDS */
+    .question-card { background: #f8fafc; border: 1px solid var(--border); padding: 18px; border-radius: 12px; margin-bottom: 18px; }
+    .options-list { list-style: none; padding: 0; margin: 10px 0 0; }
+    .options-list label { cursor: pointer; background: white; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; display: block; margin-bottom: 8px; font-weight: normal; }
+
+    /* DASHBOARD & TEACHER ACCESS */
+    .teacher-bar { background: white; border-radius: 15px; padding: 15px 20px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; }
+    
+    .filter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) auto; gap: 12px; align-items: end; }
+    .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px; }
+    
+    .stat-card { background: white; border-radius: 14px; padding: 18px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border-top: 4px solid var(--primary); }
+    .stat-card h4 { margin: 0 0 8px; color: #607080; font-size: 13px; text-transform: uppercase; }
+    .stat-card .number { font-size: 32px; font-weight: bold; color: var(--primary-dark); }
+    .stat-card .sub-label { font-size: 12px; color: #718096; margin-top: 4px; }
+
+    /* CHART ROW */
+    .chart-row { display: grid; grid-template-columns: 110px 1fr 50px; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .chart-track { width: 100%; height: 22px; background: #e8eef5; border-radius: 15px; overflow: hidden; }
+    .chart-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #1976d2, #42a5f5); border-radius: 15px; transition: width 0.6s ease; }
+
+    /* RECOMMENDATION GRID */
+    .recommendation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+    .rec-card { border-radius: 12px; padding: 16px; border: 1px solid var(--border); }
+    .rec-card.intensive { background: #ffebee; color: #c62828; }
+    .rec-card.guided { background: #fff8e1; color: #b78103; }
+    .rec-card.reinforcement { background: #e8f5e9; color: #2e7d32; }
+    .rec-card.enrichment { background: #e3f2fd; color: #1557a6; }
+    .rec-num { font-size: 28px; font-weight: bold; margin: 5px 0; }
+
+    /* BADGES */
+    .badge { padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: bold; display: inline-block; }
+    .badge-red { background: #ffebee; color: #c62828; }
+    .badge-orange { background: #fff3e0; color: #ef6c00; }
+    .badge-blue { background: #e3f2fd; color: #1565c0; }
+    .badge-green { background: #e8f5e9; color: #2e7d32; }
+
+    /* TABLES */
+    .table-box { overflow-x: auto; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+    table { width: 100%; border-collapse: collapse; min-width: 750px; }
+    th { background: var(--primary-dark); color: white; padding: 12px 10px; font-size: 13px; text-align: left; }
+    td { padding: 11px 10px; border-bottom: 1px solid #e1e7ee; font-size: 13px; }
+    tbody tr:hover { background: #f4f9ff; }
+    .empty-td { text-align: center; padding: 25px; color: #718096; }
+
+    /* PRINT LAYOUT */
+    @media print {
+      body { background: white; color: black; padding: 0; }
+      header { background: white !important; color: black !important; border-bottom: 2px solid #000; padding: 10px; }
+      .top-nav, .teacher-bar, .action-buttons, .filter-grid button, #loginSection { display: none !important; }
+      .container { max-width: 100%; margin: 0; padding: 0; }
+      .card-box { box-shadow: none !important; border: 1px solid #ccc; page-break-inside: avoid; }
+      table { min-width: 100%; }
+      th, td { font-size: 10px; padding: 6px; }
+    }
   </style>
 </head>
 <body>
 
+<header>
+  <h1>PORTAL YEAR 3</h1>
+  <p>SMART ENGLISH QUIZ SYSTEM (SEQS)</p>
+</header>
+
 <div class="container">
+  
+  <!-- NAV BAR -->
   <div class="top-nav">
-    <button class="nav-btn" onclick="goHome()">🏠 Halaman Utama</button>
-    <button class="nav-btn" style="background:#059669;" onclick="showAdmin()">🔐 Rekod Guru</button>
+    <button class="btn nav-btn btn-secondary" onclick="goHome()">🏠 Halaman Utama</button>
+    <button class="btn nav-btn btn-green" onclick="showTeacherSection()">🔐 Rekod & Dashboard Guru</button>
   </div>
 
-  <!-- VIEW 1: Nama, Kelas & Pilih Set -->
-  <div id="view-student-info">
-    <h1>🎯 PORTAL YEAR 3 ENGLISH</h1>
+  <!-- VIEW 1: MAKLUMAT MURID -->
+  <div id="view-student-info" class="card-box">
+    <h2>🎯 Pendaftaran Murid</h2>
     
     <div class="form-group">
       <label for="student-name">Nama Murid:</label>
-      <input type="text" id="student-name" placeholder="Contoh: Danial Bin Ahmad" required>
+      <input type="text" id="student-name" placeholder="Contoh: DANIAL BIN AHMAD" required>
     </div>
     
     <div class="form-group">
       <label for="student-class">Kelas:</label>
-      <input type="text" id="student-class" placeholder="Contoh: 3 Cemerlang" required>
+      <input type="text" id="student-class" placeholder="Contoh: 3 CEPAKA" required>
     </div>
 
-    <p style="text-align: center; font-weight: bold; margin-top: 25px; color: #374151;">Sila Pilih Set Latihan Anda:</p>
-    
+    <label style="margin-top: 20px;">Sila Pilih Set Latihan Anda:</label>
     <div class="set-grid">
       <div class="set-card" onclick="selectSet('GET SMART SET')">
-        <h2>GET SMART SET</h2>
-        <p>Latihan Aras Standard / Pengukuhan</p>
+        <h3>GET SMART SET</h3>
+        <p style="margin:0; font-size: 13px;">Latihan Aras Standard / Pengukuhan</p>
       </div>
       <div class="set-card" onclick="selectSet('REMEDIAL SET')">
-        <h2>REMEDIAL SET</h2>
-        <p>Latihan Aras Asas / Pemulihan</p>
+        <h3>REMEDIAL SET</h3>
+        <p style="margin:0; font-size: 13px;">Latihan Aras Asas / Pemulihan</p>
       </div>
     </div>
   </div>
 
-  <!-- VIEW 2: Pilih Modul Get Smart Year 3 -->
-  <div id="view-module-select" class="hidden">
+  <!-- VIEW 2: PILIH MODUL -->
+  <div id="view-module-select" class="card-box hidden">
     <h2 id="selected-set-title"></h2>
-    <p style="text-align: center; font-weight: bold; color: #4b5563;" id="student-info-summary"></p>
+    <p style="text-align: center; color: #4b5563; font-weight: bold;" id="student-info-summary"></p>
     
     <div class="form-group" style="margin-top: 20px;">
-      <label for="select-module">Pilih Topik Get Smart Year 3:</label>
+      <label for="select-module">Pilih Modul / Topik:</label>
       <select id="select-module">
-        <option value="">-- Sila Pilih Topik --</option>
+        <option value="">-- Sila Pilih Modul --</option>
       </select>
     </div>
     
-    <button onclick="startQuiz()">Mula Jawab Kuiz 🚀</button>
-    <button onclick="goHome()" style="background:#9ca3af; margin-top: 10px;">Tukar Nama / Set ⬅️</button>
+    <button class="btn" onclick="startQuiz()">Mula Jawab Kuiz 🚀</button>
+    <button class="btn btn-secondary" style="margin-top: 10px;" onclick="goHome()">⬅️ Tukar Nama / Set</button>
   </div>
 
-  <!-- VIEW 3: Soalan -->
-  <div id="view-quiz" class="hidden">
+  <!-- VIEW 3: SOALAN KUIZ -->
+  <div id="view-quiz" class="card-box hidden">
     <h2 id="quiz-module-title"></h2>
     <form id="quiz-form">
       <div id="questions-container"></div>
-      <button type="button" onclick="submitQuiz()">Hantar & Semak Keputusan 📝</button>
+      <button type="button" class="btn btn-green" onclick="submitQuiz()">Hantar & Semak Keputusan 📝</button>
     </form>
   </div>
 
-  <!-- VIEW 4: Keputusan -->
-  <div id="view-result" class="hidden">
+  <!-- VIEW 4: KEPUTUSAN MURID -->
+  <div id="view-result" class="card-box hidden" style="text-align: center;">
     <h2>🎉 Tahniah! Anda telah selesai.</h2>
-    <h1 style="text-align: center; color: var(--primary);" id="score-display"></h1>
-    <p style="text-align: center;" id="result-detail"></p>
-    <button onclick="goHome()">Jawab Modul Lain 🔄</button>
+    <h1 style="color: var(--primary); font-size: 42px; margin: 15px 0;" id="score-display">0 / 0</h1>
+    <p id="result-detail" style="font-size: 16px;"></p>
+    <button class="btn" style="max-width: 250px; margin: 20px auto 0;" onclick="goHome()">Jawab Modul Lain 🔄</button>
   </div>
 
-  <!-- VIEW 5: Rekod Guru -->
-  <div id="view-admin" class="hidden">
-    <h2>🔐 Rekod Keputusan Murid (Guru)</h2>
-    <div id="admin-login">
-      <input type="password" id="admin-pin" placeholder="Masukkan PIN (1234)">
-      <button onclick="checkPin()">Log Masuk</button>
+  <!-- VIEW 5: DASHBOARD GURU -->
+  <div id="view-teacher-login" class="card-box hidden" style="max-width: 400px; margin: 40px auto; text-align: center;">
+    <div style="font-size: 48px; margin-bottom: 10px;">🔒</div>
+    <h2>AKSES GURU</h2>
+    <p style="color: #607080; font-size: 14px;">Sila masukkan PIN Guru untuk mengakses analisis.</p>
+    
+    <input type="password" id="teacherPassword" placeholder="Masukkan PIN Guru" style="margin: 15px 0; text-align: center;">
+    <button class="btn" id="loginButton" onclick="teacherLogin()">LOG MASUK</button>
+    <div id="loginMessage" style="margin-top: 12px; font-size: 14px; font-weight: bold;"></div>
+  </div>
+
+  <div id="view-teacher-dashboard" class="hidden">
+    
+    <!-- BAR GURU -->
+    <div class="teacher-bar">
+      <div>🔒 <strong>LOG MASUK GURU DISAHKAN</strong></div>
+      <button class="btn btn-secondary nav-btn" style="background:#c62828;" onclick="teacherLogout()">LOG KELUAR</button>
     </div>
-    <div id="admin-content" class="hidden">
-      <button onclick="downloadCSV()" style="background:#10b981; margin-bottom: 10px;">📥 Muat Turun CSV</button>
-      <button onclick="clearRecords()" style="background:#ef4444; margin-bottom: 10px; width:auto; float:right;">🗑️ Padam Semua Rekod</button>
-      <div style="overflow-x:auto;">
-        <table border="1" style="width:100%; border-collapse:collapse;" id="records-table">
+
+    <!-- PENAPIS ANALISIS -->
+    <div class="card-box">
+      <h3>🔍 Penapis Analisis Rekod Guru</h3>
+      <div class="filter-grid">
+        <div>
+          <label>KELAS</label>
+          <select id="classFilter" onchange="applyFilters()"><option value="">Semua Kelas</option></select>
+        </div>
+        <div>
+          <label>SET LATIHAN</label>
+          <select id="setFilter" onchange="applyFilters()">
+            <option value="">Semua Set</option>
+            <option value="GET SMART SET">GET SMART SET</option>
+            <option value="REMEDIAL SET">REMEDIAL SET</option>
+          </select>
+        </div>
+        <div>
+          <label>MODUL</label>
+          <select id="moduleFilter" onchange="applyFilters()">
+            <option value="">Semua Modul</option>
+            <option value="1">Module 1 – Welcome!</option>
+            <option value="2">Module 2 – Every Day</option>
+            <option value="3">Module 3 – Right Now</option>
+            <option value="4">Module 4 – Year In, Year Out</option>
+            <option value="5">Module 5 – My New House</option>
+            <option value="6">Module 6 – Food, Please!</option>
+            <option value="7">Module 7 – Out and About</option>
+            <option value="8">Module 8 – Where Were You Yesterday?</option>
+            <option value="9">Module 9 – On Holiday</option>
+            <option value="10">Module 10 – The World Around Us</option>
+          </select>
+        </div>
+        <div>
+          <label>CARIAN</label>
+          <input type="text" id="searchBox" placeholder="Nama / Kelas..." oninput="applyFilters()">
+        </div>
+        <button class="btn btn-secondary" onclick="resetFilters()">RESET</button>
+      </div>
+      <p id="filterResult" style="margin: 12px 0 0; font-size: 13px; color: var(--primary-dark); text-align: center; font-weight: bold;"></p>
+    </div>
+
+    <!-- PRESTASI KESELURUHAN -->
+    <h2 class="section-heading">📊 Ringkasan Prestasi Keseluruhan</h2>
+    <div class="dashboard-grid">
+      <div class="stat-card">
+        <h4>JUMLAH PERCOBAAN</h4>
+        <div class="number" id="totalAttempts">0</div>
+      </div>
+      <div class="stat-card">
+        <h4>PURATA SKOR</h4>
+        <div class="number" id="averageScore">0%</div>
+      </div>
+      <div class="stat-card">
+        <h4>SKOR TERTINGGI</h4>
+        <div class="number" id="highestScore">0%</div>
+      </div>
+      <div class="stat-card" style="border-top-color: #2e7d32;">
+        <h4>GET SMART SET</h4>
+        <div class="number" id="getSmartCount">0</div>
+      </div>
+      <div class="stat-card" style="border-top-color: #ef6c00;">
+        <h4>REMEDIAL SET</h4>
+        <div class="number" id="remedialCount">0</div>
+      </div>
+    </div>
+
+    <!-- 1. ANALISIS MENGIKUT KELAS -->
+    <h2 class="section-heading">🏫 Analisis Prestasi Mengikut Kelas</h2>
+    <div class="card-box" style="border-top: 4px solid var(--primary-dark);">
+      <div class="table-box">
+        <table>
           <thead>
-            <tr style="background:#e0e7ff;">
-              <th style="padding:8px;">Masa</th>
-              <th style="padding:8px;">Nama</th>
-              <th style="padding:8px;">Kelas</th>
-              <th style="padding:8px;">Set</th>
-              <th style="padding:8px;">Modul</th>
-              <th style="padding:8px;">Markah</th>
+            <tr>
+              <th>NAMA KELAS</th>
+              <th>JUMLAH MURID / PERCOBAAN</th>
+              <th>PURATA SKOR KELAS</th>
+              <th>MURID CEMERLANG (≥85%)</th>
+              <th>MURID INTERVENSI (≤40%)</th>
+              <th>STATUS PRESTASI KELAS</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody id="classAnalysisBody"></tbody>
         </table>
       </div>
     </div>
+
+    <!-- 2. ANALISIS MENGIKUT TOPIK / MODUL -->
+    <h2 class="section-heading">📚 Analisis Prestasi Mengikut Topik / Modul</h2>
+    <div class="card-box" style="border-top: 4px solid #1565c0;">
+      <p style="font-size: 13px; color: #455a64; margin-bottom: 15px;">
+        Analisis ini membantu guru mengenal pasti topik yang mudah dikuasai dan modul yang memerlukan pengajaran semula (re-teaching).
+      </p>
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr style="background: #1565c0;">
+              <th style="background: #1565c0;">MODUL / TOPIK</th>
+              <th style="background: #1565c0;">JUMLAH PERCOBAAN</th>
+              <th style="background: #1565c0;">PURATA SKOR MODUL</th>
+              <th style="background: #1565c0;">TAHAP PENGUASAAN TOPIK</th>
+              <th style="background: #1565c0;">CADANGAN TINDAKAN SUSULAN</th>
+            </tr>
+          </thead>
+          <tbody id="topicAnalysisBody"></tbody>
+        </table>
+      </div>
+      <div style="margin-top: 20px;">
+        <h4 style="margin-bottom: 10px; color: var(--primary-dark);">📈 Graf Visual Purata Skor Modul</h4>
+        <div id="moduleChart"></div>
+      </div>
+    </div>
+
+    <!-- 3. ANALISIS PENCAPAIAN MURID (KUMPULAN & TAHAP) -->
+    <h2 class="section-heading">🏆 Analisis Agihan Pencapaian Murid</h2>
+    <div class="dashboard-grid">
+      <div class="stat-card" style="border-top-color: #2e7d32;">
+        <h4>CEMERLANG</h4>
+        <div class="number" id="excellentCount">0</div>
+        <div class="sub-label">85% – 100%</div>
+      </div>
+      <div class="stat-card" style="border-top-color: #1976d2;">
+        <h4>BAIK</h4>
+        <div class="number" id="goodCount">0</div>
+        <div class="sub-label">60% – 84%</div>
+      </div>
+      <div class="stat-card" style="border-top-color: #f59e0b;">
+        <h4>MEMUASKAN</h4>
+        <div class="number" id="satisfactoryCount">0</div>
+        <div class="sub-label">41% – 59%</div>
+      </div>
+      <div class="stat-card" style="border-top-color: #c62828;">
+        <h4>INTERVENSI</h4>
+        <div class="number" id="needsImprovementCount">0</div>
+        <div class="sub-label">0% – 40%</div>
+      </div>
+    </div>
+
+    <!-- CADANGAN INTERVENSI PINTAR -->
+    <h2 class="section-heading">💡 Cadangan Intervensi Pintar</h2>
+    <div class="card-box">
+      <p id="recommendationIntro" style="background: #e8f3ff; padding: 12px; border-radius: 8px; font-weight: bold; margin-bottom: 15px;"></p>
+      <div class="recommendation-grid">
+        <div class="rec-card intensive">
+          <h4>🎯 SOKONGAN INTENSIF</h4>
+          <div class="rec-num" id="intensiveCount">0</div>
+          <p><strong>Pencapaian:</strong> 0% – 40%</p>
+          <p>Sediakan aktiviti pemulihan berfokus dan bimbingan guru secara langsung.</p>
+        </div>
+        <div class="rec-card guided">
+          <h4>📘 LATIHAN TERBIMBING</h4>
+          <div class="rec-num" id="guidedCount">0</div>
+          <p><strong>Pencapaian:</strong> 41% – 59%</p>
+          <p>Berikan latihan terstruktur, bantuan kosa kata dan bimbingan rakan sebaya.</p>
+        </div>
+        <div class="rec-card reinforcement">
+          <h4>👍 PENGUKUHAN</h4>
+          <div class="rec-num" id="reinforcementCount">0</div>
+          <p><strong>Pencapaian:</strong> 60% – 84%</p>
+          <p>Kukuhkan kemahiran sedia ada melalui ulang kaji dan aplikasi soalan.</p>
+        </div>
+        <div class="rec-card enrichment">
+          <h4>🌟 PENGAYAAN</h4>
+          <div class="rec-num" id="enrichmentCount">0</div>
+          <p><strong>Pencapaian:</strong> 85% – 100%</p>
+          <p>Berikan cabaran KBAT dan aktiviti pengayaan bertaraf tinggi.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- JADUAL MURID PERLU INTERVENSI -->
+    <h2 class="section-heading" style="color: #c62828;">⚠️ Murid Memerlukan Intervensi (40% dan ke bawah)</h2>
+    <div class="card-box" style="border-top: 4px solid #c62828;">
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr style="background: #c62828;">
+              <th style="background: #c62828;">NAMA MURID</th>
+              <th style="background: #c62828;">KELAS</th>
+              <th style="background: #c62828;">SET</th>
+              <th style="background: #c62828;">MODUL</th>
+              <th style="background: #c62828;">MARKAH</th>
+              <th style="background: #c62828;">PERATUS</th>
+            </tr>
+          </thead>
+          <tbody id="interventionBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- JADUAL MURID CEMERLANG -->
+    <h2 class="section-heading" style="color: #2e7d32;">🌟 Senarai Murid Cemerlang (85% dan ke atas)</h2>
+    <div class="card-box" style="border-top: 4px solid #2e7d32;">
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr style="background: #2e7d32;">
+              <th style="background: #2e7d32;">NAMA MURID</th>
+              <th style="background: #2e7d32;">KELAS</th>
+              <th style="background: #2e7d32;">SET</th>
+              <th style="background: #2e7d32;">MODUL</th>
+              <th style="background: #2e7d32;">MARKAH</th>
+              <th style="background: #2e7d32;">PERATUS</th>
+            </tr>
+          </thead>
+          <tbody id="excellentTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- REKOD KESELURUHAN -->
+    <h2 class="section-heading">📋 Senarai Rekod Keseluruhan Murid</h2>
+    <div class="card-box">
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>MASA / TARIKH</th>
+              <th>NAMA MURID</th>
+              <th>KELAS</th>
+              <th>SET</th>
+              <th>MODUL</th>
+              <th>MARKAH</th>
+              <th>PERATUS</th>
+            </tr>
+          </thead>
+          <tbody id="recordBody"></tbody>
+        </table>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="action-buttons" style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
+        <button class="btn" style="flex: 1; min-width: 150px;" onclick="loadTeacherRecords()">🔄 Kemas Kini Data</button>
+        <button class="btn btn-green" style="flex: 1; min-width: 150px;" onclick="downloadCSV()">📥 Muat Turun CSV (Excel)</button>
+        <button class="btn btn-secondary" style="flex: 1; min-width: 150px;" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
+      </div>
+    </div>
+
   </div>
+
 </div>
 
 <script src="questions.js"></script>
 
 <script>
+  /* GOOGLE SCRIPT & SETTINGS */
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzwYuG9pYYqfbvytHGy15crKk54ffPufJ3hyIedai_204YcJTuaeQYv4i1mkwzxZzY2/exec"; 
+  const DEFAULT_PIN = "1234";
+
   let currentSet = "", currentModule = "", activeQuestions = [];
-  
-  // Senarai 10 Topik Rasmi Get Smart Plus Year 3
-  const getSmartModules = [
-    "Module 1: Welcome!",
-    "Module 2: Every day",
-    "Module 3: Right now",
-    "Module 4: Year in, year out",
-    "Module 5: My new house",
-    "Module 6: Food, please!",
-    "Module 7: Out and about",
-    "Module 8: Where were you yesterday?",
-    "Module 9: On holiday",
-    "Module 10: The world around us"
+  let allRecords = [];
+
+  const moduleList = [
+    { number: 1, name: "Welcome!" },
+    { number: 2, name: "Every day" },
+    { number: 3, name: "Right now" },
+    { number: 4, name: "Year in, year out" },
+    { number: 5, name: "My new house" },
+    { number: 6, name: "Food, please!" },
+    { number: 7, name: "Out and about" },
+    { number: 8, name: "Where were you yesterday?" },
+    { number: 9, name: "On holiday" },
+    { number: 10, name: "The world around us" }
   ];
 
-  // URL Web App Apps Script Anda
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzwYuG9pYYqfbvytHGy15crKk54ffPufJ3hyIedai_204YcJTuaeQYv4i1mkwzxZzY2/exec"; 
-
+  /* VIEW MANAGEMENT */
   function hideAllViews() {
-    ['view-student-info','view-module-select','view-quiz','view-result','view-admin'].forEach(id => {
+    ['view-student-info','view-module-select','view-quiz','view-result','view-teacher-login','view-teacher-dashboard'].forEach(id => {
       document.getElementById(id).classList.add('hidden');
     });
   }
@@ -159,49 +476,38 @@
     document.getElementById('view-student-info').classList.remove('hidden');
   }
 
+  /* STUDENT FLOW */
   function selectSet(setName) {
     const name = document.getElementById('student-name').value.trim();
     const studentClass = document.getElementById('student-class').value.trim();
 
     if (!name || !studentClass) {
-      alert("Sila isi Nama Murid dan Kelas terlebih dahulu sebelum memilih set!");
+      alert("Sila isi Nama Murid dan Kelas terlebih dahulu!");
       return;
     }
 
     currentSet = setName;
     hideAllViews();
-    
     document.getElementById('view-module-select').classList.remove('hidden');
     document.getElementById('selected-set-title').innerText = setName;
     document.getElementById('student-info-summary').innerText = `Murid: ${name} (${studentClass})`;
 
     const moduleSelect = document.getElementById('select-module');
-    moduleSelect.innerHTML = '<option value="">-- Sila Pilih Topik --</option>';
-    
-    if (typeof quizBank !== 'undefined' && quizBank[setName] && Object.keys(quizBank[setName]).length > 0) {
-      Object.keys(quizBank[setName]).forEach(mod => {
-        let opt = document.createElement('option');
-        opt.value = mod;
-        opt.innerText = mod;
-        moduleSelect.appendChild(opt);
-      });
-    } else {
-      getSmartModules.forEach(mod => {
-        let opt = document.createElement('option');
-        opt.value = mod;
-        opt.innerText = mod;
-        moduleSelect.appendChild(opt);
-      });
-    }
+    moduleSelect.innerHTML = '<option value="">-- Sila Pilih Modul --</option>';
+
+    moduleList.forEach(m => {
+      let opt = document.createElement('option');
+      opt.value = `Module ${m.number}: ${m.name}`;
+      opt.innerText = `Module ${m.number}: ${m.name}`;
+      moduleSelect.appendChild(opt);
+    });
   }
 
   function extractAllQuestions(node) {
     let results = [];
     if (!node) return results;
-
-    if (Array.isArray(node)) {
-      return node;
-    } else if (typeof node === 'object') {
+    if (Array.isArray(node)) return node;
+    if (typeof node === 'object') {
       Object.keys(node).forEach(key => {
         results = results.concat(extractAllQuestions(node[key]));
       });
@@ -211,11 +517,7 @@
 
   function startQuiz() {
     currentModule = document.getElementById('select-module').value;
-
-    if (!currentModule) {
-      alert("Sila pilih Topik / Modul!");
-      return;
-    }
+    if (!currentModule) { alert("Sila pilih Modul!"); return; }
 
     let rawModuleData = null;
     if (typeof quizBank !== 'undefined') {
@@ -228,8 +530,8 @@
 
     activeQuestions = extractAllQuestions(rawModuleData);
 
-    if(activeQuestions.length === 0) {
-      alert(`Tiada soalan ditemui untuk "${currentModule}" dalam ${currentSet}. Sila pastikan fail questions.js telah lengkap.`);
+    if (activeQuestions.length === 0) {
+      alert(`Tiada soalan ditemui untuk "${currentModule}". Pastikan fail questions.js telah dikemaskini.`);
       return;
     }
 
@@ -241,7 +543,7 @@
       let qOpts = q.options || q.choices || [];
       
       let qHtml = `<div class="question-card"><p><strong>Soalan ${idx + 1}:</strong> ${qText.replace(/\n/g, '<br>')}</p>`;
-      if(q.img || q.image) qHtml += `<img src="${q.img || q.image}">`;
+      if (q.img || q.image) qHtml += `<img src="${q.img || q.image}" style="max-width:100%; border-radius:8px; margin-bottom:10px;">`;
       qHtml += `<ul class="options-list">`;
       qOpts.forEach(opt => {
         qHtml += `<li><label><input type="radio" name="q_${idx}" value="${opt}"> ${opt}</label></li>`;
@@ -252,7 +554,7 @@
 
     hideAllViews();
     document.getElementById('view-quiz').classList.remove('hidden');
-    document.getElementById('quiz-module-title').innerText = `${currentSet} - ${currentModule} (${activeQuestions.length} Soalan)`;
+    document.getElementById('quiz-module-title').innerText = `${currentSet} - ${currentModule}`;
   }
 
   function submitQuiz() {
@@ -274,96 +576,381 @@
     document.getElementById('result-detail').innerText = `Tahniah ${sName}! Keputusan anda telah direkodkan.`;
 
     const recordData = {
+      timestamp: new Date().toISOString(),
       time: new Date().toLocaleString('ms-MY'),
       name: sName,
-      class: sClass,
+      studentClass: sClass,
       set: currentSet,
       module: currentModule,
-      score: `${score}/${total} (${percentage}%)`
+      score: `${score}/${total}`,
+      percentage: percentage
     };
 
     let localData = JSON.parse(localStorage.getItem('quizRecords') || '[]');
     localData.push(recordData);
     localStorage.setItem('quizRecords', JSON.stringify(localData));
 
-    // Menghantar data ke Google Sheet
-    if (SCRIPT_URL) {
-      const sheetPayload = {
-        name: sName,
-        class: sClass,
-        set: currentSet,
-        module: currentModule,
-        score: `${score}/${total}`,   // Format markah dihantar sebagai Contoh: "5/5" atau "3/5"
-        percentage: percentage
-      };
-
-      fetch(SCRIPT_URL, {
+    if (GOOGLE_SCRIPT_URL) {
+      fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(sheetPayload)
-      }).catch(err => console.log("Ralat Hantar Ke Sheet:", err));
+        body: JSON.stringify({
+          name: sName,
+          class: sClass,
+          set: currentSet,
+          module: currentModule,
+          score: `${score}/${total}`,
+          percentage: percentage
+        })
+      }).catch(err => console.log("Google Sheet Error:", err));
     }
   }
 
-  function showAdmin() {
+  /* TEACHER DASHBOARD FLOW */
+  function showTeacherSection() {
     hideAllViews();
-    document.getElementById('view-admin').classList.remove('hidden');
-  }
-
-  function checkPin() {
-    if (document.getElementById('admin-pin').value === "1234") {
-      document.getElementById('admin-login').classList.add('hidden');
-      document.getElementById('admin-content').classList.remove('hidden');
-      loadRecordsTable();
+    if (sessionStorage.getItem("seqsTeacherToken") === "authenticated") {
+      document.getElementById('view-teacher-dashboard').classList.remove('hidden');
+      loadTeacherRecords();
     } else {
-      alert("PIN Salah!");
+      document.getElementById('view-teacher-login').classList.remove('hidden');
     }
   }
 
-  function loadRecordsTable() {
-    const records = JSON.parse(localStorage.getItem('quizRecords') || '[]');
-    const tbody = document.querySelector('#records-table tbody');
+  function teacherLogin() {
+    const pwd = document.getElementById('teacherPassword').value;
+    const msg = document.getElementById('loginMessage');
+
+    if (pwd === DEFAULT_PIN || pwd === "1234") {
+      sessionStorage.setItem("seqsTeacherToken", "authenticated");
+      msg.style.color = "green";
+      msg.innerText = "Log masuk berjaya!";
+      setTimeout(() => {
+        hideAllViews();
+        document.getElementById('view-teacher-dashboard').classList.remove('hidden');
+        loadTeacherRecords();
+      }, 500);
+    } else {
+      msg.style.color = "red";
+      msg.innerText = "PIN Salah! Sila cuba lagi.";
+    }
+  }
+
+  function teacherLogout() {
+    sessionStorage.removeItem("seqsTeacherToken");
+    goHome();
+  }
+
+  function loadTeacherRecords() {
+    let localData = JSON.parse(localStorage.getItem('quizRecords') || '[]');
+    allRecords = localData.slice().reverse();
+
+    populateClassFilter();
+    applyFilters();
+  }
+
+  function populateClassFilter() {
+    const select = document.getElementById("classFilter");
+    const currentValue = select.value;
+    const classes = [...new Set(allRecords.map(r => String(r.studentClass || r.class || "").trim()).filter(Boolean))].sort();
+
+    select.innerHTML = '<option value="">Semua Kelas</option>';
+    classes.forEach(c => {
+      let opt = document.createElement("option");
+      opt.value = c;
+      opt.textContent = c;
+      select.appendChild(opt);
+    });
+    if (classes.includes(currentValue)) select.value = currentValue;
+  }
+
+  function getPct(val) {
+    let p = parseFloat(String(val || "0").replace("%","").trim());
+    return isNaN(p) ? 0 : Math.round(p);
+  }
+
+  function applyFilters() {
+    const classVal = document.getElementById("classFilter").value.trim();
+    const setVal = document.getElementById("setFilter").value.trim();
+    const moduleVal = document.getElementById("moduleFilter").value.trim();
+    const search = document.getElementById("searchBox").value.toLowerCase().trim();
+
+    const filtered = allRecords.filter(r => {
+      const rClass = String(r.studentClass || r.class || "").trim();
+      const rSet = String(r.set || "").trim();
+      const rName = String(r.name || "").toLowerCase();
+      const rModule = String(r.module || "").toLowerCase();
+
+      const matchClass = !classVal || rClass === classVal;
+      const matchSet = !setVal || rSet === setVal;
+      const matchModule = !moduleVal || rModule.includes(`module ${moduleVal}`);
+      const matchSearch = !search || rName.includes(search) || rClass.toLowerCase().includes(search) || rModule.includes(search);
+
+      return matchClass && matchSet && matchModule && matchSearch;
+    });
+
+    updateDashboard(filtered);
+  }
+
+  function resetFilters() {
+    document.getElementById("classFilter").value = "";
+    document.getElementById("setFilter").value = "";
+    document.getElementById("moduleFilter").value = "";
+    document.getElementById("searchBox").value = "";
+    applyFilters();
+  }
+
+  function updateDashboard(records) {
+    document.getElementById("filterResult").innerText = `Menunjukkan ${records.length} rekod murid.`;
+
+    let total = records.length;
+    let sumPct = 0, highest = 0, getSmartCount = 0, remedialCount = 0;
+    let exc = 0, good = 0, sat = 0, needs = 0;
+
+    records.forEach(r => {
+      let p = getPct(r.percentage);
+      sumPct += p;
+      if (p > highest) highest = p;
+      
+      if (p >= 85) exc++;
+      else if (p >= 60) good++;
+      else if (p >= 41) sat++;
+      else needs++;
+
+      if (r.set === "GET SMART SET") getSmartCount++;
+      if (r.set === "REMEDIAL SET") remedialCount++;
+    });
+
+    document.getElementById("totalAttempts").innerText = total;
+    document.getElementById("averageScore").innerText = total > 0 ? Math.round(sumPct / total) + "%" : "0%";
+    document.getElementById("highestScore").innerText = highest + "%";
+    document.getElementById("getSmartCount").innerText = getSmartCount;
+    document.getElementById("remedialCount").innerText = remedialCount;
+
+    document.getElementById("excellentCount").innerText = exc;
+    document.getElementById("goodCount").innerText = good;
+    document.getElementById("satisfactoryCount").innerText = sat;
+    document.getElementById("needsImprovementCount").innerText = needs;
+
+    document.getElementById("intensiveCount").innerText = needs;
+    document.getElementById("guidedCount").innerText = sat;
+    document.getElementById("reinforcementCount").innerText = good;
+    document.getElementById("enrichmentCount").innerText = exc;
+
+    let avg = total > 0 ? Math.round(sumPct / total) : 0;
+    let recText = "Purata Kumpulan: " + avg + "%. ";
+    if (avg <= 40) recText += "Keutamaan: Sokongan Intensif & Bimbingan Khusus.";
+    else if (avg <= 59) recText += "Keutamaan: Latihan Terbimbing & Pemulihan.";
+    else if (avg <= 84) recText += "Keutamaan: Pengukuhan Soalan Modul.";
+    else recText += "Keutamaan: Pengayaan & Soalan KBAT.";
+    document.getElementById("recommendationIntro").innerText = recText;
+
+    // RENDER DETAILED ANALYTICAL MODULES
+    renderClassAnalysis(records);
+    renderTopicAnalysis(records);
+    drawModuleChart(records);
+    renderTables(records);
+  }
+
+  /* 1. ANALISIS MENGIKUT KELAS */
+  function renderClassAnalysis(records) {
+    const tbody = document.getElementById("classAnalysisBody");
     tbody.innerHTML = "";
 
     if (records.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:15px;">Tiada rekod ditemui pada peranti ini.</td></tr>';
+      tbody.innerHTML = `<tr><td colspan="6" class="empty-td">Tiada rekod data kelas.</td></tr>`;
       return;
     }
 
-    records.slice().reverse().forEach(r => {
-      tbody.innerHTML += `<tr>
-        <td style="padding:8px;">${r.time}</td>
-        <td style="padding:8px;">${r.name}</td>
-        <td style="padding:8px;">${r.class}</td>
-        <td style="padding:8px;">${r.set}</td>
-        <td style="padding:8px;">${r.module}</td>
-        <td style="padding:8px;">${r.score}</td>
-      </tr>`;
+    const classGroup = {};
+    records.forEach(r => {
+      let cls = String(r.studentClass || r.class || "TIDAK NYATA").trim().toUpperCase();
+      if (!classGroup[cls]) {
+        classGroup[cls] = { total: 0, sumPct: 0, exc: 0, inter: 0 };
+      }
+      let p = getPct(r.percentage);
+      classGroup[cls].total++;
+      classGroup[cls].sumPct += p;
+      if (p >= 85) classGroup[cls].exc++;
+      if (p <= 40) classGroup[cls].inter++;
+    });
+
+    Object.keys(classGroup).sort().forEach(cls => {
+      let data = classGroup[cls];
+      let avg = Math.round(data.sumPct / data.total);
+      
+      let statusBadge = "";
+      if (avg >= 85) statusBadge = `<span class="badge badge-green">CEMERLANG</span>`;
+      else if (avg >= 60) statusBadge = `<span class="badge badge-blue">BAIK</span>`;
+      else if (avg >= 41) statusBadge = `<span class="badge badge-orange">MEMUASKAN</span>`;
+      else statusBadge = `<span class="badge badge-red">PERLU INTERVENSI</span>`;
+
+      tbody.innerHTML += `
+        <tr>
+          <td><strong>${cls}</strong></td>
+          <td>${data.total}</td>
+          <td><strong>${avg}%</strong></td>
+          <td style="color:#2e7d32; font-weight:bold;">${data.exc} murid</td>
+          <td style="color:#c62828; font-weight:bold;">${data.inter} murid</td>
+          <td>${statusBadge}</td>
+        </tr>
+      `;
     });
   }
 
-  function downloadCSV() {
-    const records = JSON.parse(localStorage.getItem('quizRecords') || '[]');
-    if(records.length === 0) { alert("Tiada rekod untuk dimuat turun."); return; }
+  /* 2. ANALISIS MENGIKUT TOPIK / MODUL */
+  function renderTopicAnalysis(records) {
+    const tbody = document.getElementById("topicAnalysisBody");
+    tbody.innerHTML = "";
 
-    let csv = "Masa,Nama,Kelas,Set,Modul,Markah\n";
+    moduleList.forEach(m => {
+      const modRecords = records.filter(r => String(r.module || "").toLowerCase().includes(`module ${m.number}`));
+      let total = modRecords.length;
+      let sum = 0;
+      modRecords.forEach(r => sum += getPct(r.percentage));
+      let avg = total > 0 ? Math.round(sum / total) : 0;
+
+      let levelBadge = "", actionText = "";
+      if (total === 0) {
+        levelBadge = `<span class="badge" style="background:#e0e0e0; color:#666;">TIADA DATA</span>`;
+        actionText = "Belum ada murid menjawab modul ini.";
+      } else if (avg >= 85) {
+        levelBadge = `<span class="badge badge-green">SANGAT TINGGI</span>`;
+        actionText = "Teruskan latihan pengayaan KBAT.";
+      } else if (avg >= 60) {
+        levelBadge = `<span class="badge badge-blue">SEDERHANA TINGGI</span>`;
+        actionText = "Kukuhkan kosa kata & tatabahasa.";
+      } else if (avg >= 41) {
+        levelBadge = `<span class="badge badge-orange">SEDERHANA RENDAH</span>`;
+        actionText = "Beri latihan terbimbing tambahan.";
+      } else {
+        levelBadge = `<span class="badge badge-red">KRITIKAL / LEMAH</span>`;
+        actionText = "Perlu pengajaran semula (Re-teaching).";
+      }
+
+      tbody.innerHTML += `
+        <tr>
+          <td><strong>Module ${m.number}: ${m.name}</strong></td>
+          <td>${total}</td>
+          <td><strong>${avg}%</strong></td>
+          <td>${levelBadge}</td>
+          <td style="font-size:12px;">${actionText}</td>
+        </tr>
+      `;
+    });
+  }
+
+  function drawModuleChart(records) {
+    const container = document.getElementById("moduleChart");
+    container.innerHTML = "";
+
+    moduleList.forEach(m => {
+      const modRecords = records.filter(r => String(r.module || "").toLowerCase().includes(`module ${m.number}`));
+      let sum = 0;
+      modRecords.forEach(r => sum += getPct(r.percentage));
+      let avg = modRecords.length > 0 ? Math.round(sum / modRecords.length) : 0;
+
+      container.innerHTML += `
+        <div class="chart-row">
+          <div style="font-weight:bold; font-size:13px;">Module ${m.number}</div>
+          <div class="chart-track">
+            <div class="chart-bar" style="width:${avg}%"></div>
+          </div>
+          <div style="font-weight:bold; text-align:right; font-size:13px;">${avg}%</div>
+        </div>
+      `;
+    });
+  }
+
+  function renderTables(records) {
+    const mainBody = document.getElementById("recordBody");
+    const interBody = document.getElementById("interventionBody");
+    const excBody = document.getElementById("excellentTableBody");
+    
+    mainBody.innerHTML = "";
+    interBody.innerHTML = "";
+    excBody.innerHTML = "";
+
+    if (records.length === 0) {
+      mainBody.innerHTML = `<tr><td colspan="7" class="empty-td">Tiada rekod murid dijumpai.</td></tr>`;
+      interBody.innerHTML = `<tr><td colspan="6" class="empty-td">Tiada murid memerlukan intervensi.</td></tr>`;
+      excBody.innerHTML = `<tr><td colspan="6" class="empty-td">Tiada murid cemerlang dijumpai.</td></tr>`;
+      return;
+    }
+
+    let interCount = 0;
+    let excCount = 0;
+
     records.forEach(r => {
-      csv += `"${r.time}","${r.name}","${r.class}","${r.set}","${r.module}","${r.score}"\n`;
+      let p = getPct(r.percentage);
+      let dateStr = r.time || (r.timestamp ? new Date(r.timestamp).toLocaleDateString('ms-MY') : '-');
+
+      // 1. Rekod Utama
+      mainBody.innerHTML += `
+        <tr>
+          <td>${dateStr}</td>
+          <td><strong>${r.name || '-'}</strong></td>
+          <td>${r.studentClass || r.class || '-'}</td>
+          <td>${r.set || '-'}</td>
+          <td>${r.module || '-'}</td>
+          <td>${r.score || '-'}</td>
+          <td><strong>${p}%</strong></td>
+        </tr>
+      `;
+
+      // 2. Intervensi (<= 40%)
+      if (p <= 40) {
+        interCount++;
+        interBody.innerHTML += `
+          <tr>
+            <td><strong>${r.name || '-'}</strong></td>
+            <td>${r.studentClass || r.class || '-'}</td>
+            <td>${r.set || '-'}</td>
+            <td>${r.module || '-'}</td>
+            <td>${r.score || '-'}</td>
+            <td style="color:#c62828; font-weight:bold;">${p}%</td>
+          </tr>
+        `;
+      }
+
+      // 3. Cemerlang (>= 85%)
+      if (p >= 85) {
+        excCount++;
+        excBody.innerHTML += `
+          <tr>
+            <td><strong>${r.name || '-'}</strong></td>
+            <td>${r.studentClass || r.class || '-'}</td>
+            <td>${r.set || '-'}</td>
+            <td>${r.module || '-'}</td>
+            <td>${r.score || '-'}</td>
+            <td style="color:#2e7d32; font-weight:bold;">${p}%</td>
+          </tr>
+        `;
+      }
+    });
+
+    if (interCount === 0) {
+      interBody.innerHTML = `<tr><td colspan="6" class="empty-td">✨ Tiada murid memerlukan intervensi bagi penapis ini.</td></tr>`;
+    }
+
+    if (excCount === 0) {
+      excBody.innerHTML = `<tr><td colspan="6" class="empty-td">Tiada murid mencapai markah 85% dan ke atas bagi penapis ini.</td></tr>`;
+    }
+  }
+
+  function downloadCSV() {
+    if (allRecords.length === 0) { alert("Tiada rekod untuk dimuat turun."); return; }
+    let csv = "Tarikh/Masa,Nama Murid,Kelas,Set,Modul,Markah,Peratus\n";
+    allRecords.forEach(r => {
+      csv += `"${r.time || ''}","${r.name || ''}","${r.studentClass || r.class || ''}","${r.set || ''}","${r.module || ''}","${r.score || ''}","${r.percentage || 0}%"\n`;
     });
 
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'Rekod_Kuiz_Year3.csv';
+    a.download = 'Rekod_Analisis_SEQS_PORTALYEAR3.csv';
     a.click();
-  }
-
-  function clearRecords() {
-    if (confirm("Adakah anda pasti mahu memadam semua rekod murid pada peranti ini?")) {
-      localStorage.removeItem('quizRecords');
-      loadRecordsTable();
-    }
   }
 </script>
 
