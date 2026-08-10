@@ -49,7 +49,7 @@
     .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
     .nav-btn { width: auto; padding: 10px 20px; font-size: 15px; border-radius: 20px; }
 
-    /* QUIZ CARDS (TULISAN SOALAN DIBESARKAN) */
+    /* QUIZ CARDS */
     .question-card { background: #f8fafc; border: 1px solid var(--border); padding: 20px; border-radius: 12px; margin-bottom: 20px; }
     .question-card p { font-size: 19px; line-height: 1.5; margin: 0 0 12px; color: #0d233a; }
     .options-list { list-style: none; padding: 0; margin: 12px 0 0; }
@@ -90,7 +90,7 @@
     .badge-blue { background: #e3f2fd; color: #1565c0; }
     .badge-green { background: #e8f5e9; color: #2e7d32; }
 
-    /* TABLES (DIBESARKAN TEKS JADUAL) */
+    /* TABLES */
     .table-box { overflow-x: auto; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
     table { width: 100%; border-collapse: collapse; min-width: 800px; }
     th { background: var(--primary-dark); color: white; padding: 14px 12px; font-size: 15px; text-align: left; }
@@ -168,7 +168,7 @@
     <button class="btn btn-secondary" style="margin-top: 10px;" onclick="goHome()">⬅️ Tukar Nama / Set</button>
   </div>
 
-  <!-- VIEW 3: SOALAN KUIZ (PENCAPAIAN TULISAN BESAR) -->
+  <!-- VIEW 3: SOALAN KUIZ -->
   <div id="view-quiz" class="card-box hidden">
     <h2 id="quiz-module-title" style="font-size: 24px; color: var(--primary-dark);"></h2>
     <form id="quiz-form">
@@ -394,7 +394,7 @@
     </div>
 
     <!-- JADUAL MURID CEMERLANG -->
-    <h2 class="section-heading" style="color: #2e7d32;">🌟 Senarai Murid Cemerlang (85% dan ke atas)</h2>
+    <h2 class="section-heading" style="color: #2e7d32;">🌟 Senarai Murid CemerLANG (85% dan ke atas)</h2>
     <div class="card-box" style="border-top: 4px solid #2e7d32;">
       <div class="table-box">
         <table>
@@ -586,7 +586,7 @@
       studentClass: sClass,
       set: currentSet,
       module: currentModule,
-      score: `${score}/${total}`,
+      score: `${score}/${total} (${percentage}%)`,
       percentage: percentage
     };
 
@@ -604,7 +604,7 @@
           class: sClass,
           set: currentSet,
           module: currentModule,
-          score: `${score}/${total}`,
+          score: `${score}/${total} (${percentage}%)`,
           percentage: percentage
         })
       }).catch(err => console.log("Google Sheet Error:", err));
@@ -669,9 +669,41 @@
     if (classes.includes(currentValue)) select.value = currentValue;
   }
 
-  function getPct(val) {
-    let p = parseFloat(String(val || "0").replace("%","").trim());
-    return isNaN(p) ? 0 : Math.round(p);
+  /* SMART PERCENTAGE EXTRACTOR (FIX FOR BUG) */
+  function getPct(r) {
+    if (!r) return 0;
+
+    // 1. Cuba ambil daripada field percentage/peratus
+    let rawVal = r.percentage !== undefined ? r.percentage : r.peratus;
+    let p = parseFloat(String(rawVal || "").replace("%","").trim());
+
+    // Jika nilai peratusan diberikan sebagai desimal (cth: 0.8 = 80%)
+    if (!isNaN(p) && p > 0 && p <= 1) {
+      p = p * 100;
+    }
+
+    if (!isNaN(p) && p > 0) {
+      return Math.round(p);
+    }
+
+    // 2. Ekstrak peratusan terus daripada kurungan lajur markah: e.g. "3/5 (60%)"
+    let scoreStr = String(r.score || r.markah || "");
+    let matchPct = scoreStr.match(/\((\d+)%\)/);
+    if (matchPct) {
+      return parseInt(matchPct[1]);
+    }
+
+    // 3. Kira peratusan daripada pecahan markah: e.g. "3/5" -> 60%
+    let matchFrac = scoreStr.match(/(\d+)\s*\/\s*(\d+)/);
+    if (matchFrac) {
+      let num = parseFloat(matchFrac[1]);
+      let den = parseFloat(matchFrac[2]);
+      if (den > 0) {
+        return Math.round((num / den) * 100);
+      }
+    }
+
+    return 0;
   }
 
   function applyFilters() {
@@ -713,7 +745,7 @@
     let exc = 0, good = 0, sat = 0, needs = 0;
 
     records.forEach(r => {
-      let p = getPct(r.percentage);
+      let p = getPct(r);
       sumPct += p;
       if (p > highest) highest = p;
       
@@ -772,7 +804,7 @@
       if (!classGroup[cls]) {
         classGroup[cls] = { total: 0, sumPct: 0, exc: 0, inter: 0 };
       }
-      let p = getPct(r.percentage);
+      let p = getPct(r);
       classGroup[cls].total++;
       classGroup[cls].sumPct += p;
       if (p >= 85) classGroup[cls].exc++;
@@ -811,7 +843,7 @@
       const modRecords = records.filter(r => String(r.module || "").toLowerCase().includes(`module ${m.number}`));
       let total = modRecords.length;
       let sum = 0;
-      modRecords.forEach(r => sum += getPct(r.percentage));
+      modRecords.forEach(r => sum += getPct(r));
       let avg = total > 0 ? Math.round(sum / total) : 0;
 
       let levelBadge = "", actionText = "";
@@ -851,7 +883,7 @@
     moduleList.forEach(m => {
       const modRecords = records.filter(r => String(r.module || "").toLowerCase().includes(`module ${m.number}`));
       let sum = 0;
-      modRecords.forEach(r => sum += getPct(r.percentage));
+      modRecords.forEach(r => sum += getPct(r));
       let avg = modRecords.length > 0 ? Math.round(sum / modRecords.length) : 0;
 
       container.innerHTML += `
@@ -886,8 +918,9 @@
     let excCount = 0;
 
     records.forEach(r => {
-      let p = getPct(r.percentage);
+      let p = getPct(r);
       let dateStr = r.time || (r.timestamp ? new Date(r.timestamp).toLocaleDateString('ms-MY') : '-');
+      let scoreDisplay = r.score || r.markah || '-';
 
       // 1. Rekod Utama
       mainBody.innerHTML += `
@@ -897,7 +930,7 @@
           <td>${r.studentClass || r.class || '-'}</td>
           <td>${r.set || '-'}</td>
           <td>${r.module || '-'}</td>
-          <td>${r.score || '-'}</td>
+          <td>${scoreDisplay}</td>
           <td><strong>${p}%</strong></td>
         </tr>
       `;
@@ -911,7 +944,7 @@
             <td>${r.studentClass || r.class || '-'}</td>
             <td>${r.set || '-'}</td>
             <td>${r.module || '-'}</td>
-            <td>${r.score || '-'}</td>
+            <td>${scoreDisplay}</td>
             <td style="color:#c62828; font-weight:bold;">${p}%</td>
           </tr>
         `;
@@ -926,7 +959,7 @@
             <td>${r.studentClass || r.class || '-'}</td>
             <td>${r.set || '-'}</td>
             <td>${r.module || '-'}</td>
-            <td>${r.score || '-'}</td>
+            <td>${scoreDisplay}</td>
             <td style="color:#2e7d32; font-weight:bold;">${p}%</td>
           </tr>
         `;
@@ -946,7 +979,8 @@
     if (allRecords.length === 0) { alert("Tiada rekod untuk dimuat turun."); return; }
     let csv = "Tarikh/Masa,Nama Murid,Kelas,Set,Modul,Markah,Peratus\n";
     allRecords.forEach(r => {
-      csv += `"${r.time || ''}","${r.name || ''}","${r.studentClass || r.class || ''}","${r.set || ''}","${r.module || ''}","${r.score || ''}","${r.percentage || 0}%"\n`;
+      let p = getPct(r);
+      csv += `"${r.time || ''}","${r.name || ''}","${r.studentClass || r.class || ''}","${r.set || ''}","${r.module || ''}","${r.score || r.markah || ''}","${p}%"\n`;
     });
 
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
