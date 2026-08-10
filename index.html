@@ -178,7 +178,6 @@
     const moduleSelect = document.getElementById('select-module');
     moduleSelect.innerHTML = '<option value="">-- Sila Pilih Topik --</option>';
     
-    // Paparkan 10 Topik Get Smart Plus Year 3 untuk kedua-dua set
     if (typeof quizBank !== 'undefined' && quizBank[setName] && Object.keys(quizBank[setName]).length > 0) {
       Object.keys(quizBank[setName]).forEach(mod => {
         let opt = document.createElement('option');
@@ -287,12 +286,13 @@
     localData.push(recordData);
     localStorage.setItem('quizRecords', JSON.stringify(localData));
 
+    // Menghantar data ke Google Sheet
     if (SCRIPT_URL) {
       const sheetPayload = {
         name: sName,
         class: sClass,
+        set: currentSet,        // Ditukar dari 'skill' kepada 'set'
         module: currentModule,
-        skill: currentSet,
         score: score,
         percentage: percentage
       };
