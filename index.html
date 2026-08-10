@@ -3,227 +3,338 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PORTAL GET SMART DAN REMEDIAL SET</title>
+  <title>PORTAL YEAR 3 - ENGLISH QUIZ</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f7f6;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-    }
-    .container {
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 600px;
-    }
-    h2 {
-      text-align: center;
-      color: #2c3e50;
-      margin-bottom: 25px;
-    }
-    .form-group {
-      margin-bottom: 18px;
-    }
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 6px;
-      color: #34495e;
-    }
-    input[type="text"], select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      box-sizing: border-box;
-      font-size: 15px;
-    }
-    .quiz-section {
-      background-color: #eef2f5;
-      padding: 15px;
-      border-radius: 8px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-    .soalan {
-      margin-bottom: 15px;
-    }
-    .soalan p {
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .pilihan label {
-      font-weight: normal;
-      display: block;
-      margin-bottom: 5px;
-      cursor: pointer;
-    }
-    button {
-      width: 100%;
-      background-color: #27ae60;
-      color: white;
-      border: none;
-      padding: 12px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #219150;
-    }
-    button:disabled {
-      background-color: #bdc3c7;
-      cursor: not-allowed;
-    }
+    :root { --primary: #4f46e5; --bg: #f3f4f6; --card-bg: #ffffff; }
+    body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg); margin: 0; padding: 20px; }
+    .container { max-width: 800px; margin: 0 auto; background: var(--card-bg); padding: 30px; border-radius: 16px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+    h1, h2 { text-align: center; color: var(--primary); }
+    .hidden { display: none; }
+    .set-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+    .set-card { background: #e0e7ff; border: 2px solid var(--primary); padding: 20px; border-radius: 12px; text-align: center; cursor: pointer; transition: 0.2s; }
+    .set-card:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+    .set-card h2 { color: inherit; margin: 0; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; font-weight: bold; margin-bottom: 5px; }
+    input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+    button { width: 100%; background-color: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+    button:hover { opacity: 0.9; }
+    .question-card { background: #f9fafb; border: 1px solid #e5e7eb; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+    .question-card img { max-width: 100%; border-radius: 8px; margin-bottom: 10px; }
+    .options-list { list-style: none; padding: 0; }
+    .options-list label { cursor: pointer; background: #fff; padding: 10px; border: 1px solid #ddd; border-radius: 6px; display: block; margin-bottom: 8px; }
+    .options-list input { width: auto; margin-right: 10px; }
+    .top-nav { display: flex; justify-content: space-between; margin-bottom: 20px; }
+    .nav-btn { width: auto; padding: 6px 15px; font-size: 14px; background: #6b7280; }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h2>PORTAL GET SMART & REMEDIAL</h2>
-    
-    <!-- MAKLUMAT MURID -->
-    <div class="form-group">
-      <label for="namaMurid">Nama Murid:</label>
-      <input type="text" id="namaMurid" placeholder="Contoh: AHMAD BIN ALI" required>
-    </div>
-
-    <div class="form-group">
-      <label for="kelasMurid">Kelas:</label>
-      <input type="text" id="kelasMurid" placeholder="Contoh: 3 GEMILANG" required>
-    </div>
-
-    <div class="form-group">
-      <label for="modul">Modul:</label>
-      <select id="modul">
-        <option value="Module 1">Module 1</option>
-        <option value="Module 2">Module 2</option>
-        <option value="Module 3">Module 3</option>
-        <option value="Remedial Set A">Remedial Set A</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="skill">Kemahiran (Skill):</label>
-      <select id="skill">
-        <option value="Listening">Listening</option>
-        <option value="Reading">Reading</option>
-        <option value="Writing">Writing</option>
-        <option value="Speaking">Speaking</option>
-      </select>
-    </div>
-
-    <!-- BAHAGIAN SOALAN KUIZ (CONTOH 2 SOALAN) -->
-    <div class="quiz-section">
-      <h3>Soalan Kuiz</h3>
-
-      <!-- Soalan 1 -->
-      <div class="soalan">
-        <p>1. What is the correct spelling for 🐱?</p>
-        <div class="pilihan">
-          <label><input type="radio" name="q1" value="betul"> Cat</label>
-          <label><input type="radio" name="q1" value="salah"> Kat</label>
-          <label><input type="radio" name="q1" value="salah"> Cet</label>
-        </div>
-      </div>
-
-      <!-- Soalan 2 -->
-      <div class="soalan">
-        <p>2. What is the color of the sun ☀️?</p>
-        <div class="pilihan">
-          <label><input type="radio" name="q2" value="salah"> Blue</label>
-          <label><input type="radio" name="q2" value="betul"> Yellow</label>
-          <label><input type="radio" name="q2" value="salah"> Green</label>
-        </div>
-      </div>
-    </div>
-
-    <!-- BUTANG HANTAR -->
-    <button type="button" id="btnHantar" onclick="hantarJawapan()">Hantar Jawapan</button>
+<div class="container">
+  <div class="top-nav">
+    <button class="nav-btn" onclick="goHome()">🏠 Halaman Utama</button>
+    <button class="nav-btn" style="background:#059669;" onclick="showAdmin()">🔐 Rekod Guru</button>
   </div>
 
-  <script>
-    // URL Web App Apps Script Anda
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzwYuG9pYYqfbvytHGy15crKk54ffPufJ3hyIedai_204YcJTuaeQYv4i1mkwzxZzY2/exec';
+  <!-- VIEW 1: Pilih Set -->
+  <div id="view-set">
+    <h1>🎯 PORTAL YEAR 3 ENGLISH</h1>
+    <p style="text-align: center;">Sila pilih set latihan anda:</p>
+    <div class="set-grid">
+      <div class="set-card" onclick="selectSet('GET SMART SET')">
+        <h2>GET SMART SET</h2>
+        <p>Latihan Aras Standard / Pengukuhan</p>
+      </div>
+      <div class="set-card" onclick="selectSet('REMEDIAL SET')">
+        <h2>REMEDIAL SET</h2>
+        <p>Latihan Aras Asas / Pemulihan</p>
+      </div>
+    </div>
+  </div>
 
-    function hantarJawapan() {
-      const nama = document.getElementById("namaMurid").value.trim();
-      const kelas = document.getElementById("kelasMurid").value.trim();
-      const modul = document.getElementById("modul").value;
-      const skill = document.getElementById("skill").value;
+  <!-- VIEW 2: Maklumat Murid & Pilih Modul -->
+  <div id="view-student-info" class="hidden">
+    <h2 id="selected-set-title"></h2>
+    <div class="form-group">
+      <label>Nama Murid:</label>
+      <input type="text" id="student-name" placeholder="Contoh: Danial Bin Ahmad">
+    </div>
+    <div class="form-group">
+      <label>Kelas:</label>
+      <input type="text" id="student-class" placeholder="Contoh: 3 Cemerlang">
+    </div>
+    <div class="form-group">
+      <label>Pilih Topik / Modul:</label>
+      <select id="select-module">
+        <option value="">-- Sila Pilih Topik --</option>
+      </select>
+    </div>
+    <button onclick="startQuiz()">Mula Jawab Kuiz 🚀</button>
+  </div>
 
-      // 1. Semakan Input Nama dan Kelas
-      if (nama === "" || kelas === "") {
-        alert("Sila isi Nama Murid dan Kelas terlebih dahulu!");
-        return;
-      }
+  <!-- VIEW 3: Soalan -->
+  <div id="view-quiz" class="hidden">
+    <h2 id="quiz-module-title"></h2>
+    <form id="quiz-form">
+      <div id="questions-container"></div>
+      <button type="button" onclick="submitQuiz()">Hantar & Semak Keputusan 📝</button>
+    </form>
+  </div>
 
-      // 2. Kira Skor Kuiz
-      const totalSoalan = 2; // Jumlah soalan kuiz
-      let skor = 0;
+  <!-- VIEW 4: Keputusan -->
+  <div id="view-result" class="hidden">
+    <h2>🎉 Tahniah! Anda telah selesai.</h2>
+    <h1 style="text-align: center; color: var(--primary);" id="score-display"></h1>
+    <p style="text-align: center;" id="result-detail"></p>
+    <button onclick="goHome()">Jawab Modul Lain 🔄</button>
+  </div>
 
-      const q1 = document.querySelector('input[name="q1"]:checked');
-      const q2 = document.querySelector('input[name="q2"]:checked');
+  <!-- VIEW 5: Rekod Guru -->
+  <div id="view-admin" class="hidden">
+    <h2>🔐 Rekod Keputusan Murid (Guru)</h2>
+    <div id="admin-login">
+      <input type="password" id="admin-pin" placeholder="Masukkan PIN (1234)">
+      <button onclick="checkPin()">Log Masuk</button>
+    </div>
+    <div id="admin-content" class="hidden">
+      <button onclick="downloadCSV()" style="background:#10b981; margin-bottom: 10px;">📥 Muat Turun CSV</button>
+      <button onclick="clearRecords()" style="background:#ef4444; margin-bottom: 10px; width:auto; float:right;">🗑️ Padam Semua Rekod</button>
+      <div style="overflow-x:auto;">
+        <table border="1" style="width:100%; border-collapse:collapse;" id="records-table">
+          <thead>
+            <tr style="background:#e0e7ff;">
+              <th style="padding:8px;">Masa</th>
+              <th style="padding:8px;">Nama</th>
+              <th style="padding:8px;">Kelas</th>
+              <th style="padding:8px;">Set</th>
+              <th style="padding:8px;">Modul</th>
+              <th style="padding:8px;">Markah</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-      if (!q1 || !q2) {
-        alert("Sila jawab semua soalan kuiz sebelum menghantar!");
-        return;
-      }
+<!-- Mengambil fail questions.js dari GitHub -->
+<script src="questions.js"></script>
 
-      if (q1.value === "betul") skor++;
-      if (q2.value === "betul") skor++;
+<script>
+  let currentSet = "", currentModule = "", activeQuestions = [];
+  
+  // URL GOOGLE APPS SCRIPT
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzwYuG9pYYqfbvytHGy15crKk54ffPufJ3hyIedai_204YcJTuaeQYv4i1mkwzxZzY2/exec"; 
 
-      // 3. Kira Peratusan
-      const peratus = Math.round((skor / totalSoalan) * 100);
+  function hideAllViews() {
+    ['view-set','view-student-info','view-quiz','view-result','view-admin'].forEach(id => {
+      document.getElementById(id).classList.add('hidden');
+    });
+  }
 
-      // Nyahaktifkan butang supaya murid tidak tekan berkali-kali
-      const btn = document.getElementById("btnHantar");
-      btn.disabled = true;
-      btn.innerText = "Sedang Dihantar...";
+  function goHome() {
+    hideAllViews();
+    document.getElementById('view-set').classList.remove('hidden');
+  }
 
-      // 4. Susun Data Mengikut Format Google Sheet
-      const payload = {
-        name: nama,
-        class: kelas,
-        module: modul,
-        skill: skill,
-        score: skor,
-        percentage: peratus
-      };
+  function selectSet(setName) {
+    if (typeof quizBank === 'undefined') {
+      alert("Ralat: Fail questions.js tidak dapat dibaca oleh sistem!");
+      return;
+    }
 
-      // 5. Hantar Data ke Google Apps Script
-      fetch(scriptURL, {
-        method: 'POST',
-        type: 'no-cors',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8',
-        },
-        body: JSON.stringify(payload)
-      })
-      .then(() => {
-        alert(`Jawapan berjaya dihantar!\nSkor Anda: ${skor}/${totalSoalan} (${peratus}%)`);
-        
-        // Reset borang selepas hantar
-        document.getElementById("namaMurid").value = "";
-        document.getElementById("kelasMurid").value = "";
-        document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
-      })
-      .catch(error => {
-        alert("Gagal menghantar jawapan: " + error);
-      })
-      .finally(() => {
-        btn.disabled = false;
-        btn.innerText = "Hantar Jawapan";
+    currentSet = setName;
+    hideAllViews();
+    document.getElementById('view-student-info').classList.remove('hidden');
+    document.getElementById('selected-set-title').innerText = setName;
+
+    const moduleSelect = document.getElementById('select-module');
+    moduleSelect.innerHTML = '<option value="">-- Sila Pilih Topik --</option>';
+    
+    if (quizBank[setName]) {
+      Object.keys(quizBank[setName]).forEach(mod => {
+        let opt = document.createElement('option');
+        opt.value = mod;
+        opt.innerText = mod;
+        moduleSelect.appendChild(opt);
       });
     }
-  </script>
+  }
+
+  // FUNGSI UTAMA MEMBACA KESEMUA SOALAN (Termasuk Sub-skil)
+  function extractAllQuestions(node) {
+    let results = [];
+    if (!node) return results;
+
+    if (Array.isArray(node)) {
+      return node;
+    } else if (typeof node === 'object') {
+      Object.keys(node).forEach(key => {
+        results = results.concat(extractAllQuestions(node[key]));
+      });
+    }
+    return results;
+  }
+
+  function startQuiz() {
+    const name = document.getElementById('student-name').value.trim();
+    const studentClass = document.getElementById('student-class').value.trim();
+    currentModule = document.getElementById('select-module').value;
+
+    if (!name || !studentClass) {
+      alert("Sila masukkan Nama dan Kelas anda!");
+      return;
+    }
+
+    if (!currentModule) {
+      alert("Sila pilih Topik / Modul!");
+      return;
+    }
+
+    // Mengumpul SEMUA soalan dalam modul tersebut
+    const rawModuleData = quizBank[currentSet][currentModule];
+    activeQuestions = extractAllQuestions(rawModuleData);
+
+    if(activeQuestions.length === 0) {
+      alert("Tiada soalan ditemui dalam modul ini.");
+      return;
+    }
+
+    const container = document.getElementById('questions-container');
+    container.innerHTML = "";
+
+    activeQuestions.forEach((q, idx) => {
+      let qText = q.q || q.question || "";
+      let qOpts = q.options || q.choices || [];
+      
+      let qHtml = `<div class="question-card"><p><strong>Soalan ${idx + 1}:</strong> ${qText.replace(/\n/g, '<br>')}</p>`;
+      if(q.img || q.image) qHtml += `<img src="${q.img || q.image}">`;
+      qHtml += `<ul class="options-list">`;
+      qOpts.forEach(opt => {
+        qHtml += `<li><label><input type="radio" name="q_${idx}" value="${opt}"> ${opt}</label></li>`;
+      });
+      qHtml += `</ul></div>`;
+      container.innerHTML += qHtml;
+    });
+
+    hideAllViews();
+    document.getElementById('view-quiz').classList.remove('hidden');
+    document.getElementById('quiz-module-title').innerText = `${currentSet} - ${currentModule} (${activeQuestions.length} Soalan)`;
+  }
+
+  function submitQuiz() {
+    let score = 0;
+    activeQuestions.forEach((q, idx) => {
+      const selected = document.querySelector(`input[name="q_${idx}"]:checked`);
+      const correctAns = q.ans || q.answer;
+      if (selected && selected.value === correctAns) score++;
+    });
+
+    const total = activeQuestions.length;
+    const percentage = Math.round((score / total) * 100);
+    const sName = document.getElementById('student-name').value.trim();
+    const sClass = document.getElementById('student-class').value.trim();
+
+    hideAllViews();
+    document.getElementById('view-result').classList.remove('hidden');
+    document.getElementById('score-display').innerText = `${score} / ${total} (${percentage}%)`;
+    document.getElementById('result-detail').innerText = `Tahniah ${sName}! Keputusan anda telah direkodkan.`;
+
+    // 1. SISTEM REKOD GURU (LOCALSTORAGE PERANTI)
+    const recordData = {
+      time: new Date().toLocaleString('ms-MY'),
+      name: sName,
+      class: sClass,
+      set: currentSet,
+      module: currentModule,
+      score: `${score}/${total} (${percentage}%)`
+    };
+
+    let localData = JSON.parse(localStorage.getItem('quizRecords') || '[]');
+    localData.push(recordData);
+    localStorage.setItem('quizRecords', JSON.stringify(localData));
+
+    // 2. HANTAR DATA KE GOOGLE SHEET
+    if (SCRIPT_URL) {
+      const sheetPayload = {
+        name: sName,
+        class: sClass,
+        module: currentModule,
+        skill: currentSet,
+        score: score,
+        percentage: percentage
+      };
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(sheetPayload)
+      }).catch(err => console.log("Ralat Hantar Ke Sheet:", err));
+    }
+  }
+
+  function showAdmin() {
+    hideAllViews();
+    document.getElementById('view-admin').classList.remove('hidden');
+  }
+
+  function checkPin() {
+    if (document.getElementById('admin-pin').value === "1234") {
+      document.getElementById('admin-login').classList.add('hidden');
+      document.getElementById('admin-content').classList.remove('hidden');
+      loadRecordsTable();
+    } else {
+      alert("PIN Salah!");
+    }
+  }
+
+  function loadRecordsTable() {
+    const records = JSON.parse(localStorage.getItem('quizRecords') || '[]');
+    const tbody = document.querySelector('#records-table tbody');
+    tbody.innerHTML = "";
+
+    if (records.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:15px;">Tiada rekod ditemui pada peranti ini.</td></tr>';
+      return;
+    }
+
+    records.slice().reverse().forEach(r => {
+      tbody.innerHTML += `<tr>
+        <td style="padding:8px;">${r.time}</td>
+        <td style="padding:8px;">${r.name}</td>
+        <td style="padding:8px;">${r.class}</td>
+        <td style="padding:8px;">${r.set}</td>
+        <td style="padding:8px;">${r.module}</td>
+        <td style="padding:8px;">${r.score}</td>
+      </tr>`;
+    });
+  }
+
+  function downloadCSV() {
+    const records = JSON.parse(localStorage.getItem('quizRecords') || '[]');
+    if(records.length === 0) { alert("Tiada rekod untuk dimuat turun."); return; }
+
+    let csv = "Masa,Nama,Kelas,Set,Modul,Markah\n";
+    records.forEach(r => {
+      csv += `"${r.time}","${r.name}","${r.class}","${r.set}","${r.module}","${r.score}"\n`;
+    });
+
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'Rekod_Kuiz_Year3.csv';
+    a.click();
+  }
+
+  function clearRecords() {
+    if (confirm("Adakah anda pasti mahu memadam semua rekod murid pada peranti ini?")) {
+      localStorage.removeItem('quizRecords');
+      loadRecordsTable();
+    }
+  }
+</script>
 
 </body>
 </html>
