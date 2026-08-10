@@ -291,9 +291,9 @@
       const sheetPayload = {
         name: sName,
         class: sClass,
-        set: currentSet,        // Ditukar dari 'skill' kepada 'set'
+        set: currentSet,
         module: currentModule,
-        score: score,
+        score: `${score}/${total}`,   // Format markah dihantar sebagai Contoh: "5/5" atau "3/5"
         percentage: percentage
       };
 
