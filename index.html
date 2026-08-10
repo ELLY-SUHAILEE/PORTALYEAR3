@@ -1,29 +1,229 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzwYuG9pYYqfbvytHGy15crKk54ffPufJ3hyIedai_204YcJTuaeQYv4i1mkwzxZzY2/exec';
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PORTAL GET SMART DAN REMEDIAL SET</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 600px;
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 25px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #34495e;
+    }
+    input[type="text"], select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 15px;
+    }
+    .quiz-section {
+      background-color: #eef2f5;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .soalan {
+      margin-bottom: 15px;
+    }
+    .soalan p {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .pilihan label {
+      font-weight: normal;
+      display: block;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+    button {
+      width: 100%;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #219150;
+    }
+    button:disabled {
+      background-color: #bdc3c7;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
 
-function hantarJawapan(dataMurid) {
-  /* Contoh objek data:
-     const dataMurid = {
-       name: "Ahmad",
-       class: "3 Gemilang",
-       module: "Module 1",
-       skill: "Listening",
-       score: 8,
-       percentage: 80
-     };
-  */
+  <div class="container">
+    <h2>PORTAL GET SMART & REMEDIAL</h2>
+    
+    <!-- MAKLUMAT MURID -->
+    <div class="form-group">
+      <label for="namaMurid">Nama Murid:</label>
+      <input type="text" id="namaMurid" placeholder="Contoh: AHMAD BIN ALI" required>
+    </div>
 
-  fetch(scriptURL, {
-    method: 'POST',
-    type: 'no-cors',
-    headers: {
-      'Content-Type': 'text/plain;charset=utf-8',
-    },
-    body: JSON.stringify(dataMurid)
-  })
-  .then(() => {
-    alert('Jawapan berjaya dihantar!');
-  })
-  .catch(error => {
-    alert('Ralat penghantaran: ' + error);
-  });
-}
+    <div class="form-group">
+      <label for="kelasMurid">Kelas:</label>
+      <input type="text" id="kelasMurid" placeholder="Contoh: 3 GEMILANG" required>
+    </div>
+
+    <div class="form-group">
+      <label for="modul">Modul:</label>
+      <select id="modul">
+        <option value="Module 1">Module 1</option>
+        <option value="Module 2">Module 2</option>
+        <option value="Module 3">Module 3</option>
+        <option value="Remedial Set A">Remedial Set A</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="skill">Kemahiran (Skill):</label>
+      <select id="skill">
+        <option value="Listening">Listening</option>
+        <option value="Reading">Reading</option>
+        <option value="Writing">Writing</option>
+        <option value="Speaking">Speaking</option>
+      </select>
+    </div>
+
+    <!-- BAHAGIAN SOALAN KUIZ (CONTOH 2 SOALAN) -->
+    <div class="quiz-section">
+      <h3>Soalan Kuiz</h3>
+
+      <!-- Soalan 1 -->
+      <div class="soalan">
+        <p>1. What is the correct spelling for 🐱?</p>
+        <div class="pilihan">
+          <label><input type="radio" name="q1" value="betul"> Cat</label>
+          <label><input type="radio" name="q1" value="salah"> Kat</label>
+          <label><input type="radio" name="q1" value="salah"> Cet</label>
+        </div>
+      </div>
+
+      <!-- Soalan 2 -->
+      <div class="soalan">
+        <p>2. What is the color of the sun ☀️?</p>
+        <div class="pilihan">
+          <label><input type="radio" name="q2" value="salah"> Blue</label>
+          <label><input type="radio" name="q2" value="betul"> Yellow</label>
+          <label><input type="radio" name="q2" value="salah"> Green</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUTANG HANTAR -->
+    <button type="button" id="btnHantar" onclick="hantarJawapan()">Hantar Jawapan</button>
+  </div>
+
+  <script>
+    // URL Web App Apps Script Anda
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzwYuG9pYYqfbvytHGy15crKk54ffPufJ3hyIedai_204YcJTuaeQYv4i1mkwzxZzY2/exec';
+
+    function hantarJawapan() {
+      const nama = document.getElementById("namaMurid").value.trim();
+      const kelas = document.getElementById("kelasMurid").value.trim();
+      const modul = document.getElementById("modul").value;
+      const skill = document.getElementById("skill").value;
+
+      // 1. Semakan Input Nama dan Kelas
+      if (nama === "" || kelas === "") {
+        alert("Sila isi Nama Murid dan Kelas terlebih dahulu!");
+        return;
+      }
+
+      // 2. Kira Skor Kuiz
+      const totalSoalan = 2; // Jumlah soalan kuiz
+      let skor = 0;
+
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      const q2 = document.querySelector('input[name="q2"]:checked');
+
+      if (!q1 || !q2) {
+        alert("Sila jawab semua soalan kuiz sebelum menghantar!");
+        return;
+      }
+
+      if (q1.value === "betul") skor++;
+      if (q2.value === "betul") skor++;
+
+      // 3. Kira Peratusan
+      const peratus = Math.round((skor / totalSoalan) * 100);
+
+      // Nyahaktifkan butang supaya murid tidak tekan berkali-kali
+      const btn = document.getElementById("btnHantar");
+      btn.disabled = true;
+      btn.innerText = "Sedang Dihantar...";
+
+      // 4. Susun Data Mengikut Format Google Sheet
+      const payload = {
+        name: nama,
+        class: kelas,
+        module: modul,
+        skill: skill,
+        score: skor,
+        percentage: peratus
+      };
+
+      // 5. Hantar Data ke Google Apps Script
+      fetch(scriptURL, {
+        method: 'POST',
+        type: 'no-cors',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
+        alert(`Jawapan berjaya dihantar!\nSkor Anda: ${skor}/${totalSoalan} (${peratus}%)`);
+        
+        // Reset borang selepas hantar
+        document.getElementById("namaMurid").value = "";
+        document.getElementById("kelasMurid").value = "";
+        document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+      })
+      .catch(error => {
+        alert("Gagal menghantar jawapan: " + error);
+      })
+      .finally(() => {
+        btn.disabled = false;
+        btn.innerText = "Hantar Jawapan";
+      });
+    }
+  </script>
+
+</body>
+</html>
