@@ -15,30 +15,30 @@
     }
 
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 40px; }
+    body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 40px; font-size: 16px; }
     
-    header { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 25px 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-    header h1 { margin: 0; font-size: 32px; letter-spacing: 2px; }
-    header p { margin: 5px 0 0; font-size: 15px; opacity: 0.9; }
+    header { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 28px 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    header h1 { margin: 0; font-size: 34px; letter-spacing: 2px; }
+    header p { margin: 6px 0 0; font-size: 16px; opacity: 0.95; }
 
-    .container { max-width: 1100px; margin: 20px auto; padding: 0 15px; }
+    .container { max-width: 1150px; margin: 20px auto; padding: 0 15px; }
     .hidden { display: none !important; }
 
     /* CARD STYLES */
     .card-box { background: white; border-radius: 16px; padding: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 22px; }
-    h2.section-heading { margin: 25px 0 12px; color: var(--primary-dark); font-size: 20px; display: flex; align-items: center; gap: 8px; }
+    h2.section-heading { margin: 28px 0 14px; color: var(--primary-dark); font-size: 22px; display: flex; align-items: center; gap: 8px; }
 
     /* STUDENT VIEWS */
     .set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 15px; }
     .set-card { background: #e8f3ff; border: 2px solid var(--primary); padding: 22px; border-radius: 14px; text-align: center; cursor: pointer; transition: 0.2s; }
     .set-card:hover { background: var(--primary); color: white; transform: translateY(-3px); }
-    .set-card h3 { margin: 0 0 8px; color: inherit; }
+    .set-card h3 { margin: 0 0 8px; color: inherit; font-size: 20px; }
     
-    .form-group { margin-bottom: 15px; }
-    label { display: block; font-weight: bold; margin-bottom: 6px; font-size: 14px; }
-    input[type="text"], input[type="password"], select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 9px; font-size: 15px; background: white; }
+    .form-group { margin-bottom: 18px; }
+    label { display: block; font-weight: bold; margin-bottom: 8px; font-size: 15px; }
+    input[type="text"], input[type="password"], select { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 9px; font-size: 16px; background: white; }
     
-    .btn { display: inline-block; width: 100%; background: var(--primary); color: white; border: none; padding: 13px; border-radius: 25px; font-size: 15px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; transition: 0.2s; }
+    .btn { display: inline-block; width: 100%; background: var(--primary); color: white; border: none; padding: 14px; border-radius: 25px; font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; transition: 0.2s; }
     .btn:hover { background: var(--primary-dark); }
     .btn-secondary { background: #607080; }
     .btn-secondary:hover { background: #455a64; }
@@ -47,62 +47,66 @@
 
     /* TOP NAVIGATION */
     .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    .nav-btn { width: auto; padding: 8px 18px; font-size: 14px; border-radius: 20px; }
+    .nav-btn { width: auto; padding: 10px 20px; font-size: 15px; border-radius: 20px; }
 
-    /* QUIZ CARDS */
-    .question-card { background: #f8fafc; border: 1px solid var(--border); padding: 18px; border-radius: 12px; margin-bottom: 18px; }
-    .options-list { list-style: none; padding: 0; margin: 10px 0 0; }
-    .options-list label { cursor: pointer; background: white; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; display: block; margin-bottom: 8px; font-weight: normal; }
+    /* QUIZ CARDS (TULISAN SOALAN DIBESARKAN) */
+    .question-card { background: #f8fafc; border: 1px solid var(--border); padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+    .question-card p { font-size: 19px; line-height: 1.5; margin: 0 0 12px; color: #0d233a; }
+    .options-list { list-style: none; padding: 0; margin: 12px 0 0; }
+    .options-list label { cursor: pointer; background: white; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; display: block; margin-bottom: 10px; font-weight: normal; font-size: 17px; }
 
     /* DASHBOARD & TEACHER ACCESS */
-    .teacher-bar { background: white; border-radius: 15px; padding: 15px 20px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; }
+    .teacher-bar { background: white; border-radius: 15px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 16px; }
     
-    .filter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) auto; gap: 12px; align-items: end; }
+    .filter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) auto; gap: 14px; align-items: end; }
+    .filter-grid label { font-size: 14px; font-weight: bold; }
     .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px; }
     
-    .stat-card { background: white; border-radius: 14px; padding: 18px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border-top: 4px solid var(--primary); }
-    .stat-card h4 { margin: 0 0 8px; color: #607080; font-size: 13px; text-transform: uppercase; }
-    .stat-card .number { font-size: 32px; font-weight: bold; color: var(--primary-dark); }
-    .stat-card .sub-label { font-size: 12px; color: #718096; margin-top: 4px; }
+    .stat-card { background: white; border-radius: 14px; padding: 20px 15px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border-top: 5px solid var(--primary); }
+    .stat-card h4 { margin: 0 0 8px; color: #506070; font-size: 14px; font-weight: bold; text-transform: uppercase; }
+    .stat-card .number { font-size: 36px; font-weight: bold; color: var(--primary-dark); }
+    .stat-card .sub-label { font-size: 13px; color: #607080; margin-top: 4px; font-weight: 600; }
 
     /* CHART ROW */
-    .chart-row { display: grid; grid-template-columns: 110px 1fr 50px; align-items: center; gap: 12px; margin-bottom: 12px; }
-    .chart-track { width: 100%; height: 22px; background: #e8eef5; border-radius: 15px; overflow: hidden; }
+    .chart-row { display: grid; grid-template-columns: 130px 1fr 60px; align-items: center; gap: 14px; margin-bottom: 14px; font-size: 15px; }
+    .chart-track { width: 100%; height: 24px; background: #e8eef5; border-radius: 15px; overflow: hidden; }
     .chart-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #1976d2, #42a5f5); border-radius: 15px; transition: width 0.6s ease; }
 
     /* RECOMMENDATION GRID */
     .recommendation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
-    .rec-card { border-radius: 12px; padding: 16px; border: 1px solid var(--border); }
+    .rec-card { border-radius: 12px; padding: 18px; border: 1px solid var(--border); font-size: 15px; }
+    .rec-card h4 { font-size: 16px; margin: 0 0 6px; }
+    .rec-card p { margin: 4px 0; }
+    .rec-num { font-size: 34px; font-weight: bold; margin: 6px 0; }
     .rec-card.intensive { background: #ffebee; color: #c62828; }
     .rec-card.guided { background: #fff8e1; color: #b78103; }
     .rec-card.reinforcement { background: #e8f5e9; color: #2e7d32; }
     .rec-card.enrichment { background: #e3f2fd; color: #1557a6; }
-    .rec-num { font-size: 28px; font-weight: bold; margin: 5px 0; }
 
     /* BADGES */
-    .badge { padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: bold; display: inline-block; }
+    .badge { padding: 5px 10px; border-radius: 6px; font-size: 13px; font-weight: bold; display: inline-block; }
     .badge-red { background: #ffebee; color: #c62828; }
     .badge-orange { background: #fff3e0; color: #ef6c00; }
     .badge-blue { background: #e3f2fd; color: #1565c0; }
     .badge-green { background: #e8f5e9; color: #2e7d32; }
 
-    /* TABLES */
+    /* TABLES (DIBESARKAN TEKS JADUAL) */
     .table-box { overflow-x: auto; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-    table { width: 100%; border-collapse: collapse; min-width: 750px; }
-    th { background: var(--primary-dark); color: white; padding: 12px 10px; font-size: 13px; text-align: left; }
-    td { padding: 11px 10px; border-bottom: 1px solid #e1e7ee; font-size: 13px; }
+    table { width: 100%; border-collapse: collapse; min-width: 800px; }
+    th { background: var(--primary-dark); color: white; padding: 14px 12px; font-size: 15px; text-align: left; }
+    td { padding: 13px 12px; border-bottom: 1px solid #e1e7ee; font-size: 15px; }
     tbody tr:hover { background: #f4f9ff; }
-    .empty-td { text-align: center; padding: 25px; color: #718096; }
+    .empty-td { text-align: center; padding: 25px; color: #718096; font-size: 15px; }
 
     /* PRINT LAYOUT */
     @media print {
-      body { background: white; color: black; padding: 0; }
+      body { background: white; color: black; padding: 0; font-size: 12px; }
       header { background: white !important; color: black !important; border-bottom: 2px solid #000; padding: 10px; }
       .top-nav, .teacher-bar, .action-buttons, .filter-grid button, #loginSection { display: none !important; }
       .container { max-width: 100%; margin: 0; padding: 0; }
       .card-box { box-shadow: none !important; border: 1px solid #ccc; page-break-inside: avoid; }
       table { min-width: 100%; }
-      th, td { font-size: 10px; padding: 6px; }
+      th, td { font-size: 11px; padding: 6px; }
     }
   </style>
 </head>
@@ -139,11 +143,11 @@
     <div class="set-grid">
       <div class="set-card" onclick="selectSet('GET SMART SET')">
         <h3>GET SMART SET</h3>
-        <p style="margin:0; font-size: 13px;">Latihan Aras Standard / Pengukuhan</p>
+        <p style="margin:0; font-size: 14px;">Latihan Aras Standard / Pengukuhan</p>
       </div>
       <div class="set-card" onclick="selectSet('REMEDIAL SET')">
         <h3>REMEDIAL SET</h3>
-        <p style="margin:0; font-size: 13px;">Latihan Aras Asas / Pemulihan</p>
+        <p style="margin:0; font-size: 14px;">Latihan Aras Asas / Pemulihan</p>
       </div>
     </div>
   </div>
@@ -151,7 +155,7 @@
   <!-- VIEW 2: PILIH MODUL -->
   <div id="view-module-select" class="card-box hidden">
     <h2 id="selected-set-title"></h2>
-    <p style="text-align: center; color: #4b5563; font-weight: bold;" id="student-info-summary"></p>
+    <p style="text-align: center; color: #4b5563; font-weight: bold; font-size: 16px;" id="student-info-summary"></p>
     
     <div class="form-group" style="margin-top: 20px;">
       <label for="select-module">Pilih Modul / Topik:</label>
@@ -164,32 +168,32 @@
     <button class="btn btn-secondary" style="margin-top: 10px;" onclick="goHome()">⬅️ Tukar Nama / Set</button>
   </div>
 
-  <!-- VIEW 3: SOALAN KUIZ -->
+  <!-- VIEW 3: SOALAN KUIZ (PENCAPAIAN TULISAN BESAR) -->
   <div id="view-quiz" class="card-box hidden">
-    <h2 id="quiz-module-title"></h2>
+    <h2 id="quiz-module-title" style="font-size: 24px; color: var(--primary-dark);"></h2>
     <form id="quiz-form">
       <div id="questions-container"></div>
-      <button type="button" class="btn btn-green" onclick="submitQuiz()">Hantar & Semak Keputusan 📝</button>
+      <button type="button" class="btn btn-green" style="font-size: 18px; padding: 15px;" onclick="submitQuiz()">Hantar & Semak Keputusan 📝</button>
     </form>
   </div>
 
   <!-- VIEW 4: KEPUTUSAN MURID -->
   <div id="view-result" class="card-box hidden" style="text-align: center;">
     <h2>🎉 Tahniah! Anda telah selesai.</h2>
-    <h1 style="color: var(--primary); font-size: 42px; margin: 15px 0;" id="score-display">0 / 0</h1>
-    <p id="result-detail" style="font-size: 16px;"></p>
-    <button class="btn" style="max-width: 250px; margin: 20px auto 0;" onclick="goHome()">Jawab Modul Lain 🔄</button>
+    <h1 style="color: var(--primary); font-size: 48px; margin: 15px 0;" id="score-display">0 / 0</h1>
+    <p id="result-detail" style="font-size: 18px;"></p>
+    <button class="btn" style="max-width: 280px; margin: 20px auto 0;" onclick="goHome()">Jawab Modul Lain 🔄</button>
   </div>
 
   <!-- VIEW 5: DASHBOARD GURU -->
-  <div id="view-teacher-login" class="card-box hidden" style="max-width: 400px; margin: 40px auto; text-align: center;">
+  <div id="view-teacher-login" class="card-box hidden" style="max-width: 420px; margin: 40px auto; text-align: center;">
     <div style="font-size: 48px; margin-bottom: 10px;">🔒</div>
     <h2>AKSES GURU</h2>
-    <p style="color: #607080; font-size: 14px;">Sila masukkan PIN Guru untuk mengakses analisis.</p>
+    <p style="color: #607080; font-size: 15px;">Sila masukkan PIN Guru untuk mengakses analisis.</p>
     
     <input type="password" id="teacherPassword" placeholder="Masukkan PIN Guru" style="margin: 15px 0; text-align: center;">
     <button class="btn" id="loginButton" onclick="teacherLogin()">LOG MASUK</button>
-    <div id="loginMessage" style="margin-top: 12px; font-size: 14px; font-weight: bold;"></div>
+    <div id="loginMessage" style="margin-top: 12px; font-size: 15px; font-weight: bold;"></div>
   </div>
 
   <div id="view-teacher-dashboard" class="hidden">
@@ -202,7 +206,7 @@
 
     <!-- PENAPIS ANALISIS -->
     <div class="card-box">
-      <h3>🔍 Penapis Analisis Rekod Guru</h3>
+      <h3 style="font-size: 18px; margin-top: 0;">🔍 Penapis Analisis Rekod Guru</h3>
       <div class="filter-grid">
         <div>
           <label>KELAS</label>
@@ -238,7 +242,7 @@
         </div>
         <button class="btn btn-secondary" onclick="resetFilters()">RESET</button>
       </div>
-      <p id="filterResult" style="margin: 12px 0 0; font-size: 13px; color: var(--primary-dark); text-align: center; font-weight: bold;"></p>
+      <p id="filterResult" style="margin: 12px 0 0; font-size: 14px; color: var(--primary-dark); text-align: center; font-weight: bold;"></p>
     </div>
 
     <!-- PRESTASI KESELURUHAN -->
@@ -289,7 +293,7 @@
     <!-- 2. ANALISIS MENGIKUT TOPIK / MODUL -->
     <h2 class="section-heading">📚 Analisis Prestasi Mengikut Topik / Modul</h2>
     <div class="card-box" style="border-top: 4px solid #1565c0;">
-      <p style="font-size: 13px; color: #455a64; margin-bottom: 15px;">
+      <p style="font-size: 15px; color: #455a64; margin-bottom: 15px;">
         Analisis ini membantu guru mengenal pasti topik yang mudah dikuasai dan modul yang memerlukan pengajaran semula (re-teaching).
       </p>
       <div class="table-box">
@@ -306,13 +310,13 @@
           <tbody id="topicAnalysisBody"></tbody>
         </table>
       </div>
-      <div style="margin-top: 20px;">
-        <h4 style="margin-bottom: 10px; color: var(--primary-dark);">📈 Graf Visual Purata Skor Modul</h4>
+      <div style="margin-top: 25px;">
+        <h4 style="margin-bottom: 12px; color: var(--primary-dark); font-size: 17px;">📈 Graf Visual Purata Skor Modul</h4>
         <div id="moduleChart"></div>
       </div>
     </div>
 
-    <!-- 3. ANALISIS PENCAPAIAN MURID (KUMPULAN & TAHAP) -->
+    <!-- 3. ANALISIS PENCAPAIAN MURID -->
     <h2 class="section-heading">🏆 Analisis Agihan Pencapaian Murid</h2>
     <div class="dashboard-grid">
       <div class="stat-card" style="border-top-color: #2e7d32;">
@@ -340,7 +344,7 @@
     <!-- CADANGAN INTERVENSI PINTAR -->
     <h2 class="section-heading">💡 Cadangan Intervensi Pintar</h2>
     <div class="card-box">
-      <p id="recommendationIntro" style="background: #e8f3ff; padding: 12px; border-radius: 8px; font-weight: bold; margin-bottom: 15px;"></p>
+      <p id="recommendationIntro" style="background: #e8f3ff; padding: 14px; border-radius: 8px; font-weight: bold; font-size: 16px; margin-bottom: 15px;"></p>
       <div class="recommendation-grid">
         <div class="rec-card intensive">
           <h4>🎯 SOKONGAN INTENSIF</h4>
@@ -430,10 +434,10 @@
       </div>
 
       <!-- ACTION BUTTONS -->
-      <div class="action-buttons" style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
-        <button class="btn" style="flex: 1; min-width: 150px;" onclick="loadTeacherRecords()">🔄 Kemas Kini Data</button>
-        <button class="btn btn-green" style="flex: 1; min-width: 150px;" onclick="downloadCSV()">📥 Muat Turun CSV (Excel)</button>
-        <button class="btn btn-secondary" style="flex: 1; min-width: 150px;" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
+      <div class="action-buttons" style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
+        <button class="btn" style="flex: 1; min-width: 160px;" onclick="loadTeacherRecords()">🔄 Kemas Kini Data</button>
+        <button class="btn btn-green" style="flex: 1; min-width: 160px;" onclick="downloadCSV()">📥 Muat Turun CSV (Excel)</button>
+        <button class="btn btn-secondary" style="flex: 1; min-width: 160px;" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
       </div>
     </div>
 
@@ -543,7 +547,7 @@
       let qOpts = q.options || q.choices || [];
       
       let qHtml = `<div class="question-card"><p><strong>Soalan ${idx + 1}:</strong> ${qText.replace(/\n/g, '<br>')}</p>`;
-      if (q.img || q.image) qHtml += `<img src="${q.img || q.image}" style="max-width:100%; border-radius:8px; margin-bottom:10px;">`;
+      if (q.img || q.image) qHtml += `<img src="${q.img || q.image}" style="max-width:100%; border-radius:8px; margin-bottom:12px;">`;
       qHtml += `<ul class="options-list">`;
       qOpts.forEach(opt => {
         qHtml += `<li><label><input type="radio" name="q_${idx}" value="${opt}"> ${opt}</label></li>`;
@@ -746,7 +750,6 @@
     else recText += "Keutamaan: Pengayaan & Soalan KBAT.";
     document.getElementById("recommendationIntro").innerText = recText;
 
-    // RENDER DETAILED ANALYTICAL MODULES
     renderClassAnalysis(records);
     renderTopicAnalysis(records);
     drawModuleChart(records);
@@ -835,7 +838,7 @@
           <td>${total}</td>
           <td><strong>${avg}%</strong></td>
           <td>${levelBadge}</td>
-          <td style="font-size:12px;">${actionText}</td>
+          <td style="font-size:14px;">${actionText}</td>
         </tr>
       `;
     });
@@ -853,11 +856,11 @@
 
       container.innerHTML += `
         <div class="chart-row">
-          <div style="font-weight:bold; font-size:13px;">Module ${m.number}</div>
+          <div style="font-weight:bold; font-size:14px;">Module ${m.number}</div>
           <div class="chart-track">
             <div class="chart-bar" style="width:${avg}%"></div>
           </div>
-          <div style="font-weight:bold; text-align:right; font-size:13px;">${avg}%</div>
+          <div style="font-weight:bold; text-align:right; font-size:15px;">${avg}%</div>
         </div>
       `;
     });
