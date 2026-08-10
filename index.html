@@ -10,7 +10,7 @@
     .container { max-width: 800px; margin: 0 auto; background: var(--card-bg); padding: 30px; border-radius: 16px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
     h1, h2 { text-align: center; color: var(--primary); }
     .hidden { display: none; }
-    .set-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+    .set-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px; }
     .set-card { background: #e0e7ff; border: 2px solid var(--primary); padding: 20px; border-radius: 12px; text-align: center; cursor: pointer; transition: 0.2s; }
     .set-card:hover { background: var(--primary); color: white; transform: translateY(-3px); }
     .set-card h2 { color: inherit; margin: 0; }
@@ -36,10 +36,22 @@
     <button class="nav-btn" style="background:#059669;" onclick="showAdmin()">🔐 Rekod Guru</button>
   </div>
 
-  <!-- VIEW 1: Pilih Set -->
-  <div id="view-set">
+  <!-- VIEW 1: Nama, Kelas & Pilih Set -->
+  <div id="view-student-info">
     <h1>🎯 PORTAL YEAR 3 ENGLISH</h1>
-    <p style="text-align: center;">Sila pilih set latihan anda:</p>
+    
+    <div class="form-group">
+      <label for="student-name">Nama Murid:</label>
+      <input type="text" id="student-name" placeholder="Contoh: Danial Bin Ahmad" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="student-class">Kelas:</label>
+      <input type="text" id="student-class" placeholder="Contoh: 3 Cemerlang" required>
+    </div>
+
+    <p style="text-align: center; font-weight: bold; margin-top: 25px; color: #374151;">Sila Pilih Set Latihan Anda:</p>
+    
     <div class="set-grid">
       <div class="set-card" onclick="selectSet('GET SMART SET')">
         <h2>GET SMART SET</h2>
@@ -52,24 +64,20 @@
     </div>
   </div>
 
-  <!-- VIEW 2: Maklumat Murid & Pilih Modul -->
-  <div id="view-student-info" class="hidden">
+  <!-- VIEW 2: Pilih Modul Get Smart Year 3 -->
+  <div id="view-module-select" class="hidden">
     <h2 id="selected-set-title"></h2>
-    <div class="form-group">
-      <label>Nama Murid:</label>
-      <input type="text" id="student-name" placeholder="Contoh: Danial Bin Ahmad">
-    </div>
-    <div class="form-group">
-      <label>Kelas:</label>
-      <input type="text" id="student-class" placeholder="Contoh: 3 Cemerlang">
-    </div>
-    <div class="form-group">
-      <label>Pilih Topik / Modul:</label>
+    <p style="text-align: center; font-weight: bold; color: #4b5563;" id="student-info-summary"></p>
+    
+    <div class="form-group" style="margin-top: 20px;">
+      <label for="select-module">Pilih Topik Get Smart Year 3:</label>
       <select id="select-module">
         <option value="">-- Sila Pilih Topik --</option>
       </select>
     </div>
+    
     <button onclick="startQuiz()">Mula Jawab Kuiz 🚀</button>
+    <button onclick="goHome()" style="background:#9ca3af; margin-top: 10px;">Tukar Nama / Set ⬅️</button>
   </div>
 
   <!-- VIEW 3: Soalan -->
@@ -118,42 +126,68 @@
   </div>
 </div>
 
-<!-- Mengambil fail questions.js dari GitHub -->
 <script src="questions.js"></script>
 
 <script>
   let currentSet = "", currentModule = "", activeQuestions = [];
   
-  // URL GOOGLE APPS SCRIPT
+  // Senarai 10 Topik Rasmi Get Smart Plus Year 3
+  const getSmartModules = [
+    "Module 1: Welcome!",
+    "Module 2: Every day",
+    "Module 3: Right now",
+    "Module 4: Year in, year out",
+    "Module 5: My new house",
+    "Module 6: Food, please!",
+    "Module 7: Out and about",
+    "Module 8: Where were you yesterday?",
+    "Module 9: On holiday",
+    "Module 10: The world around us"
+  ];
+
+  // URL Web App Apps Script Anda
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzwYuG9pYYqfbvytHGy15crKk54ffPufJ3hyIedai_204YcJTuaeQYv4i1mkwzxZzY2/exec"; 
 
   function hideAllViews() {
-    ['view-set','view-student-info','view-quiz','view-result','view-admin'].forEach(id => {
+    ['view-student-info','view-module-select','view-quiz','view-result','view-admin'].forEach(id => {
       document.getElementById(id).classList.add('hidden');
     });
   }
 
   function goHome() {
     hideAllViews();
-    document.getElementById('view-set').classList.remove('hidden');
+    document.getElementById('view-student-info').classList.remove('hidden');
   }
 
   function selectSet(setName) {
-    if (typeof quizBank === 'undefined') {
-      alert("Ralat: Fail questions.js tidak dapat dibaca oleh sistem!");
+    const name = document.getElementById('student-name').value.trim();
+    const studentClass = document.getElementById('student-class').value.trim();
+
+    if (!name || !studentClass) {
+      alert("Sila isi Nama Murid dan Kelas terlebih dahulu sebelum memilih set!");
       return;
     }
 
     currentSet = setName;
     hideAllViews();
-    document.getElementById('view-student-info').classList.remove('hidden');
+    
+    document.getElementById('view-module-select').classList.remove('hidden');
     document.getElementById('selected-set-title').innerText = setName;
+    document.getElementById('student-info-summary').innerText = `Murid: ${name} (${studentClass})`;
 
     const moduleSelect = document.getElementById('select-module');
     moduleSelect.innerHTML = '<option value="">-- Sila Pilih Topik --</option>';
     
-    if (quizBank[setName]) {
+    // Paparkan 10 Topik Get Smart Plus Year 3 untuk kedua-dua set
+    if (typeof quizBank !== 'undefined' && quizBank[setName] && Object.keys(quizBank[setName]).length > 0) {
       Object.keys(quizBank[setName]).forEach(mod => {
+        let opt = document.createElement('option');
+        opt.value = mod;
+        opt.innerText = mod;
+        moduleSelect.appendChild(opt);
+      });
+    } else {
+      getSmartModules.forEach(mod => {
         let opt = document.createElement('option');
         opt.value = mod;
         opt.innerText = mod;
@@ -162,7 +196,6 @@
     }
   }
 
-  // FUNGSI UTAMA MEMBACA KESEMUA SOALAN (Termasuk Sub-skil)
   function extractAllQuestions(node) {
     let results = [];
     if (!node) return results;
@@ -178,26 +211,26 @@
   }
 
   function startQuiz() {
-    const name = document.getElementById('student-name').value.trim();
-    const studentClass = document.getElementById('student-class').value.trim();
     currentModule = document.getElementById('select-module').value;
-
-    if (!name || !studentClass) {
-      alert("Sila masukkan Nama dan Kelas anda!");
-      return;
-    }
 
     if (!currentModule) {
       alert("Sila pilih Topik / Modul!");
       return;
     }
 
-    // Mengumpul SEMUA soalan dalam modul tersebut
-    const rawModuleData = quizBank[currentSet][currentModule];
+    let rawModuleData = null;
+    if (typeof quizBank !== 'undefined') {
+      if (quizBank[currentSet] && quizBank[currentSet][currentModule]) {
+        rawModuleData = quizBank[currentSet][currentModule];
+      } else if (quizBank[currentModule]) {
+        rawModuleData = quizBank[currentModule];
+      }
+    }
+
     activeQuestions = extractAllQuestions(rawModuleData);
 
     if(activeQuestions.length === 0) {
-      alert("Tiada soalan ditemui dalam modul ini.");
+      alert(`Tiada soalan ditemui untuk "${currentModule}" dalam ${currentSet}. Sila pastikan fail questions.js telah lengkap.`);
       return;
     }
 
@@ -241,7 +274,6 @@
     document.getElementById('score-display').innerText = `${score} / ${total} (${percentage}%)`;
     document.getElementById('result-detail').innerText = `Tahniah ${sName}! Keputusan anda telah direkodkan.`;
 
-    // 1. SISTEM REKOD GURU (LOCALSTORAGE PERANTI)
     const recordData = {
       time: new Date().toLocaleString('ms-MY'),
       name: sName,
@@ -255,7 +287,6 @@
     localData.push(recordData);
     localStorage.setItem('quizRecords', JSON.stringify(localData));
 
-    // 2. HANTAR DATA KE GOOGLE SHEET
     if (SCRIPT_URL) {
       const sheetPayload = {
         name: sName,
