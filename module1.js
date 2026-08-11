@@ -3,103 +3,119 @@ if (!quizBank["GET SMART SET"]) { quizBank["GET SMART SET"] = {}; }
 if (!quizBank["REMEDIAL SET"]) { quizBank["REMEDIAL SET"] = {}; }
 
 // ==========================================
-// 1. GET SMART SET (30 SOALAN)
+// 1. GET SMART SET (30 SOALAN BERSERTA IMEJ)
 // ==========================================
 quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
   "Reading": [
-    // --- PETIKAN 1 (Soalan 1-5) ---
+    // --- PETIKAN 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
-      "q": "Read the passage and answer Questions 1 to 5:\n\nHello! I am Sara. I have got straight dark hair. My new classmate is Aina. She has got long curly hair and big black eyes. We are at the beach today. Aina has got fifty shells in her basket. I have got forty shells. We love collecting shells together!\n\n1. What does Sara's hair look like?",
-      "options": ["A) Long curly hair", "B) Straight dark hair", "C) Short fair hair"],
-      "ans": "B) Straight dark hair"
+      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80",
+      "q": "Read the passage below and answer Questions 1 to 5:\n\nHello! I am Sara. I have got straight dark hair. My new classmate is Aina. She has got long curly hair and big black eyes. We are at the beach today. Aina has got fifty shells in her basket. I have got forty shells. We love collecting shells together!\n\n1. What type of hair does Aina have?",
+      "options": ["A) Short straight hair", "B) Long curly hair", "C) Short fair hair"],
+      "ans": "B) Long curly hair"
     },
     {
       "type": "mcq",
-      "q": "2. Who is Sara's new classmate?",
-      "options": ["A) Aina", "B) Amir", "C) Lee"],
-      "ans": "A) Aina"
+      "image": "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=600&auto=format&fit=crop&q=80",
+      "q": "2. How many shells does Sara have in her basket?",
+      "options": ["A) Fifty shells", "B) Forty shells", "C) Thirty shells"],
+      "ans": "B) Forty shells"
     },
     {
       "type": "mcq",
-      "q": "3. What is the colour of Aina's eyes?",
-      "options": ["A) Blue", "B) Brown", "C) Black"],
-      "ans": "C) Black"
+      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80",
+      "q": "3. Where are Sara and Aina spending their time today?",
+      "options": ["A) At the beach", "B) At the park", "C) At school"],
+      "ans": "A) At the beach"
     },
     {
       "type": "mcq",
-      "q": "4. How many shells did Aina collect?",
-      "options": ["A) Forty", "B) Fifty", "C) Sixty"],
-      "ans": "B) Fifty"
+      "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&auto=format&fit=crop&q=80",
+      "q": "4. Which statement is TRUE about Aina?",
+      "options": ["A) She has forty shells.", "B) She has straight dark hair.", "C) She has got big black eyes."],
+      "ans": "C) She has got big black eyes."
     },
     {
       "type": "mcq",
-      "q": "5. Where are the girls today?",
-      "options": ["A) At the park", "B) At school", "C) At the beach"],
-      "ans": "C) At the beach"
+      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop&q=80",
+      "q": "5. Why do Sara and Aina enjoy spending time together?",
+      "options": ["A) They share a hobby of collecting shells.", "B) They go to different schools.", "C) They like playing computer games."],
+      "ans": "A) They share a hobby of collecting shells."
     },
-    // --- PETIKAN 2 (Soalan 6-10) ---
+
+    // --- PETIKAN 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
-      "q": "Read the passage and answer Questions 6 to 10:\n\nMeet my brother, Amir. He has got short fair hair. Amir is very active and loves sports. He can play football very well, and he can swim fast. But he cannot dive into the deep pool. Amir has got twenty stickers in his album. He practises every Saturday!\n\n6. What type of hair does Amir have?",
-      "options": ["A) Long dark hair", "B) Short fair hair", "C) Curly brown hair"],
-      "ans": "B) Short fair hair"
-    },
-    {
-      "type": "mcq",
-      "q": "7. What can Amir do very well?",
-      "options": ["A) Play football", "B) Dive into the pool", "C) Paint pictures"],
-      "ans": "A) Play football"
+      "image": "https://images.unsplash.com/photo-1517649763962-0c623266010b?w=600&auto=format&fit=crop&q=80",
+      "q": "Read the passage below and answer Questions 6 to 10:\n\nMeet my brother, Amir. He has got short fair hair. Amir is very active and loves sports. He can play football very well, and he can swim fast. But he cannot dive into the deep pool. Amir has got twenty stickers in his album. He practises every Saturday!\n\n6. What colour is Amir's hair?",
+      "options": ["A) Black", "B) Fair", "C) Brown"],
+      "ans": "B) Fair"
     },
     {
       "type": "mcq",
-      "q": "8. What is the one thing Amir cannot do?",
-      "options": ["A) Swim fast", "B) Play sports", "C) Dive into the deep pool"],
+      "image": "https://images.unsplash.com/photo-1584714268709-c3dd9c92b378?w=600&auto=format&fit=crop&q=80",
+      "q": "7. How many stickers has Amir got in his album?",
+      "options": ["A) Ten stickers", "B) Fifteen stickers", "C) Twenty stickers"],
+      "ans": "C) Twenty stickers"
+    },
+    {
+      "type": "mcq",
+      "image": "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&auto=format&fit=crop&q=80",
+      "q": "8. Which activity is Amir unable to do?",
+      "options": ["A) Play football", "B) Swim fast", "C) Dive into the deep pool"],
       "ans": "C) Dive into the deep pool"
     },
     {
       "type": "mcq",
-      "q": "9. How many stickers are in Amir's album?",
-      "options": ["A) Ten", "B) Twenty", "C) Thirty"],
-      "ans": "B) Twenty"
+      "image": "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&auto=format&fit=crop&q=80",
+      "q": "9. Which statement is TRUE about Amir?",
+      "options": ["A) He can swim fast.", "B) He hates sports.", "C) He has got long hair."],
+      "ans": "A) He can swim fast."
     },
     {
       "type": "mcq",
-      "q": "10. When does Amir usually practise sports?",
-      "options": ["A) Every Friday", "B) Every Saturday", "C) Every Sunday"],
-      "ans": "B) Every Saturday"
+      "image": "https://images.unsplash.com/photo-1517649763962-0c623266010b?w=600&auto=format&fit=crop&q=80",
+      "q": "10. What can we learn about Amir from his Saturday routine?",
+      "options": ["A) He stays in bed all day.", "B) He is dedicated to improving his sports skills.", "C) He prefers drawing pictures."],
+      "ans": "B) He is dedicated to improving his sports skills."
     }
   ],
 
   "Vocabulary": [
     {
       "type": "mcq",
-      "q": "11. My sister's hair is not straight. It is ______.",
-      "options": ["A) curly", "B) blond", "C) long"],
-      "ans": "A) curly"
+      "image": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop&q=80",
+      "q": "11. My sister's hair is not straight. She has got ______ hair.",
+      "options": ["A) blond", "B) short", "C) curly"],
+      "ans": "C) curly"
     },
     {
       "type": "mcq",
-      "q": "12. A person who is in the same class as you is your ______.",
-      "options": ["A) teacher", "B) classmate", "C) principal"],
-      "ans": "B) classmate"
+      "image": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&auto=format&fit=crop&q=80",
+      "q": "12. Light yellow hair is described as ______ hair.",
+      "options": ["A) blond / fair", "B) black", "C) dark"],
+      "ans": "A) blond / fair"
     },
     {
       "type": "mcq",
-      "q": "13. He has got ______ hair. It is light yellow in colour.",
-      "options": ["A) dark", "B) fair / blond", "C) purple"],
-      "ans": "B) fair / blond"
+      "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=80",
+      "q": "13. Amir is a polite and good-looking boy. The word 'handsome' describes his ______.",
+      "options": ["A) family", "B) appearance", "C) school"],
+      "ans": "B) appearance"
     },
     {
       "type": "mcq",
-      "q": "14. We found many colourful ______ on the sand at the beach.",
-      "options": ["A) shells", "B) stickers", "C) albums"],
-      "ans": "A) shells"
+      "image": "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=600&auto=format&fit=crop&q=80",
+      "q": "14. Sara walked along the beach and picked up forty colourful ______.",
+      "options": ["A) books", "B) pencils", "C) shells"],
+      "ans": "C) shells"
     },
     {
       "type": "mcq",
-      "q": "15. Amir keeps his sports pictures in a sticker ______.",
-      "options": ["A) basket", "B) album", "C) box"],
+      "image": "https://images.unsplash.com/photo-1584714268709-c3dd9c92b378?w=600&auto=format&fit=crop&q=80",
+      "q": "15. Amir keeps all his sports stickers neatly inside an ______.",
+      "options": ["A) basket", "B) album", "C) envelope"],
       "ans": "B) album"
     }
   ],
@@ -107,58 +123,67 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
   "Grammar": [
     {
       "type": "mcq",
-      "q": "16. She ______ got big black eyes.",
-      "options": ["A) has", "B) have", "C) are"],
+      "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&auto=format&fit=crop&q=80",
+      "q": "16. She ______ got long curly hair and brown eyes.",
+      "options": ["A) has", "B) have", "C) is"],
       "ans": "A) has"
     },
     {
       "type": "mcq",
-      "q": "17. I ______ got forty shells in my basket.",
-      "options": ["A) has", "B) have", "C) is"],
-      "ans": "B) have"
+      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop&q=80",
+      "q": "17. They ______ got fifty shells in their baskets.",
+      "options": ["A) has", "B) are", "C) have"],
+      "ans": "C) have"
     },
     {
       "type": "mcq",
-      "q": "18. ______ you got any siblings?",
-      "options": ["A) Has", "B) Are", "C) Have"],
-      "ans": "C) Have"
-    },
-    {
-      "type": "mcq",
-      "q": "19. Amir ______ swim fast, but he cannot dive.",
-      "options": ["A) can", "B) can't", "C) has"],
-      "ans": "A) can"
-    },
-    {
-      "type": "mcq",
-      "q": "20. ______ they got curly hair? No, they haven't.",
-      "options": ["A) Has", "B) Have", "C) Can"],
+      "image": "https://images.unsplash.com/photo-1584714268709-c3dd9c92b378?w=600&auto=format&fit=crop&q=80",
+      "q": "18. ______ you got any sports stickers in your album?",
+      "options": ["A) Has", "B) Have", "C) Do"],
       "ans": "B) Have"
+    },
+    {
+      "type": "mcq",
+      "image": "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&auto=format&fit=crop&q=80",
+      "q": "19. Mei Ling is good at sports. She ______ swim fast.",
+      "options": ["A) can't", "B) can", "C) has"],
+      "ans": "B) can"
+    },
+    {
+      "type": "mcq",
+      "image": "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&auto=format&fit=crop&q=80",
+      "q": "20. Amir is afraid of deep water, so he ______ dive into the pool.",
+      "options": ["A) can't", "B) can", "C) hasn't"],
+      "ans": "A) can't"
     }
   ],
 
   "Writing": [
     {
       "type": "mcq",
-      "q": "21. Choose the correct sentence.",
-      "options": ["A) she has got curly hair.", "B) She has got curly hair.", "C) She has got curly hair"],
-      "ans": "B) She has got curly hair."
+      "image": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop&q=80",
+      "q": "21. Choose the sentence with the correct punctuation and capital letters.",
+      "options": ["A) she has got long curly hair.", "B) She has got long, curly hair.", "C) She has got long curly hair"],
+      "ans": "B) She has got long, curly hair."
     },
     {
       "type": "mcq",
-      "q": "22. Rearrange: [ got / He / fair / hair / has ]",
-      "options": ["A) He has got fair hair.", "B) Fair hair he has got.", "C) Got he has fair hair."],
-      "ans": "A) He has got fair hair."
+      "image": "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=600&auto=format&fit=crop&q=80",
+      "q": "22. Rearrange the words to make a correct sentence: [got / I / shells / have / forty]",
+      "options": ["A) Forty shells I have got.", "B) I got have forty shells.", "C) I have got forty shells."],
+      "ans": "C) I have got forty shells."
     },
     {
       "type": "mcq",
-      "q": "23. Rearrange: [ swim / Can / you / ? ]",
-      "options": ["A) You can swim?", "B) Swim you can?", "C) Can you swim?"],
-      "ans": "C) Can you swim?"
+      "image": "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&auto=format&fit=crop&q=80",
+      "q": "23. Rearrange the words to form a correct sentence: [cannot / He / dive / pool / into / the]",
+      "options": ["A) He dive cannot into the pool.", "B) He cannot dive into the pool.", "C) Into the pool he dive cannot."],
+      "ans": "B) He cannot dive into the pool."
     },
     {
       "type": "mcq",
-      "q": "24. Choose the correct spelling for 50.",
+      "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80",
+      "q": "24. Choose the word with the correct spelling for the number '50'.",
       "options": ["A) Fifty", "B) Fivety", "C) Fiftye"],
       "ans": "A) Fifty"
     }
@@ -167,144 +192,166 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
   "Speaking": [
     {
       "type": "mcq",
-      "q": "25. How do you introduce yourself?",
-      "options": ["A) This is my friend.", "B) Hello, I am Hakim.", "C) Fine, thank you."],
-      "ans": "B) Hello, I am Hakim."
+      "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=80",
+      "q": "25. How do you introduce your friend Aina to your classmate Sara?",
+      "options": ["A) Sara, look at Aina now.", "B) Aina is standing there, Sara.", "C) Sara, this is my friend, Aina."],
+      "ans": "C) Sara, this is my friend, Aina."
     },
     {
       "type": "mcq",
-      "q": "26. Can you play football?",
-      "options": ["A) Yes, I can.", "B) Yes, I have.", "C) No, I am not."],
-      "ans": "A) Yes, I can."
+      "image": "https://images.unsplash.com/photo-1517649763962-0c623266010b?w=600&auto=format&fit=crop&q=80",
+      "q": "26. Your classmate asks, 'Can you play football?' How do you answer if you know how to play?",
+      "options": ["A) Yes, I have.", "B) Yes, I can.", "C) Yes, I am."],
+      "ans": "B) Yes, I can."
     },
     {
       "type": "mcq",
-      "q": "27. Have you got a shell?",
-      "options": ["A) No, I haven't.", "B) No, I can't.", "C) Yes, I do."],
-      "ans": "A) No, I haven't."
+      "image": "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&auto=format&fit=crop&q=80",
+      "q": "27. How do you ask a new classmate if they know how to swim?",
+      "options": ["A) Have you swim?", "B) Are you swim?", "C) Can you swim?"],
+      "ans": "C) Can you swim?"
     }
   ],
 
   "Mixed Skills": [
     {
       "type": "mcq",
-      "q": "28. [NOTICE] Swim Class: 9.00 a.m. Saturday. What time is the class?",
-      "options": ["A) 9.00 a.m.", "B) 10.00 a.m.", "C) 9.00 p.m."],
-      "ans": "A) 9.00 a.m."
+      "image": "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&auto=format&fit=crop&q=80",
+      "q": "28. Read the notice:\n\n[SWIMMING LESSONS]\nDay: Every Saturday\nActivity: Swim & Dive\n\nWhat can you learn during this class?",
+      "options": ["A) Football and basketball", "B) Swimming and diving", "C) Singing and dancing"],
+      "ans": "B) Swimming and diving"
     },
     {
       "type": "mcq",
-      "q": "29. [BIRTHDAY CARD] You are 9 today! How old is the person?",
-      "options": ["A) 8", "B) 9", "C) 10"],
-      "ans": "B) 9"
+      "image": "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=600&auto=format&fit=crop&q=80",
+      "q": "29. Read the card:\n\n[HAPPY BIRTHDAY SARA!]\nYou are 9 years old today!\n\nHow old is Sara?",
+      "options": ["A) 7 years old", "B) 8 years old", "C) 9 years old"],
+      "ans": "C) 9 years old"
     },
     {
       "type": "mcq",
-      "q": "30. [SIGN] No Diving! What should you NOT do?",
-      "options": ["A) Swim", "B) Run", "C) Dive"],
-      "ans": "C) Dive"
+      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80",
+      "q": "30. Look at the beach sign: [KEEP THE BEACH CLEAN! NO LITTERING!]\nWhat should you do?",
+      "options": ["A) Throw rubbish into the sea", "B) Throw rubbish in the bin", "C) Leave rubbish on the sand"],
+      "ans": "B) Throw rubbish in the bin"
     }
   ]
 };
 
 // ==========================================
-// 2. REMEDIAL SET (30 SOALAN)
+// 2. REMEDIAL SET (30 SOALAN BERSERTA IMEJ)
 // ==========================================
 quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
   "Reading": [
-    // --- PETIKAN 1 (Soalan 1-5) ---
+    // --- PETIKAN 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
-      "q": "Read and answer 1-5:\n\nI am Sara. I have got dark hair. Aina is my friend. She has got curly hair. We are at the beach.\n\n1. Who is the girl?",
-      "options": ["A) Sara", "B) Amir", "C) Lee"],
-      "ans": "A) Sara"
+      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80",
+      "q": "Read the text below and answer Questions 1 to 5:\n\nHello! I am Sara. I have got straight dark hair. Aina is my friend. She has got curly hair. We are at the beach today.\n\n1. Who is Sara's friend?",
+      "options": ["A) Sara", "B) Aina", "C) Amir"],
+      "ans": "B) Aina"
     },
     {
       "type": "mcq",
-      "q": "2. Sara has got ______ hair.",
-      "options": ["A) fair", "B) dark", "C) blue"],
-      "ans": "B) dark"
+      "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format&fit=crop&q=80",
+      "q": "2. What hair does Sara have?",
+      "options": ["A) Straight dark hair", "B) Long curly hair", "C) Fair hair"],
+      "ans": "A) Straight dark hair"
     },
     {
       "type": "mcq",
-      "q": "3. Who is Aina?",
-      "options": ["A) A teacher", "B) A friend", "C) A mother"],
-      "ans": "B) A friend"
+      "image": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop&q=80",
+      "q": "3. What hair does Aina have?",
+      "options": ["A) Straight hair", "B) Short hair", "C) Curly hair"],
+      "ans": "C) Curly hair"
     },
     {
       "type": "mcq",
-      "q": "4. Aina has got ______ hair.",
-      "options": ["A) straight", "B) curly", "C) short"],
-      "ans": "B) curly"
+      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80",
+      "q": "4. Where are Sara and Aina?",
+      "options": ["A) At the beach", "B) At school", "C) At home"],
+      "ans": "A) At the beach"
     },
     {
       "type": "mcq",
-      "q": "5. Where are they?",
-      "options": ["A) At school", "B) At the beach", "C) In the garden"],
-      "ans": "B) At the beach"
+      "image": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop&q=80",
+      "q": "5. Which word describes hair in the story?",
+      "options": ["A) Beach", "B) Curly", "C) Today"],
+      "ans": "B) Curly"
     },
-    // --- PETIKAN 2 (Soalan 6-10) ---
+
+    // --- PETIKAN 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
-      "q": "Read and answer 6-10:\n\nThis is Amir. He has got short hair. Amir can swim. He cannot dive. He has got 10 stickers.\n\n6. What is the boy's name?",
+      "image": "https://images.unsplash.com/photo-1517649763962-0c623266010b?w=600&auto=format&fit=crop&q=80",
+      "q": "Read the text below and answer Questions 6 to 10:\n\nThis is Amir. He has got short fair hair. Amir can play football and swim fast. He has got 20 stickers.\n\n6. Who is the boy in the story?",
       "options": ["A) Sara", "B) Aina", "C) Amir"],
       "ans": "C) Amir"
     },
     {
       "type": "mcq",
-      "q": "7. Amir has got ______ hair.",
-      "options": ["A) long", "B) short", "C) curly"],
-      "ans": "B) short"
+      "image": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&auto=format&fit=crop&q=80",
+      "q": "7. What colour is Amir's hair?",
+      "options": ["A) Black", "B) Fair", "C) Brown"],
+      "ans": "B) Fair"
     },
     {
       "type": "mcq",
-      "q": "8. What can Amir do?",
-      "options": ["A) Swim", "B) Dive", "C) Fly"],
-      "ans": "A) Swim"
+      "image": "https://images.unsplash.com/photo-1517649763962-0c623266010b?w=600&auto=format&fit=crop&q=80",
+      "q": "8. What sport can Amir play?",
+      "options": ["A) Football", "B) Tennis", "C) Badminton"],
+      "ans": "A) Football"
     },
     {
       "type": "mcq",
-      "q": "9. What can Amir NOT do?",
-      "options": ["A) Swim", "B) Dive", "C) Walk"],
-      "ans": "B) Dive"
+      "image": "https://images.unsplash.com/photo-1584714268709-c3dd9c92b378?w=600&auto=format&fit=crop&q=80",
+      "q": "9. How many stickers does Amir have?",
+      "options": ["A) 10 stickers", "B) 20 stickers", "C) 30 stickers"],
+      "ans": "B) 20 stickers"
     },
     {
       "type": "mcq",
-      "q": "10. How many stickers does he have?",
-      "options": ["A) 5", "B) 10", "C) 20"],
-      "ans": "B) 10"
+      "image": "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&auto=format&fit=crop&q=80",
+      "q": "10. Amir can swim ____.",
+      "options": ["A) slow", "B) fast", "C) bad"],
+      "ans": "B) fast"
     }
   ],
 
   "Vocabulary": [
     {
       "type": "mcq",
-      "q": "11. ______ hair is yellow/light.",
-      "options": ["A) Blond", "B) Black", "C) Red"],
-      "ans": "A) Blond"
+      "image": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&auto=format&fit=crop&q=80",
+      "q": "11. Yellow or light colour hair is called ______.",
+      "options": ["A) blond / fair", "B) black", "C) dark"],
+      "ans": "A) blond / fair"
     },
     {
       "type": "mcq",
-      "q": "12. You find ______ at the beach.",
-      "options": ["A) shells", "B) cars", "C) beds"],
-      "ans": "A) shells"
+      "image": "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=600&auto=format&fit=crop&q=80",
+      "q": "12. You pick up ______ at the beach.",
+      "options": ["A) books", "B) shells", "C) chairs"],
+      "ans": "B) shells"
     },
     {
       "type": "mcq",
-      "q": "13. Not straight hair is ______ hair.",
-      "options": ["A) long", "B) curly", "C) fair"],
-      "ans": "B) curly"
+      "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=80",
+      "q": "13. A friend in your class is your ______.",
+      "options": ["A) teacher", "B) classmate", "C) father"],
+      "ans": "B) classmate"
     },
     {
       "type": "mcq",
-      "q": "14. A ______ is a friend at school.",
-      "options": ["A) classmate", "B) pet", "C) shell"],
-      "ans": "A) classmate"
+      "image": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop&q=80",
+      "q": "14. Hair that is not straight is ______ hair.",
+      "options": ["A) curly", "B) short", "C) long"],
+      "ans": "A) curly"
     },
     {
       "type": "mcq",
-      "q": "15. A book for stickers is an ______.",
-      "options": ["A) album", "B) apple", "C) arm"],
+      "image": "https://images.unsplash.com/photo-1584714268709-c3dd9c92b378?w=600&auto=format&fit=crop&q=80",
+      "q": "15. A book for putting stickers is an ______.",
+      "options": ["A) album", "B) bag", "C) box"],
       "ans": "A) album"
     }
   ],
@@ -312,58 +359,67 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
   "Grammar": [
     {
       "type": "mcq",
-      "q": "16. I ______ got a friend.",
+      "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&auto=format&fit=crop&q=80",
+      "q": "16. She ______ got curly hair.",
+      "options": ["A) has", "B) have", "C) is"],
+      "ans": "A) has"
+    },
+    {
+      "type": "mcq",
+      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop&q=80",
+      "q": "17. They ______ got big eyes.",
+      "options": ["A) has", "B) have", "C) is"],
+      "ans": "B) have"
+    },
+    {
+      "type": "mcq",
+      "image": "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&auto=format&fit=crop&q=80",
+      "q": "18. Amir ______ swim fast.",
+      "options": ["A) can", "B) has", "C) have"],
+      "ans": "A) can"
+    },
+    {
+      "type": "mcq",
+      "image": "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&auto=format&fit=crop&q=80",
+      "q": "19. He ______ dive. (Cannot)",
+      "options": ["A) can't", "B) hasn't", "C) haven't"],
+      "ans": "A) can't"
+    },
+    {
+      "type": "mcq",
+      "image": "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=600&auto=format&fit=crop&q=80",
+      "q": "20. I ______ got 10 shells.",
       "options": ["A) have", "B) has", "C) is"],
       "ans": "A) have"
-    },
-    {
-      "type": "mcq",
-      "q": "17. He ______ got dark hair.",
-      "options": ["A) have", "B) has", "C) are"],
-      "ans": "B) has"
-    },
-    {
-      "type": "mcq",
-      "q": "18. ______ you swim?",
-      "options": ["A) Can", "B) Has", "C) Have"],
-      "ans": "A) Can"
-    },
-    {
-      "type": "mcq",
-      "q": "19. They ______ got shells.",
-      "options": ["A) have", "B) has", "C) am"],
-      "ans": "A) have"
-    },
-    {
-      "type": "mcq",
-      "q": "20. She ______ dive.",
-      "options": ["A) can't", "B) haven't", "C) hasn't"],
-      "ans": "A) can't"
     }
   ],
 
   "Writing": [
     {
       "type": "mcq",
-      "q": "21. Choose the correct word: [ S _ e l l ]",
-      "options": ["A) h", "B) k", "C) m"],
-      "ans": "A) h"
+      "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=80",
+      "q": "21. Choose the correct spelling:",
+      "options": ["A) Welcome", "B) Welcom", "C) Wellcome"],
+      "ans": "A) Welcome"
     },
     {
       "type": "mcq",
-      "q": "22. Rearrange: [ I / swim / can ]",
-      "options": ["A) I can swim.", "B) Swim I can.", "C) Can I swim."],
-      "ans": "A) I can swim."
+      "image": "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&auto=format&fit=crop&q=80",
+      "q": "22. Rearrange: [ can / I / swim ]",
+      "options": ["A) Swim I can.", "B) I can swim.", "C) Can swim I."],
+      "ans": "B) I can swim."
     },
     {
       "type": "mcq",
-      "q": "23. Choose the number 10.",
+      "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80",
+      "q": "23. Choose the correct number name for 10:",
       "options": ["A) Ten", "B) Two", "C) Three"],
       "ans": "A) Ten"
     },
     {
       "type": "mcq",
-      "q": "24. Choose the number 20.",
+      "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80",
+      "q": "24. Choose the correct number name for 20:",
       "options": ["A) Twenty", "B) Twelve", "C) Two"],
       "ans": "A) Twenty"
     }
@@ -372,40 +428,46 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
   "Speaking": [
     {
       "type": "mcq",
-      "q": "25. Say hello.",
-      "options": ["A) Hi!", "B) Bye!", "C) No!"],
-      "ans": "A) Hi!"
+      "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=80",
+      "q": "25. How do you greet your teacher in the morning?",
+      "options": ["A) Good morning", "B) Good night", "C) Goodbye"],
+      "ans": "A) Good morning"
     },
     {
       "type": "mcq",
-      "q": "26. Good morning, ______.",
-      "options": ["A) Teacher", "B) Night", "C) Hello"],
-      "ans": "A) Teacher"
+      "image": "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&auto=format&fit=crop&q=80",
+      "q": "26. Your friend asks: 'Can you swim?' If YES, you say:",
+      "options": ["A) Yes, I can.", "B) Yes, I have.", "C) No, I cannot."],
+      "ans": "A) Yes, I can."
     },
     {
       "type": "mcq",
-      "q": "27. Can you swim? Yes, ______.",
-      "options": ["A) I can", "B) I have", "C) I am"],
-      "ans": "A) I can"
+      "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=80",
+      "q": "27. What do you say when meeting a new friend?",
+      "options": ["A) Hello!", "B) Bye!", "C) No!"],
+      "ans": "A) Hello!"
     }
   ],
 
   "Mixed Skills": [
     {
       "type": "mcq",
-      "q": "28. [SHELLS: 10] How many shells?",
-      "options": ["A) 5", "B) 10", "C) 20"],
-      "ans": "B) 10"
+      "image": "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=600&auto=format&fit=crop&q=80",
+      "q": "28. Read the label:\n\n[10 SHELLS]\n\nWhat is inside?",
+      "options": ["A) Pencils", "B) Shells", "C) Books"],
+      "ans": "B) Shells"
     },
     {
       "type": "mcq",
-      "q": "29. [AMIR] Is this a boy or a girl?",
+      "image": "https://images.unsplash.com/photo-1517649763962-0c623266010b?w=600&auto=format&fit=crop&q=80",
+      "q": "29. Read the tag: [AMIR]\nIs this a boy or a girl?",
       "options": ["A) Boy", "B) Girl", "C) Cat"],
       "ans": "A) Boy"
     },
     {
       "type": "mcq",
-      "q": "30. [SCHOOL] Where are you?",
+      "image": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&auto=format&fit=crop&q=80",
+      "q": "30. Look at the sign: [SCHOOL]\nWhere are you?",
       "options": ["A) School", "B) Beach", "C) Park"],
       "ans": "A) School"
     }
