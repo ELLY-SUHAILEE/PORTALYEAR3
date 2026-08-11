@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Kuiz English Year 3</title>
     <style>
-        /* Tetapan Asas Halaman */
+        /* --- TETAPAN ASAS --- */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f0f4f9;
@@ -71,10 +71,12 @@
             box-sizing: border-box;
             outline: none;
             background-color: #ffffff;
+            color: #2c3e50;
         }
 
         .form-control:focus {
             border-color: #f77f00;
+            box-shadow: 0 0 0 3px rgba(247, 127, 0, 0.15);
         }
 
         .set-title {
@@ -102,22 +104,27 @@
             flex-direction: column;
             align-items: center;
             color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .btn-get-smart {
             background-color: #1d4e89;
+            border: 2px solid #143a68;
         }
 
         .btn-get-smart:hover {
             background-color: #0d3b66;
+            transform: translateY(-2px);
         }
 
         .btn-remedial {
             background-color: #f77f00;
+            border: 2px solid #d96b00;
         }
 
         .btn-remedial:hover {
             background-color: #e06d00;
+            transform: translateY(-2px);
         }
 
         .btn-subtitle {
@@ -126,12 +133,11 @@
             opacity: 0.9;
         }
 
-        /* --- PAPARAN 2: HALAMAN KUIZ (HIDDEN ASAL) --- */
+        /* --- PAPARAN 2: HALAMAN KUIZ --- */
         .quiz-container-wrapper {
-            display: none; /* Disembunyikan pada awal */
+            display: none; /* Disembunyikan secara lalai */
         }
 
-        /* Header Gelap Static */
         .quiz-header {
             position: static !important;
             background: linear-gradient(135deg, #0d3b66 0%, #1d4e89 100%);
@@ -182,6 +188,11 @@
             border-radius: 20px;
             font-weight: 700;
             cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-change:hover {
+            background-color: #d96b00;
         }
 
         .quiz-content {
@@ -190,6 +201,23 @@
             padding: 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             border-top: 5px solid #1d4e89;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f8fafc;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: 600;
+        }
+
+        .option-label:hover {
+            background: #edf2f7;
         }
     </style>
 </head>
@@ -270,7 +298,7 @@
 
                 <div class="score-container">
                     <span style="font-size:0.75rem; color:#d1e3ff;">MARKAH SEMASA</span><br>
-                    <span class="score-value" id="header-score">0 / 30</span>
+                    <span class="score-value" id="header-score">0 / 0</span>
                 </div>
 
                 <button class="btn-change" onclick="kembaliKeMenu()">← Tukar Modul</button>
@@ -278,14 +306,14 @@
 
             <div class="quiz-content">
                 <div id="quiz-box">
-                    <!-- Soalan dari moduleX.js dipaparkan di sini -->
+                    <!-- Soalan dipaparkan secara dinamik di sini -->
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- MEMUATKAN BANK SOALAN DARI FAIL JS LUAARAN -->
+    <!-- MEMUATKAN BANK SOALAN DARI FAIL EXTERNAL JS -->
     <script>
         window.quizBank = {
             "GET SMART SET": {},
@@ -303,8 +331,10 @@
     <script src="module9.js"></script>
     <script src="module10.js"></script>
 
-    <!-- LOGIK KAWALAN PENGGUNA (JAVASCRIPT DIBUNGKUS DENGAN BETUL) -->
+    <!-- LOGIK KAWALAN APLIKASI -->
     <script>
+        let soalanSemasa = [];
+
         function mulaKuiz(setTerpilih) {
             const nama = document.getElementById('nama').value.trim();
             const kelas = document.getElementById('kelas').value;
@@ -314,7 +344,7 @@
             if (!kelas) { alert("Sila pilih kelas!"); return; }
             if (!modul) { alert("Sila pilih modul!"); return; }
 
-            // 1. Tukar Paparan
+            // 1. Tukar Paparan (Tunjuk Halaman Kuiz)
             document.querySelector('.main-card').style.display = 'none';
             document.querySelector('.quiz-container-wrapper').style.display = 'block';
 
@@ -322,7 +352,7 @@
             document.getElementById('header-student').textContent = `Murid: ${nama} (${kelas}) | ${setTerpilih}`;
             document.getElementById('header-module').textContent = modul;
 
-            // 3. Panggil Soalan mengikut modul terpilih
+            // 3. Muat Soalan
             paparSoalan(modul, setTerpilih);
         }
 
@@ -333,9 +363,63 @@
 
         function paparSoalan(modul, set) {
             const quizBox = document.getElementById('quiz-box');
-            quizBox.innerHTML = `<h3>Kandungan untuk ${modul} (${set}) sedang dimuatkan...</h3>`;
-            
-            // Logik memapar soalan daripada window.quizBank boleh diletakkan di sini
+            quizBox.innerHTML = ''; 
+
+            if (
+                window.quizBank &&
+                window.quizBank[set] &&
+                window.quizBank[set][modul] &&
+                window.quizBank[set][modul].length > 0
+            ) {
+                soalanSemasa = window.quizBank[set][modul];
+                document.getElementById('header-score').textContent = `0 / ${soalanSemasa.length * 10}`;
+
+                soalanSemasa.forEach((item, index) => {
+                    const qDiv = document.createElement('div');
+                    qDiv.style.marginBottom = "25px";
+                    qDiv.style.paddingBottom = "15px";
+                    qDiv.style.borderBottom = "1px solid #e2e8f0";
+
+                    let htmlContent = `<p style="font-weight:700; font-size:1.1rem; color:#1d4e89; margin-bottom:12px;">${index + 1}. ${item.q}</p>`;
+                    
+                    if (item.image) {
+                        htmlContent += `<div style="margin-bottom:15px;"><img src="${item.image}" style="max-width:100%; max-height:250px; border-radius:10px; border:1px solid #ddd;"></div>`;
+                    }
+
+                    htmlContent += `<div style="display:flex; flex-direction:column; gap:10px;">`;
+                    item.options.forEach((opt, optIndex) => {
+                        htmlContent += `
+                            <label class="option-label">
+                                <input type="radio" name="question_${index}" value="${optIndex}" onchange="semakJawapan()"> ${opt}
+                            </label>
+                        `;
+                    });
+                    htmlContent += `</div>`;
+
+                    qDiv.innerHTML = htmlContent;
+                    quizBox.appendChild(qDiv);
+                });
+
+            } else {
+                quizBox.innerHTML = `
+                    <div style="text-align:center; padding: 30px 10px;">
+                        <h3 style="color:#e53e3e; margin-bottom:8px;">Soalan Belum Disediakan</h3>
+                        <p style="color:#718096;">Fail soalan bagi <strong>${modul} (${set})</strong> belum dimasukkan ke dalam modul ini.</p>
+                    </div>
+                `;
+                document.getElementById('header-score').textContent = `0 / 0`;
+            }
+        }
+
+        function semakJawapan() {
+            let jumlahMarkah = 0;
+            soalanSemasa.forEach((item, idx) => {
+                const selected = document.querySelector(`input[name="question_${idx}"]:checked`);
+                if (selected && parseInt(selected.value) === item.answer) {
+                    jumlahMarkah += 10;
+                }
+            });
+            document.getElementById('header-score').textContent = `${jumlahMarkah} / ${soalanSemasa.length * 10}`;
         }
     </script>
 </body>
