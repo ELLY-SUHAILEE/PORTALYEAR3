@@ -1,4 +1,332 @@
-<!-- LOGIK KAWALAN APLIKASI -->
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Kuiz English Year 3</title>
+    <style>
+        /* --- TETAPAN ASAS --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- PAPARAN 1: UTAMA / BORANG --- */
+        .main-card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(13, 59, 102, 0.1);
+            overflow: hidden;
+            border-top: 6px solid #f77f00;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #0d3b66 0%, #1d4e89 100%);
+            color: #ffffff;
+            padding: 30px 25px;
+            text-align: center;
+        }
+
+        .card-header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .card-header p {
+            margin: 8px 0 0 0;
+            color: #d1e3ff;
+            font-size: 0.95rem;
+        }
+
+        .card-body {
+            padding: 30px 25px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            color: #1d4e89;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e8f5;
+            border-radius: 10px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+            background-color: #ffffff;
+            color: #2c3e50;
+        }
+
+        .form-control:focus {
+            border-color: #f77f00;
+            box-shadow: 0 0 0 3px rgba(247, 127, 0, 0.15);
+        }
+
+        .set-title {
+            font-weight: 700;
+            color: #1d4e89;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .set-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn-set {
+            border: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .btn-get-smart {
+            background-color: #1d4e89;
+            border: 2px solid #143a68;
+        }
+
+        .btn-get-smart:hover {
+            background-color: #0d3b66;
+            transform: translateY(-2px);
+        }
+
+        .btn-remedial {
+            background-color: #f77f00;
+            border: 2px solid #d96b00;
+        }
+
+        .btn-remedial:hover {
+            background-color: #e06d00;
+            transform: translateY(-2px);
+        }
+
+        .btn-subtitle {
+            font-size: 0.75rem;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        /* --- PAPARAN 2: HALAMAN KUIZ --- */
+        .quiz-container-wrapper {
+            display: none;
+        }
+
+        .quiz-header {
+            position: static !important;
+            background: linear-gradient(135deg, #0d3b66 0%, #1d4e89 100%);
+            color: #ffffff;
+            border-radius: 16px;
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid #f77f00;
+        }
+
+        .student-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .student-detail {
+            font-size: 0.85rem;
+            color: #d1e3ff;
+            font-weight: 600;
+        }
+
+        .module-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .score-container {
+            border-left: 2px solid rgba(255, 255, 255, 0.2);
+            padding-left: 20px;
+        }
+
+        .score-value {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ff9f1c;
+        }
+
+        .btn-change {
+            background-color: #f77f00;
+            color: #ffffff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-change:hover {
+            background-color: #d96b00;
+        }
+
+        .quiz-content {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 5px solid #1d4e89;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f8fafc;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: 600;
+        }
+
+        .option-label:hover {
+            background: #edf2f7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- ================= PAPARAN 1: UTAMA (BORANG) ================= -->
+        <div class="main-card">
+            <div class="card-header">
+                <h1>PORTAL KUIZ ENGLISH</h1>
+                <p>Sila masukkan maklumat murid dan pilih set latihan</p>
+            </div>
+
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="nama">Nama Murid:</label>
+                    <input type="text" id="nama" class="form-control" placeholder="Contoh: ADAM" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="kelas">Kelas:</label>
+                    <select id="kelas" class="form-control" required>
+                        <option value="" disabled selected>-- Pilih Kelas --</option>
+                        <option value="3 ARIF">3 ARIF</option>
+                        <option value="3 BESTARI">3 BESTARI</option>
+                        <option value="3 CERDIK">3 CERDIK</option>
+                        <option value="3 DEDIKASI">3 DEDIKASI</option>
+                        <option value="3 ELIT">3 ELIT</option>
+                        <option value="3 FIRDAUS">3 FIRDAUS</option>
+                        <option value="3 GIGIH">3 GIGIH</option>
+                        <option value="3 HARMONI">3 HARMONI</option>
+                        <option value="3 INOVATIF">3 INOVATIF</option>
+                        <option value="3 JUARA">3 JUARA</option>
+                        <option value="3 KREATIF">3 KREATIF</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="modul">Pilih Modul (Topik):</label>
+                    <select id="modul" class="form-control" required>
+                        <option value="" disabled selected>-- Pilih Modul --</option>
+                        <option value="Module 1">Module 1: Welcome!</option>
+                        <option value="Module 2">Module 2: Every day</option>
+                        <option value="Module 3">Module 3: Right now</option>
+                        <option value="Module 4">Module 4: Year in, year out</option>
+                        <option value="Module 5">Module 5: My new house</option>
+                        <option value="Module 6">Module 6: Food, please!</option>
+                        <option value="Module 7">Module 7: Out and about</option>
+                        <option value="Module 8">Module 8: Where were you yesterday?</option>
+                        <option value="Module 9">Module 9: On holiday</option>
+                        <option value="Module 10">Module 10: The world around us</option>
+                    </select>
+                </div>
+
+                <span class="set-title">Mulakan Latihan:</span>
+                <div class="set-buttons">
+                    <button class="btn-set btn-get-smart" onclick="mulaKuiz('GET SMART SET')">
+                        GET SMART SET
+                        <span class="btn-subtitle">Set Utama</span>
+                    </button>
+
+                    <button class="btn-set btn-remedial" onclick="mulaKuiz('REMEDIAL SET')">
+                        REMEDIAL SET
+                        <span class="btn-subtitle">Set Pemulihan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAPARAN 2: SOALAN KUIZ ================= -->
+        <div class="quiz-container-wrapper">
+            <div class="quiz-header">
+                <div class="student-info">
+                    <span class="student-detail" id="header-student">Murid: -</span>
+                    <h2 class="module-title" id="header-module">Module -</h2>
+                </div>
+
+                <div class="score-container">
+                    <span style="font-size:0.75rem; color:#d1e3ff;">MARKAH SEMASA</span><br>
+                    <span class="score-value" id="header-score">0 / 0</span>
+                </div>
+
+                <button class="btn-change" onclick="kembaliKeMenu()">← Tukar Modul</button>
+            </div>
+
+            <div class="quiz-content">
+                <div id="quiz-box">
+                    <!-- Soalan dipaparkan di sini -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PENYEDIAAN PEMBOLEHUBAH UTAMA -->
+    <script>
+        var quizBank = {
+            "GET SMART SET": {},
+            "REMEDIAL SET": {}
+        };
+        window.quizBank = quizBank;
+    </script>
+
+    <!-- MEMUATKAN FAIL MODULE SECARA SELAMAT -->
+    <script src="module1.js"></script>
+    <script src="module2.js"></script>
+
+    <!-- LOGIK KAWALAN APLIKASI -->
     <script>
         let soalanSemasa = [];
 
@@ -33,7 +361,7 @@
             quizBox.innerHTML = ''; 
             soalanSemasa = [];
 
-            // Semakan pelbagai variasi nama modul (Contoh: "Module 1" ATAU "Module 1: Welcome!")
+            // Cari padanan kunci modul (Contoh: "Module 1" padan dengan "Module 1: Welcome!")
             let targetData = null;
             if (window.quizBank && window.quizBank[set]) {
                 const availableKeys = Object.keys(window.quizBank[set]);
@@ -44,7 +372,7 @@
             }
 
             if (targetData) {
-                // Jika data dibahagikan mengikut Kategori (Reading, Grammar, dsb)
+                // Kumpul soalan dari semua kategori (Reading, Grammar, dsb)
                 if (Array.isArray(targetData)) {
                     soalanSemasa = targetData;
                 } else {
@@ -106,3 +434,5 @@
             document.getElementById('header-score').textContent = `${jumlahMarkah} / ${soalanSemasa.length * 10}`;
         }
     </script>
+</body>
+</html>
