@@ -14,13 +14,14 @@
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f0f4f8;
+            scroll-behavior: smooth;
         }
     </style>
 </head>
-<body class="min-h-screen py-6 px-4 flex flex-col justify-between">
+<body class="min-h-screen py-6 px-3 sm:px-6 flex flex-col justify-between">
 
     <!-- Header Navigation -->
-    <header class="max-w-3xl mx-auto w-full bg-white rounded-2xl shadow-md p-4 mb-6">
+    <header class="max-w-4xl mx-auto w-full bg-white rounded-2xl shadow-md p-4 mb-4">
         <div class="flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
                 <div class="bg-indigo-600 text-white p-3 rounded-xl shadow">
@@ -44,113 +45,101 @@
         </div>
     </header>
 
-    <!-- Main Quiz Container -->
-    <main class="max-w-3xl mx-auto w-full bg-white rounded-3xl shadow-lg border border-gray-100 p-6 md:p-8 mb-6">
-        
-        <!-- Category Dropdown & Progress Bar -->
-        <div class="mb-6">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-3">
-                <span id="category-badge" class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold rounded-full uppercase tracking-wider">
-                    Reading
-                </span>
-                <span id="question-count" class="text-sm font-semibold text-gray-500">
-                    Soalan 1 / 30
-                </span>
-            </div>
-            <!-- Progress Line -->
-            <div class="w-full bg-gray-200 h-2.5 rounded-full overflow-hidden">
-                <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 3.33%"></div>
-            </div>
-        </div>
-
-        <!-- Question Card -->
-        <div class="space-y-6">
-
-            <!-- 1. GAMBAR DILETAKKAN SEBELUM SOALAN (SAIZ KECIL & KEMAS) -->
-            <div id="image-container" class="hidden text-center my-4">
-                <div class="inline-block relative group">
-                    <img id="question-image" 
-                         src="" 
-                         alt="Gambar Soalan" 
-                         class="max-w-[260px] sm:max-w-[320px] max-h-[200px] sm:max-h-[240px] mx-auto object-contain rounded-2xl shadow-md border-2 border-indigo-100 bg-gray-50 transition-transform duration-200 hover:scale-105">
+    <!-- Sticky Score & Category Bar -->
+    <div class="sticky top-2 z-20 max-w-4xl mx-auto w-full bg-slate-900/90 backdrop-blur-md text-white rounded-2xl shadow-xl p-4 mb-6 border border-slate-700/50">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-4 w-full sm:w-auto justify-between">
+                <div>
+                    <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider">Jumlah Soalan</span>
+                    <span id="answered-count" class="text-base font-semibold text-indigo-300">0 / 30 Dijawab</span>
+                </div>
+                <div class="h-8 w-px bg-slate-700 hidden sm:block"></div>
+                <div>
+                    <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider">Markah Semasa</span>
+                    <span id="score-text" class="text-lg font-extrabold text-emerald-400">0 / 30</span>
                 </div>
             </div>
 
-            <!-- 2. TEKS SOALAN -->
-            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
-                <p id="question-text" class="text-base sm:text-lg font-bold text-slate-800 whitespace-pre-line leading-relaxed">
-                    Sedang memuatkan soalan...
-                </p>
+            <!-- Quick Category Nav Buttons -->
+            <div class="flex flex-wrap gap-1.5 justify-center sm:justify-end text-xs w-full sm:w-auto">
+                <button onclick="scrollToCategory('cat-Reading')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">📖 Reading</button>
+                <button onclick="scrollToCategory('cat-Vocabulary')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">🔤 Vocabulary</button>
+                <button onclick="scrollToCategory('cat-Grammar')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">⚖️ Grammar</button>
+                <button onclick="scrollToCategory('cat-Writing')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">✏️ Writing</button>
+                <button onclick="scrollToCategory('cat-Speaking')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">🗣️ Speaking</button>
+                <button onclick="scrollToCategory('cat-Mixed Skills')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">🧩 Mixed</button>
             </div>
-
-            <!-- 3. PILIHAN JAWAPAN -->
-            <div id="options-container" class="grid grid-cols-1 gap-3">
-                <!-- Pilihan jawapan akan dimasukkan di sini secara dinamik -->
-            </div>
-
-            <!-- Feedback Message -->
-            <div id="feedback-box" class="hidden p-4 rounded-xl text-sm font-semibold text-center transition-all"></div>
-
         </div>
 
-        <!-- Navigation Buttons -->
-        <div class="flex justify-between items-center mt-8 pt-6 border-t border-gray-100">
-            <button id="btn-prev" onclick="prevQuestion()" class="px-5 py-2.5 rounded-xl border border-gray-300 text-gray-600 text-sm font-medium hover:bg-gray-50 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
-                <i class="fa-solid fa-arrow-left"></i> Sebelum
-            </button>
-            <div class="text-sm font-bold text-gray-700">
-                Markah: <span id="score-text" class="text-indigo-600 text-base">0</span>
-            </div>
-            <button id="btn-next" onclick="nextQuestion()" class="px-5 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 shadow-md shadow-indigo-200 transition flex items-center gap-2">
-                Seterusnya <i class="fa-solid fa-arrow-right"></i>
-            </button>
+        <!-- Progress Bar -->
+        <div class="w-full bg-slate-800 h-2 rounded-full mt-3 overflow-hidden">
+            <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 to-emerald-400 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
         </div>
+    </div>
 
+    <!-- Main Quiz Scrollable Container -->
+    <main id="quiz-container" class="max-w-4xl mx-auto w-full space-y-8 mb-8">
+        <!-- Soalan-soalan akan dijana secara berterusan di sini -->
     </main>
 
+    <!-- Bottom Finish / Summary Card -->
+    <div id="summary-card" class="max-w-4xl mx-auto w-full bg-white rounded-3xl shadow-xl border border-gray-100 p-8 text-center mb-8 hidden">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full text-3xl mb-4">
+            <i class="fa-solid fa-trophy"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Kuiz Selesai!</h2>
+        <p class="text-gray-600 mb-4">Anda telah menjawab kesemua soalan dalam set ini.</p>
+        <div class="text-3xl font-black text-indigo-600 mb-6">
+            Keputusan: <span id="final-score">0</span> / <span id="total-questions">30</span>
+        </div>
+        <button onclick="resetQuiz()" class="px-6 py-3 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition inline-flex items-center gap-2">
+            <i class="fa-solid fa-rotate-right"></i> Jawab Semula Set Ini
+        </button>
+    </div>
+
     <!-- Footer -->
-    <footer class="text-center text-xs text-gray-400 py-2">
+    <footer class="text-center text-xs text-gray-400 py-4">
         Portal Kuiz Interaktif Bahasa Inggeris Tahun 3 &bull; Module 1
     </footer>
 
-    <!-- Script Logik Portal Kuiz -->
     <script>
         let currentSet = "GET SMART SET";
-        let allQuestions = [];
-        let currentIndex = 0;
+        let aggregatedCategories = {};
+        let totalQuestionsCount = 0;
         let score = 0;
+        let answeredQuestionsCount = 0;
         let userAnswers = {};
 
         function initQuiz() {
             if (typeof quizBank === 'undefined' || !quizBank[currentSet]) {
-                document.getElementById('question-text').innerText = "Ralat: Data kuiz tidak dijumpai dalam module1.js!";
+                document.getElementById('quiz-container').innerHTML = `
+                    <div class="bg-red-50 border border-red-200 text-red-700 p-6 rounded-2xl text-center">
+                        <i class="fa-solid fa-triangle-exclamation text-3xl mb-2"></i>
+                        <p class="font-bold">Ralat: Data kuiz tidak dijumpai dalam module1.js!</p>
+                        <p class="text-xs mt-1">Sila pastikan fail module1.js dimuatkan dengan betul.</p>
+                    </div>`;
                 return;
             }
 
-            allQuestions = [];
-            const moduleData = quizBank[currentSet]["Module 1: Welcome!"];
+            aggregatedCategories = quizBank[currentSet]["Module 1: Welcome!"];
+            score = 0;
+            answeredQuestionsCount = 0;
+            userAnswers = {};
+            totalQuestionsCount = 0;
 
-            // Gabungkan semua soalan mengikut kategori
-            for (let category in moduleData) {
-                moduleData[category].forEach((q) => {
-                    allQuestions.push({
-                        ...q,
-                        category: category
-                    });
-                });
+            // Hitung jumlah keseluruhan soalan
+            for (let cat in aggregatedCategories) {
+                totalQuestionsCount += aggregatedCategories[cat].length;
             }
 
-            currentIndex = 0;
-            score = 0;
-            userAnswers = {};
-            document.getElementById('score-text').innerText = score;
-            renderQuestion();
+            updateDashboard();
+            renderAllQuestions();
+            document.getElementById('summary-card').classList.add('hidden');
         }
 
         function switchSet(setName) {
             currentSet = setName;
             
-            // Tukar Gaya Butang
             const btnGetSmart = document.getElementById('btn-getsmart');
             const btnRemedial = document.getElementById('btn-remedial');
 
@@ -163,117 +152,198 @@
             }
 
             initQuiz();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function renderQuestion() {
-            if (allQuestions.length === 0) return;
-
-            const q = allQuestions[currentIndex];
-
-            // Kemas Kini Tajuk & Kemajuan
-            document.getElementById('category-badge').innerText = q.category;
-            document.getElementById('question-count').innerText = `Soalan ${currentIndex + 1} / ${allQuestions.length}`;
+        function updateDashboard() {
+            document.getElementById('score-text').innerText = `${score} / ${totalQuestionsCount}`;
+            document.getElementById('answered-count').innerText = `${answeredQuestionsCount} / ${totalQuestionsCount} Dijawab`;
             
-            const progressPercent = ((currentIndex + 1) / allQuestions.length) * 100;
+            const progressPercent = totalQuestionsCount > 0 ? (answeredQuestionsCount / totalQuestionsCount) * 100 : 0;
             document.getElementById('progress-bar').style.width = `${progressPercent}%`;
 
-            // GAMBAR (SEBELUM SOALAN)
-            const imgContainer = document.getElementById('image-container');
-            const imgElem = document.getElementById('question-image');
-
-            if (q.image && q.image.trim() !== '') {
-                imgElem.src = q.image;
-                imgContainer.classList.remove('hidden');
-            } else {
-                imgElem.src = '';
-                imgContainer.classList.add('hidden');
-            }
-
-            // TEKS SOALAN
-            document.getElementById('question-text').innerText = q.q;
-
-            // PILIHAN JAWAPAN
-            const optionsContainer = document.getElementById('options-container');
-            optionsContainer.innerHTML = '';
-
-            const feedbackBox = document.getElementById('feedback-box');
-            feedbackBox.classList.add('hidden');
-
-            q.options.forEach((opt) => {
-                const btn = document.createElement('button');
-                btn.className = "w-full text-left p-4 rounded-xl border border-gray-200 hover:border-indigo-500 hover:bg-indigo-50/50 transition duration-150 font-medium text-gray-700 flex justify-between items-center";
-                btn.innerText = opt;
-
-                // Jika soalan ini telah dijawab
-                if (userAnswers[currentIndex]) {
-                    btn.disabled = true;
-                    if (opt === q.ans) {
-                        btn.classList.add('bg-green-100', 'border-green-500', 'text-green-800', 'font-bold');
-                    } else if (opt === userAnswers[currentIndex].selected) {
-                        btn.classList.add('bg-red-100', 'border-red-500', 'text-red-800');
-                    }
-                } else {
-                    btn.onclick = () => selectOption(opt, q.ans);
-                }
-
-                optionsContainer.appendChild(btn);
-            });
-
-            // Status Butang Navigasi
-            document.getElementById('btn-prev').disabled = (currentIndex === 0);
-            
-            if (currentIndex === allQuestions.length - 1) {
-                document.getElementById('btn-next').innerText = "Tamat Kuiz";
-            } else {
-                document.getElementById('btn-next').innerHTML = `Seterusnya <i class="fa-solid fa-arrow-right"></i>`;
+            if (answeredQuestionsCount === totalQuestionsCount && totalQuestionsCount > 0) {
+                document.getElementById('summary-card').classList.remove('hidden');
+                document.getElementById('final-score').innerText = score;
+                document.getElementById('total-questions').innerText = totalQuestionsCount;
             }
         }
 
-        function selectOption(selectedOpt, correctAns) {
+        function renderAllQuestions() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            let globalQuestionIndex = 0;
+
+            for (let category in aggregatedCategories) {
+                const questionsList = aggregatedCategories[category];
+
+                // Buat Header Kategori
+                const categoryHeader = document.createElement('div');
+                categoryHeader.id = `cat-${category}`;
+                categoryHeader.className = "pt-4 pb-2 border-b-2 border-indigo-200 flex items-center justify-between";
+                categoryHeader.innerHTML = `
+                    <h2 class="text-xl font-bold text-indigo-900 flex items-center gap-2">
+                        <span class="w-3 h-3 bg-indigo-600 rounded-full inline-block"></span>
+                        Bahagian: ${category}
+                    </h2>
+                    <span class="text-xs bg-indigo-100 text-indigo-700 font-bold px-3 py-1 rounded-full">
+                        ${questionsList.length} Soalan
+                    </span>
+                `;
+                container.appendChild(categoryHeader);
+
+                // Buat Setiap Kad Soalan
+                questionsList.forEach((q) => {
+                    const qIndex = globalQuestionIndex;
+                    globalQuestionIndex++;
+
+                    const card = document.createElement('div');
+                    card.id = `q-card-${qIndex}`;
+                    card.className = "bg-white rounded-3xl shadow-md border border-slate-100 p-6 md:p-8 space-y-5 transition-all";
+
+                    // GAMBAR DIBESARKAN (Lebih jelas untuk petikan & grafik)
+                    let imageHTML = '';
+                    if (q.image && q.image.trim() !== '') {
+                        imageHTML = `
+                            <div class="text-center my-3 bg-slate-50 p-3 sm:p-4 rounded-2xl border border-slate-200">
+                                <span class="text-xs font-semibold text-slate-400 block mb-2"><i class="fa-solid fa-image"></i> Petikan / Gambar Soalan</span>
+                                <img src="${q.image}" 
+                                     alt="Gambar Soalan" 
+                                     onerror="this.onerror=null; this.src='https://placehold.co/600x300/e2e8f0/475569?text=Gambar+Dalam+Folder+images/';"
+                                     class="max-w-full sm:max-w-xl md:max-w-2xl max-h-[380px] md:max-h-[450px] mx-auto object-contain rounded-xl shadow-sm border border-slate-200">
+                            </div>
+                        `;
+                    }
+
+                    // Pilihan Jawapan HTML
+                    let optionsHTML = '<div class="grid grid-cols-1 gap-3 mt-4" id="options-container-' + qIndex + '">';
+                    q.options.forEach((opt) => {
+                        optionsHTML += `
+                            <button id="opt-btn-${qIndex}-${escapeId(opt)}" 
+                                    onclick="selectOption(${qIndex}, '${escapeQuote(opt)}', '${escapeQuote(q.ans)}')" 
+                                    class="w-full text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/50 transition font-medium text-slate-700 flex justify-between items-center text-sm md:text-base">
+                                <span>${opt}</span>
+                                <i class="fa-regular fa-circle text-slate-300"></i>
+                            </button>
+                        `;
+                    });
+                    optionsHTML += '</div>';
+
+                    card.innerHTML = `
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="text-xs font-bold px-3 py-1 bg-slate-100 text-slate-600 rounded-full">
+                                Soalan ${qIndex + 1}
+                            </span>
+                            <span id="badge-status-${qIndex}" class="text-xs font-semibold text-slate-400">
+                                Belum Dijawab
+                            </span>
+                        </div>
+
+                        ${imageHTML}
+
+                        <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200">
+                            <p class="text-base sm:text-lg font-bold text-slate-800 whitespace-pre-line leading-relaxed">${q.q}</p>
+                        </div>
+
+                        ${optionsHTML}
+
+                        <div id="feedback-${qIndex}" class="hidden p-4 rounded-2xl text-sm font-semibold text-center transition-all"></div>
+                    `;
+
+                    container.appendChild(card);
+                });
+            }
+        }
+
+        function selectOption(qIndex, selectedOpt, correctAns) {
+            if (userAnswers[qIndex]) return; // Elak jawapan diubah semula
+
             const isCorrect = (selectedOpt === correctAns);
             
-            if (isCorrect) {
-                score += 1;
-            }
-
-            userAnswers[currentIndex] = {
+            userAnswers[qIndex] = {
                 selected: selectedOpt,
                 correct: isCorrect
             };
 
-            document.getElementById('score-text').innerText = score;
-            renderQuestion();
-
-            // Papar Maklum Balas
-            const feedbackBox = document.getElementById('feedback-box');
-            feedbackBox.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
-            
             if (isCorrect) {
-                feedbackBox.classList.add('bg-green-100', 'text-green-800');
-                feedbackBox.innerHTML = '<i class="fa-solid fa-circle-check"></i> Syabas! Jawapan anda TEPAT.';
+                score += 1;
+            }
+            answeredQuestionsCount += 1;
+
+            // Kemas kini gaya pilihan jawapan bagi soalan ini
+            const optionsContainer = document.getElementById(`options-container-${qIndex}`);
+            const buttons = optionsContainer.getElementsByTagName('button');
+
+            for (let btn of buttons) {
+                btn.disabled = true;
+                btn.classList.add('cursor-not-allowed');
+
+                // Dapatkan teks jawapan butang ini
+                const btnText = btn.querySelector('span').innerText;
+
+                if (btnText === correctAns) {
+                    btn.className = "w-full text-left p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold flex justify-between items-center text-sm md:text-base";
+                    btn.querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg";
+                } else if (btnText === selectedOpt && !isCorrect) {
+                    btn.className = "w-full text-left p-4 rounded-2xl border-2 border-rose-500 bg-rose-50 text-rose-900 font-medium flex justify-between items-center text-sm md:text-base";
+                    btn.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-500 text-lg";
+                } else {
+                    btn.className = "w-full text-left p-4 rounded-2xl border-2 border-slate-100 bg-slate-50 text-slate-400 opacity-60 flex justify-between items-center text-sm md:text-base";
+                }
+            }
+
+            // Kemas kini Kotak Maklum Balas
+            const feedbackBox = document.getElementById(`feedback-${qIndex}`);
+            feedbackBox.classList.remove('hidden');
+
+            if (isCorrect) {
+                feedbackBox.className = "p-4 rounded-2xl text-sm font-semibold text-center bg-emerald-100 text-emerald-800 border border-emerald-200";
+                feedbackBox.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Syabas! Jawapan anda TEPAT.';
             } else {
-                feedbackBox.classList.add('bg-red-100', 'text-red-800');
-                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> Maaf, jawapan tidak tepat. Jawapan betul: <b>${correctAns}</b>`;
+                feedbackBox.className = "p-4 rounded-2xl text-sm font-semibold text-center bg-rose-100 text-rose-800 border border-rose-200";
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Maaf, jawapan tidak tepat. Jawapan betul: <b>${correctAns}</b>`;
+            }
+
+            // Status Kad Soalan
+            const badgeStatus = document.getElementById(`badge-status-${qIndex}`);
+            badgeStatus.className = isCorrect ? "text-xs font-bold text-emerald-600" : "text-xs font-bold text-rose-600";
+            badgeStatus.innerText = isCorrect ? "Betul ✓" : "Salah ✗";
+
+            updateDashboard();
+        }
+
+        function scrollToCategory(catId) {
+            const elem = document.getElementById(catId);
+            if (elem) {
+                const offset = 100; // Ruang untuk sticky navbar
+                const bodyRect = document.body.getBoundingClientRect().top;
+                const elementRect = elem.getBoundingClientRect().top;
+                const elementPosition = elementRect - bodyRect;
+                const offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
             }
         }
 
-        function nextQuestion() {
-            if (currentIndex < allQuestions.length - 1) {
-                currentIndex++;
-                renderQuestion();
-            } else {
-                alert(`Kuiz Selesai!\nJumlah Markah Anda: ${score} / ${allQuestions.length}`);
-            }
+        function resetQuiz() {
+            initQuiz();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function prevQuestion() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                renderQuestion();
-            }
+        // Helper functions
+        function escapeQuote(str) {
+            return str.replace(/'/g, "\\'");
         }
 
-        // Jalankan apabila portal mula dimuatkan
+        function escapeId(str) {
+            return str.replace(/[^a-zA-Z0-9]/g, '_');
+        }
+
+        // Mula kuiz bila tetingkap dimuatkan
         window.onload = initQuiz;
     </script>
 </body>
