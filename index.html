@@ -7,8 +7,9 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Muat naik data soalan dari module1.js -->
+    <!-- Muat naik data soalan dari module1.js dan module2.js -->
     <script src="module1.js"></script>
+    <script src="module2.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
         body {
@@ -29,18 +30,26 @@
                 </div>
                 <div>
                     <h1 class="text-xl font-bold text-gray-800">PORTAL KUIZ YEAR 3</h1>
-                    <p class="text-xs text-gray-500">English Module 1: Welcome!</p>
+                    <p class="text-xs text-gray-500">English Module 1 & Module 2</p>
                 </div>
             </div>
 
-            <!-- Set Selector -->
-            <div class="flex items-center gap-2 bg-gray-100 p-1.5 rounded-xl w-full md:w-auto">
-                <button id="btn-getsmart" onclick="switchSet('GET SMART SET')" class="flex-1 md:flex-none px-4 py-2 text-xs font-semibold rounded-lg transition-all bg-indigo-600 text-white shadow-sm">
-                    GET SMART SET
-                </button>
-                <button id="btn-remedial" onclick="switchSet('REMEDIAL SET')" class="flex-1 md:flex-none px-4 py-2 text-xs font-semibold rounded-lg transition-all text-gray-600 hover:text-indigo-600">
-                    REMEDIAL SET
-                </button>
+            <!-- Set & Module Selector -->
+            <div class="flex flex-col sm:flex-row items-center gap-2 bg-gray-100 p-1.5 rounded-xl w-full md:w-auto">
+                <!-- Module Selector -->
+                <select id="module-select" onchange="switchModule(this.value)" class="w-full sm:w-auto px-3 py-2 text-xs font-semibold rounded-lg bg-white border border-gray-300 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <option value="Module 1: Welcome!">Module 1: Welcome!</option>
+                    <option value="Module 2: Every Day!">Module 2: Every Day!</option>
+                </select>
+
+                <div class="flex w-full sm:w-auto gap-1">
+                    <button id="btn-getsmart" onclick="switchSet('GET SMART SET')" class="flex-1 px-3 py-2 text-xs font-semibold rounded-lg transition-all bg-indigo-600 text-white shadow-sm">
+                        GET SMART SET
+                    </button>
+                    <button id="btn-remedial" onclick="switchSet('REMEDIAL SET')" class="flex-1 px-3 py-2 text-xs font-semibold rounded-lg transition-all text-gray-600 hover:text-indigo-600">
+                        REMEDIAL SET
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -99,11 +108,12 @@
 
     <!-- Footer -->
     <footer class="text-center text-xs text-gray-400 py-4">
-        Portal Kuiz Interaktif Bahasa Inggeris Tahun 3 &bull; Module 1
+        Portal Kuiz Interaktif Bahasa Inggeris Tahun 3
     </footer>
 
     <script>
         let currentSet = "GET SMART SET";
+        let currentModule = "Module 1: Welcome!";
         let aggregatedCategories = {};
         let totalQuestionsCount = 0;
         let score = 0;
@@ -111,17 +121,17 @@
         let userAnswers = {};
 
         function initQuiz() {
-            if (typeof quizBank === 'undefined' || !quizBank[currentSet]) {
+            if (typeof quizBank === 'undefined' || !quizBank[currentSet] || !quizBank[currentSet][currentModule]) {
                 document.getElementById('quiz-container').innerHTML = `
                     <div class="bg-red-50 border border-red-200 text-red-700 p-6 rounded-2xl text-center">
                         <i class="fa-solid fa-triangle-exclamation text-3xl mb-2"></i>
-                        <p class="font-bold">Ralat: Data kuiz tidak dijumpai dalam module1.js!</p>
-                        <p class="text-xs mt-1">Sila pastikan fail module1.js dimuatkan dengan betul.</p>
+                        <p class="font-bold">Ralat: Data kuiz bagi ${currentModule} tidak dijumpai!</p>
+                        <p class="text-xs mt-1">Sila pastikan fail JS modul dimuatkan dengan betul.</p>
                     </div>`;
                 return;
             }
 
-            aggregatedCategories = quizBank[currentSet]["Module 1: Welcome!"];
+            aggregatedCategories = quizBank[currentSet][currentModule];
             score = 0;
             answeredQuestionsCount = 0;
             userAnswers = {};
@@ -137,6 +147,12 @@
             document.getElementById('summary-card').classList.add('hidden');
         }
 
+        function switchModule(moduleName) {
+            currentModule = moduleName;
+            initQuiz();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function switchSet(setName) {
             currentSet = setName;
             
@@ -144,11 +160,11 @@
             const btnRemedial = document.getElementById('btn-remedial');
 
             if (setName === 'GET SMART SET') {
-                btnGetSmart.className = "flex-1 md:flex-none px-4 py-2 text-xs font-semibold rounded-lg transition-all bg-indigo-600 text-white shadow-sm";
-                btnRemedial.className = "flex-1 md:flex-none px-4 py-2 text-xs font-semibold rounded-lg transition-all text-gray-600 hover:text-indigo-600";
+                btnGetSmart.className = "flex-1 px-3 py-2 text-xs font-semibold rounded-lg transition-all bg-indigo-600 text-white shadow-sm";
+                btnRemedial.className = "flex-1 px-3 py-2 text-xs font-semibold rounded-lg transition-all text-gray-600 hover:text-indigo-600";
             } else {
-                btnRemedial.className = "flex-1 md:flex-none px-4 py-2 text-xs font-semibold rounded-lg transition-all bg-indigo-600 text-white shadow-sm";
-                btnGetSmart.className = "flex-1 md:flex-none px-4 py-2 text-xs font-semibold rounded-lg transition-all text-gray-600 hover:text-indigo-600";
+                btnRemedial.className = "flex-1 px-3 py-2 text-xs font-semibold rounded-lg transition-all bg-indigo-600 text-white shadow-sm";
+                btnGetSmart.className = "flex-1 px-3 py-2 text-xs font-semibold rounded-lg transition-all text-gray-600 hover:text-indigo-600";
             }
 
             initQuiz();
@@ -202,16 +218,16 @@
                     card.id = `q-card-${qIndex}`;
                     card.className = "bg-white rounded-3xl shadow-md border border-slate-100 p-6 md:p-8 space-y-5 transition-all";
 
-                    // GAMBAR DIBESARKAN (Lebih jelas untuk petikan & grafik)
+                    // GAMBAR DIPERKECILKAN SEDIKIT (Kemas & Sesuai Untuk Mobile/Desktop)
                     let imageHTML = '';
                     if (q.image && q.image.trim() !== '') {
                         imageHTML = `
-                            <div class="text-center my-3 bg-slate-50 p-3 sm:p-4 rounded-2xl border border-slate-200">
-                                <span class="text-xs font-semibold text-slate-400 block mb-2"><i class="fa-solid fa-image"></i> Petikan / Gambar Soalan</span>
+                            <div class="text-center my-2 bg-slate-50 p-2 sm:p-3 rounded-2xl border border-slate-200">
+                                <span class="text-xs font-semibold text-slate-400 block mb-1.5"><i class="fa-solid fa-image"></i> Gambar / Petikan Soalan</span>
                                 <img src="${q.image}" 
                                      alt="Gambar Soalan" 
-                                     onerror="this.onerror=null; this.src='https://placehold.co/600x300/e2e8f0/475569?text=Gambar+Dalam+Folder+images/';"
-                                     class="max-w-full sm:max-w-xl md:max-w-2xl max-h-[380px] md:max-h-[450px] mx-auto object-contain rounded-xl shadow-sm border border-slate-200">
+                                     onerror="this.onerror=null; this.src='https://placehold.co/600x250/e2e8f0/475569?text=Gambar+Dalam+Folder+images/';"
+                                     class="max-w-full sm:max-w-md md:max-w-lg max-h-[260px] md:max-h-[320px] mx-auto object-contain rounded-xl shadow-sm border border-slate-200">
                             </div>
                         `;
                     }
