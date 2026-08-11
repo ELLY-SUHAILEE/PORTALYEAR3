@@ -172,14 +172,21 @@
                 <label for="kelas">Kelas:</label>
                 <select id="kelas" class="form-control" required>
                     <option value="" disabled selected>-- Pilih Kelas --</option>
-                    <option value="3 UKM">3 UKM</option>
-                    <option value="3 UM">3 UM</option>
-                    <option value="3 USM">3 USM</option>
-                    <option value="3 UPM">3 UPM</option>
+                    <option value="3 ARIF">3 ARIF</option>
+                    <option value="3 BESTARI">3 BESTARI</option>
+                    <option value="3 CERDIK">3 CERDIK</option>
+                    <option value="3 DEDIKASI">3 DEDIKASI</option>
+                    <option value="3 ELIT">3 ELIT</option>
+                    <option value="3 FIRDAUS">3 FIRDAUS</option>
+                    <option value="3 GIGIH">3 GIGIH</option>
+                    <option value="3 HARMONI">3 HARMONI</option>
+                    <option value="3 INOVATIF">3 INOVATIF</option>
+                    <option value="3 JUARA">3 JUARA</option>
+                    <option value="3 KREATIF">3 KREATIF</option>
                 </select>
             </div>
 
-            <!-- Input / Pilihan Modul (Topik Get Smart Year 3) -->
+            <!-- Input / Pilihan Modul -->
             <div class="form-group">
                 <label for="modul">Pilih Modul (Topik):</label>
                 <select id="modul" class="form-control" required>
@@ -220,7 +227,6 @@
             const kelas = document.getElementById('kelas').value;
             const modul = document.getElementById('modul').value;
 
-            // Semakan untuk memastikan semua ruang telah diisi
             if (!nama) {
                 alert("Sila masukkan nama murid dahulu!");
                 return;
@@ -234,17 +240,13 @@
                 return;
             }
 
-            // Simpan maklumat murid untuk dibawa ke halaman soalan
+            // Simpan maklumat ke LocalStorage
             localStorage.setItem("murid_nama", nama);
             localStorage.setItem("murid_kelas", kelas);
             localStorage.setItem("pilihan_modul", modul);
             localStorage.setItem("pilihan_set", setTerpilih);
 
-            // Logik penghalaan (routing) selepas berjaya log masuk
             alert("Berjaya! Membuka: " + modul + " - " + setTerpilih);
-            
-            // Gantikan 'soalan.html' dengan fail soalan sebenar anda
-            // window.location.href = "soalan.html"; 
         }
     </script>
 </body>
