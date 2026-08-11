@@ -3,184 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Kuiz Bahasa Inggeris Tahun 4</title>
+    <title>Portal Year 3 - English Quiz</title>
     <style>
         * {
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
         }
         body {
-            background-color: #f0f2f5;
+            background-color: #f4f5f7;
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
-        .container {
+        .card {
             background-color: #ffffff;
             width: 100%;
-            max-width: 750px;
+            max-width: 650px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 35px 40px;
         }
-        h1, h2 {
-            color: #1a73e8;
+        h1 {
+            color: #2563eb;
             text-align: center;
             margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 28px;
+            font-weight: bold;
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         label {
             display: block;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: #222;
+            font-size: 15px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
             color: #333;
         }
-        input[type="text"], select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 16px;
+        input[type="text"]::placeholder {
+            color: #9ca3af;
         }
-        .btn-group-set {
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #000;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            background-color: #fff;
+            color: #222;
+            cursor: pointer;
+        }
+        .sub-title {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 18px;
+            color: #000;
+            font-size: 15px;
+        }
+        .btn-container {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
         }
-        button {
+        .btn-set {
             flex: 1;
-            padding: 12px;
+            padding: 14px;
             border: none;
-            border-radius: 6px;
-            font-size: 16px;
+            border-radius: 8px;
+            font-size: 15px;
             font-weight: bold;
+            color: #ffffff;
             cursor: pointer;
-            transition: background 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: opacity 0.2s;
         }
-        .btn-gs {
-            background-color: #1a73e8;
-            color: white;
+        .btn-set:hover {
+            opacity: 0.9;
         }
-        .btn-gs:hover {
-            background-color: #1557b0;
+        .btn-blue {
+            background-color: #1d6fe5;
         }
-        .btn-remedial {
-            background-color: #34a853;
-            color: white;
-        }
-        .btn-remedial:hover {
-            background-color: #2d8e47;
-        }
-        .btn-nav {
-            background-color: #f1f3f4;
-            color: #333;
-            border: 1px solid #ccc;
-        }
-        .btn-nav:hover {
-            background-color: #e0e0e0;
-        }
-        .btn-submit {
-            background-color: #ea4335;
-            color: white;
-        }
-        .btn-submit:hover {
-            background-color: #d93025;
+        .btn-green {
+            background-color: #2d9d51;
         }
         #papan-kuiz, #keputusan-kuiz {
             display: none;
         }
         .soalan-box {
             background-color: #fafafa;
-            border: 1px solid #eee;
-            padding: 15px;
+            border: 1px solid #e5e7eb;
+            padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
         }
         .pilihan-jawapan label {
             font-weight: normal;
-            background: white;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            margin-bottom: 8px;
+            background: #fff;
+            padding: 12px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            transition: background 0.1s;
-        }
-        .pilihan-jawapan label:hover {
-            background-color: #f1f8ff;
+            cursor: pointer;
         }
         .nav-buttons {
             display: flex;
             justify-content: space-between;
             gap: 10px;
         }
-        .progress-bar {
+        .btn-nav {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background-color: #f3f4f6;
+            cursor: pointer;
             font-weight: bold;
-            color: #666;
-            margin-bottom: 15px;
-            text-align: right;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- 1. BORANG MAKLUMAT PELAJAR & PILIHAN MODUL -->
+<div class="card">
+    <!-- BORANG UTAMA -->
     <div id="borang-mula">
-        <h1>Kuiz Bahasa Inggeris Tahun 4</h1>
+        <h1>PORTAL YEAR 3</h1>
+        
         <div class="form-group">
             <label for="nama">Nama Pelajar:</label>
-            <input type="text" id="nama" placeholder="Masukkan nama penuh" required>
+            <input type="text" id="nama" placeholder="Masukkan nama penuh">
         </div>
+        
+        <!-- PILIHAN KELAS DALAM BENTUK LIST/DROPDOWN -->
         <div class="form-group">
             <label for="kelas">Kelas:</label>
-            <input type="text" id="kelas" placeholder="Contoh: 4 Cemerlang" required>
+            <select id="kelas">
+                <option value="">-- Pilih Kelas --</option>
+                <option value="3 ARIF">3 ARIF</option>
+                <option value="3 BESTARI">3 BESTARI</option>
+                <option value="3 CERDIK">3 CERDIK</option>
+                <option value="3 DEDIKASI">3 DEDIKASI</option>
+                <option value="3 ELIT">3 ELIT</option>
+                <option value="3 FIRDAUS">3 FIRDAUS</option>
+                <option value="3 GIGIH">3 GIGIH</option>
+                <option value="3 HARMONI">3 HARMONI</option>
+                <option value="3 INOVATIF">3 INOVATIF</option>
+                <option value="3 JUARA">3 JUARA</option>
+                <option value="3 KREATIF">3 KREATIF</option>
+            </select>
         </div>
+        
         <div class="form-group">
             <label for="modul">Pilih Modul:</label>
             <select id="modul">
-                <option value="Module 1: Where are you from?">Module 1: Where are you from?</option>
-                <option value="Module 2: My week">Module 2: My week</option>
+                <option value="Module 1: Welcome!">Module 1: Welcome!</option>
+                <option value="Module 2: Every day">Module 2: Every day</option>
                 <option value="Module 3: Right now">Module 3: Right now</option>
-                <option value="Module 4: Celebrations">Module 4: Celebrations</option>
-                <option value="Module 5: My new house / Eating right">Module 5: My new house / Eating right</option>
-                <option value="Module 6: Food, please! / Getting around">Module 6: Food, please! / Getting around</option>
-                <option value="Module 7: Out and about / Helping out">Module 7: Out and about / Helping out</option>
-                <option value="Module 8: Where were you yesterday? / Amazing animals">Module 8: Where were you yesterday? / Amazing animals</option>
-                <option value="Module 9: On Holiday">Module 9: On Holiday</option>
-                <option value="Module 10: World Around Us">Module 10: World Around Us</option>
+                <option value="Module 4: Year in, year out">Module 4: Year in, year out</option>
+                <option value="Module 5: My new house">Module 5: My new house</option>
+                <option value="Module 6: Food, please!">Module 6: Food, please!</option>
+                <option value="Module 7: Out and about">Module 7: Out and about</option>
+                <option value="Module 8: Where were you yesterday?">Module 8: Where were you yesterday?</option>
+                <option value="Module 9: On holiday">Module 9: On holiday</option>
+                <option value="Module 10: The world around us">Module 10: The world around us</option>
             </select>
         </div>
 
-        <p style="text-align: center; font-weight: bold; margin-top: 20px;">Pilih Set Kuiz Untuk Bermula:</p>
-        <div class="btn-group-set">
-            <button class="btn-gs" onclick="mulaKuiz('GET SMART SET')">GET SMART SET</button>
-            <button class="btn-remedial" onclick="mulaKuiz('REMEDIAL SET')">REMEDIAL SET</button>
+        <div class="sub-title">Pilih Set Kuiz Untuk Bermula:</div>
+        
+        <div class="btn-container">
+            <button class="btn-set btn-blue" onclick="mulaKuiz('GET SMART SET')">GET SMART SET</button>
+            <button class="btn-set btn-green" onclick="mulaKuiz('REMEDIAL SET')">REMEDIAL SET</button>
         </div>
     </div>
 
-    <!-- 2. PAPAN PAPARAN SOALAN KUIZ -->
+    <!-- PAPAN SOALAN KUIZ -->
     <div id="papan-kuiz">
-        <div id="soalan-kemajuan" class="progress-bar"></div>
+        <div id="soalan-kemajuan" style="font-weight: bold; margin-bottom: 10px; text-align: right; color: #555;"></div>
         <div class="soalan-box">
             <div id="kandungan-soalan"></div>
         </div>
         <div class="nav-buttons">
-            <button id="btn-sebelum" class="btn-nav" onclick="soalanSebelum()">Anak Panah Kiri (Sebelum)</button>
-            <button id="btn-seterusnya" class="btn-nav" onclick="soalanSeterusnya()">Anak Panah Kanan (Seterusnya)</button>
-            <button id="btn-hantar" class="btn-submit" onclick="hantarKuiz()" style="display: none;">Hantar Jawapan</button>
+            <button id="btn-sebelum" class="btn-nav" onclick="soalanSebelum()">Sebelum</button>
+            <button id="btn-seterusnya" class="btn-nav" onclick="soalanSeterusnya()">Seterusnya</button>
+            <button id="btn-hantar" class="btn-set btn-blue" onclick="hantarKuiz()" style="display: none; flex: none; width: auto; padding: 10px 20px;">Hantar Jawapan</button>
         </div>
     </div>
 
-    <!-- 3. PAPARAN KEPUTUSAN -->
+    <!-- KEPUTUSAN -->
     <div id="keputusan-kuiz" style="text-align: center;"></div>
 </div>
 
-<!-- MEMUATKAN FAIL MODUL 1 HINGGA 10 -->
+<!-- SKRIP MODUL TAHUN 3 -->
 <script src="module1.js"></script>
 <script src="module2.js"></script>
 <script src="module3.js"></script>
@@ -192,7 +221,7 @@
 <script src="module9.js"></script>
 <script src="module10.js"></script>
 
-<!-- LOGIK KAWALAN APLIKASI KUIZ -->
+<!-- LOGIK KAWALAN KUIZ -->
 <script>
     let soalanSemasa = [];
     let indeksSoalan = 0;
@@ -202,16 +231,16 @@
 
     function mulaKuiz(setTerpilih) {
         const nama = document.getElementById('nama').value.trim();
-        const kelas = document.getElementById('kelas').value.trim();
+        const kelas = document.getElementById('kelas').value;
         const modul = document.getElementById('modul').value;
 
         if (!nama || !kelas || !modul) {
-            alert("Sila isi nama, kelas, dan pilih modul terlebih dahulu!");
+            alert("Sila isi nama, pilih kelas, dan pilih modul terlebih dahulu!");
             return;
         }
 
         if (typeof quizBank === 'undefined' || !quizBank[setTerpilih] || !quizBank[setTerpilih][modul]) {
-            alert("Data soalan untuk modul ini tidak dijumpai. Pastikan fail JS dimuatkan dengan betul.");
+            alert("Data soalan untuk modul ini tidak dijumpai.");
             return;
         }
 
@@ -219,7 +248,6 @@
         const dataModul = quizBank[setTerpilih][modul];
         soalanSemasa = [];
 
-        // Menggabungkan semua kategori (Reading, Vocabulary, Grammar, Writing, Speaking, Mixed Skills)
         Object.keys(dataModul).forEach(kategori => {
             soalanSemasa = soalanSemasa.concat(dataModul[kategori]);
         });
@@ -237,7 +265,6 @@
 
     function paparSoalan() {
         const data = soalanSemasa[indeksSoalan];
-        
         document.getElementById('soalan-kemajuan').innerText = `Soalan ${indeksSoalan + 1} daripada ${soalanSemasa.length}`;
 
         const bekasSoalan = document.getElementById('kandungan-soalan');
@@ -247,7 +274,7 @@
             htmlSoalan += data.image;
         }
         
-        htmlSoalan += `<h3 style="white-space: pre-line; margin-top: 10px; color: #333;">${data.q}</h3>`;
+        htmlSoalan += `<h3 style="white-space: pre-line; margin-top: 10px; color: #111;">${data.q}</h3>`;
         htmlSoalan += `<div class="pilihan-jawapan">`;
 
         data.options.forEach((pilihan) => {
@@ -263,7 +290,6 @@
         htmlSoalan += `</div>`;
         bekasSoalan.innerHTML = htmlSoalan;
 
-        // Kawalan Butang Navigasi
         const btnSebelum = document.getElementById('btn-sebelum');
         const btnSeterusnya = document.getElementById('btn-seterusnya');
         const btnHantar = document.getElementById('btn-hantar');
@@ -313,15 +339,15 @@
         bekasKeputusan.style.display = 'block';
         
         bekasKeputusan.innerHTML = `
-            <h2>Tahniah! Kuiz Selesai</h2>
+            <h2>Keputusan Kuiz</h2>
             <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: left; margin: 20px 0; border: 1px solid #ddd;">
                 <p><strong>Nama:</strong> ${maklumatPelajar.nama}</p>
                 <p><strong>Kelas:</strong> ${maklumatPelajar.kelas}</p>
                 <p><strong>Modul:</strong> ${maklumatPelajar.modul}</p>
                 <p><strong>Set:</strong> ${maklumatPelajar.set}</p>
             </div>
-            <h3 style="font-size: 28px; color: #1a73e8; margin: 10px 0;">Markah: ${markah} / ${soalanSemasa.length} (${peratus}%)</h3>
-            <button class="btn-gs" onclick="location.reload()" style="max-width: 250px; margin-top: 15px;">Kembali ke Halaman Utama</button>
+            <h3 style="font-size: 24px; color: #1d6fe5; margin: 10px 0;">Markah: ${markah} / ${soalanSemasa.length} (${peratus}%)</h3>
+            <button class="btn-set btn-blue" onclick="location.reload()" style="margin-top: 15px; padding: 10px 20px;">Ke Halaman Utama</button>
         `;
     }
 </script>
