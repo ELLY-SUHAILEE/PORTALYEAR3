@@ -26,7 +26,7 @@
             border-radius: 20px;
             box-shadow: 0 8px 25px rgba(13, 59, 102, 0.1);
             overflow: hidden;
-            border-top: 6px solid #f77f00; /* Aksen Garisan Oren */
+            border-top: 6px solid #f77f00;
         }
 
         /* Tajuk Atas (Biru & Oren) */
@@ -77,6 +77,7 @@
             transition: all 0.3s ease;
             outline: none;
             color: #2c3e50;
+            background-color: #ffffff;
         }
 
         .form-control:focus {
@@ -120,6 +121,7 @@
         .btn-get-smart {
             background-color: #1d4e89;
             color: #ffffff;
+            border: 2px solid #143a68;
         }
 
         .btn-get-smart:hover {
@@ -132,6 +134,7 @@
         .btn-remedial {
             background-color: #f77f00;
             color: #ffffff;
+            border: 2px solid #d96b00;
         }
 
         .btn-remedial:hover {
@@ -142,7 +145,7 @@
 
         .btn-subtitle {
             font-size: 0.75rem;
-            font-weight: 500;
+            font-weight: 600;
             opacity: 0.9;
         }
     </style>
@@ -176,8 +179,26 @@
                 </select>
             </div>
 
+            <!-- Input / Pilihan Modul (Topik Get Smart Year 3) -->
+            <div class="form-group">
+                <label for="modul">Pilih Modul (Topik):</label>
+                <select id="modul" class="form-control" required>
+                    <option value="" disabled selected>-- Pilih Modul --</option>
+                    <option value="Module 1">Module 1: Welcome!</option>
+                    <option value="Module 2">Module 2: Every day</option>
+                    <option value="Module 3">Module 3: Right now</option>
+                    <option value="Module 4">Module 4: Year in, year out</option>
+                    <option value="Module 5">Module 5: My new house</option>
+                    <option value="Module 6">Module 6: Food, please!</option>
+                    <option value="Module 7">Module 7: Out and about</option>
+                    <option value="Module 8">Module 8: Where were you yesterday?</option>
+                    <option value="Module 9">Module 9: On holiday</option>
+                    <option value="Module 10">Module 10: The world around us</option>
+                </select>
+            </div>
+
             <!-- Butang Pilihan Set -->
-            <span class="set-title">Pilih Set Latihan:</span>
+            <span class="set-title">Mulakan Latihan:</span>
             <div class="set-buttons">
                 <button class="btn-set btn-get-smart" onclick="mulaKuiz('GET SMART SET')">
                     GET SMART SET
@@ -197,26 +218,33 @@
         function mulaKuiz(setTerpilih) {
             const nama = document.getElementById('nama').value.trim();
             const kelas = document.getElementById('kelas').value;
+            const modul = document.getElementById('modul').value;
 
+            // Semakan untuk memastikan semua ruang telah diisi
             if (!nama) {
                 alert("Sila masukkan nama murid dahulu!");
                 return;
             }
-
             if (!kelas) {
                 alert("Sila pilih kelas murid!");
                 return;
             }
+            if (!modul) {
+                alert("Sila pilih modul (topik) terlebih dahulu!");
+                return;
+            }
 
-            // Simpan maklumat murid untuk modul
+            // Simpan maklumat murid untuk dibawa ke halaman soalan
             localStorage.setItem("murid_nama", nama);
             localStorage.setItem("murid_kelas", kelas);
+            localStorage.setItem("pilihan_modul", modul);
             localStorage.setItem("pilihan_set", setTerpilih);
 
-            alert("Selamat menjawab " + nama + " (" + kelas + ") - " + setTerpilih);
+            // Logik penghalaan (routing) selepas berjaya log masuk
+            alert("Berjaya! Membuka: " + modul + " - " + setTerpilih);
             
-            // Kod laluan ke skrin soalan / pilih modul boleh diletakkan di sini
-            // contoh: window.location.href = "modul.html";
+            // Gantikan 'soalan.html' dengan fail soalan sebenar anda
+            // window.location.href = "soalan.html"; 
         }
     </script>
 </body>
