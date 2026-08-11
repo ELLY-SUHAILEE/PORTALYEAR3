@@ -67,11 +67,6 @@
     .stat-card .number { font-size: 36px; font-weight: bold; color: var(--primary-dark); }
     .stat-card .sub-label { font-size: 13px; color: #607080; margin-top: 4px; font-weight: 600; }
 
-    /* CHART ROW */
-    .chart-row { display: grid; grid-template-columns: 130px 1fr 60px; align-items: center; gap: 14px; margin-bottom: 14px; font-size: 15px; }
-    .chart-track { width: 100%; height: 24px; background: #e8eef5; border-radius: 15px; overflow: hidden; }
-    .chart-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #1976d2, #42a5f5); border-radius: 15px; transition: width 0.6s ease; }
-
     /* RECOMMENDATION GRID */
     .recommendation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
     .rec-card { border-radius: 12px; padding: 18px; border: 1px solid var(--border); font-size: 15px; }
@@ -83,13 +78,6 @@
     .rec-card.reinforcement { background: #e8f5e9; color: #2e7d32; }
     .rec-card.enrichment { background: #e3f2fd; color: #1557a6; }
 
-    /* BADGES */
-    .badge { padding: 6px 10px; border-radius: 6px; font-size: 13px; font-weight: bold; display: inline-block; }
-    .badge-red { background: #ffebee; color: #c62828; border: 1px solid #ef9a9a; }
-    .badge-orange { background: #fff3e0; color: #ef6c00; }
-    .badge-blue { background: #e3f2fd; color: #1565c0; }
-    .badge-green { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
-
     /* TABLES */
     .table-box { overflow-x: auto; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
     table { width: 100%; border-collapse: collapse; min-width: 800px; }
@@ -98,7 +86,6 @@
     tbody tr:hover { background: #f4f9ff; }
     .empty-td { text-align: center; padding: 25px; color: #718096; font-size: 15px; }
 
-    /* PRINT LAYOUT */
     @media print {
       body { background: white; color: black; padding: 0; font-size: 12px; }
       header { background: white !important; color: black !important; border-bottom: 2px solid #000; padding: 10px; }
@@ -197,14 +184,11 @@
   </div>
 
   <div id="view-teacher-dashboard" class="hidden">
-    
-    <!-- BAR GURU -->
     <div class="teacher-bar">
       <div>🔒 <strong>LOG MASUK GURU DISAHKAN</strong></div>
       <button class="btn btn-secondary nav-btn" style="background:#c62828;" onclick="teacherLogout()">LOG KELUAR</button>
     </div>
 
-    <!-- PENAPIS ANALISIS -->
     <div class="card-box">
       <h3 style="font-size: 18px; margin-top: 0;">🔍 Penapis Analisis Rekod Guru</h3>
       <div class="filter-grid">
@@ -245,7 +229,6 @@
       <p id="filterResult" style="margin: 12px 0 0; font-size: 14px; color: var(--primary-dark); text-align: center; font-weight: bold;"></p>
     </div>
 
-    <!-- PRESTASI KESELURUHAN -->
     <h2 class="section-heading">📊 Ringkasan Prestasi Keseluruhan</h2>
     <div class="dashboard-grid">
       <div class="stat-card">
@@ -270,146 +253,6 @@
       </div>
     </div>
 
-    <!-- 1. ANALISIS MENGIKUT KELAS -->
-    <h2 class="section-heading">🏫 Analisis Prestasi Mengikut Kelas</h2>
-    <div class="card-box" style="border-top: 4px solid var(--primary-dark);">
-      <div class="table-box">
-        <table>
-          <thead>
-            <tr>
-              <th>NAMA KELAS</th>
-              <th>JUMLAH MURID / PERCOBAAN</th>
-              <th>PURATA SKOR KELAS</th>
-              <th>MURID CEMERLANG (≥85%)</th>
-              <th>MURID INTERVENSI (≤40%)</th>
-              <th>STATUS PRESTASI KELAS</th>
-            </tr>
-          </thead>
-          <tbody id="classAnalysisBody"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 2. ANALISIS MENGIKUT TOPIK / MODUL -->
-    <h2 class="section-heading">📚 Analisis Prestasi Mengikut Topik / Modul</h2>
-    <div class="card-box" style="border-top: 4px solid #1565c0;">
-      <p style="font-size: 15px; color: #455a64; margin-bottom: 15px;">
-        Analisis ini membantu guru mengenal pasti topik yang mudah dikuasai dan modul yang memerlukan pengajaran semula (re-teaching).
-      </p>
-      <div class="table-box">
-        <table>
-          <thead>
-            <tr style="background: #1565c0;">
-              <th style="background: #1565c0;">MODUL / TOPIK</th>
-              <th style="background: #1565c0;">JUMLAH PERCOBAAN</th>
-              <th style="background: #1565c0;">PURATA SKOR MODUL</th>
-              <th style="background: #1565c0;">TAHAP PENGUASAAN TOPIK</th>
-              <th style="background: #1565c0;">CADANGAN TINDAKAN SUSULAN</th>
-            </tr>
-          </thead>
-          <tbody id="topicAnalysisBody"></tbody>
-        </table>
-      </div>
-      <div style="margin-top: 25px;">
-        <h4 style="margin-bottom: 12px; color: var(--primary-dark); font-size: 17px;">📈 Graf Visual Purata Skor Modul</h4>
-        <div id="moduleChart"></div>
-      </div>
-    </div>
-
-    <!-- 3. ANALISIS PENCAPAIAN MURID -->
-    <h2 class="section-heading">🏆 Analisis Agihan Pencapaian Murid</h2>
-    <div class="dashboard-grid">
-      <div class="stat-card" style="border-top-color: #2e7d32;">
-        <h4>CEMERLANG</h4>
-        <div class="number" id="excellentCount">0</div>
-        <div class="sub-label">85% – 100%</div>
-      </div>
-      <div class="stat-card" style="border-top-color: #1976d2;">
-        <h4>BAIK</h4>
-        <div class="number" id="goodCount">0</div>
-        <div class="sub-label">60% – 84%</div>
-      </div>
-      <div class="stat-card" style="border-top-color: #f59e0b;">
-        <h4>MEMUASKAN</h4>
-        <div class="number" id="satisfactoryCount">0</div>
-        <div class="sub-label">41% – 59%</div>
-      </div>
-      <div class="stat-card" style="border-top-color: #c62828;">
-        <h4>INTERVENSI</h4>
-        <div class="number" id="needsImprovementCount">0</div>
-        <div class="sub-label">0% – 40%</div>
-      </div>
-    </div>
-
-    <!-- CADANGAN INTERVENSI PINTAR -->
-    <h2 class="section-heading">💡 Cadangan Intervensi Pintar</h2>
-    <div class="card-box">
-      <p id="recommendationIntro" style="background: #e8f3ff; padding: 14px; border-radius: 8px; font-weight: bold; font-size: 16px; margin-bottom: 15px;"></p>
-      <div class="recommendation-grid">
-        <div class="rec-card intensive">
-          <h4>🎯 SOKONGAN INTENSIF</h4>
-          <div class="rec-num" id="intensiveCount">0</div>
-          <p><strong>Pencapaian:</strong> 0% – 40%</p>
-          <p>Sediakan aktiviti pemulihan berfokus dan bimbingan guru secara langsung.</p>
-        </div>
-        <div class="rec-card guided">
-          <h4>📘 LATIHAN TERBIMBING</h4>
-          <div class="rec-num" id="guidedCount">0</div>
-          <p><strong>Pencapaian:</strong> 41% – 59%</p>
-          <p>Berikan latihan terstruktur, bantuan kosa kata dan bimbingan rakan sebaya.</p>
-        </div>
-        <div class="rec-card reinforcement">
-          <h4>👍 PENGUKUHAN</h4>
-          <div class="rec-num" id="reinforcementCount">0</div>
-          <p><strong>Pencapaian:</strong> 60% – 84%</p>
-          <p>Kukuhkan kemahiran sedia ada melalui ulang kaji dan aplikasi soalan.</p>
-        </div>
-        <div class="rec-card enrichment">
-          <h4>🌟 PENGAYAAN</h4>
-          <div class="rec-num" id="enrichmentCount">0</div>
-          <p><strong>Pencapaian:</strong> 85% – 100%</p>
-          <p>Berikan cabaran KBAT dan aktiviti pengayaan bertaraf tinggi.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- JADUAL MURID PERLU INTERVENSI -->
-    <h2 class="section-heading" style="color: #c62828;">⚠️ Murid Memerlukan Intervensi (40% dan ke bawah)</h2>
-    <div class="card-box" style="border-top: 4px solid #c62828;">
-      <div class="table-box">
-        <table>
-          <thead>
-            <tr style="background: #c62828;">
-              <th style="background: #c62828;">NAMA MURID</th>
-              <th style="background: #c62828;">KELAS</th>
-              <th style="background: #c62828;">SENARAI MODUL PERLU INTERVENSI (MARKAH)</th>
-              <th style="background: #c62828; text-align: center;">JUMLAH MODUL</th>
-            </tr>
-          </thead>
-          <tbody id="interventionBody"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- JADUAL MURID CEMERLANG -->
-    <h2 class="section-heading" style="color: #2e7d32;">🌟 Senarai Murid Cemerlang (85% dan ke atas)</h2>
-    <div class="card-box" style="border-top: 4px solid #2e7d32;">
-      <div class="table-box">
-        <table>
-          <thead>
-            <tr style="background: #2e7d32;">
-              <th style="background: #2e7d32;">NAMA MURID</th>
-              <th style="background: #2e7d32;">KELAS</th>
-              <th style="background: #2e7d32;">SENARAI MODUL CEMERLANG (MARKAH)</th>
-              <th style="background: #2e7d32; text-align: center;">JUMLAH MODUL</th>
-            </tr>
-          </thead>
-          <tbody id="excellentTableBody"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- REKOD KESELURUHAN -->
     <h2 class="section-heading">📋 Senarai Rekod Keseluruhan Murid</h2>
     <div class="card-box">
       <div class="table-box">
@@ -429,7 +272,6 @@
         </table>
       </div>
 
-      <!-- ACTION BUTTONS -->
       <div class="action-buttons" style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
         <button class="btn" style="flex: 1; min-width: 160px;" onclick="loadTeacherRecords()">🔄 Kemas Kini Data</button>
         <button class="btn btn-green" style="flex: 1; min-width: 160px;" onclick="downloadCSV()">📥 Muat Turun CSV (Excel)</button>
@@ -441,10 +283,19 @@
 
 </div>
 
-<script src="questions.js"></script>
+<!-- PAUTAN PANGGILAN FAIL MODUL BERBEZA -->
+<script src="module1.js"></script>
+<script src="module2.js"></script>
+<script src="module3.js"></script>
+<script src="module4.js"></script>
+<script src="module5.js"></script>
+<script src="module6.js"></script>
+<script src="module7.js"></script>
+<script src="module8.js"></script>
+<script src="module9.js"></script>
+<script src="module10.js"></script>
 
 <script>
-  /* GOOGLE SCRIPT & SETTINGS */
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxgXqZkbG0DcCiUwVdnww_TsUg3Zr9GoRK_bE1y9QIwRNjsWSeiTcR_laaNguEGX3V8/exec"; 
   const DEFAULT_PIN = "1234";
 
@@ -464,7 +315,6 @@
     { number: 10, name: "The world around us" }
   ];
 
-  /* VIEW MANAGEMENT */
   function hideAllViews() {
     ['view-student-info','view-module-select','view-quiz','view-result','view-teacher-login','view-teacher-dashboard'].forEach(id => {
       document.getElementById(id).classList.add('hidden');
@@ -476,7 +326,6 @@
     document.getElementById('view-student-info').classList.remove('hidden');
   }
 
-  /* STUDENT FLOW */
   function selectSet(setName) {
     const name = document.getElementById('student-name').value.trim();
     const studentClass = document.getElementById('student-class').value.trim();
@@ -531,7 +380,7 @@
     activeQuestions = extractAllQuestions(rawModuleData);
 
     if (activeQuestions.length === 0) {
-      alert(`Tiada soalan ditemui untuk "${currentModule}". Pastikan fail questions.js telah dikemaskini.`);
+      alert(`Tiada soalan ditemui untuk "${currentModule}". Pastikan fail modul telah dikemaskini.`);
       return;
     }
 
@@ -607,7 +456,6 @@
     }
   }
 
-  /* TEACHER DASHBOARD FLOW */
   function showTeacherSection() {
     hideAllViews();
     if (sessionStorage.getItem("seqsTeacherToken") === "authenticated") {
@@ -665,7 +513,6 @@
     if (classes.includes(currentValue)) select.value = currentValue;
   }
 
-  /* SMART PERCENTAGE EXTRACTOR */
   function getPct(r) {
     if (!r) return 0;
 
@@ -734,17 +581,11 @@
 
     let total = records.length;
     let sumPct = 0, highest = 0, getSmartCount = 0, remedialCount = 0;
-    let exc = 0, good = 0, sat = 0, needs = 0;
 
     records.forEach(r => {
       let p = getPct(r);
       sumPct += p;
       if (p > highest) highest = p;
-      
-      if (p >= 85) exc++;
-      else if (p >= 60) good++;
-      else if (p >= 41) sat++;
-      else needs++;
 
       if (r.set === "GET SMART SET") getSmartCount++;
       if (r.set === "REMEDIAL SET") remedialCount++;
@@ -756,268 +597,44 @@
     document.getElementById("getSmartCount").innerText = getSmartCount;
     document.getElementById("remedialCount").innerText = remedialCount;
 
-    document.getElementById("excellentCount").innerText = exc;
-    document.getElementById("goodCount").innerText = good;
-    document.getElementById("satisfactoryCount").innerText = sat;
-    document.getElementById("needsImprovementCount").innerText = needs;
-
-    document.getElementById("intensiveCount").innerText = needs;
-    document.getElementById("guidedCount").innerText = sat;
-    document.getElementById("reinforcementCount").innerText = good;
-    document.getElementById("enrichmentCount").innerText = exc;
-
-    let avg = total > 0 ? Math.round(sumPct / total) : 0;
-    let recText = "Purata Kumpulan: " + avg + "%. ";
-    if (avg <= 40) recText += "Keutamaan: Sokongan Intensif & Bimbingan Khusus.";
-    else if (avg <= 59) recText += "Keutamaan: Latihan Terbimbing & Pemulihan.";
-    else if (avg <= 84) recText += "Keutamaan: Pengukuhan Soalan Modul.";
-    else recText += "Keutamaan: Pengayaan & Soalan KBAT.";
-    document.getElementById("recommendationIntro").innerText = recText;
-
-    renderClassAnalysis(records);
-    renderTopicAnalysis(records);
-    drawModuleChart(records);
-    renderTables(records);
-  }
-
-  /* 1. ANALISIS MENGIKUT KELAS */
-  function renderClassAnalysis(records) {
-    const tbody = document.getElementById("classAnalysisBody");
-    tbody.innerHTML = "";
-
+    const recordBody = document.getElementById("recordBody");
+    recordBody.innerHTML = "";
     if (records.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="6" class="empty-td">Tiada rekod data kelas.</td></tr>`;
-      return;
-    }
-
-    const classGroup = {};
-    records.forEach(r => {
-      let cls = String(r.studentClass || r.class || "TIDAK NYATA").trim().toUpperCase();
-      if (!classGroup[cls]) {
-        classGroup[cls] = { total: 0, sumPct: 0, exc: 0, inter: 0 };
-      }
-      let p = getPct(r);
-      classGroup[cls].total++;
-      classGroup[cls].sumPct += p;
-      if (p >= 85) classGroup[cls].exc++;
-      if (p <= 40) classGroup[cls].inter++;
-    });
-
-    Object.keys(classGroup).sort().forEach(cls => {
-      let data = classGroup[cls];
-      let avg = Math.round(data.sumPct / data.total);
-      
-      let statusBadge = "";
-      if (avg >= 85) statusBadge = `<span class="badge badge-green">CEMERLANG</span>`;
-      else if (avg >= 60) statusBadge = `<span class="badge badge-blue">BAIK</span>`;
-      else if (avg >= 41) statusBadge = `<span class="badge badge-orange">MEMUASKAN</span>`;
-      else statusBadge = `<span class="badge badge-red">PERLU INTERVENSI</span>`;
-
-      tbody.innerHTML += `
-        <tr>
-          <td><strong>${cls}</strong></td>
-          <td>${data.total}</td>
-          <td><strong>${avg}%</strong></td>
-          <td style="color:#2e7d32; font-weight:bold;">${data.exc} murid</td>
-          <td style="color:#c62828; font-weight:bold;">${data.inter} murid</td>
-          <td>${statusBadge}</td>
-        </tr>
-      `;
-    });
-  }
-
-  /* 2. ANALISIS MENGIKUT TOPIK / MODUL */
-  function renderTopicAnalysis(records) {
-    const tbody = document.getElementById("topicAnalysisBody");
-    tbody.innerHTML = "";
-
-    moduleList.forEach(m => {
-      const modRecords = records.filter(r => String(r.module || "").toLowerCase().includes(`module ${m.number}`));
-      let total = modRecords.length;
-      let sum = 0;
-      modRecords.forEach(r => sum += getPct(r));
-      let avg = total > 0 ? Math.round(sum / total) : 0;
-
-      let levelBadge = "", actionText = "";
-      if (total === 0) {
-        levelBadge = `<span class="badge" style="background:#e0e0e0; color:#666;">TIADA DATA</span>`;
-        actionText = "Belum ada murid menjawab modul ini.";
-      } else if (avg >= 85) {
-        levelBadge = `<span class="badge badge-green">SANGAT TINGGI</span>`;
-        actionText = "Teruskan latihan pengayaan KBAT.";
-      } else if (avg >= 60) {
-        levelBadge = `<span class="badge badge-blue">SEDERHANA TINGGI</span>`;
-        actionText = "Kukuhkan kosa kata & tatabahasa.";
-      } else if (avg >= 41) {
-        levelBadge = `<span class="badge badge-orange">SEDERHANA RENDAH</span>`;
-        actionText = "Beri latihan terbimbing tambahan.";
-      } else {
-        levelBadge = `<span class="badge badge-red">KRITIKAL / LEMAH</span>`;
-        actionText = "Perlu pengajaran semula (Re-teaching).";
-      }
-
-      tbody.innerHTML += `
-        <tr>
-          <td><strong>Module ${m.number}: ${m.name}</strong></td>
-          <td>${total}</td>
-          <td><strong>${avg}%</strong></td>
-          <td>${levelBadge}</td>
-          <td style="font-size:14px;">${actionText}</td>
-        </tr>
-      `;
-    });
-  }
-
-  function drawModuleChart(records) {
-    const container = document.getElementById("moduleChart");
-    container.innerHTML = "";
-
-    moduleList.forEach(m => {
-      const modRecords = records.filter(r => String(r.module || "").toLowerCase().includes(`module ${m.number}`));
-      let sum = 0;
-      modRecords.forEach(r => sum += getPct(r));
-      let avg = modRecords.length > 0 ? Math.round(sum / modRecords.length) : 0;
-
-      container.innerHTML += `
-        <div class="chart-row">
-          <div style="font-weight:bold; font-size:14px;">Module ${m.number}</div>
-          <div class="chart-track">
-            <div class="chart-bar" style="width:${avg}%"></div>
-          </div>
-          <div style="font-weight:bold; text-align:right; font-size:15px;">${avg}%</div>
-        </div>
-      `;
-    });
-  }
-
-  /* 3. JADUAL DENGAN PENGELOMPOKAN NAMA MURID */
-  function renderTables(records) {
-    const mainBody = document.getElementById("recordBody");
-    const interBody = document.getElementById("interventionBody");
-    const excBody = document.getElementById("excellentTableBody");
-    
-    mainBody.innerHTML = "";
-    interBody.innerHTML = "";
-    excBody.innerHTML = "";
-
-    if (records.length === 0) {
-      mainBody.innerHTML = `<tr><td colspan="7" class="empty-td">Tiada rekod murid dijumpai.</td></tr>`;
-      interBody.innerHTML = `<tr><td colspan="4" class="empty-td">Tiada murid memerlukan intervensi.</td></tr>`;
-      excBody.innerHTML = `<tr><td colspan="4" class="empty-td">Tiada murid cemerlang dijumpai.</td></tr>`;
-      return;
-    }
-
-    const studentMap = {};
-
-    records.forEach(r => {
-      let p = getPct(r);
-      let dateStr = r.time || (r.timestamp ? new Date(r.timestamp).toLocaleDateString('ms-MY') : '-');
-      let scoreDisplay = r.score || r.markah || '-';
-
-      // 1. Rekod Keseluruhan (Setiap Percubaan)
-      mainBody.innerHTML += `
-        <tr>
-          <td>${dateStr}</td>
+      recordBody.innerHTML = '<tr><td colspan="7" class="empty-td">Tiada rekod dijumpai.</td></tr>';
+    } else {
+      records.forEach(r => {
+        let tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${r.time || r.timestamp || '-'}</td>
           <td><strong>${r.name || '-'}</strong></td>
           <td>${r.studentClass || r.class || '-'}</td>
           <td>${r.set || '-'}</td>
           <td>${r.module || '-'}</td>
-          <td>${scoreDisplay}</td>
-          <td><strong>${p}%</strong></td>
-        </tr>
-      `;
-
-      // 2. Kumpulkan Rekod Mengikut Murid (Nama + Kelas)
-      let sName = String(r.name || '-').trim().toUpperCase();
-      let sClass = String(r.studentClass || r.class || '-').trim().toUpperCase();
-      let studentKey = `${sName}___${sClass}`;
-
-      if (!studentMap[studentKey]) {
-        studentMap[studentKey] = {
-          name: r.name || '-',
-          class: r.studentClass || r.class || '-',
-          interModules: [],
-          excModules: []
-        };
-      }
-
-      let modTitle = r.module || 'Modul';
-      let detailTag = `${modTitle} (${scoreDisplay})`;
-
-      if (p <= 40) {
-        studentMap[studentKey].interModules.push(detailTag);
-      }
-      if (p >= 85) {
-        studentMap[studentKey].excModules.push(detailTag);
-      }
-    });
-
-    // Render Jadual Intervensi (Terkumpul)
-    let interCount = 0;
-    Object.keys(studentMap).sort().forEach(key => {
-      let student = studentMap[key];
-      if (student.interModules.length > 0) {
-        interCount++;
-        let moduleBadges = student.interModules
-          .map(m => `<span class="badge badge-red" style="margin: 3px 2px; display: inline-block;">${m}</span>`)
-          .join(' ');
-
-        interBody.innerHTML += `
-          <tr>
-            <td><strong>${student.name}</strong></td>
-            <td>${student.class}</td>
-            <td>${moduleBadges}</td>
-            <td style="text-align: center;"><strong>${student.interModules.length} Modul</strong></td>
-          </tr>
+          <td>${r.score || '-'}</td>
+          <td><strong>${getPct(r)}%</strong></td>
         `;
-      }
-    });
-
-    // Render Jadual Cemerlang (Terkumpul)
-    let excCount = 0;
-    Object.keys(studentMap).sort().forEach(key => {
-      let student = studentMap[key];
-      if (student.excModules.length > 0) {
-        excCount++;
-        let moduleBadges = student.excModules
-          .map(m => `<span class="badge badge-green" style="margin: 3px 2px; display: inline-block;">${m}</span>`)
-          .join(' ');
-
-        excBody.innerHTML += `
-          <tr>
-            <td><strong>${student.name}</strong></td>
-            <td>${student.class}</td>
-            <td>${moduleBadges}</td>
-            <td style="text-align: center;"><strong>${student.excModules.length} Modul</strong></td>
-          </tr>
-        `;
-      }
-    });
-
-    if (interCount === 0) {
-      interBody.innerHTML = `<tr><td colspan="4" class="empty-td">✨ Tiada murid memerlukan intervensi bagi penapis ini.</td></tr>`;
-    }
-
-    if (excCount === 0) {
-      excBody.innerHTML = `<tr><td colspan="4" class="empty-td">Tiada murid mencapai markah 85% dan ke atas bagi penapis ini.</td></tr>`;
+        recordBody.appendChild(tr);
+      });
     }
   }
 
   function downloadCSV() {
-    if (allRecords.length === 0) { alert("Tiada rekod untuk dimuat turun."); return; }
-    let csv = "Tarikh/Masa,Nama Murid,Kelas,Set,Modul,Markah,Peratus\n";
+    if (allRecords.length === 0) {
+      alert("Tiada data untuk dimuat turun.");
+      return;
+    }
+    let csvContent = "data:text/csv;charset=utf-8,Masa/Tarikh,Nama,Kelas,Set,Modul,Markah,Peratus\n";
     allRecords.forEach(r => {
-      let p = getPct(r);
-      csv += `"${r.time || ''}","${r.name || ''}","${r.studentClass || r.class || ''}","${r.set || ''}","${r.module || ''}","${r.score || r.markah || ''}","${p}%"\n`;
+      csvContent += `"${r.time || ''}","${r.name || ''}","${r.studentClass || r.class || ''}","${r.set || ''}","${r.module || ''}","${r.score || ''}","${getPct(r)}%"\n`;
     });
-
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'Rekod_Analisis_SEQS_PORTALYEAR3.csv';
-    a.click();
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "rekod_kuiz_murid.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 </script>
-
 </body>
 </html>
