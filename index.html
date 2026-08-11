@@ -7,6 +7,454 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Skrip Data Soalan Module -->
+    <script src="module1.js"></script>
+    <script src="module2.js"></script>
+    <!-- Tambah modul lain jika ada: module3.js, module4.js ... -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #eff3f8;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6 flex flex-col justify-between">
+
+    <!-- Container Utama -->
+    <div class="max-w-5xl mx-auto w-full space-y-6">
+
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <div class="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-full shadow-sm border border-slate-200 mb-2">
+                <i class="fa-solid fa-graduation-cap text-indigo-600 text-2xl"></i>
+                <h1 class="text-xl font-bold text-slate-800 tracking-wide">PORTAL KUIZ BAHASA INGGERIS YEAR 3</h1>
+            </div>
+            <p class="text-xs text-slate-500">Pilih modul pengajaran dan mula menjawab soalan interaktif</p>
+        </header>
+
+        <!-- VIEW 1: LANDING PAGE -->
+        <div id="landing-view" class="space-y-6">
+            
+            <!-- Langkah 1: Maklumat Murid -->
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 sm:p-8 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 font-bold flex items-center justify-center text-sm">
+                        1
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-800">Maklumat Murid</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">NAMA MURID:</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                            <input type="text" id="student-name" placeholder="Masukkan nama penuh murid..." class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">KELAS:</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-chalkboard-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                            <input type="text" id="student-class" placeholder="Contoh: 3 Cemerlang / 3 Pintar..." class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Langkah 2: Pilih Set Soalan -->
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 sm:p-8 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 font-bold flex items-center justify-center text-sm">
+                        2
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-800">Pilih Set Soalan</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Butang Get Smart Set -->
+                    <button type="button" id="btn-getsmart" onclick="selectSet('GET SMART SET')" class="w-full text-left p-5 rounded-2xl border-2 border-indigo-600 bg-indigo-50/50 transition-all flex items-start gap-4">
+                        <div class="mt-1 w-5 h-5 rounded-full border-2 border-indigo-600 flex items-center justify-center bg-indigo-600 shrink-0">
+                            <div class="w-2 h-2 rounded-full bg-white"></div>
+                        </div>
+                        <div>
+                            <span class="block text-sm font-bold text-indigo-950 uppercase tracking-wide">GET SMART SET</span>
+                            <span class="block text-xs text-indigo-700/80 mt-1 leading-relaxed">Soalan tahap standard buku teks Get Smart Plus Year 3.</span>
+                        </div>
+                    </button>
+
+                    <!-- Butang Remedial Set -->
+                    <button type="button" id="btn-remedial" onclick="selectSet('REMEDIAL SET')" class="w-full text-left p-5 rounded-2xl border-2 border-slate-200 bg-white hover:border-indigo-300 transition-all flex items-start gap-4">
+                        <div class="mt-1 w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center bg-white shrink-0">
+                            <div class="w-2 h-2 rounded-full bg-transparent"></div>
+                        </div>
+                        <div>
+                            <span class="block text-sm font-bold text-slate-800 uppercase tracking-wide">REMEDIAL SET</span>
+                            <span class="block text-xs text-slate-500 mt-1 leading-relaxed">Soalan pemulihan mudah dengan petikan dan ayat yang dipendekkan.</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Langkah 3: Pilih Tajuk Module (10 Topik) -->
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 sm:p-8 space-y-4">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 font-bold flex items-center justify-center text-sm">
+                        3
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-800">Pilih Tajuk (10 Module Get Smart Year 3)</h2>
+                        <p class="text-xs text-slate-400">Klik tajuk untuk memulakan kuiz interaktif</p>
+                    </div>
+                </div>
+
+                <!-- Grid 10 Module / Topik Buku Teks -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                    <button onclick="startModule(1, 'Module 1: Welcome!')" class="p-4 rounded-2xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50 text-left transition space-y-1">
+                        <span class="text-[10px] font-extrabold text-indigo-600 uppercase tracking-wider block">Module 1</span>
+                        <span class="text-sm font-bold text-slate-800 block">Welcome!</span>
+                    </button>
+
+                    <button onclick="startModule(2, 'Module 2: Every Day')" class="p-4 rounded-2xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50 text-left transition space-y-1">
+                        <span class="text-[10px] font-extrabold text-indigo-600 uppercase tracking-wider block">Module 2</span>
+                        <span class="text-sm font-bold text-slate-800 block">Every Day</span>
+                    </button>
+
+                    <button onclick="startModule(3, 'Module 3: Right Now')" class="p-4 rounded-2xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50 text-left transition space-y-1">
+                        <span class="text-[10px] font-extrabold text-indigo-600 uppercase tracking-wider block">Module 3</span>
+                        <span class="text-sm font-bold text-slate-800 block">Right Now</span>
+                    </button>
+
+                    <button onclick="startModule(4, 'Module 4: Year In, Year Out')" class="p-4 rounded-2xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50 text-left transition space-y-1">
+                        <span class="text-[10px] font-extrabold text-indigo-600 uppercase tracking-wider block">Module 4</span>
+                        <span class="text-sm font-bold text-slate-800 block">Year In, Year Out</span>
+                    </button>
+
+                    <button onclick="startModule(5, 'Module 5: My New House')" class="p-4 rounded-2xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50 text-left transition space-y-1">
+                        <span class="text-[10px] font-extrabold text-indigo-600 uppercase tracking-wider block">Module 5</span>
+                        <span class="text-sm font-bold text-slate-800 block">My New House</span>
+                    </button>
+
+                    <button onclick="startModule(6, 'Module 6: Food, Please!')" class="p-4 rounded-2xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50 text-left transition space-y-1">
+                        <span class="text-[10px] font-extrabold text-indigo-600 uppercase tracking-wider block">Module 6</span>
+                        <span class="text-sm font-bold text-slate-800 block">Food, Please!</span>
+                    </button>
+
+                    <button onclick="startModule(7, 'Module 7: Out And About')" class="p-4 rounded-2xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50 text-left transition space-y-1">
+                        <span class="text-[10px] font-extrabold text-indigo-600 uppercase tracking-wider block">Module 7</span>
+                        <span class="text-sm font-bold text-slate-800 block">Out And About</span>
+                    </button>
+
+                    <button onclick="startModule(8, 'Module 8: Where Were You Yesterday?')" class="p-4 rounded-2xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50 text-left transition space-y-1">
+                        <span class="text-[10px] font-extrabold text-indigo-600 uppercase tracking-wider block">Module 8</span>
+                        <span class="text-sm font-bold text-slate-800 block">Where Were You Yesterday?</span>
+                    </button>
+
+                    <button onclick="startModule(9, 'Module 9: On Holiday')" class="p-4 rounded-2xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50 text-left transition space-y-1">
+                        <span class="text-[10px] font-extrabold text-indigo-600 uppercase tracking-wider block">Module 9</span>
+                        <span class="text-sm font-bold text-slate-800 block">On Holiday</span>
+                    </button>
+
+                    <button onclick="startModule(10, 'Module 10: The World Around Us')" class="p-4 rounded-2xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50 text-left transition space-y-1">
+                        <span class="text-[10px] font-extrabold text-indigo-600 uppercase tracking-wider block">Module 10</span>
+                        <span class="text-sm font-bold text-slate-800 block">The World Around Us</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- VIEW 2: QUIZ INTERACTIVE VIEW (Hidden by Default) -->
+        <div id="quiz-view" class="hidden space-y-6">
+            
+            <div class="sticky top-2 z-20 bg-slate-900/90 backdrop-blur-md text-white rounded-2xl shadow-xl p-4 border border-slate-700/50">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+                    <div class="flex items-center gap-4 w-full sm:w-auto justify-between">
+                        <div>
+                            <span id="display-student-info" class="text-xs text-indigo-300 font-bold block">Murid: -</span>
+                            <span id="display-module-title" class="text-sm font-extrabold text-white block">Module 1</span>
+                        </div>
+                        <div class="h-8 w-px bg-slate-700 hidden sm:block"></div>
+                        <div class="text-right sm:text-left">
+                            <span class="text-[10px] text-slate-400 block uppercase font-bold">Markah Semasa</span>
+                            <span id="score-text" class="text-lg font-extrabold text-emerald-400">0 / 0</span>
+                        </div>
+                    </div>
+
+                    <button onclick="backToLanding()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 border border-slate-600 transition flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-left"></i> Tukar Modul / Set
+                    </button>
+                </div>
+
+                <div class="w-full bg-slate-800 h-2 rounded-full mt-3 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 to-emerald-400 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Quiz Questions Container -->
+            <main id="quiz-container" class="space-y-6"></main>
+
+            <!-- Summary Card -->
+            <div id="summary-card" class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 text-center hidden">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full text-3xl mb-4">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Kuiz Selesai!</h2>
+                <p class="text-gray-600 mb-4">Anda telah menjawab kesemua soalan dalam modul ini.</p>
+                <div class="text-3xl font-black text-indigo-600 mb-6">
+                    Keputusan: <span id="final-score">0</span> / <span id="total-questions">0</span>
+                </div>
+                <button onclick="backToLanding()" class="px-6 py-3 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition inline-flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> Pilih Modul Lain
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-xs text-slate-400 py-6">
+        Portal Kuiz Interaktif Bahasa Inggeris Tahun 3 &bull; Get Smart Plus 3
+    </footer>
+
+    <script>
+        let selectedSet = "GET SMART SET";
+        let currentModuleKey = "";
+        let aggregatedCategories = {};
+        let totalQuestionsCount = 0;
+        let score = 0;
+        let answeredQuestionsCount = 0;
+        let userAnswers = {};
+
+        function selectSet(setName) {
+            selectedSet = setName;
+
+            const btnGetSmart = document.getElementById('btn-getsmart');
+            const btnRemedial = document.getElementById('btn-remedial');
+
+            if (setName === 'GET SMART SET') {
+                btnGetSmart.className = "w-full text-left p-5 rounded-2xl border-2 border-indigo-600 bg-indigo-50/50 transition-all flex items-start gap-4";
+                btnGetSmart.querySelector('div').className = "mt-1 w-5 h-5 rounded-full border-2 border-indigo-600 flex items-center justify-center bg-indigo-600 shrink-0";
+                btnGetSmart.querySelector('div > div').className = "w-2 h-2 rounded-full bg-white";
+
+                btnRemedial.className = "w-full text-left p-5 rounded-2xl border-2 border-slate-200 bg-white hover:border-indigo-300 transition-all flex items-start gap-4";
+                btnRemedial.querySelector('div').className = "mt-1 w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center bg-white shrink-0";
+                btnRemedial.querySelector('div > div').className = "w-2 h-2 rounded-full bg-transparent";
+            } else {
+                btnRemedial.className = "w-full text-left p-5 rounded-2xl border-2 border-indigo-600 bg-indigo-50/50 transition-all flex items-start gap-4";
+                btnRemedial.querySelector('div').className = "mt-1 w-5 h-5 rounded-full border-2 border-indigo-600 flex items-center justify-center bg-indigo-600 shrink-0";
+                btnRemedial.querySelector('div > div').className = "w-2 h-2 rounded-full bg-white";
+
+                btnGetSmart.className = "w-full text-left p-5 rounded-2xl border-2 border-slate-200 bg-white hover:border-indigo-300 transition-all flex items-start gap-4";
+                btnGetSmart.querySelector('div').className = "mt-1 w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center bg-white shrink-0";
+                btnGetSmart.querySelector('div > div').className = "w-2 h-2 rounded-full bg-transparent";
+            }
+        }
+
+        function startModule(moduleNum, moduleTitleKey) {
+            const nameInput = document.getElementById('student-name').value.trim();
+            const classInput = document.getElementById('student-class').value.trim();
+
+            if (!nameInput || !classInput) {
+                alert("Sila masukkan Nama Murid dan Kelas terlebih dahulu!");
+                return;
+            }
+
+            currentModuleKey = moduleTitleKey;
+
+            // Semak kewujudan data dalam quizBank
+            if (typeof quizBank === 'undefined' || !quizBank[selectedSet] || !quizBank[selectedSet][currentModuleKey]) {
+                alert(`Soalan bagi ${currentModuleKey} (${selectedSet}) belum dimuatkan ke dalam sistem.`);
+                return;
+            }
+
+            document.getElementById('display-student-info').innerText = `Murid: ${nameInput} (${classInput}) | ${selectedSet}`;
+            document.getElementById('display-module-title').innerText = currentModuleKey;
+
+            document.getElementById('landing-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.remove('hidden');
+
+            initQuizData();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function backToLanding() {
+            document.getElementById('quiz-view').classList.add('hidden');
+            document.getElementById('landing-view').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function initQuizData() {
+            aggregatedCategories = quizBank[selectedSet][currentModuleKey];
+            score = 0;
+            answeredQuestionsCount = 0;
+            userAnswers = {};
+            totalQuestionsCount = 0;
+
+            for (let cat in aggregatedCategories) {
+                totalQuestionsCount += aggregatedCategories[cat].length;
+            }
+
+            updateDashboard();
+            renderAllQuestions();
+            document.getElementById('summary-card').classList.add('hidden');
+        }
+
+        function updateDashboard() {
+            document.getElementById('score-text').innerText = `${score} / ${totalQuestionsCount}`;
+            const progressPercent = totalQuestionsCount > 0 ? (answeredQuestionsCount / totalQuestionsCount) * 100 : 0;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+            if (answeredQuestionsCount === totalQuestionsCount && totalQuestionsCount > 0) {
+                document.getElementById('summary-card').classList.remove('hidden');
+                document.getElementById('final-score').innerText = score;
+                document.getElementById('total-questions').innerText = totalQuestionsCount;
+            }
+        }
+
+        function renderAllQuestions() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            let globalQuestionIndex = 0;
+
+            for (let category in aggregatedCategories) {
+                const questionsList = aggregatedCategories[category];
+
+                const categoryHeader = document.createElement('div');
+                categoryHeader.className = "pt-4 pb-2 border-b-2 border-indigo-200 flex items-center justify-between";
+                categoryHeader.innerHTML = `
+                    <h2 class="text-lg font-bold text-indigo-900 flex items-center gap-2">
+                        <span class="w-3 h-3 bg-indigo-600 rounded-full inline-block"></span>
+                        Bahagian: ${category}
+                    </h2>
+                    <span class="text-xs bg-indigo-100 text-indigo-700 font-bold px-3 py-1 rounded-full">
+                        ${questionsList.length} Soalan
+                    </span>
+                `;
+                container.appendChild(categoryHeader);
+
+                questionsList.forEach((q) => {
+                    const qIndex = globalQuestionIndex++;
+
+                    const card = document.createElement('div');
+                    card.id = `q-card-${qIndex}`;
+                    card.className = "bg-white rounded-3xl shadow-sm border border-slate-100 p-6 md:p-8 space-y-4 transition-all";
+
+                    let imageHTML = '';
+                    if (q.image && q.image.trim() !== '') {
+                        imageHTML = `
+                            <div class="text-center my-3 bg-slate-50 p-3 sm:p-4 rounded-2xl border border-slate-200">
+                                <span class="text-xs font-semibold text-slate-400 block mb-2"><i class="fa-solid fa-image"></i> Petikan / Gambar Soalan</span>
+                                <img src="${q.image}" 
+                                     alt="Gambar Soalan" 
+                                     onerror="this.onerror=null; this.src='https://placehold.co/600x300/e2e8f0/475569?text=Gambar+Dalam+Folder+images/';"
+                                     class="max-w-full sm:max-w-xl md:max-w-2xl max-h-[380px] md:max-h-[450px] mx-auto object-contain rounded-xl shadow-sm border border-slate-200">
+                            </div>
+                        `;
+                    }
+
+                    let optionsHTML = '<div class="grid grid-cols-1 gap-3 mt-4" id="options-container-' + qIndex + '">';
+                    q.options.forEach((opt) => {
+                        optionsHTML += `
+                            <button id="opt-btn-${qIndex}-${escapeId(opt)}" 
+                                    onclick="selectOption(${qIndex}, '${escapeQuote(opt)}', '${escapeQuote(q.ans)}')" 
+                                    class="w-full text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/50 transition font-medium text-slate-700 flex justify-between items-center text-sm md:text-base">
+                                <span>${opt}</span>
+                                <i class="fa-regular fa-circle text-slate-300"></i>
+                            </button>
+                        `;
+                    });
+                    optionsHTML += '</div>';
+
+                    card.innerHTML = `
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="text-xs font-bold px-3 py-1 bg-slate-100 text-slate-600 rounded-full">
+                                Soalan ${qIndex + 1}
+                            </span>
+                            <span id="badge-status-${qIndex}" class="text-xs font-semibold text-slate-400">
+                                Belum Dijawab
+                            </span>
+                        </div>
+
+                        ${imageHTML}
+
+                        <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200">
+                            <p class="text-base sm:text-lg font-bold text-slate-800 whitespace-pre-line leading-relaxed">${q.q}</p>
+                        </div>
+
+                        ${optionsHTML}
+
+                        <div id="feedback-${qIndex}" class="hidden p-4 rounded-2xl text-sm font-semibold text-center transition-all"></div>
+                    `;
+
+                    container.appendChild(card);
+                });
+            }
+        }
+
+        function selectOption(qIndex, selectedOpt, correctAns) {
+            if (userAnswers[qIndex]) return;
+
+            const isCorrect = (selectedOpt === correctAns);
+            userAnswers[qIndex] = { selected: selectedOpt, correct: isCorrect };
+
+            if (isCorrect) score += 1;
+            answeredQuestionsCount += 1;
+
+            const optionsContainer = document.getElementById(`options-container-${qIndex}`);
+            const buttons = optionsContainer.getElementsByTagName('button');
+
+            for (let btn of buttons) {
+                btn.disabled = true;
+                btn.classList.add('cursor-not-allowed');
+
+                const btnText = btn.querySelector('span').innerText;
+
+                if (btnText === correctAns) {
+                    btn.className = "w-full text-left p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold flex justify-between items-center text-sm md:text-base";
+                    btn.querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-lg";
+                } else if (btnText === selectedOpt && !isCorrect) {
+                    btn.className = "w-full text-left p-4 rounded-2xl border-2 border-rose-500 bg-rose-50 text-rose-900 font-medium flex justify-between items-center text-sm md:text-base";
+                    btn.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-500 text-lg";
+                } else {
+                    btn.className = "w-full text-left p-4 rounded-2xl border-2 border-slate-100 bg-slate-50 text-slate-400 opacity-60 flex justify-between items-center text-sm md:text-base";
+                }
+            }
+
+            const feedbackBox = document.getElementById(`feedback-${qIndex}`);
+            feedbackBox.classList.remove('hidden');
+
+            if (isCorrect) {
+                feedbackBox.className = "p-4 rounded-2xl text-sm font-semibold text-center bg-emerald-100 text-emerald-800 border border-emerald-200";
+                feedbackBox.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Syabas! Jawapan anda TEPAT.';
+            } else {
+                feedbackBox.className = "p-4 rounded-2xl text-sm font-semibold text-center bg-rose-100 text-rose-800 border border-rose-200";
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Maaf, jawapan tidak tepat. Jawapan betul: <b>${correctAns}</b>`;
+            }
+
+            const badgeStatus = document.getElementById(`badge-status-${qIndex}`);
+            badgeStatus.className = isCorrect ? "text-xs font-bold text-emerald-600" : "text-xs font-bold text-rose-600";
+            badgeStatus.innerText = isCorrect ? "Betul ✓" : "Salah ✗";
+
+            updateDashboard();
+        }
+
+        function escapeQuote(str) { return str.replace(/'/g, "\\'"); }
+        function escapeId(str) { return str.replace(/[^a-zA-Z0-9]/g, '_'); }
+    </script>
+</body>
+</html>
+F-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Kuiz Bahasa Inggeris Year 3</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- Load question data from external scripts if present -->
     <script src="module1.js"></script>
     <script src="module2.js"></script>
