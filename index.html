@@ -15,13 +15,13 @@
             padding: 40px 20px;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
         }
         .card {
             background-color: #ffffff;
             width: 100%;
-            max-width: 650px;
+            max-width: 800px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             padding: 35px 40px;
@@ -52,9 +52,6 @@
             font-size: 15px;
             outline: none;
             color: #333;
-        }
-        input[type="text"]::placeholder {
-            color: #9ca3af;
         }
         select {
             width: 100%;
@@ -104,7 +101,7 @@
         #papan-kuiz, #keputusan-kuiz {
             display: none;
         }
-        .soalan-box {
+        .item-soalan {
             background-color: #fafafa;
             border: 1px solid #e5e7eb;
             padding: 20px;
@@ -122,18 +119,15 @@
             align-items: center;
             cursor: pointer;
         }
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
+        .pilihan-jawapan label:hover {
+            background-color: #f1f5f9;
         }
-        .btn-nav {
-            padding: 10px 20px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            background-color: #f3f4f6;
-            cursor: pointer;
-            font-weight: bold;
+        .passage-box {
+            background-color: #eff6ff;
+            border-left: 5px solid #2563eb;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -149,7 +143,6 @@
             <input type="text" id="nama" placeholder="Masukkan nama penuh">
         </div>
         
-        <!-- PILIHAN KELAS DALAM BENTUK LIST/DROPDOWN -->
         <div class="form-group">
             <label for="kelas">Kelas:</label>
             <select id="kelas">
@@ -192,17 +185,11 @@
         </div>
     </div>
 
-    <!-- PAPAN SOALAN KUIZ -->
+    <!-- PAPAN SOALAN KUIZ (SENARAI PENUH) -->
     <div id="papan-kuiz">
-        <div id="soalan-kemajuan" style="font-weight: bold; margin-bottom: 10px; text-align: right; color: #555;"></div>
-        <div class="soalan-box">
-            <div id="kandungan-soalan"></div>
-        </div>
-        <div class="nav-buttons">
-            <button id="btn-sebelum" class="btn-nav" onclick="soalanSebelum()">Sebelum</button>
-            <button id="btn-seterusnya" class="btn-nav" onclick="soalanSeterusnya()">Seterusnya</button>
-            <button id="btn-hantar" class="btn-set btn-blue" onclick="hantarKuiz()" style="display: none; flex: none; width: auto; padding: 10px 20px;">Hantar Jawapan</button>
-        </div>
+        <h2 id="tajuk-modul-papar" style="color: #2563eb; margin-top: 0;"></h2>
+        <div id="bekas-senarai-soalan"></div>
+        <button class="btn-set btn-blue" onclick="hantarKuiz()" style="width: 100%; margin-top: 20px;">Hantar Jawapan</button>
     </div>
 
     <!-- KEPUTUSAN -->
@@ -221,12 +208,9 @@
 <script src="module9.js"></script>
 <script src="module10.js"></script>
 
-<!-- LOGIK KAWALAN KUIZ -->
 <script>
     let soalanSemasa = [];
-    let indeksSoalan = 0;
-    let markah = 0;
-    let jawapanPengguna = [];
+    let jawapanPengguna = {};
     let maklumatPelajar = {};
 
     function mulaKuiz(setTerpilih) {
@@ -239,100 +223,101 @@
             return;
         }
 
-        if (typeof quizBank === 'undefined' || !quizBank[setTerpilih] || !quizBank[setTerpilih][modul]) {
-            alert("Data soalan untuk modul ini tidak dijumpai.");
+        if (typeof quizBank === 'undefined') {
+            alert("Data quizBank tidak dijumpai! Sila pastikan fail JS modul anda telah dimuatkan.");
+            return;
+        }
+
+        // Semak kewujudan Set dan Modul (Fungsi Padanan Fleksibel untuk Module 5-10)
+        let dataModul = null;
+        if (quizBank[setTerpilih]) {
+            // Cuba padankan nama tepat atau carian separa jika terdapat perbezaan ejaan tajuk
+            if (quizBank[setTerpilih][modul]) {
+                dataModul = quizBank[setTerpilih][modul];
+            } else {
+                const modulKeys = Object.keys(quizBank[setTerpilih]);
+                const matchKey = modulKeys.find(k => k.toLowerCase().startsWith(modul.split(':')[0].toLowerCase()));
+                if (matchKey) {
+                    dataModul = quizBank[setTerpilih][matchKey];
+                }
+            }
+        }
+
+        if (!dataModul) {
+            alert(`Data soalan untuk ${modul} (${setTerpilih}) belum dimuatkan atau tidak dijumpai.`);
             return;
         }
 
         maklumatPelajar = { nama, kelas, modul, set: setTerpilih };
-        const dataModul = quizBank[setTerpilih][modul];
         soalanSemasa = [];
 
+        // Menggabungkan kesemua kategori ke dalam senarai
         Object.keys(dataModul).forEach(kategori => {
             soalanSemasa = soalanSemasa.concat(dataModul[kategori]);
         });
 
-        indeksSoalan = 0;
-        markah = 0;
-        jawapanPengguna = new Array(soalanSemasa.length).fill(null);
+        jawapanPengguna = {};
 
         document.getElementById('borang-mula').style.display = 'none';
         document.getElementById('papan-kuiz').style.display = 'block';
         document.getElementById('keputusan-kuiz').style.display = 'none';
 
-        paparSoalan();
+        paparSemuaSoalan();
     }
 
-    function paparSoalan() {
-        const data = soalanSemasa[indeksSoalan];
-        document.getElementById('soalan-kemajuan').innerText = `Soalan ${indeksSoalan + 1} daripada ${soalanSemasa.length}`;
+    function paparSemuaSoalan() {
+        document.getElementById('tajuk-modul-papar').innerText = `${maklumatPelajar.modul} (${maklumatPelajar.set})`;
+        const bekas = document.getElementById('bekas-senarai-soalan');
+        let htmlContent = '';
 
-        const bekasSoalan = document.getElementById('kandungan-soalan');
-        let htmlSoalan = '';
+        soalanSemasa.forEach((soalan, index) => {
+            htmlContent += `<div class="item-soalan">`;
+            
+            // Papar petikan/gambar jika ada
+            if (soalan.image) {
+                htmlContent += `<div class="passage-box">${soalan.image}</div>`;
+            }
 
-        if (data.image) {
-            htmlSoalan += data.image;
-        }
-        
-        htmlSoalan += `<h3 style="white-space: pre-line; margin-top: 10px; color: #111;">${data.q}</h3>`;
-        htmlSoalan += `<div class="pilihan-jawapan">`;
+            htmlContent += `<h3 style="white-space: pre-line; margin-top: 5px; color: #111;">${index + 1}. ${soalan.q}</h3>`;
+            htmlContent += `<div class="pilihan-jawapan">`;
 
-        data.options.forEach((pilihan) => {
-            const dipilih = jawapanPengguna[indeksSoalan] === pilihan ? 'checked' : '';
-            htmlSoalan += `
-                <label>
-                    <input type="radio" name="jawapan" value="${pilihan}" ${dipilih} onchange="pilihJawapan('${pilihan}')">
-                    <span style="margin-left: 10px;">${pilihan}</span>
-                </label>
-            `;
+            soalan.options.forEach((pilihan) => {
+                htmlContent += `
+                    <label>
+                        <input type="radio" name="soalan_${index}" value="${pilihan}" onchange="pilihJawapan(${index}, '${pilihan}')">
+                        <span style="margin-left: 10px;">${pilihan}</span>
+                    </label>
+                `;
+            });
+
+            htmlContent += `</div></div>`;
         });
 
-        htmlSoalan += `</div>`;
-        bekasSoalan.innerHTML = htmlSoalan;
-
-        const btnSebelum = document.getElementById('btn-sebelum');
-        const btnSeterusnya = document.getElementById('btn-seterusnya');
-        const btnHantar = document.getElementById('btn-hantar');
-
-        btnSebelum.style.display = indeksSoalan === 0 ? 'none' : 'inline-block';
-        btnSeterusnya.style.display = indeksSoalan === soalanSemasa.length - 1 ? 'none' : 'inline-block';
-        btnHantar.style.display = indeksSoalan === soalanSemasa.length - 1 ? 'inline-block' : 'none';
+        bekas.innerHTML = htmlContent;
     }
 
-    function pilihJawapan(pilihan) {
-        jawapanPengguna[indeksSoalan] = pilihan;
-    }
-
-    function soalanSebelum() {
-        if (indeksSoalan > 0) {
-            indeksSoalan--;
-            paparSoalan();
-        }
-    }
-
-    function soalanSeterusnya() {
-        if (indeksSoalan < soalanSemasa.length - 1) {
-            indeksSoalan++;
-            paparSoalan();
-        }
+    function pilihJawapan(index, pilihan) {
+        jawapanPengguna[index] = pilihan;
     }
 
     function hantarKuiz() {
-        const belumJawab = jawapanPengguna.filter(j => j === null).length;
-        if (belumJawab > 0) {
-            if (!confirm(`Terdapat ${belumJawab} soalan belum dijawab. Adakah anda pasti ingin menghantar?`)) {
+        const jumlahSoalan = soalanSemasa.length;
+        const dijawab = Object.keys(jawapanPengguna).length;
+
+        if (dijawab < jumlahSoalan) {
+            if (!confirm(`Anda hanya menjawab ${dijawab} daripada ${jumlahSoalan} soalan. Adakah anda pasti ingin menghantar?`)) {
                 return;
             }
         }
 
-        markah = 0;
+        let markah = 0;
         soalanSemasa.forEach((soalan, idx) => {
             if (jawapanPengguna[idx] === soalan.ans) {
                 markah++;
             }
         });
 
-        const peratus = Math.round((markah / soalanSemasa.length) * 100);
+        const peratus = Math.round((markah / jumlahSoalan) * 100);
 
         document.getElementById('papan-kuiz').style.display = 'none';
         const bekasKeputusan = document.getElementById('keputusan-kuiz');
@@ -346,7 +331,7 @@
                 <p><strong>Modul:</strong> ${maklumatPelajar.modul}</p>
                 <p><strong>Set:</strong> ${maklumatPelajar.set}</p>
             </div>
-            <h3 style="font-size: 24px; color: #1d6fe5; margin: 10px 0;">Markah: ${markah} / ${soalanSemasa.length} (${peratus}%)</h3>
+            <h3 style="font-size: 26px; color: #1d6fe5; margin: 10px 0;">Markah: ${markah} / ${jumlahSoalan} (${peratus}%)</h3>
             <button class="btn-set btn-blue" onclick="location.reload()" style="margin-top: 15px; padding: 10px 20px;">Ke Halaman Utama</button>
         `;
     }
