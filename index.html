@@ -1,35 +1,1023 @@
-<!-- JADUAL MURID PERLU INTERVENSI -->
-<h2 class="section-heading" style="color: #c62828;">⚠️ Murid Memerlukan Intervensi (40% dan ke bawah)</h2>
-<div class="card-box" style="border-top: 4px solid #c62828;">
-  <div class="table-box">
-    <table>
-      <thead>
-        <tr style="background: #c62828;">
-          <th style="background: #c62828;">NAMA MURID</th>
-          <th style="background: #c62828;">KELAS</th>
-          <th style="background: #c62828;">SENARAI MODUL PERLU INTERVENSI (MARKAH)</th>
-          <th style="background: #c62828; text-align: center;">JUMLAH MODUL</th>
-        </tr>
-      </thead>
-      <tbody id="interventionBody"></tbody>
-    </table>
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PORTAL YEAR 3 | SMART ENGLISH QUIZ SYSTEM</title>
+  <style>
+    :root {
+      --primary: #1976d2;
+      --primary-dark: #0d47a1;
+      --bg: #eef6ff;
+      --card-bg: #ffffff;
+      --text: #17324d;
+      --border: #ccd8e5;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 40px; font-size: 16px; }
+    
+    header { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; text-align: center; padding: 28px 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    header h1 { margin: 0; font-size: 34px; letter-spacing: 2px; }
+    header p { margin: 6px 0 0; font-size: 16px; opacity: 0.95; }
+
+    .container { max-width: 1150px; margin: 20px auto; padding: 0 15px; }
+    .hidden { display: none !important; }
+
+    /* CARD STYLES */
+    .card-box { background: white; border-radius: 16px; padding: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 22px; }
+    h2.section-heading { margin: 28px 0 14px; color: var(--primary-dark); font-size: 22px; display: flex; align-items: center; gap: 8px; }
+
+    /* STUDENT VIEWS */
+    .set-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 15px; }
+    .set-card { background: #e8f3ff; border: 2px solid var(--primary); padding: 22px; border-radius: 14px; text-align: center; cursor: pointer; transition: 0.2s; }
+    .set-card:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+    .set-card h3 { margin: 0 0 8px; color: inherit; font-size: 20px; }
+    
+    .form-group { margin-bottom: 18px; }
+    label { display: block; font-weight: bold; margin-bottom: 8px; font-size: 15px; }
+    input[type="text"], input[type="password"], select { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 9px; font-size: 16px; background: white; }
+    
+    .btn { display: inline-block; width: 100%; background: var(--primary); color: white; border: none; padding: 14px; border-radius: 25px; font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; transition: 0.2s; }
+    .btn:hover { background: var(--primary-dark); }
+    .btn-secondary { background: #607080; }
+    .btn-secondary:hover { background: #455a64; }
+    .btn-green { background: #2e7d32; }
+    .btn-green:hover { background: #1b5e20; }
+
+    /* TOP NAVIGATION */
+    .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .nav-btn { width: auto; padding: 10px 20px; font-size: 15px; border-radius: 20px; }
+
+    /* QUIZ CARDS */
+    .question-card { background: #f8fafc; border: 1px solid var(--border); padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+    .question-card p { font-size: 19px; line-height: 1.5; margin: 0 0 12px; color: #0d233a; }
+    .options-list { list-style: none; padding: 0; margin: 12px 0 0; }
+    .options-list label { cursor: pointer; background: white; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; display: block; margin-bottom: 10px; font-weight: normal; font-size: 17px; }
+
+    /* DASHBOARD & TEACHER ACCESS */
+    .teacher-bar { background: white; border-radius: 15px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 16px; }
+    
+    .filter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) auto; gap: 14px; align-items: end; }
+    .filter-grid label { font-size: 14px; font-weight: bold; }
+    .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px; }
+    
+    .stat-card { background: white; border-radius: 14px; padding: 20px 15px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border-top: 5px solid var(--primary); }
+    .stat-card h4 { margin: 0 0 8px; color: #506070; font-size: 14px; font-weight: bold; text-transform: uppercase; }
+    .stat-card .number { font-size: 36px; font-weight: bold; color: var(--primary-dark); }
+    .stat-card .sub-label { font-size: 13px; color: #607080; margin-top: 4px; font-weight: 600; }
+
+    /* CHART ROW */
+    .chart-row { display: grid; grid-template-columns: 130px 1fr 60px; align-items: center; gap: 14px; margin-bottom: 14px; font-size: 15px; }
+    .chart-track { width: 100%; height: 24px; background: #e8eef5; border-radius: 15px; overflow: hidden; }
+    .chart-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #1976d2, #42a5f5); border-radius: 15px; transition: width 0.6s ease; }
+
+    /* RECOMMENDATION GRID */
+    .recommendation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+    .rec-card { border-radius: 12px; padding: 18px; border: 1px solid var(--border); font-size: 15px; }
+    .rec-card h4 { font-size: 16px; margin: 0 0 6px; }
+    .rec-card p { margin: 4px 0; }
+    .rec-num { font-size: 34px; font-weight: bold; margin: 6px 0; }
+    .rec-card.intensive { background: #ffebee; color: #c62828; }
+    .rec-card.guided { background: #fff8e1; color: #b78103; }
+    .rec-card.reinforcement { background: #e8f5e9; color: #2e7d32; }
+    .rec-card.enrichment { background: #e3f2fd; color: #1557a6; }
+
+    /* BADGES */
+    .badge { padding: 6px 10px; border-radius: 6px; font-size: 13px; font-weight: bold; display: inline-block; }
+    .badge-red { background: #ffebee; color: #c62828; border: 1px solid #ef9a9a; }
+    .badge-orange { background: #fff3e0; color: #ef6c00; }
+    .badge-blue { background: #e3f2fd; color: #1565c0; }
+    .badge-green { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+
+    /* TABLES */
+    .table-box { overflow-x: auto; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+    table { width: 100%; border-collapse: collapse; min-width: 800px; }
+    th { background: var(--primary-dark); color: white; padding: 14px 12px; font-size: 15px; text-align: left; }
+    td { padding: 13px 12px; border-bottom: 1px solid #e1e7ee; font-size: 15px; }
+    tbody tr:hover { background: #f4f9ff; }
+    .empty-td { text-align: center; padding: 25px; color: #718096; font-size: 15px; }
+
+    /* PRINT LAYOUT */
+    @media print {
+      body { background: white; color: black; padding: 0; font-size: 12px; }
+      header { background: white !important; color: black !important; border-bottom: 2px solid #000; padding: 10px; }
+      .top-nav, .teacher-bar, .action-buttons, .filter-grid button, #loginSection { display: none !important; }
+      .container { max-width: 100%; margin: 0; padding: 0; }
+      .card-box { box-shadow: none !important; border: 1px solid #ccc; page-break-inside: avoid; }
+      table { min-width: 100%; }
+      th, td { font-size: 11px; padding: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>PORTAL YEAR 3</h1>
+  <p>SMART ENGLISH QUIZ SYSTEM (SEQS)</p>
+</header>
+
+<div class="container">
+  
+  <!-- NAV BAR -->
+  <div class="top-nav">
+    <button class="btn nav-btn btn-secondary" onclick="goHome()">🏠 Halaman Utama</button>
+    <button class="btn nav-btn btn-green" onclick="showTeacherSection()">🔐 Rekod & Dashboard Guru</button>
   </div>
+
+  <!-- VIEW 1: MAKLUMAT MURID -->
+  <div id="view-student-info" class="card-box">
+    <h2>🎯 Pendaftaran Murid</h2>
+    
+    <div class="form-group">
+      <label for="student-name">Nama Murid:</label>
+      <input type="text" id="student-name" placeholder="Contoh: DANIAL BIN AHMAD" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="student-class">Kelas:</label>
+      <input type="text" id="student-class" placeholder="Contoh: 3 CEPAKA" required>
+    </div>
+
+    <label style="margin-top: 20px;">Sila Pilih Set Latihan Anda:</label>
+    <div class="set-grid">
+      <div class="set-card" onclick="selectSet('GET SMART SET')">
+        <h3>GET SMART SET</h3>
+        <p style="margin:0; font-size: 14px;">Latihan Aras Standard / Pengukuhan</p>
+      </div>
+      <div class="set-card" onclick="selectSet('REMEDIAL SET')">
+        <h3>REMEDIAL SET</h3>
+        <p style="margin:0; font-size: 14px;">Latihan Aras Asas / Pemulihan</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 2: PILIH MODUL -->
+  <div id="view-module-select" class="card-box hidden">
+    <h2 id="selected-set-title"></h2>
+    <p style="text-align: center; color: #4b5563; font-weight: bold; font-size: 16px;" id="student-info-summary"></p>
+    
+    <div class="form-group" style="margin-top: 20px;">
+      <label for="select-module">Pilih Modul / Topik:</label>
+      <select id="select-module">
+        <option value="">-- Sila Pilih Modul --</option>
+      </select>
+    </div>
+    
+    <button class="btn" onclick="startQuiz()">Mula Jawab Kuiz 🚀</button>
+    <button class="btn btn-secondary" style="margin-top: 10px;" onclick="goHome()">⬅️ Tukar Nama / Set</button>
+  </div>
+
+  <!-- VIEW 3: SOALAN KUIZ -->
+  <div id="view-quiz" class="card-box hidden">
+    <h2 id="quiz-module-title" style="font-size: 24px; color: var(--primary-dark);"></h2>
+    <form id="quiz-form">
+      <div id="questions-container"></div>
+      <button type="button" class="btn btn-green" style="font-size: 18px; padding: 15px;" onclick="submitQuiz()">Hantar & Semak Keputusan 📝</button>
+    </form>
+  </div>
+
+  <!-- VIEW 4: KEPUTUSAN MURID -->
+  <div id="view-result" class="card-box hidden" style="text-align: center;">
+    <h2>🎉 Tahniah! Anda telah selesai.</h2>
+    <h1 style="color: var(--primary); font-size: 48px; margin: 15px 0;" id="score-display">0 / 0</h1>
+    <p id="result-detail" style="font-size: 18px;"></p>
+    <button class="btn" style="max-width: 280px; margin: 20px auto 0;" onclick="goHome()">Jawab Modul Lain 🔄</button>
+  </div>
+
+  <!-- VIEW 5: DASHBOARD GURU -->
+  <div id="view-teacher-login" class="card-box hidden" style="max-width: 420px; margin: 40px auto; text-align: center;">
+    <div style="font-size: 48px; margin-bottom: 10px;">🔒</div>
+    <h2>AKSES GURU</h2>
+    <p style="color: #607080; font-size: 15px;">Sila masukkan PIN Guru untuk mengakses analisis.</p>
+    
+    <input type="password" id="teacherPassword" placeholder="Masukkan PIN Guru" style="margin: 15px 0; text-align: center;">
+    <button class="btn" id="loginButton" onclick="teacherLogin()">LOG MASUK</button>
+    <div id="loginMessage" style="margin-top: 12px; font-size: 15px; font-weight: bold;"></div>
+  </div>
+
+  <div id="view-teacher-dashboard" class="hidden">
+    
+    <!-- BAR GURU -->
+    <div class="teacher-bar">
+      <div>🔒 <strong>LOG MASUK GURU DISAHKAN</strong></div>
+      <button class="btn btn-secondary nav-btn" style="background:#c62828;" onclick="teacherLogout()">LOG KELUAR</button>
+    </div>
+
+    <!-- PENAPIS ANALISIS -->
+    <div class="card-box">
+      <h3 style="font-size: 18px; margin-top: 0;">🔍 Penapis Analisis Rekod Guru</h3>
+      <div class="filter-grid">
+        <div>
+          <label>KELAS</label>
+          <select id="classFilter" onchange="applyFilters()"><option value="">Semua Kelas</option></select>
+        </div>
+        <div>
+          <label>SET LATIHAN</label>
+          <select id="setFilter" onchange="applyFilters()">
+            <option value="">Semua Set</option>
+            <option value="GET SMART SET">GET SMART SET</option>
+            <option value="REMEDIAL SET">REMEDIAL SET</option>
+          </select>
+        </div>
+        <div>
+          <label>MODUL</label>
+          <select id="moduleFilter" onchange="applyFilters()">
+            <option value="">Semua Modul</option>
+            <option value="1">Module 1 – Welcome!</option>
+            <option value="2">Module 2 – Every Day</option>
+            <option value="3">Module 3 – Right Now</option>
+            <option value="4">Module 4 – Year In, Year Out</option>
+            <option value="5">Module 5 – My New House</option>
+            <option value="6">Module 6 – Food, Please!</option>
+            <option value="7">Module 7 – Out and About</option>
+            <option value="8">Module 8 – Where Were You Yesterday?</option>
+            <option value="9">Module 9 – On Holiday</option>
+            <option value="10">Module 10 – The World Around Us</option>
+          </select>
+        </div>
+        <div>
+          <label>CARIAN</label>
+          <input type="text" id="searchBox" placeholder="Nama / Kelas..." oninput="applyFilters()">
+        </div>
+        <button class="btn btn-secondary" onclick="resetFilters()">RESET</button>
+      </div>
+      <p id="filterResult" style="margin: 12px 0 0; font-size: 14px; color: var(--primary-dark); text-align: center; font-weight: bold;"></p>
+    </div>
+
+    <!-- PRESTASI KESELURUHAN -->
+    <h2 class="section-heading">📊 Ringkasan Prestasi Keseluruhan</h2>
+    <div class="dashboard-grid">
+      <div class="stat-card">
+        <h4>JUMLAH PERCOBAAN</h4>
+        <div class="number" id="totalAttempts">0</div>
+      </div>
+      <div class="stat-card">
+        <h4>PURATA SKOR</h4>
+        <div class="number" id="averageScore">0%</div>
+      </div>
+      <div class="stat-card">
+        <h4>SKOR TERTINGGI</h4>
+        <div class="number" id="highestScore">0%</div>
+      </div>
+      <div class="stat-card" style="border-top-color: #2e7d32;">
+        <h4>GET SMART SET</h4>
+        <div class="number" id="getSmartCount">0</div>
+      </div>
+      <div class="stat-card" style="border-top-color: #ef6c00;">
+        <h4>REMEDIAL SET</h4>
+        <div class="number" id="remedialCount">0</div>
+      </div>
+    </div>
+
+    <!-- 1. ANALISIS MENGIKUT KELAS -->
+    <h2 class="section-heading">🏫 Analisis Prestasi Mengikut Kelas</h2>
+    <div class="card-box" style="border-top: 4px solid var(--primary-dark);">
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>NAMA KELAS</th>
+              <th>JUMLAH MURID / PERCOBAAN</th>
+              <th>PURATA SKOR KELAS</th>
+              <th>MURID CEMERLANG (≥85%)</th>
+              <th>MURID INTERVENSI (≤40%)</th>
+              <th>STATUS PRESTASI KELAS</th>
+            </tr>
+          </thead>
+          <tbody id="classAnalysisBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 2. ANALISIS MENGIKUT TOPIK / MODUL -->
+    <h2 class="section-heading">📚 Analisis Prestasi Mengikut Topik / Modul</h2>
+    <div class="card-box" style="border-top: 4px solid #1565c0;">
+      <p style="font-size: 15px; color: #455a64; margin-bottom: 15px;">
+        Analisis ini membantu guru mengenal pasti topik yang mudah dikuasai dan modul yang memerlukan pengajaran semula (re-teaching).
+      </p>
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr style="background: #1565c0;">
+              <th style="background: #1565c0;">MODUL / TOPIK</th>
+              <th style="background: #1565c0;">JUMLAH PERCOBAAN</th>
+              <th style="background: #1565c0;">PURATA SKOR MODUL</th>
+              <th style="background: #1565c0;">TAHAP PENGUASAAN TOPIK</th>
+              <th style="background: #1565c0;">CADANGAN TINDAKAN SUSULAN</th>
+            </tr>
+          </thead>
+          <tbody id="topicAnalysisBody"></tbody>
+        </table>
+      </div>
+      <div style="margin-top: 25px;">
+        <h4 style="margin-bottom: 12px; color: var(--primary-dark); font-size: 17px;">📈 Graf Visual Purata Skor Modul</h4>
+        <div id="moduleChart"></div>
+      </div>
+    </div>
+
+    <!-- 3. ANALISIS PENCAPAIAN MURID -->
+    <h2 class="section-heading">🏆 Analisis Agihan Pencapaian Murid</h2>
+    <div class="dashboard-grid">
+      <div class="stat-card" style="border-top-color: #2e7d32;">
+        <h4>CEMERLANG</h4>
+        <div class="number" id="excellentCount">0</div>
+        <div class="sub-label">85% – 100%</div>
+      </div>
+      <div class="stat-card" style="border-top-color: #1976d2;">
+        <h4>BAIK</h4>
+        <div class="number" id="goodCount">0</div>
+        <div class="sub-label">60% – 84%</div>
+      </div>
+      <div class="stat-card" style="border-top-color: #f59e0b;">
+        <h4>MEMUASKAN</h4>
+        <div class="number" id="satisfactoryCount">0</div>
+        <div class="sub-label">41% – 59%</div>
+      </div>
+      <div class="stat-card" style="border-top-color: #c62828;">
+        <h4>INTERVENSI</h4>
+        <div class="number" id="needsImprovementCount">0</div>
+        <div class="sub-label">0% – 40%</div>
+      </div>
+    </div>
+
+    <!-- CADANGAN INTERVENSI PINTAR -->
+    <h2 class="section-heading">💡 Cadangan Intervensi Pintar</h2>
+    <div class="card-box">
+      <p id="recommendationIntro" style="background: #e8f3ff; padding: 14px; border-radius: 8px; font-weight: bold; font-size: 16px; margin-bottom: 15px;"></p>
+      <div class="recommendation-grid">
+        <div class="rec-card intensive">
+          <h4>🎯 SOKONGAN INTENSIF</h4>
+          <div class="rec-num" id="intensiveCount">0</div>
+          <p><strong>Pencapaian:</strong> 0% – 40%</p>
+          <p>Sediakan aktiviti pemulihan berfokus dan bimbingan guru secara langsung.</p>
+        </div>
+        <div class="rec-card guided">
+          <h4>📘 LATIHAN TERBIMBING</h4>
+          <div class="rec-num" id="guidedCount">0</div>
+          <p><strong>Pencapaian:</strong> 41% – 59%</p>
+          <p>Berikan latihan terstruktur, bantuan kosa kata dan bimbingan rakan sebaya.</p>
+        </div>
+        <div class="rec-card reinforcement">
+          <h4>👍 PENGUKUHAN</h4>
+          <div class="rec-num" id="reinforcementCount">0</div>
+          <p><strong>Pencapaian:</strong> 60% – 84%</p>
+          <p>Kukuhkan kemahiran sedia ada melalui ulang kaji dan aplikasi soalan.</p>
+        </div>
+        <div class="rec-card enrichment">
+          <h4>🌟 PENGAYAAN</h4>
+          <div class="rec-num" id="enrichmentCount">0</div>
+          <p><strong>Pencapaian:</strong> 85% – 100%</p>
+          <p>Berikan cabaran KBAT dan aktiviti pengayaan bertaraf tinggi.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- JADUAL MURID PERLU INTERVENSI -->
+    <h2 class="section-heading" style="color: #c62828;">⚠️ Murid Memerlukan Intervensi (40% dan ke bawah)</h2>
+    <div class="card-box" style="border-top: 4px solid #c62828;">
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr style="background: #c62828;">
+              <th style="background: #c62828;">NAMA MURID</th>
+              <th style="background: #c62828;">KELAS</th>
+              <th style="background: #c62828;">SENARAI MODUL PERLU INTERVENSI (MARKAH)</th>
+              <th style="background: #c62828; text-align: center;">JUMLAH MODUL</th>
+            </tr>
+          </thead>
+          <tbody id="interventionBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- JADUAL MURID CEMERLANG -->
+    <h2 class="section-heading" style="color: #2e7d32;">🌟 Senarai Murid Cemerlang (85% dan ke atas)</h2>
+    <div class="card-box" style="border-top: 4px solid #2e7d32;">
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr style="background: #2e7d32;">
+              <th style="background: #2e7d32;">NAMA MURID</th>
+              <th style="background: #2e7d32;">KELAS</th>
+              <th style="background: #2e7d32;">SENARAI MODUL CEMERLANG (MARKAH)</th>
+              <th style="background: #2e7d32; text-align: center;">JUMLAH MODUL</th>
+            </tr>
+          </thead>
+          <tbody id="excellentTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- REKOD KESELURUHAN -->
+    <h2 class="section-heading">📋 Senarai Rekod Keseluruhan Murid</h2>
+    <div class="card-box">
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>MASA / TARIKH</th>
+              <th>NAMA MURID</th>
+              <th>KELAS</th>
+              <th>SET</th>
+              <th>MODUL</th>
+              <th>MARKAH</th>
+              <th>PERATUS</th>
+            </tr>
+          </thead>
+          <tbody id="recordBody"></tbody>
+        </table>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="action-buttons" style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
+        <button class="btn" style="flex: 1; min-width: 160px;" onclick="loadTeacherRecords()">🔄 Kemas Kini Data</button>
+        <button class="btn btn-green" style="flex: 1; min-width: 160px;" onclick="downloadCSV()">📥 Muat Turun CSV (Excel)</button>
+        <button class="btn btn-secondary" style="flex: 1; min-width: 160px;" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
+      </div>
+    </div>
+
+  </div>
+
 </div>
 
-<!-- JADUAL MURID CEMERLANG -->
-<h2 class="section-heading" style="color: #2e7d32;">🌟 Senarai Murid Cemerlang (85% dan ke atas)</h2>
-<div class="card-box" style="border-top: 4px solid #2e7d32;">
-  <div class="table-box">
-    <table>
-      <thead>
-        <tr style="background: #2e7d32;">
-          <th style="background: #2e7d32;">NAMA MURID</th>
-          <th style="background: #2e7d32;">KELAS</th>
-          <th style="background: #2e7d32;">SENARAI MODUL CEMERLANG (MARKAH)</th>
-          <th style="background: #2e7d32; text-align: center;">JUMLAH MODUL</th>
+<script src="questions.js"></script>
+
+<script>
+  /* GOOGLE SCRIPT & SETTINGS */
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxgXqZkbG0DcCiUwVdnww_TsUg3Zr9GoRK_bE1y9QIwRNjsWSeiTcR_laaNguEGX3V8/exec"; 
+  const DEFAULT_PIN = "1234";
+
+  let currentSet = "", currentModule = "", activeQuestions = [];
+  let allRecords = [];
+
+  const moduleList = [
+    { number: 1, name: "Welcome!" },
+    { number: 2, name: "Every day" },
+    { number: 3, name: "Right now" },
+    { number: 4, name: "Year in, year out" },
+    { number: 5, name: "My new house" },
+    { number: 6, name: "Food, please!" },
+    { number: 7, name: "Out and about" },
+    { number: 8, name: "Where were you yesterday?" },
+    { number: 9, name: "On holiday" },
+    { number: 10, name: "The world around us" }
+  ];
+
+  /* VIEW MANAGEMENT */
+  function hideAllViews() {
+    ['view-student-info','view-module-select','view-quiz','view-result','view-teacher-login','view-teacher-dashboard'].forEach(id => {
+      document.getElementById(id).classList.add('hidden');
+    });
+  }
+
+  function goHome() {
+    hideAllViews();
+    document.getElementById('view-student-info').classList.remove('hidden');
+  }
+
+  /* STUDENT FLOW */
+  function selectSet(setName) {
+    const name = document.getElementById('student-name').value.trim();
+    const studentClass = document.getElementById('student-class').value.trim();
+
+    if (!name || !studentClass) {
+      alert("Sila isi Nama Murid dan Kelas terlebih dahulu!");
+      return;
+    }
+
+    currentSet = setName;
+    hideAllViews();
+    document.getElementById('view-module-select').classList.remove('hidden');
+    document.getElementById('selected-set-title').innerText = setName;
+    document.getElementById('student-info-summary').innerText = `Murid: ${name} (${studentClass})`;
+
+    const moduleSelect = document.getElementById('select-module');
+    moduleSelect.innerHTML = '<option value="">-- Sila Pilih Modul --</option>';
+
+    moduleList.forEach(m => {
+      let opt = document.createElement('option');
+      opt.value = `Module ${m.number}: ${m.name}`;
+      opt.innerText = `Module ${m.number}: ${m.name}`;
+      moduleSelect.appendChild(opt);
+    });
+  }
+
+  function extractAllQuestions(node) {
+    let results = [];
+    if (!node) return results;
+    if (Array.isArray(node)) return node;
+    if (typeof node === 'object') {
+      Object.keys(node).forEach(key => {
+        results = results.concat(extractAllQuestions(node[key]));
+      });
+    }
+    return results;
+  }
+
+  function startQuiz() {
+    currentModule = document.getElementById('select-module').value;
+    if (!currentModule) { alert("Sila pilih Modul!"); return; }
+
+    let rawModuleData = null;
+    if (typeof quizBank !== 'undefined') {
+      if (quizBank[currentSet] && quizBank[currentSet][currentModule]) {
+        rawModuleData = quizBank[currentSet][currentModule];
+      } else if (quizBank[currentModule]) {
+        rawModuleData = quizBank[currentModule];
+      }
+    }
+
+    activeQuestions = extractAllQuestions(rawModuleData);
+
+    if (activeQuestions.length === 0) {
+      alert(`Tiada soalan ditemui untuk "${currentModule}". Pastikan fail questions.js telah dikemaskini.`);
+      return;
+    }
+
+    const container = document.getElementById('questions-container');
+    container.innerHTML = "";
+
+    activeQuestions.forEach((q, idx) => {
+      let qText = q.q || q.question || "";
+      let qOpts = q.options || q.choices || [];
+      
+      let qHtml = `<div class="question-card"><p><strong>Soalan ${idx + 1}:</strong> ${qText.replace(/\n/g, '<br>')}</p>`;
+      if (q.img || q.image) qHtml += `<img src="${q.img || q.image}" style="max-width:100%; border-radius:8px; margin-bottom:12px;">`;
+      qHtml += `<ul class="options-list">`;
+      qOpts.forEach(opt => {
+        qHtml += `<li><label><input type="radio" name="q_${idx}" value="${opt}"> ${opt}</label></li>`;
+      });
+      qHtml += `</ul></div>`;
+      container.innerHTML += qHtml;
+    });
+
+    hideAllViews();
+    document.getElementById('view-quiz').classList.remove('hidden');
+    document.getElementById('quiz-module-title').innerText = `${currentSet} - ${currentModule}`;
+  }
+
+  function submitQuiz() {
+    let score = 0;
+    activeQuestions.forEach((q, idx) => {
+      const selected = document.querySelector(`input[name="q_${idx}"]:checked`);
+      const correctAns = q.ans || q.answer;
+      if (selected && selected.value === correctAns) score++;
+    });
+
+    const total = activeQuestions.length;
+    const percentage = Math.round((score / total) * 100);
+    const sName = document.getElementById('student-name').value.trim();
+    const sClass = document.getElementById('student-class').value.trim();
+
+    hideAllViews();
+    document.getElementById('view-result').classList.remove('hidden');
+    document.getElementById('score-display').innerText = `${score} / ${total} (${percentage}%)`;
+    document.getElementById('result-detail').innerText = `Tahniah ${sName}! Keputusan anda telah direkodkan.`;
+
+    const recordData = {
+      timestamp: new Date().toISOString(),
+      time: new Date().toLocaleString('ms-MY'),
+      name: sName,
+      studentClass: sClass,
+      set: currentSet,
+      module: currentModule,
+      score: `${score}/${total} (${percentage}%)`,
+      percentage: percentage
+    };
+
+    let localData = JSON.parse(localStorage.getItem('quizRecords') || '[]');
+    localData.push(recordData);
+    localStorage.setItem('quizRecords', JSON.stringify(localData));
+
+    if (GOOGLE_SCRIPT_URL) {
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          name: sName,
+          class: sClass,
+          set: currentSet,
+          module: currentModule,
+          score: `${score}/${total} (${percentage}%)`,
+          percentage: percentage
+        })
+      }).catch(err => console.log("Google Sheet Error:", err));
+    }
+  }
+
+  /* TEACHER DASHBOARD FLOW */
+  function showTeacherSection() {
+    hideAllViews();
+    if (sessionStorage.getItem("seqsTeacherToken") === "authenticated") {
+      document.getElementById('view-teacher-dashboard').classList.remove('hidden');
+      loadTeacherRecords();
+    } else {
+      document.getElementById('view-teacher-login').classList.remove('hidden');
+    }
+  }
+
+  function teacherLogin() {
+    const pwd = document.getElementById('teacherPassword').value;
+    const msg = document.getElementById('loginMessage');
+
+    if (pwd === DEFAULT_PIN || pwd === "1234") {
+      sessionStorage.setItem("seqsTeacherToken", "authenticated");
+      msg.style.color = "green";
+      msg.innerText = "Log masuk berjaya!";
+      setTimeout(() => {
+        hideAllViews();
+        document.getElementById('view-teacher-dashboard').classList.remove('hidden');
+        loadTeacherRecords();
+      }, 500);
+    } else {
+      msg.style.color = "red";
+      msg.innerText = "PIN Salah! Sila cuba lagi.";
+    }
+  }
+
+  function teacherLogout() {
+    sessionStorage.removeItem("seqsTeacherToken");
+    goHome();
+  }
+
+  function loadTeacherRecords() {
+    let localData = JSON.parse(localStorage.getItem('quizRecords') || '[]');
+    allRecords = localData.slice().reverse();
+
+    populateClassFilter();
+    applyFilters();
+  }
+
+  function populateClassFilter() {
+    const select = document.getElementById("classFilter");
+    const currentValue = select.value;
+    const classes = [...new Set(allRecords.map(r => String(r.studentClass || r.class || "").trim()).filter(Boolean))].sort();
+
+    select.innerHTML = '<option value="">Semua Kelas</option>';
+    classes.forEach(c => {
+      let opt = document.createElement("option");
+      opt.value = c;
+      opt.textContent = c;
+      select.appendChild(opt);
+    });
+    if (classes.includes(currentValue)) select.value = currentValue;
+  }
+
+  /* SMART PERCENTAGE EXTRACTOR */
+  function getPct(r) {
+    if (!r) return 0;
+
+    let rawVal = r.percentage !== undefined ? r.percentage : r.peratus;
+    let p = parseFloat(String(rawVal || "").replace("%","").trim());
+
+    if (!isNaN(p) && p > 0 && p <= 1) {
+      p = p * 100;
+    }
+
+    if (!isNaN(p) && p > 0) {
+      return Math.round(p);
+    }
+
+    let scoreStr = String(r.score || r.markah || "");
+    let matchPct = scoreStr.match(/\((\d+)%\)/);
+    if (matchPct) {
+      return parseInt(matchPct[1]);
+    }
+
+    let matchFrac = scoreStr.match(/(\d+)\s*\/\s*(\d+)/);
+    if (matchFrac) {
+      let num = parseFloat(matchFrac[1]);
+      let den = parseFloat(matchFrac[2]);
+      if (den > 0) {
+        return Math.round((num / den) * 100);
+      }
+    }
+
+    return 0;
+  }
+
+  function applyFilters() {
+    const classVal = document.getElementById("classFilter").value.trim();
+    const setVal = document.getElementById("setFilter").value.trim();
+    const moduleVal = document.getElementById("moduleFilter").value.trim();
+    const search = document.getElementById("searchBox").value.toLowerCase().trim();
+
+    const filtered = allRecords.filter(r => {
+      const rClass = String(r.studentClass || r.class || "").trim();
+      const rSet = String(r.set || "").trim();
+      const rName = String(r.name || "").toLowerCase();
+      const rModule = String(r.module || "").toLowerCase();
+
+      const matchClass = !classVal || rClass === classVal;
+      const matchSet = !setVal || rSet === setVal;
+      const matchModule = !moduleVal || rModule.includes(`module ${moduleVal}`);
+      const matchSearch = !search || rName.includes(search) || rClass.toLowerCase().includes(search) || rModule.includes(search);
+
+      return matchClass && matchSet && matchModule && matchSearch;
+    });
+
+    updateDashboard(filtered);
+  }
+
+  function resetFilters() {
+    document.getElementById("classFilter").value = "";
+    document.getElementById("setFilter").value = "";
+    document.getElementById("moduleFilter").value = "";
+    document.getElementById("searchBox").value = "";
+    applyFilters();
+  }
+
+  function updateDashboard(records) {
+    document.getElementById("filterResult").innerText = `Menunjukkan ${records.length} rekod murid.`;
+
+    let total = records.length;
+    let sumPct = 0, highest = 0, getSmartCount = 0, remedialCount = 0;
+    let exc = 0, good = 0, sat = 0, needs = 0;
+
+    records.forEach(r => {
+      let p = getPct(r);
+      sumPct += p;
+      if (p > highest) highest = p;
+      
+      if (p >= 85) exc++;
+      else if (p >= 60) good++;
+      else if (p >= 41) sat++;
+      else needs++;
+
+      if (r.set === "GET SMART SET") getSmartCount++;
+      if (r.set === "REMEDIAL SET") remedialCount++;
+    });
+
+    document.getElementById("totalAttempts").innerText = total;
+    document.getElementById("averageScore").innerText = total > 0 ? Math.round(sumPct / total) + "%" : "0%";
+    document.getElementById("highestScore").innerText = highest + "%";
+    document.getElementById("getSmartCount").innerText = getSmartCount;
+    document.getElementById("remedialCount").innerText = remedialCount;
+
+    document.getElementById("excellentCount").innerText = exc;
+    document.getElementById("goodCount").innerText = good;
+    document.getElementById("satisfactoryCount").innerText = sat;
+    document.getElementById("needsImprovementCount").innerText = needs;
+
+    document.getElementById("intensiveCount").innerText = needs;
+    document.getElementById("guidedCount").innerText = sat;
+    document.getElementById("reinforcementCount").innerText = good;
+    document.getElementById("enrichmentCount").innerText = exc;
+
+    let avg = total > 0 ? Math.round(sumPct / total) : 0;
+    let recText = "Purata Kumpulan: " + avg + "%. ";
+    if (avg <= 40) recText += "Keutamaan: Sokongan Intensif & Bimbingan Khusus.";
+    else if (avg <= 59) recText += "Keutamaan: Latihan Terbimbing & Pemulihan.";
+    else if (avg <= 84) recText += "Keutamaan: Pengukuhan Soalan Modul.";
+    else recText += "Keutamaan: Pengayaan & Soalan KBAT.";
+    document.getElementById("recommendationIntro").innerText = recText;
+
+    renderClassAnalysis(records);
+    renderTopicAnalysis(records);
+    drawModuleChart(records);
+    renderTables(records);
+  }
+
+  /* 1. ANALISIS MENGIKUT KELAS */
+  function renderClassAnalysis(records) {
+    const tbody = document.getElementById("classAnalysisBody");
+    tbody.innerHTML = "";
+
+    if (records.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="6" class="empty-td">Tiada rekod data kelas.</td></tr>`;
+      return;
+    }
+
+    const classGroup = {};
+    records.forEach(r => {
+      let cls = String(r.studentClass || r.class || "TIDAK NYATA").trim().toUpperCase();
+      if (!classGroup[cls]) {
+        classGroup[cls] = { total: 0, sumPct: 0, exc: 0, inter: 0 };
+      }
+      let p = getPct(r);
+      classGroup[cls].total++;
+      classGroup[cls].sumPct += p;
+      if (p >= 85) classGroup[cls].exc++;
+      if (p <= 40) classGroup[cls].inter++;
+    });
+
+    Object.keys(classGroup).sort().forEach(cls => {
+      let data = classGroup[cls];
+      let avg = Math.round(data.sumPct / data.total);
+      
+      let statusBadge = "";
+      if (avg >= 85) statusBadge = `<span class="badge badge-green">CEMERLANG</span>`;
+      else if (avg >= 60) statusBadge = `<span class="badge badge-blue">BAIK</span>`;
+      else if (avg >= 41) statusBadge = `<span class="badge badge-orange">MEMUASKAN</span>`;
+      else statusBadge = `<span class="badge badge-red">PERLU INTERVENSI</span>`;
+
+      tbody.innerHTML += `
+        <tr>
+          <td><strong>${cls}</strong></td>
+          <td>${data.total}</td>
+          <td><strong>${avg}%</strong></td>
+          <td style="color:#2e7d32; font-weight:bold;">${data.exc} murid</td>
+          <td style="color:#c62828; font-weight:bold;">${data.inter} murid</td>
+          <td>${statusBadge}</td>
         </tr>
-      </thead>
-      <tbody id="excellentTableBody"></tbody>
-    </table>
-  </div>
-</div>
+      `;
+    });
+  }
+
+  /* 2. ANALISIS MENGIKUT TOPIK / MODUL */
+  function renderTopicAnalysis(records) {
+    const tbody = document.getElementById("topicAnalysisBody");
+    tbody.innerHTML = "";
+
+    moduleList.forEach(m => {
+      const modRecords = records.filter(r => String(r.module || "").toLowerCase().includes(`module ${m.number}`));
+      let total = modRecords.length;
+      let sum = 0;
+      modRecords.forEach(r => sum += getPct(r));
+      let avg = total > 0 ? Math.round(sum / total) : 0;
+
+      let levelBadge = "", actionText = "";
+      if (total === 0) {
+        levelBadge = `<span class="badge" style="background:#e0e0e0; color:#666;">TIADA DATA</span>`;
+        actionText = "Belum ada murid menjawab modul ini.";
+      } else if (avg >= 85) {
+        levelBadge = `<span class="badge badge-green">SANGAT TINGGI</span>`;
+        actionText = "Teruskan latihan pengayaan KBAT.";
+      } else if (avg >= 60) {
+        levelBadge = `<span class="badge badge-blue">SEDERHANA TINGGI</span>`;
+        actionText = "Kukuhkan kosa kata & tatabahasa.";
+      } else if (avg >= 41) {
+        levelBadge = `<span class="badge badge-orange">SEDERHANA RENDAH</span>`;
+        actionText = "Beri latihan terbimbing tambahan.";
+      } else {
+        levelBadge = `<span class="badge badge-red">KRITIKAL / LEMAH</span>`;
+        actionText = "Perlu pengajaran semula (Re-teaching).";
+      }
+
+      tbody.innerHTML += `
+        <tr>
+          <td><strong>Module ${m.number}: ${m.name}</strong></td>
+          <td>${total}</td>
+          <td><strong>${avg}%</strong></td>
+          <td>${levelBadge}</td>
+          <td style="font-size:14px;">${actionText}</td>
+        </tr>
+      `;
+    });
+  }
+
+  function drawModuleChart(records) {
+    const container = document.getElementById("moduleChart");
+    container.innerHTML = "";
+
+    moduleList.forEach(m => {
+      const modRecords = records.filter(r => String(r.module || "").toLowerCase().includes(`module ${m.number}`));
+      let sum = 0;
+      modRecords.forEach(r => sum += getPct(r));
+      let avg = modRecords.length > 0 ? Math.round(sum / modRecords.length) : 0;
+
+      container.innerHTML += `
+        <div class="chart-row">
+          <div style="font-weight:bold; font-size:14px;">Module ${m.number}</div>
+          <div class="chart-track">
+            <div class="chart-bar" style="width:${avg}%"></div>
+          </div>
+          <div style="font-weight:bold; text-align:right; font-size:15px;">${avg}%</div>
+        </div>
+      `;
+    });
+  }
+
+  /* 3. JADUAL DENGAN PENGELOMPOKAN NAMA MURID */
+  function renderTables(records) {
+    const mainBody = document.getElementById("recordBody");
+    const interBody = document.getElementById("interventionBody");
+    const excBody = document.getElementById("excellentTableBody");
+    
+    mainBody.innerHTML = "";
+    interBody.innerHTML = "";
+    excBody.innerHTML = "";
+
+    if (records.length === 0) {
+      mainBody.innerHTML = `<tr><td colspan="7" class="empty-td">Tiada rekod murid dijumpai.</td></tr>`;
+      interBody.innerHTML = `<tr><td colspan="4" class="empty-td">Tiada murid memerlukan intervensi.</td></tr>`;
+      excBody.innerHTML = `<tr><td colspan="4" class="empty-td">Tiada murid cemerlang dijumpai.</td></tr>`;
+      return;
+    }
+
+    const studentMap = {};
+
+    records.forEach(r => {
+      let p = getPct(r);
+      let dateStr = r.time || (r.timestamp ? new Date(r.timestamp).toLocaleDateString('ms-MY') : '-');
+      let scoreDisplay = r.score || r.markah || '-';
+
+      // 1. Rekod Keseluruhan (Setiap Percubaan)
+      mainBody.innerHTML += `
+        <tr>
+          <td>${dateStr}</td>
+          <td><strong>${r.name || '-'}</strong></td>
+          <td>${r.studentClass || r.class || '-'}</td>
+          <td>${r.set || '-'}</td>
+          <td>${r.module || '-'}</td>
+          <td>${scoreDisplay}</td>
+          <td><strong>${p}%</strong></td>
+        </tr>
+      `;
+
+      // 2. Kumpulkan Rekod Mengikut Murid (Nama + Kelas)
+      let sName = String(r.name || '-').trim().toUpperCase();
+      let sClass = String(r.studentClass || r.class || '-').trim().toUpperCase();
+      let studentKey = `${sName}___${sClass}`;
+
+      if (!studentMap[studentKey]) {
+        studentMap[studentKey] = {
+          name: r.name || '-',
+          class: r.studentClass || r.class || '-',
+          interModules: [],
+          excModules: []
+        };
+      }
+
+      let modTitle = r.module || 'Modul';
+      let detailTag = `${modTitle} (${scoreDisplay})`;
+
+      if (p <= 40) {
+        studentMap[studentKey].interModules.push(detailTag);
+      }
+      if (p >= 85) {
+        studentMap[studentKey].excModules.push(detailTag);
+      }
+    });
+
+    // Render Jadual Intervensi (Terkumpul)
+    let interCount = 0;
+    Object.keys(studentMap).sort().forEach(key => {
+      let student = studentMap[key];
+      if (student.interModules.length > 0) {
+        interCount++;
+        let moduleBadges = student.interModules
+          .map(m => `<span class="badge badge-red" style="margin: 3px 2px; display: inline-block;">${m}</span>`)
+          .join(' ');
+
+        interBody.innerHTML += `
+          <tr>
+            <td><strong>${student.name}</strong></td>
+            <td>${student.class}</td>
+            <td>${moduleBadges}</td>
+            <td style="text-align: center;"><strong>${student.interModules.length} Modul</strong></td>
+          </tr>
+        `;
+      }
+    });
+
+    // Render Jadual Cemerlang (Terkumpul)
+    let excCount = 0;
+    Object.keys(studentMap).sort().forEach(key => {
+      let student = studentMap[key];
+      if (student.excModules.length > 0) {
+        excCount++;
+        let moduleBadges = student.excModules
+          .map(m => `<span class="badge badge-green" style="margin: 3px 2px; display: inline-block;">${m}</span>`)
+          .join(' ');
+
+        excBody.innerHTML += `
+          <tr>
+            <td><strong>${student.name}</strong></td>
+            <td>${student.class}</td>
+            <td>${moduleBadges}</td>
+            <td style="text-align: center;"><strong>${student.excModules.length} Modul</strong></td>
+          </tr>
+        `;
+      }
+    });
+
+    if (interCount === 0) {
+      interBody.innerHTML = `<tr><td colspan="4" class="empty-td">✨ Tiada murid memerlukan intervensi bagi penapis ini.</td></tr>`;
+    }
+
+    if (excCount === 0) {
+      excBody.innerHTML = `<tr><td colspan="4" class="empty-td">Tiada murid mencapai markah 85% dan ke atas bagi penapis ini.</td></tr>`;
+    }
+  }
+
+  function downloadCSV() {
+    if (allRecords.length === 0) { alert("Tiada rekod untuk dimuat turun."); return; }
+    let csv = "Tarikh/Masa,Nama Murid,Kelas,Set,Modul,Markah,Peratus\n";
+    allRecords.forEach(r => {
+      let p = getPct(r);
+      csv += `"${r.time || ''}","${r.name || ''}","${r.studentClass || r.class || ''}","${r.set || ''}","${r.module || ''}","${r.score || r.markah || ''}","${p}%"\n`;
+    });
+
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'Rekod_Analisis_SEQS_PORTALYEAR3.csv';
+    a.click();
+  }
+</script>
+
+</body>
+</html>
