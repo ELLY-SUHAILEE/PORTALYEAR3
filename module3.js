@@ -11,7 +11,7 @@ function wrapCenterImage(imagePath) {
 // ==========================================
 // 1. GET SMART SET (30 SOALAN)
 // ==========================================
-quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
+quizBank["GET SMART SET"]["Module 3: Right now"] = {
   "Reading": [
     // --- PETIKAN 1 (Soalan 1 - 5) ---
     {
@@ -229,7 +229,7 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
 // ==========================================
 // 2. REMEDIAL SET (30 SOALAN)
 // ==========================================
-quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
+quizBank["REMEDIAL SET"]["Module 3: Right now"] = {
   "Reading": [
     // --- PETIKAN 1 (Soalan 1 - 5) ---
     {
