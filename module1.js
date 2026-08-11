@@ -7,8 +7,10 @@ if (typeof quizBank === 'undefined') {
 if (!quizBank["GET SMART SET"]) { quizBank["GET SMART SET"] = {}; }
 if (!quizBank["REMEDIAL SET"]) { quizBank["REMEDIAL SET"] = {}; }
 
-// DATA SOALAN MODULE 1
-const module1Data = {
+// ==========================================
+// 1. GET SMART SET (STANDARD / ENRICHMENT)
+// ==========================================
+quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
   "Reading": [
     {
       "type": "mcq",
@@ -317,6 +319,134 @@ const module1Data = {
   ]
 };
 
-// Menghubungkan soalan ke dalam kedua-dua set latihan
-quizBank["GET SMART SET"]["Module 1: Welcome!"] = module1Data;
-quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = module1Data;
+// ==========================================
+// 2. REMEDIAL SET (PEMULIHAN / BASICS)
+// ==========================================
+quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
+  "Reading": [
+    {
+      "type": "mcq",
+      "q": "Read the short text:\n\nHello! I am Sara. I have got straight dark hair. Aina has got curly hair.\n\nWhat hair does Sara have?",
+      "options": ["A) Straight dark hair", "B) Curly hair"],
+      "ans": "A) Straight dark hair"
+    },
+    {
+      "type": "mcq",
+      "q": "Read the text:\n\nAina has got 50 shells. Sara has got 40 shells.\n\nHow many shells does Aina have?",
+      "options": ["A) 40 shells", "B) 50 shells"],
+      "ans": "B) 50 shells"
+    },
+    {
+      "type": "mcq",
+      "q": "Read the text:\n\nAmir can play football. He cannot dive.\n\nWhat can Amir do?",
+      "options": ["A) Play football", "B) Dive"],
+      "ans": "A) Play football"
+    },
+    {
+      "type": "mcq",
+      "q": "Read the text:\n\nAmir has got short fair hair.\n\nWhat colour is Amir's hair?",
+      "options": ["A) Fair", "B) Black"],
+      "ans": "A) Fair"
+    },
+    {
+      "type": "mcq",
+      "q": "Read the text:\n\nSara and Aina are at the beach today.\n\nWhere are they?",
+      "options": ["A) At school", "B) At the beach"],
+      "ans": "B) At the beach"
+    }
+  ],
+  "Vocabulary_Grammar": [
+    {
+      "type": "mcq",
+      "q": "She ______ got long hair.",
+      "options": ["A) has", "B) have"],
+      "ans": "A) has"
+    },
+    {
+      "type": "mcq",
+      "q": "They ______ got big eyes.",
+      "options": ["A) has", "B) have"],
+      "ans": "B) have"
+    },
+    {
+      "type": "mcq",
+      "q": "He ______ swim fast.",
+      "options": ["A) can", "B) is"],
+      "ans": "A) can"
+    },
+    {
+      "type": "mcq",
+      "q": "Sara has got forty ______.",
+      "options": ["A) shells", "B) books"],
+      "ans": "A) shells"
+    },
+    {
+      "type": "mcq",
+      "q": "Hair that is yellow/light colour is called ______ hair.",
+      "options": ["A) blond / fair", "B) black"],
+      "ans": "A) blond / fair"
+    },
+    {
+      "type": "mcq",
+      "q": "Has he got brown eyes? Yes, he ______.",
+      "options": ["A) has", "B) can"],
+      "ans": "A) has"
+    },
+    {
+      "type": "mcq",
+      "q": "Can you dive? No, I ______.",
+      "options": ["A) can't", "B) hasn't"],
+      "ans": "A) can't"
+    },
+    {
+      "type": "mcq",
+      "q": "A person in the same class as you is a ______.",
+      "options": ["A) classmate", "B) teacher"],
+      "ans": "A) classmate"
+    },
+    {
+      "type": "mcq",
+      "q": "I ______ got ten stickers.",
+      "options": ["A) have", "B) has"],
+      "ans": "A) have"
+    },
+    {
+      "type": "mcq",
+      "q": "Choose the number: 'Fifty'",
+      "options": ["A) 50", "B) 15"],
+      "ans": "A) 50"
+    }
+  ],
+  "Writing_Speaking_MixedSkills": [
+    {
+      "type": "mcq",
+      "q": "Choose the correct spelling:",
+      "options": ["A) Welcome", "B) Welcom"],
+      "ans": "A) Welcome"
+    },
+    {
+      "type": "mcq",
+      "q": "How do you greet in the morning?",
+      "options": ["A) Good morning", "B) Good night"],
+      "ans": "A) Good morning"
+    },
+    {
+      "type": "mcq",
+      "q": "Rearrange: [ I / can / swim ]",
+      "options": ["A) I can swim.", "B) Swim can I."],
+      "ans": "A) I can swim."
+    },
+    {
+      "type": "mcq",
+      "q": "Choose the correct sentence:",
+      "options": ["A) She has got dark hair.", "B) She have got dark hair."],
+      "ans": "A) She has got dark hair."
+    },
+    {
+      "type": "mcq",
+      "q": "Your teacher asks: 'Can you swim?' If YES, you say:",
+      "options": ["A) Yes, I can.", "B) Yes, I have."],
+      "ans": "A) Yes, I can."
+    }
+  ]
+};
