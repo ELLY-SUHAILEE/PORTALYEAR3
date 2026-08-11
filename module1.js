@@ -2,6 +2,12 @@ if (typeof quizBank === 'undefined') { var quizBank = {}; }
 if (!quizBank["GET SMART SET"]) { quizBank["GET SMART SET"] = {}; }
 if (!quizBank["REMEDIAL SET"]) { quizBank["REMEDIAL SET"] = {}; }
 
+// Fungsi pembantu untuk memastikan gambar berada di tengah (Center)
+function wrapCenterImage(imagePath) {
+    if (!imagePath) return "";
+    return `<div style="text-align: center; margin: 15px 0;"><img src="${imagePath}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 250px; border-radius: 10px; border: 1px solid #ddd;" onerror="this.style.display='none'"></div>`;
+}
+
 // ==========================================
 // 1. GET SMART SET (30 SOALAN)
 // ==========================================
@@ -10,7 +16,7 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
     // --- PETIKAN 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
-      "image": "images/GS_MODULE1_1.png",
+      "image": wrapCenterImage("images/GS_MODULE1_1.png"),
       "q": "1. What type of hair does Aina have?",
       "options": ["A) Short straight hair", "B) Long curly hair", "C) Short fair hair"],
       "ans": "B) Long curly hair"
@@ -43,7 +49,7 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
     // --- PETIKAN 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
-      "image": "images/GS_MODULE1_6.png",
+      "image": wrapCenterImage("images/GS_MODULE1_6.png"),
       "q": "6. What colour is Amir's hair?",
       "options": ["A) Black", "B) Fair", "C) Brown"],
       "ans": "B) Fair"
@@ -77,35 +83,35 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
   "Vocabulary": [
     {
       "type": "mcq",
-      "image": "images/GS_MODULE1_11.png",
+      "image": wrapCenterImage("images/GS_MODULE1_11.png"),
       "q": "11. My sister's hair is not straight. She has got ______ hair.",
       "options": ["A) blond", "B) short", "C) curly"],
       "ans": "C) curly"
     },
     {
       "type": "mcq",
-      "image": "images/GS_MODULE1_12.png",
+      "image": wrapCenterImage("images/GS_MODULE1_12.png"),
       "q": "12. Light yellow hair is described as ______ hair.",
       "options": ["A) blond / fair", "B) black", "C) dark"],
       "ans": "A) blond / fair"
     },
     {
       "type": "mcq",
-      "image": "images/GS_MODULE1_13.png",
+      "image": wrapCenterImage("images/GS_MODULE1_13.png"),
       "q": "13. Amir is a polite and good-looking boy. The word 'handsome' describes his ______.",
       "options": ["A) family", "B) appearance", "C) school"],
       "ans": "B) appearance"
     },
     {
       "type": "mcq",
-      "image": "images/GS_MODULE1_14.png",
+      "image": wrapCenterImage("images/GS_MODULE1_14.png"),
       "q": "14. Sara walked along the beach and picked up forty colourful ______.",
       "options": ["A) books", "B) pencils", "C) shells"],
       "ans": "C) shells"
     },
     {
       "type": "mcq",
-      "image": "images/GS_MODULE1_15.png",
+      "image": wrapCenterImage("images/GS_MODULE1_15.png"),
       "q": "15. Amir keeps all his sports stickers neatly inside an ______.",
       "options": ["A) basket", "B) album", "C) envelope"],
       "ans": "B) album"
@@ -115,14 +121,14 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
   "Grammar": [
     {
       "type": "mcq",
-      "image": "images/GS_MODULE1_16.png",
+      "image": wrapCenterImage("images/GS_MODULE1_16.png"),
       "q": "16. She ______ got long curly hair and brown eyes.",
       "options": ["A) has", "B) have", "C) is"],
       "ans": "A) has"
     },
     {
       "type": "mcq",
-      "image": "images/GS_MODULE1_17.png",
+      "image": wrapCenterImage("images/GS_MODULE1_17.png"),
       "q": "17. They ______ got fifty shells in their baskets.",
       "options": ["A) has", "B) are", "C) have"],
       "ans": "C) have"
@@ -198,21 +204,21 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
   "Mixed Skills": [
     {
       "type": "mcq",
-      "image": "images/GS_MODULE1_28.png",
+      "image": wrapCenterImage("images/GS_MODULE1_28.png"),
       "q": "28. Read the notice. What can you learn during this class?",
       "options": ["A) Football and basketball", "B) Swimming and diving", "C) Singing and dancing"],
       "ans": "B) Swimming and diving"
     },
     {
       "type": "mcq",
-      "image": "images/GS_MODULE1_29.png",
-      "q": "29. Read the card. How old is Sara?" ,
+      "image": wrapCenterImage("images/GS_MODULE1_29.png"),
+      "q": "29. Read the card. How old is Sara?",
       "options": ["A) 7 years old", "B) 8 years old", "C) 9 years old"],
       "ans": "C) 9 years old"
     },
     {
       "type": "mcq",
-      "image": "images/GS_MODULE1_30.png",
+      "image": wrapCenterImage("images/GS_MODULE1_30.png"),
       "q": "30. Look at the beach sign: What should you do?",
       "options": ["A) Throw rubbish into the sea", "B) Throw rubbish in the bin", "C) Leave rubbish on the sand"],
       "ans": "B) Throw rubbish in the bin"
@@ -228,7 +234,7 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
     // --- PETIKAN 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
-      "image": "images/REMEDIAL_MODULE1_1.png",
+      "image": wrapCenterImage("images/REMEDIAL_MODULE1_1.png"),
       "q": "1. Who is Sara's friend?",
       "options": ["A) Sara", "B) Aina", "C) Amir"],
       "ans": "B) Aina"
@@ -261,7 +267,7 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
     // --- PETIKAN 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
-      "image": "images/REMEDIAL_MODULE1_6.png",
+      "image": wrapCenterImage("images/REMEDIAL_MODULE1_6.png"),
       "q": "6. Who is the boy in the story?",
       "options": ["A) Sara", "B) Aina", "C) Amir"],
       "ans": "C) Amir"
@@ -295,35 +301,35 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
   "Vocabulary": [
     {
       "type": "mcq",
-      "image": "images/REMEDIAL_MODULE1_11.png",
+      "image": wrapCenterImage("images/REMEDIAL_MODULE1_11.png"),
       "q": "11. Yellow or light colour hair is called ______.",
       "options": ["A) blond / fair", "B) black", "C) dark"],
       "ans": "A) blond / fair"
     },
     {
       "type": "mcq",
-      "image": "images/REMEDIAL_MODULE1_12.png",
+      "image": wrapCenterImage("images/REMEDIAL_MODULE1_12.png"),
       "q": "12. You pick up ______ at the beach.",
       "options": ["A) books", "B) shells", "C) chairs"],
       "ans": "B) shells"
     },
     {
       "type": "mcq",
-      "image": "images/REMEDIAL_MODULE1_13.png",
+      "image": wrapCenterImage("images/REMEDIAL_MODULE1_13.png"),
       "q": "13. A friend in your class is your ______.",
       "options": ["A) teacher", "B) classmate", "C) father"],
       "ans": "B) classmate"
     },
     {
       "type": "mcq",
-      "image": "images/REMEDIAL_MODULE1_14.png",
+      "image": wrapCenterImage("images/REMEDIAL_MODULE1_14.png"),
       "q": "14. Hair that is not straight is ______ hair.",
       "options": ["A) curly", "B) short", "C) long"],
       "ans": "A) curly"
     },
     {
       "type": "mcq",
-      "image": "images/REMEDIAL_MODULE1_15.png",
+      "image": wrapCenterImage("images/REMEDIAL_MODULE1_15.png"),
       "q": "15. A book for putting stickers is an ______.",
       "options": ["A) album", "B) bag", "C) box"],
       "ans": "A) album"
@@ -339,7 +345,7 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
     },
     {
       "type": "mcq",
-   "q": "17. They ______ got big eyes.",
+      "q": "17. They ______ got big eyes.",
       "options": ["A) has", "B) have", "C) is"],
       "ans": "B) have"
     },
@@ -414,21 +420,21 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
   "Mixed Skills": [
     {
       "type": "mcq",
-      "image": "images/REMEDIAL_MODULE1_28.png",
+      "image": wrapCenterImage("images/REMEDIAL_MODULE1_28.png"),
       "q": "28. Read the label:\n\n[10 SHELLS]\n\nWhat is inside?",
       "options": ["A) Pencils", "B) Shells", "C) Books"],
       "ans": "B) Shells"
     },
     {
       "type": "mcq",
-      "image": "images/REMEDIAL_MODULE1_29.png",
+      "image": wrapCenterImage("images/REMEDIAL_MODULE1_29.png"),
       "q": "29. Read the tag: [AMIR]\nIs this a boy or a girl?",
       "options": ["A) Boy", "B) Girl", "C) Cat"],
       "ans": "A) Boy"
     },
     {
       "type": "mcq",
-      "image": "images/REMEDIAL_MODULE1_30.png",
+      "image": wrapCenterImage("images/REMEDIAL_MODULE1_30.png"),
       "q": "30. Look at the sign: [SCHOOL]\nWhere are you?",
       "options": ["A) School", "B) Beach", "C) Park"],
       "ans": "A) School"
