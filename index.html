@@ -214,16 +214,16 @@
                     <label for="modul">Pilih Modul (Topik):</label>
                     <select id="modul" class="form-control">
                         <option value="" disabled selected>-- Pilih Modul --</option>
-                        <option value="Module 1">Module 1: Welcome!</option>
-                        <option value="Module 2">Module 2: Every day</option>
-                        <option value="Module 3">Module 3: Right now</option>
-                        <option value="Module 4">Module 4: Year in, year out</option>
-                        <option value="Module 5">Module 5: My new house</option>
-                        <option value="Module 6">Module 6: Food, please!</option>
-                        <option value="Module 7">Module 7: Out and about</option>
-                        <option value="Module 8">Module 8: Where were you yesterday?</option>
-                        <option value="Module 9">Module 9: On holiday</option>
-                        <option value="Module 10">Module 10: The world around us</option>
+                        <option value="Module 1: Welcome!">Module 1: Welcome!</option>
+                        <option value="Module 2: Every day">Module 2: Every day</option>
+                        <option value="Module 3: Right now">Module 3: Right now</option>
+                        <option value="Module 4: Year in, year out">Module 4: Year in, year out</option>
+                        <option value="Module 5: My new house">Module 5: My new house</option>
+                        <option value="Module 6: Food, please!">Module 6: Food, please!</option>
+                        <option value="Module 7: Out and about">Module 7: Out and about</option>
+                        <option value="Module 8: Where were you yesterday?">Module 8: Where were you yesterday?</option>
+                        <option value="Module 9: On holiday">Module 9: On holiday</option>
+                        <option value="Module 10: The world around us">Module 10: The world around us</option>
                     </select>
                 </div>
 
@@ -264,12 +264,14 @@
         </div>
     </div>
 
-    <!-- PENETAPAN DATA ASAS -->
+    <!-- PENETAPAN DATA ASAS (HANYA JIKA BELUM WUJUD) -->
     <script>
-        window.quizBank = {
-            "GET SMART SET": {},
-            "REMEDIAL SET": {}
-        };
+        if (typeof window.quizBank === 'undefined') {
+            window.quizBank = {
+                "GET SMART SET": {},
+                "REMEDIAL SET": {}
+            };
+        }
     </script>
 
     <!-- MEMUATKAN FAIL MODUL -->
@@ -313,7 +315,7 @@
             let targetData = null;
             if (window.quizBank && window.quizBank[set]) {
                 const availableKeys = Object.keys(window.quizBank[set]);
-                const matchedKey = availableKeys.find(k => k.startsWith(modul));
+                const matchedKey = availableKeys.find(k => k.toLowerCase().startsWith(modul.toLowerCase()));
                 if (matchedKey) targetData = window.quizBank[set][matchedKey];
             }
 
@@ -336,8 +338,13 @@
 
                     let html = `<p style="font-weight:bold; color:#1d4e89;">${item.q}</p>`;
 
+                    // Mengendalikan imej (jika wujud sebagai pautan terus atau tag HTML)
                     if (item.image) {
-                        html += `<div style="margin: 10px 0;"><img src="${item.image}" style="max-width:100%; max-height:200px; border-radius:8px;" onerror="this.style.display='none'"></div>`;
+                        if (item.image.includes('<img')) {
+                            html += item.image;
+                        } else {
+                            html += `<div style="margin: 10px 0;"><img src="${item.image}" style="max-width:100%; max-height:200px; border-radius:8px;" onerror="this.style.display='none'"></div>`;
+                        }
                     }
 
                     html += `<div>`;
