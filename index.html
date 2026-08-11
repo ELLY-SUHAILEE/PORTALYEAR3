@@ -25,6 +25,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             padding: 35px 40px;
+            position: relative;
         }
         h1 {
             color: #2563eb;
@@ -98,6 +99,22 @@
         .btn-green {
             background-color: #2d9d51;
         }
+        .btn-home {
+            background-color: #6b7280;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-home:hover {
+            background-color: #4b5563;
+        }
         #papan-kuiz, #keputusan-kuiz {
             display: none;
         }
@@ -164,16 +181,16 @@
         <div class="form-group">
             <label for="modul">Pilih Modul:</label>
             <select id="modul">
-                <option value="Module 1: Welcome!">Module 1: Welcome!</option>
-                <option value="Module 2: Every day">Module 2: Every day</option>
-                <option value="Module 3: Right now">Module 3: Right now</option>
-                <option value="Module 4: Year in, year out">Module 4: Year in, year out</option>
-                <option value="Module 5: My new house">Module 5: My new house</option>
-                <option value="Module 6: Food, please!">Module 6: Food, please!</option>
-                <option value="Module 7: Out and about">Module 7: Out and about</option>
-                <option value="Module 8: Where were you yesterday?">Module 8: Where were you yesterday?</option>
-                <option value="Module 9: On holiday">Module 9: On holiday</option>
-                <option value="Module 10: The world around us">Module 10: The world around us</option>
+                <option value="Module 1">Module 1: Welcome!</option>
+                <option value="Module 2">Module 2: Every day</option>
+                <option value="Module 3">Module 3: Right now</option>
+                <option value="Module 4">Module 4: Year in, year out</option>
+                <option value="Module 5">Module 5: My new house / Eating right</option>
+                <option value="Module 6">Module 6: Food, please! / Getting around</option>
+                <option value="Module 7">Module 7: Out and about / Helping out</option>
+                <option value="Module 8">Module 8: Where were you yesterday? / Amazing animals</option>
+                <option value="Module 9">Module 9: On holiday / Get active!</option>
+                <option value="Module 10">Module 10: The world around us</option>
             </select>
         </div>
 
@@ -185,11 +202,19 @@
         </div>
     </div>
 
-    <!-- PAPAN SOALAN KUIZ (SENARAI PENUH) -->
+    <!-- PAPAN SOALAN KUIZ -->
     <div id="papan-kuiz">
-        <h2 id="tajuk-modul-papar" style="color: #2563eb; margin-top: 0;"></h2>
-        <div id="bekas-senarai-soalan"></div>
-        <button class="btn-set btn-blue" onclick="hantarKuiz()" style="width: 100%; margin-top: 20px;">Hantar Jawapan</button>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <button class="btn-home" onclick="keHalamanUtama()">🏠 HOME</button>
+            <span id="label-modul-papar" style="font-weight: bold; color: #2563eb;"></span>
+        </div>
+
+        <div id="bekas-senarai-soalan" style="margin-top: 15px;"></div>
+        
+        <div class="btn-container" style="margin-top: 20px;">
+            <button class="btn-home" onclick="keHalamanUtama()" style="flex: none; padding: 14px 20px;">🏠 HOME</button>
+            <button class="btn-set btn-blue" onclick="hantarKuiz()">Hantar Jawapan</button>
+        </div>
     </div>
 
     <!-- KEPUTUSAN -->
@@ -213,45 +238,47 @@
     let jawapanPengguna = {};
     let maklumatPelajar = {};
 
+    function keHalamanUtama() {
+        if (document.getElementById('papan-kuiz').style.display === 'block') {
+            if (!confirm("Adakah anda pasti mahu kembali ke Utama? Jawapan semasa tidak akan disimpan.")) {
+                return;
+            }
+        }
+        document.getElementById('borang-mula').style.display = 'block';
+        document.getElementById('papan-kuiz').style.display = 'none';
+        document.getElementById('keputusan-kuiz').style.display = 'none';
+    }
+
     function mulaKuiz(setTerpilih) {
         const nama = document.getElementById('nama').value.trim();
         const kelas = document.getElementById('kelas').value;
-        const modul = document.getElementById('modul').value;
+        const modulInput = document.getElementById('modul').value; // Mengambil nombor modul (cth: "Module 5")
 
-        if (!nama || !kelas || !modul) {
+        if (!nama || !kelas || !modulInput) {
             alert("Sila isi nama, pilih kelas, dan pilih modul terlebih dahulu!");
             return;
         }
 
-        if (typeof quizBank === 'undefined') {
-            alert("Data quizBank tidak dijumpai! Sila pastikan fail JS modul anda telah dimuatkan.");
+        if (typeof quizBank === 'undefined' || !quizBank[setTerpilih]) {
+            alert("Data quizBank tidak dijumpai! Pastikan fail JS modul dimuatkan.");
             return;
         }
 
-        // Semak kewujudan Set dan Modul (Fungsi Padanan Fleksibel untuk Module 5-10)
-        let dataModul = null;
-        if (quizBank[setTerpilih]) {
-            // Cuba padankan nama tepat atau carian separa jika terdapat perbezaan ejaan tajuk
-            if (quizBank[setTerpilih][modul]) {
-                dataModul = quizBank[setTerpilih][modul];
-            } else {
-                const modulKeys = Object.keys(quizBank[setTerpilih]);
-                const matchKey = modulKeys.find(k => k.toLowerCase().startsWith(modul.split(':')[0].toLowerCase()));
-                if (matchKey) {
-                    dataModul = quizBank[setTerpilih][matchKey];
-                }
-            }
-        }
+        // LOGIK AUTODETECT UNTUK MODULE 5 HINGGA 10
+        const modulKeys = Object.keys(quizBank[setTerpilih]);
+        // Cari modul dalam JS yang bermula dengan kata kunci "Module X"
+        const kunciPadan = modulKeys.find(key => key.toLowerCase().startsWith(modulInput.toLowerCase()));
 
-        if (!dataModul) {
-            alert(`Data soalan untuk ${modul} (${setTerpilih}) belum dimuatkan atau tidak dijumpai.`);
+        if (!kunciPadan) {
+            alert(`Data soalan untuk ${modulInput} (${setTerpilih}) tidak dijumpai. Sila pastikan fail module*.js mengandungi data bagi modul ini.`);
             return;
         }
 
-        maklumatPelajar = { nama, kelas, modul, set: setTerpilih };
+        const dataModul = quizBank[setTerpilih][kunciPadan];
+        maklumatPelajar = { nama, kelas, modul: kunciPadan, set: setTerpilih };
         soalanSemasa = [];
 
-        // Menggabungkan kesemua kategori ke dalam senarai
+        // Gabung semua kategori soalan
         Object.keys(dataModul).forEach(kategori => {
             soalanSemasa = soalanSemasa.concat(dataModul[kategori]);
         });
@@ -266,14 +293,14 @@
     }
 
     function paparSemuaSoalan() {
-        document.getElementById('tajuk-modul-papar').innerText = `${maklumatPelajar.modul} (${maklumatPelajar.set})`;
+        document.getElementById('label-modul-papar').innerText = `${maklumatPelajar.modul} (${maklumatPelajar.set})`;
         const bekas = document.getElementById('bekas-senarai-soalan');
         let htmlContent = '';
 
         soalanSemasa.forEach((soalan, index) => {
             htmlContent += `<div class="item-soalan">`;
             
-            // Papar petikan/gambar jika ada
+            // Papar petikan/gambar di atas soalan
             if (soalan.image) {
                 htmlContent += `<div class="passage-box">${soalan.image}</div>`;
             }
@@ -332,7 +359,7 @@
                 <p><strong>Set:</strong> ${maklumatPelajar.set}</p>
             </div>
             <h3 style="font-size: 26px; color: #1d6fe5; margin: 10px 0;">Markah: ${markah} / ${jumlahSoalan} (${peratus}%)</h3>
-            <button class="btn-set btn-blue" onclick="location.reload()" style="margin-top: 15px; padding: 10px 20px;">Ke Halaman Utama</button>
+            <button class="btn-home" onclick="keHalamanUtama()" style="margin-top: 15px; padding: 12px 24px; font-size: 16px;">🏠 Halaman Utama (HOME)</button>
         `;
     }
 </script>
