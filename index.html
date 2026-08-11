@@ -7,137 +7,367 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Muat naik data soalan dari module1.js dan module2.js -->
+    <!-- Load question data from external scripts if present -->
     <script src="module1.js"></script>
     <script src="module2.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f0f4f8;
             scroll-behavior: smooth;
         }
+        .card-hover {
+            transition: all 0.25s ease-in-out;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(79, 70, 229, 0.25);
+        }
     </style>
-</head>
-<body class="min-h-screen py-6 px-3 sm:px-6 flex flex-col justify-between">
-
-    <!-- Header Navigation -->
-    <header class="max-w-4xl mx-auto w-full bg-white rounded-2xl shadow-md p-4 mb-4">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <div class="bg-indigo-600 text-white p-3 rounded-xl shadow">
-                    <i class="fa-solid fa-graduation-cap text-2xl"></i>
-                </div>
-                <div>
-                    <h1 class="text-xl font-bold text-gray-800">PORTAL KUIZ YEAR 3</h1>
-                    <p class="text-xs text-gray-500">English Module 1 & Module 2</p>
-                </div>
+        <div id="header-user-badge" class="hidden flex flex-wrap items-center gap-3 bg-indigo-50 border border-indigo-100 px-4 py-2 rounded-xl text-xs">
+            <i class="fa-solid fa-user-graduate text-indigo-600 text-lg"></i>
+            <div>
+                <span id="badge-student-name" class="font-bold text-slate-800 block">Nama Murid</span>
+                <span id="badge-student-class" class="text-slate-500 block">Kelas</span>
             </div>
-
-            <!-- Set & Module Selector -->
-            <div class="flex flex-col sm:flex-row items-center gap-2 bg-gray-100 p-1.5 rounded-xl w-full md:w-auto">
-                <!-- Module Selector -->
-                <select id="module-select" onchange="switchModule(this.value)" class="w-full sm:w-auto px-3 py-2 text-xs font-semibold rounded-lg bg-white border border-gray-300 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    <option value="Module 1: Welcome!">Module 1: Welcome!</option>
-                    <option value="Module 2: Every Day!">Module 2: Every Day!</option>
-                </select>
-
-                <div class="flex w-full sm:w-auto gap-1">
-                    <button id="btn-getsmart" onclick="switchSet('GET SMART SET')" class="flex-1 px-3 py-2 text-xs font-semibold rounded-lg transition-all bg-indigo-600 text-white shadow-sm">
-                        GET SMART SET
-                    </button>
-                    <button id="btn-remedial" onclick="switchSet('REMEDIAL SET')" class="flex-1 px-3 py-2 text-xs font-semibold rounded-lg transition-all text-gray-600 hover:text-indigo-600">
-                        REMEDIAL SET
-                    </button>
-                </div>
+            <div class="h-6 w-px bg-indigo-200 mx-1 hidden sm:block"></div>
+            <div class="bg-indigo-600 text-white font-bold px-3 py-1 rounded-lg text-xs flex items-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-star text-amber-300"></i>
+                <span>Markah:</span>
+                <span id="header-score-badge" class="text-amber-200 font-extrabold">0 / 0</span>
             </div>
+            <button onclick="showLandingScreen()" class="ml-auto text-indigo-600 hover:text-indigo-800 font-semibold underline text-xs">
+                <i class="fa-solid fa-right-from-bracket mr-1"></i> Tukar
+            </button>
         </div>
     </header>
 
-    <!-- Sticky Score & Category Bar -->
-    <div class="sticky top-2 z-20 max-w-4xl mx-auto w-full bg-slate-900/90 backdrop-blur-md text-white rounded-2xl shadow-xl p-4 mb-6 border border-slate-700/50">
-        <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
-            <div class="flex items-center gap-4 w-full sm:w-auto justify-between">
-                <div>
-                    <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider">Jumlah Soalan</span>
-                    <span id="answered-count" class="text-base font-semibold text-indigo-300">0 / 30 Dijawab</span>
-                </div>
-                <div class="h-8 w-px bg-slate-700 hidden sm:block"></div>
-                <div>
-                    <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider">Markah Semasa</span>
-                    <span id="score-text" class="text-lg font-extrabold text-emerald-400">0 / 30</span>
-                </div>
-            </div>
-
-            <!-- Quick Category Nav Buttons -->
-            <div class="flex flex-wrap gap-1.5 justify-center sm:justify-end text-xs w-full sm:w-auto">
-                <button onclick="scrollToCategory('cat-Reading')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">📖 Reading</button>
-                <button onclick="scrollToCategory('cat-Vocabulary')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">🔤 Vocabulary</button>
-                <button onclick="scrollToCategory('cat-Grammar')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">⚖️ Grammar</button>
-                <button onclick="scrollToCategory('cat-Writing')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">✏️ Writing</button>
-                <button onclick="scrollToCategory('cat-Speaking')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">🗣️ Speaking</button>
-                <button onclick="scrollToCategory('cat-Mixed Skills')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">🧩 Mixed</button>
-            </div>
+    <!-- Custom Notification Bar (Replacing browser alert) -->
+    <div id="toast-message" class="hidden max-w-5xl mx-auto w-full mb-4 p-4 bg-amber-50 border-l-4 border-amber-500 text-amber-900 rounded-xl shadow-sm text-xs sm:text-sm font-semibold flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-triangle-exclamation text-amber-600 text-base"></i>
+            <span id="toast-text">Sila masukkan Nama dan Kelas murid terlebih dahulu.</span>
         </div>
-
-        <!-- Progress Bar -->
-        <div class="w-full bg-slate-800 h-2 rounded-full mt-3 overflow-hidden">
-            <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 to-emerald-400 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
-        </div>
+        <button onclick="dismissToast()" class="text-amber-700 hover:text-amber-900 font-bold px-2 py-1">✕</button>
     </div>
 
-    <!-- Main Quiz Scrollable Container -->
-    <main id="quiz-container" class="max-w-4xl mx-auto w-full space-y-8 mb-8">
-        <!-- Soalan-soalan akan dijana secara berterusan di sini -->
-    </main>
+    <!-- MAIN SCREEN 1: LANDING / SETUP PAGE -->
+    <div id="landing-screen" class="max-w-5xl mx-auto w-full space-y-6">
+        
+        <!-- Student Info Box -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold">1</span>
+                <h2 class="text-lg font-bold text-slate-800">Maklumat Murid</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="input-student-name" class="block text-xs font-semibold text-slate-600 uppercase mb-2">Nama Murid:</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-4 top-3.5 text-slate-400 text-sm"></i>
+                        <input type="text" id="input-student-name" placeholder="Masukkan nama penuh murid..." class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50 focus:bg-white transition">
+                    </div>
+                </div>
 
-    <!-- Bottom Finish / Summary Card -->
-    <div id="summary-card" class="max-w-4xl mx-auto w-full bg-white rounded-3xl shadow-xl border border-gray-100 p-8 text-center mb-8 hidden">
-        <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full text-3xl mb-4">
-            <i class="fa-solid fa-trophy"></i>
+                <div>
+                    <label for="input-student-class" class="block text-xs font-semibold text-slate-600 uppercase mb-2">Kelas:</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-chalkboard-user absolute left-4 top-3.5 text-slate-400 text-sm"></i>
+                        <input type="text" id="input-student-class" placeholder="Contoh: 3 Cemerlang / 3 Pintar..." class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50 focus:bg-white transition">
+                    </div>
+                </div>
+            </div>
         </div>
-        <h2 class="text-2xl font-bold text-gray-800 mb-2">Kuiz Selesai!</h2>
-        <p class="text-gray-600 mb-4">Anda telah menjawab kesemua soalan dalam set ini.</p>
-        <div class="text-3xl font-black text-indigo-600 mb-6">
-            Keputusan: <span id="final-score">0</span> / <span id="total-questions">30</span>
+
+        <!-- Set Choice Box -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold">2</span>
+                <h2 class="text-lg font-bold text-slate-800">Pilih Set Soalan</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <label id="set-card-getsmart" class="cursor-pointer border-2 border-indigo-600 bg-indigo-50/60 p-5 rounded-2xl flex items-center gap-4 transition shadow-sm">
+                    <input type="radio" name="set-selection" value="GET SMART SET" checked onchange="highlightSelectedSet('GET SMART SET')" class="w-5 h-5 text-indigo-600 focus:ring-indigo-500">
+                    <div>
+                        <span class="font-bold text-indigo-950 block text-base">GET SMART SET</span>
+                        <span class="text-xs text-indigo-700">Soalan tahap standard buku teks Get Smart Plus Year 3.</span>
+                    </div>
+                </label>
+
+                <label id="set-card-remedial" class="cursor-pointer border-2 border-slate-200 bg-white p-5 rounded-2xl flex items-center gap-4 transition hover:border-indigo-300">
+                    <input type="radio" name="set-selection" value="REMEDIAL SET" onchange="highlightSelectedSet('REMEDIAL SET')" class="w-5 h-5 text-indigo-600 focus:ring-indigo-500">
+                    <div>
+                        <span class="font-bold text-slate-800 block text-base">REMEDIAL SET</span>
+                        <span class="text-xs text-slate-500">Soalan pemulihan mudah dengan petikan dan ayat yang dipendekkan.</span>
+                    </div>
+                </label>
+            </div>
         </div>
-        <button onclick="resetQuiz()" class="px-6 py-3 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition inline-flex items-center gap-2">
-            <i class="fa-solid fa-rotate-right"></i> Jawab Semula Set Ini
-        </button>
+
+        <!-- Topic / Module Selection Grid (10 Topics) -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold">3</span>
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-800">Pilih Tajuk (10 Module Get Smart Year 3)</h2>
+                        <p class="text-xs text-slate-500">Klik tajuk untuk memulakan kuiz interaktif</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-4" id="topics-grid">
+                <!-- Topics inserted dynamically via JS -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MAIN SCREEN 2: ACTIVE QUIZ VIEW -->
+    <div id="quiz-screen" class="hidden max-w-5xl mx-auto w-full space-y-6">
+
+        <!-- Active Module Header Banner -->
+        <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white rounded-3xl p-6 shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <div class="flex items-center gap-2 mb-1">
+                    <span id="active-set-badge" class="bg-indigo-900/60 text-indigo-100 text-xs font-bold px-3 py-1 rounded-full border border-indigo-400/30 uppercase">
+                        GET SMART SET
+                    </span>
+                    <span id="active-module-number" class="bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                        MODULE 1
+                    </span>
+                </div>
+                <h2 id="active-module-title" class="text-2xl font-black">Module 1: Welcome!</h2>
+            </div>
+
+            <button onclick="showLandingScreen()" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold rounded-xl border border-white/20 transition flex items-center gap-2 self-end md:self-auto">
+                <i class="fa-solid fa-arrow-left"></i> Tukar Tajuk / Set
+            </button>
+        </div>
+
+        <!-- Sticky Score & Category Filter Bar -->
+        <div class="sticky top-2 z-40 w-full bg-slate-900/95 backdrop-blur-md text-white rounded-2xl shadow-2xl p-4 border border-indigo-500/30">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+                <div class="flex items-center justify-around sm:justify-start gap-4 w-full sm:w-auto bg-slate-800/80 p-2.5 rounded-xl border border-slate-700/60">
+                    <div class="text-center sm:text-left">
+                        <span class="text-[10px] text-slate-400 block uppercase font-bold tracking-wider">Soalan Dijawab</span>
+                        <span id="answered-count" class="text-sm sm:text-base font-extrabold text-indigo-300">0 / 30</span>
+                    </div>
+                    <div class="h-8 w-px bg-slate-700"></div>
+                    <div class="text-center sm:text-left">
+                        <span class="text-[10px] text-slate-400 block uppercase font-bold tracking-wider">Markah Semasa</span>
+                        <span id="score-text" class="text-base sm:text-lg font-black text-emerald-400">0 / 30</span>
+                    </div>
+                </div>
+
+                <!-- Quick Category Nav Buttons -->
+                <div class="flex flex-wrap gap-1.5 justify-center sm:justify-end text-xs w-full sm:w-auto">
+                    <button onclick="scrollToCategory('cat-Reading')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">📖 Reading</button>
+                    <button onclick="scrollToCategory('cat-Vocabulary')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">🔤 Vocabulary</button>
+                    <button onclick="scrollToCategory('cat-Grammar')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">⚖️ Grammar</button>
+                    <button onclick="scrollToCategory('cat-Writing')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">✏️ Writing</button>
+                    <button onclick="scrollToCategory('cat-Speaking')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">🗣️ Speaking</button>
+                    <button onclick="scrollToCategory('cat-Mixed Skills')" class="px-2.5 py-1 rounded-lg bg-indigo-800/60 hover:bg-indigo-600 text-indigo-100 transition">🧩 Mixed</button>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-800 h-2 rounded-full mt-3 overflow-hidden">
+                <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 to-emerald-400 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Quiz Container -->
+        <main id="quiz-container" class="space-y-8 mb-8">
+            <!-- Dynamic questions injected here -->
+        </main>
+
+        <!-- Bottom Finish / Summary Card -->
+        <div id="summary-card" class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 text-center mb-8 hidden">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full text-3xl mb-4">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 class="text-2xl font-extrabold text-slate-800 mb-1">Tahniah! Kuiz Selesai!</h2>
+            <p id="summary-student-info" class="text-sm font-medium text-slate-500 mb-4">Murid: - | Kelas: -</p>
+
+            <div class="bg-indigo-50 rounded-2xl p-6 max-w-md mx-auto mb-6 border border-indigo-100">
+                <span class="text-xs text-indigo-600 uppercase font-bold tracking-wider block mb-1">Keputusan Akhir</span>
+                <div class="text-4xl font-black text-indigo-700">
+                    <span id="final-score">0</span> / <span id="total-questions">30</span>
+                </div>
+                <div id="summary-grade" class="mt-2 text-sm font-semibold text-emerald-600">
+                    Cemerlang! 🎉
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="resetQuiz()" class="px-6 py-3 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 shadow-md transition inline-flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> Jawab Semula
+                </button>
+                <button onclick="showLandingScreen()" class="px-6 py-3 rounded-xl bg-slate-100 text-slate-700 font-semibold hover:bg-slate-200 transition inline-flex items-center gap-2">
+                    <i class="fa-solid fa-list-check"></i> Pilih Tajuk Lain
+                </button>
+            </div>
+        </div>
+
     </div>
 
     <!-- Footer -->
-    <footer class="text-center text-xs text-gray-400 py-4">
-        Portal Kuiz Interaktif Bahasa Inggeris Tahun 3
+    <footer class="text-center text-xs text-slate-400 py-6">
+        Portal Kuiz Interaktif Bahasa Inggeris Tahun 3 (Get Smart Plus)
     </footer>
 
     <script>
-        let currentSet = "GET SMART SET";
-        let currentModule = "Module 1: Welcome!";
+        // List of 10 Get Smart Year 3 Modules
+        const MODULES_LIST = [
+            { id: "Module 1: Welcome!", number: "1", title: "Welcome!", icon: "fa-hand-wave", desc: "Greetings, Numbers, Family & Appearance", color: "from-blue-500 to-indigo-600" },
+            { id: "Module 2: Every Day!", number: "2", title: "Every Day!", icon: "fa-clock", desc: "Daily Routines, Occupations & Time", color: "from-teal-500 to-emerald-600" },
+            { id: "Module 3: Right now", number: "3", title: "Right now", icon: "fa-person-running", desc: "Sports & Present Continuous Actions", color: "from-amber-500 to-orange-600" },
+            { id: "Module 4: Year in, year out", number: "4", title: "Year in, year out", icon: "fa-cloud-sun", desc: "Seasons, Weather & Months", color: "from-sky-500 to-blue-600" },
+            { id: "Module 5: My new house", number: "5", title: "My new house", icon: "fa-house", desc: "Rooms, Furniture & Objects", color: "from-purple-500 to-indigo-600" },
+            { id: "Module 6: Food, glorious food!", number: "6", title: "Food, glorious food!", icon: "fa-utensils", desc: "Food, Drinks & Likes/Dislikes", color: "from-rose-500 to-pink-600" },
+            { id: "Module 7: Out and about", number: "7", title: "Out and about", icon: "fa-map-location-dot", desc: "Street Rules, Directions & Places", color: "from-emerald-500 to-green-600" },
+            { id: "Module 8: Where were you yesterday?", number: "8", title: "Where were you yesterday?", icon: "fa-landmark", desc: "Past Simple (was/were) & Places", color: "from-violet-500 to-purple-600" },
+            { id: "Module 9: On holiday", number: "9", title: "On holiday", icon: "fa-umbrella-beach", desc: "Vacation Activities & Past Simple", color: "from-cyan-500 to-teal-600" },
+            { id: "Module 10: The world around us", number: "10", title: "The world around us", icon: "fa-earth-americas", desc: "Animals & Comparative Adjectives", color: "from-indigo-600 to-violet-700" }
+        ];
+
+        let studentName = "";
+        let studentClass = "";
+        let selectedSet = "GET SMART SET";
+        let activeModule = "Module 1: Welcome!";
+
         let aggregatedCategories = {};
         let totalQuestionsCount = 0;
         let score = 0;
         let answeredQuestionsCount = 0;
         let userAnswers = {};
 
-        function initQuiz() {
-            if (typeof quizBank === 'undefined' || !quizBank[currentSet] || !quizBank[currentSet][currentModule]) {
-                document.getElementById('quiz-container').innerHTML = `
-                    <div class="bg-red-50 border border-red-200 text-red-700 p-6 rounded-2xl text-center">
-                        <i class="fa-solid fa-triangle-exclamation text-3xl mb-2"></i>
-                        <p class="font-bold">Ralat: Data kuiz bagi ${currentModule} tidak dijumpai!</p>
-                        <p class="text-xs mt-1">Sila pastikan fail JS modul dimuatkan dengan betul.</p>
-                    </div>`;
+        // Render Topics on Page Load
+        window.onload = function() {
+            renderTopicsGrid();
+            // Restore saved name/class if available
+            if (localStorage.getItem('yr3_student_name')) {
+                document.getElementById('input-student-name').value = localStorage.getItem('yr3_student_name');
+            }
+            if (localStorage.getItem('yr3_student_class')) {
+                document.getElementById('input-student-class').value = localStorage.getItem('yr3_student_class');
+            }
+        };
+
+        function renderTopicsGrid() {
+            const grid = document.getElementById('topics-grid');
+            grid.innerHTML = '';
+
+            MODULES_LIST.forEach((mod) => {
+                const card = document.createElement('div');
+                card.className = "card-hover bg-white border border-slate-200 hover:border-indigo-500 p-5 rounded-2xl cursor-pointer flex flex-col justify-between group transition";
+                card.onclick = function() { startQuizForTopic(mod.id); };
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 group-hover:bg-indigo-100 group-hover:text-indigo-700">
+                                MODULE ${mod.number}
+                            </span>
+                            <i class="fa-solid ${mod.icon} text-lg text-slate-400 group-hover:text-indigo-600 transition"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 group-hover:text-indigo-600 text-sm leading-snug mb-1">
+                            ${mod.title}
+                        </h3>
+                        <p class="text-[11px] text-slate-500 leading-relaxed mb-4">
+                            ${mod.desc}
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-indigo-600">
+                        <span>Mula Kuiz</span>
+                        <i class="fa-solid fa-chevron-right text-xs group-hover:translate-x-1 transition"></i>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function highlightSelectedSet(setName) {
+        function showToast(message) {
+            const toast = document.getElementById('toast-message');
+            const toastText = document.getElementById('toast-text');
+            toastText.innerText = message;
+            toast.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function dismissToast() {
+            document.getElementById('toast-message').classList.add('hidden');
+        }
+
+        function startQuizForTopic(moduleId) {
+            dismissToast();
+            const nameInput = document.getElementById('input-student-name').value.trim();
+            const classInput = document.getElementById('input-student-class').value.trim();
+
+            if (!nameInput) {
+                showToast("Sila masukkan Nama Murid terlebih dahulu.");
+                document.getElementById('input-student-name').focus();
                 return;
             }
 
-            aggregatedCategories = quizBank[currentSet][currentModule];
+            if (!classInput) {
+                showToast("Sila masukkan Kelas murid terlebih dahulu.");
+                document.getElementById('input-student-class').focus();
+                return;
+            }
+
+            studentName = nameInput;
+            studentClass = classInput;
+            activeModule = moduleId;
+
+            // Save for convenience
+            localStorage.setItem('yr3_student_name', studentName);
+            localStorage.setItem('yr3_student_class', studentClass);
+
+            // Update user badge in header
+            document.getElementById('badge-student-name').innerText = studentName;
+            document.getElementById('badge-student-class').innerText = studentClass;
+            document.getElementById('header-user-badge').classList.remove('hidden');
+
+            // Switch Screen
+            document.getElementById('landing-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            initQuiz();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showLandingScreen() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('landing-screen').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function initQuiz() {
+            document.getElementById('active-set-badge').innerText = selectedSet;
+            
+            const modObj = MODULES_LIST.find(m => m.id === activeModule) || { number: "1", title: activeModule };
+            document.getElementById('active-module-number').innerText = `MODULE ${modObj.number}`;
+            document.getElementById('active-module-title').innerText = modObj.title;
+
+            // Check if quizBank has this module's data
+            if (typeof quizBank !== 'undefined' && quizBank[selectedSet] && quizBank[selectedSet][activeModule]) {
+                aggregatedCategories = quizBank[selectedSet][activeModule];
+            } else {
+                // Generate standard template questions if external JS for module isn't loaded yet
+                aggregatedCategories = generateFallbackQuestions(selectedSet, activeModule);
+            }
+
             score = 0;
             answeredQuestionsCount = 0;
             userAnswers = {};
             totalQuestionsCount = 0;
 
-            // Hitung jumlah keseluruhan soalan
             for (let cat in aggregatedCategories) {
                 totalQuestionsCount += aggregatedCategories[cat].length;
             }
@@ -145,44 +375,6 @@
             updateDashboard();
             renderAllQuestions();
             document.getElementById('summary-card').classList.add('hidden');
-        }
-
-        function switchModule(moduleName) {
-            currentModule = moduleName;
-            initQuiz();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function switchSet(setName) {
-            currentSet = setName;
-            
-            const btnGetSmart = document.getElementById('btn-getsmart');
-            const btnRemedial = document.getElementById('btn-remedial');
-
-            if (setName === 'GET SMART SET') {
-                btnGetSmart.className = "flex-1 px-3 py-2 text-xs font-semibold rounded-lg transition-all bg-indigo-600 text-white shadow-sm";
-                btnRemedial.className = "flex-1 px-3 py-2 text-xs font-semibold rounded-lg transition-all text-gray-600 hover:text-indigo-600";
-            } else {
-                btnRemedial.className = "flex-1 px-3 py-2 text-xs font-semibold rounded-lg transition-all bg-indigo-600 text-white shadow-sm";
-                btnGetSmart.className = "flex-1 px-3 py-2 text-xs font-semibold rounded-lg transition-all text-gray-600 hover:text-indigo-600";
-            }
-
-            initQuiz();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function updateDashboard() {
-            document.getElementById('score-text').innerText = `${score} / ${totalQuestionsCount}`;
-            document.getElementById('answered-count').innerText = `${answeredQuestionsCount} / ${totalQuestionsCount} Dijawab`;
-            
-            const progressPercent = totalQuestionsCount > 0 ? (answeredQuestionsCount / totalQuestionsCount) * 100 : 0;
-            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
-
-            if (answeredQuestionsCount === totalQuestionsCount && totalQuestionsCount > 0) {
-                document.getElementById('summary-card').classList.remove('hidden');
-                document.getElementById('final-score').innerText = score;
-                document.getElementById('total-questions').innerText = totalQuestionsCount;
-            }
         }
 
         function renderAllQuestions() {
@@ -194,12 +386,12 @@
             for (let category in aggregatedCategories) {
                 const questionsList = aggregatedCategories[category];
 
-                // Buat Header Kategori
+                // Category Header
                 const categoryHeader = document.createElement('div');
                 categoryHeader.id = `cat-${category}`;
                 categoryHeader.className = "pt-4 pb-2 border-b-2 border-indigo-200 flex items-center justify-between";
                 categoryHeader.innerHTML = `
-                    <h2 class="text-xl font-bold text-indigo-900 flex items-center gap-2">
+                    <h2 class="text-lg md:text-xl font-bold text-indigo-900 flex items-center gap-2">
                         <span class="w-3 h-3 bg-indigo-600 rounded-full inline-block"></span>
                         Bahagian: ${category}
                     </h2>
@@ -209,16 +401,15 @@
                 `;
                 container.appendChild(categoryHeader);
 
-                // Buat Setiap Kad Soalan
+                // Question Cards
                 questionsList.forEach((q) => {
                     const qIndex = globalQuestionIndex;
                     globalQuestionIndex++;
 
                     const card = document.createElement('div');
                     card.id = `q-card-${qIndex}`;
-                    card.className = "bg-white rounded-3xl shadow-md border border-slate-100 p-6 md:p-8 space-y-5 transition-all";
+                    card.className = "bg-white rounded-3xl shadow-sm border border-slate-100 p-6 md:p-8 space-y-5 transition-all";
 
-                    // GAMBAR DIPERKECILKAN SEDIKIT (Kemas & Sesuai Untuk Mobile/Desktop)
                     let imageHTML = '';
                     if (q.image && q.image.trim() !== '') {
                         imageHTML = `
@@ -226,14 +417,13 @@
                                 <span class="text-xs font-semibold text-slate-400 block mb-1.5"><i class="fa-solid fa-image"></i> Gambar / Petikan Soalan</span>
                                 <img src="${q.image}" 
                                      alt="Gambar Soalan" 
-                                     onerror="this.onerror=null; this.src='https://placehold.co/600x250/e2e8f0/475569?text=Gambar+Dalam+Folder+images/';"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/600x250/e2e8f0/475569?text=Gambar+Soalan+${qIndex+1}';"
                                      class="max-w-full sm:max-w-md md:max-w-lg max-h-[260px] md:max-h-[320px] mx-auto object-contain rounded-xl shadow-sm border border-slate-200">
                             </div>
                         `;
                     }
 
-                    // Pilihan Jawapan HTML
-                    let optionsHTML = '<div class="grid grid-cols-1 gap-3 mt-4" id="options-container-' + qIndex + '">';
+                    let optionsHTML = `<div class="grid grid-cols-1 gap-3 mt-4" id="options-container-${qIndex}">`;
                     q.options.forEach((opt) => {
                         optionsHTML += `
                             <button id="opt-btn-${qIndex}-${escapeId(opt)}" 
@@ -273,7 +463,7 @@
         }
 
         function selectOption(qIndex, selectedOpt, correctAns) {
-            if (userAnswers[qIndex]) return; // Elak jawapan diubah semula
+            if (userAnswers[qIndex]) return;
 
             const isCorrect = (selectedOpt === correctAns);
             
@@ -287,7 +477,6 @@
             }
             answeredQuestionsCount += 1;
 
-            // Kemas kini gaya pilihan jawapan bagi soalan ini
             const optionsContainer = document.getElementById(`options-container-${qIndex}`);
             const buttons = optionsContainer.getElementsByTagName('button');
 
@@ -295,7 +484,6 @@
                 btn.disabled = true;
                 btn.classList.add('cursor-not-allowed');
 
-                // Dapatkan teks jawapan butang ini
                 const btnText = btn.querySelector('span').innerText;
 
                 if (btnText === correctAns) {
@@ -309,7 +497,6 @@
                 }
             }
 
-            // Kemas kini Kotak Maklum Balas
             const feedbackBox = document.getElementById(`feedback-${qIndex}`);
             feedbackBox.classList.remove('hidden');
 
@@ -318,10 +505,9 @@
                 feedbackBox.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Syabas! Jawapan anda TEPAT.';
             } else {
                 feedbackBox.className = "p-4 rounded-2xl text-sm font-semibold text-center bg-rose-100 text-rose-800 border border-rose-200";
-                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Maaf, jawapan tidak tepat. Jawapan betul: <b>${correctAns}</b>`;
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Maaf, jawapan kurang tepat. Jawapan betul: <b>${correctAns}</b>`;
             }
 
-            // Status Kad Soalan
             const badgeStatus = document.getElementById(`badge-status-${qIndex}`);
             badgeStatus.className = isCorrect ? "text-xs font-bold text-emerald-600" : "text-xs font-bold text-rose-600";
             badgeStatus.innerText = isCorrect ? "Betul ✓" : "Salah ✗";
@@ -329,10 +515,41 @@
             updateDashboard();
         }
 
+        function updateDashboard() {
+            const scoreDisplay = `${score} / ${totalQuestionsCount}`;
+            const answeredDisplay = `${answeredQuestionsCount} / ${totalQuestionsCount}`;
+
+            document.getElementById('score-text').innerText = scoreDisplay;
+            document.getElementById('answered-count').innerText = answeredDisplay;
+            
+            const headerScoreBadge = document.getElementById('header-score-badge');
+            if (headerScoreBadge) {
+                headerScoreBadge.innerText = scoreDisplay;
+            }
+            
+            const progressPercent = totalQuestionsCount > 0 ? (answeredQuestionsCount / totalQuestionsCount) * 100 : 0;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+            if (answeredQuestionsCount === totalQuestionsCount && totalQuestionsCount > 0) {
+                document.getElementById('summary-card').classList.remove('hidden');
+                document.getElementById('final-score').innerText = score;
+                document.getElementById('total-questions').innerText = totalQuestionsCount;
+                document.getElementById('summary-student-info').innerText = `Murid: ${studentName} | Kelas: ${studentClass} | ${selectedSet}`;
+
+                const percentage = (score / totalQuestionsCount) * 100;
+                let gradeText = "";
+                if (percentage >= 80) gradeText = "Tahniah! Cemerlang ⭐⭐⭐";
+                else if (percentage >= 50) gradeText = "Syabas! Boleh Ditingkatkan 👍";
+                else gradeText = "Teruskan Usaha & Cuba Lagi! 💪";
+
+                document.getElementById('summary-grade').innerText = gradeText;
+            }
+        }
+
         function scrollToCategory(catId) {
             const elem = document.getElementById(catId);
             if (elem) {
-                const offset = 100; // Ruang untuk sticky navbar
+                const offset = 120;
                 const bodyRect = document.body.getBoundingClientRect().top;
                 const elementRect = elem.getBoundingClientRect().top;
                 const elementPosition = elementRect - bodyRect;
@@ -350,7 +567,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Helper functions
+        // Helper functions for string escaping
         function escapeQuote(str) {
             return str.replace(/'/g, "\\'");
         }
@@ -359,8 +576,64 @@
             return str.replace(/[^a-zA-Z0-9]/g, '_');
         }
 
-        // Mula kuiz bila tetingkap dimuatkan
-        window.onload = initQuiz;
+        function generateFallbackQuestions(setName, moduleName) {
+            return {
+                "Reading": [
+                    {
+                        "type": "mcq",
+                        "q": `1. Read about ${moduleName}: What is the main topic of this module?`,
+                        "options": [`A) ${moduleName} practice`, "B) Cooking lesson", "C) Playing games"],
+                        "ans": `A) ${moduleName} practice`
+                    },
+                    {
+                        "type": "mcq",
+                        "q": "2. Choose the correct statement based on the Year 3 textbook context:",
+                        "options": ["A) English is fun to learn everyday.", "B) We go to bed at school.", "C) Fish can fly in the sky."],
+                        "ans": "A) English is fun to learn everyday."
+                    }
+                ],
+                "Vocabulary": [
+                    {
+                        "type": "mcq",
+                        "q": `3. Which word belongs to ${moduleName}?`,
+                        "options": ["A) Vocabulary Word A", "B) Vocabulary Word B", "C) Vocabulary Word C"],
+                        "ans": "A) Vocabulary Word A"
+                    }
+                ],
+                "Grammar": [
+                    {
+                        "type": "mcq",
+                        "q": "4. Complete the sentence: She ______ learning English in Year 3.",
+                        "options": ["A) is", "B) are", "C) am"],
+                        "ans": "A) is"
+                    }
+                ],
+                "Writing": [
+                    {
+                        "type": "mcq",
+                        "q": "5. Choose the sentence with correct punctuation:",
+                        "options": ["A) I love learning English.", "B) i love learning english", "C) I love learning English"],
+                        "ans": "A) I love learning English."
+                    }
+                ],
+                "Speaking": [
+                    {
+                        "type": "mcq",
+                        "q": "6. How do you respond when a teacher greets you in class?",
+                        "options": ["A) Good morning, teacher.", "B) Goodbye, teacher.", "C) Thank you, teacher."],
+                        "ans": "A) Good morning, teacher."
+                    }
+                ],
+                "Mixed Skills": [
+                    {
+                        "type": "mcq",
+                        "q": `7. Review question for ${moduleName}:`,
+                        "options": ["A) Correct Option", "B) Incorrect Option A", "C) Incorrect Option B"],
+                        "ans": "A) Correct Option"
+                    }
+                ]
+            };
+        }
     </script>
 </body>
 </html>
