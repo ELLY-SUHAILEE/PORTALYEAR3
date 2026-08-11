@@ -199,21 +199,21 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
     {
       "type": "mcq",
       "image": "images/GS_MODULE1_28.png",
-      "q": "28. Read the notice:\n\n[SWIMMING LESSONS]\nDay: Every Saturday\nActivity: Swim & Dive\n\nWhat can you learn during this class?",
+      "q": "28. Read the notice. What can you learn during this class?",
       "options": ["A) Football and basketball", "B) Swimming and diving", "C) Singing and dancing"],
       "ans": "B) Swimming and diving"
     },
     {
       "type": "mcq",
       "image": "images/GS_MODULE1_29.png",
-      "q": "29. Read the card:\n\n[HAPPY BIRTHDAY SARA!]\nYou are 9 years old today!\n\nHow old is Sara?",
+      "q": "29. Read the card. How old is Sara?" ,
       "options": ["A) 7 years old", "B) 8 years old", "C) 9 years old"],
       "ans": "C) 9 years old"
     },
     {
       "type": "mcq",
       "image": "images/GS_MODULE1_30.png",
-      "q": "30. Look at the beach sign: [KEEP THE BEACH CLEAN! NO LITTERING!]\nWhat should you do?",
+      "q": "30. Look at the beach sign: What should you do?",
       "options": ["A) Throw rubbish into the sea", "B) Throw rubbish in the bin", "C) Leave rubbish on the sand"],
       "ans": "B) Throw rubbish in the bin"
     }
@@ -333,15 +333,13 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
   "Grammar": [
     {
       "type": "mcq",
-      "image": "images/REMEDIAL_MODULE1_16.png",
       "q": "16. She ______ got curly hair.",
       "options": ["A) has", "B) have", "C) is"],
       "ans": "A) has"
     },
     {
       "type": "mcq",
-      "image": "images/REMEDIAL_MODULE1_17.png",
-      "q": "17. They ______ got big eyes.",
+   "q": "17. They ______ got big eyes.",
       "options": ["A) has", "B) have", "C) is"],
       "ans": "B) have"
     },
