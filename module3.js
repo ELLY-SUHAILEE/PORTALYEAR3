@@ -9,435 +9,435 @@ function wrapCenterImage(imagePath) {
 }
 
 // ==========================================
-// 1. GET SMART SET (30 SOALAN)
+// 1. GET SMART SET - MODULE 3: RIGHT NOW (30 SOALAN)
 // ==========================================
 quizBank["GET SMART SET"]["Module 3: Right now"] = {
   "Reading": [
-    // --- PETIKAN 1 (Soalan 1 - 5) ---
+    // --- PASSAGE 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_1.png"),
-      "q": "1. What type of hair does Aina have?",
-      "options": ["A) Short straight hair", "B) Long curly hair", "C) Short fair hair"],
-      "ans": "B) Long curly hair"
+      "image": wrapCenterImage("images/GS_MODULE3_1.png"),
+      "q": "1. What is Kelly doing in the living room on Saturday morning?",
+      "options": ["A) She is doing gymnastics.", "B) She is playing baseball.", "C) She is collecting shells."],
+      "ans": "A) She is doing gymnastics."
     },
     {
       "type": "mcq",
-      "q": "2. How many shells does Sara have in her basket?",
-      "options": ["A) Fifty shells", "B) Forty shells", "C) Thirty shells"],
-      "ans": "B) Forty shells"
+      "q": "2. Where are Brad and Cindy playing baseball?",
+      "options": ["A) In the living room", "B) Outside in the garden", "C) At the beach"],
+      "ans": "B) Outside in the garden"
     },
     {
       "type": "mcq",
-      "q": "3. Where are Sara and Aina spending their time today?",
-      "options": ["A) At the beach", "B) At the park", "C) At school"],
-      "ans": "A) At the beach"
+      "q": "3. What do Brad and Cindy love doing as a hobby?",
+      "options": ["A) Doing gymnastics", "B) Washing cars", "C) Collecting shells"],
+      "ans": "C) Collecting shells"
     },
     {
       "type": "mcq",
-      "q": "4. Which statement is TRUE about Aina?",
-      "options": ["A) She has forty shells.", "B) She has straight dark hair.", "C) She has got big black eyes."],
-      "ans": "C) She has got big black eyes."
+      "q": "4. Which statement is TRUE about Kelly, Brad, and Cindy?",
+      "options": ["A) They are at the beach today.", "B) They are playing sports at home today.", "C) Brad is doing gymnastics in the living room."],
+      "ans": "B) They are playing sports at home today."
     },
     {
       "type": "mcq",
-      "q": "5. Why do Sara and Aina enjoy spending time together?",
-      "options": ["A) They share a hobby of collecting shells.", "B) They go to different schools.", "C) They like playing computer games."],
-      "ans": "A) They share a hobby of collecting shells."
+      "q": "5. What can we learn about the children's Saturday morning?",
+      "options": ["A) They are sleeping late in their rooms.", "B) They are buying sports equipment.", "C) They are active doing sports at home."],
+      "ans": "C) They are active doing sports at home."
     },
 
-    // --- PETIKAN 2 (Soalan 6 - 10) ---
+    // --- PASSAGE 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_6.png"),
-      "q": "6. What colour is Amir's hair?",
-      "options": ["A) Black", "B) Fair", "C) Brown"],
-      "ans": "B) Fair"
+      "image": wrapCenterImage("images/GS_MODULE3_6.png"),
+      "q": "6. Where is Mum making a chocolate cake?",
+      "options": ["A) In the garden", "B) In the kitchen", "C) In Tom's bedroom"],
+      "ans": "B) In the kitchen"
     },
     {
       "type": "mcq",
-      "q": "7. How many stickers has Amir got in his album?",
-      "options": ["A) Ten stickers", "B) Fifteen stickers", "C) Twenty stickers"],
-      "ans": "C) Twenty stickers"
+      "q": "7. What colour is the car that Dad is washing outside?",
+      "options": ["A) Blue", "B) White", "C) Red"],
+      "ans": "C) Red"
     },
     {
       "type": "mcq",
-      "q": "8. Which activity is Amir unable to do?",
-      "options": ["A) Play football", "B) Swim fast", "C) Dive into the deep pool"],
-      "ans": "C) Dive into the deep pool"
+      "q": "8. What is Tom doing in his bedroom right now?",
+      "options": ["A) He is playing computer games with his friends online.", "B) He is making a cake.", "C) He is doing his homework."],
+      "ans": "A) He is playing computer games with his friends online."
     },
     {
       "type": "mcq",
-      "q": "9. Which statement is TRUE about Amir?",
-      "options": ["A) He can swim fast.", "B) He hates sports.", "C) He has got long hair."],
-      "ans": "A) He can swim fast."
+      "q": "9. Why is Mum baking a chocolate cake?",
+      "options": ["A) For breakfast", "B) For afternoon tea", "C) For a birthday party"],
+      "ans": "B) For afternoon tea"
     },
     {
       "type": "mcq",
-      "q": "10. What can we learn about Amir from his Saturday routine?",
-      "options": ["A) He stays in bed all day.", "B) He is dedicated to improving his sports skills.", "C) He prefers drawing pictures."],
-      "ans": "B) He is dedicated to improving his sports skills."
+      "q": "10. Which statement is TRUE about Tom's family on Sunday morning?",
+      "options": ["A) Dad is baking a cake in the kitchen.", "B) Tom is washing the red car in the garden.", "C) Everyone in Tom's house is busy doing different things."],
+      "ans": "C) Everyone in Tom's house is busy doing different things."
     }
   ],
 
   "Vocabulary": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_11.png"),
-      "q": "11. My sister's hair is not straight. She has got ______ hair.",
-      "options": ["A) blond", "B) short", "C) curly"],
-      "ans": "C) curly"
+      "image": wrapCenterImage("images/GS_MODULE3_11.png"),
+      "q": "11. Look at the picture. He is hitting the ball with a racket. He is playing ______.",
+      "options": ["A) gymnastics", "B) tennis", "C) skateboarding"],
+      "ans": "B) tennis"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_12.png"),
-      "q": "12. Light yellow hair is described as ______ hair.",
-      "options": ["A) blond / fair", "B) black", "C) dark"],
-      "ans": "A) blond / fair"
+      "image": wrapCenterImage("images/GS_MODULE3_12.png"),
+      "q": "12. She is wearing a helmet and knee pads. She is ______.",
+      "options": ["A) swimming", "B) doing gymnastics", "C) skateboarding"],
+      "ans": "C) skateboarding"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_13.png"),
-      "q": "13. Amir is a polite and good-looking boy. The word 'handsome' describes his ______.",
-      "options": ["A) family", "B) appearance", "C) school"],
-      "ans": "B) appearance"
+      "image": wrapCenterImage("images/GS_MODULE3_13.png"),
+      "q": "13. The athlete is bending her body gracefully. She is doing ______.",
+      "options": ["A) gymnastics", "B) baseball", "C) table tennis"],
+      "ans": "A) gymnastics"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_14.png"),
-      "q": "14. Sara walked along the beach and picked up forty colourful ______.",
-      "options": ["A) books", "B) pencils", "C) shells"],
-      "ans": "C) shells"
+      "image": wrapCenterImage("images/GS_MODULE3_14.png"),
+      "q": "14. They are jumping up to hit the ball over the net. They are playing ______.",
+      "options": ["A) football", "B) volleyball", "C) running"],
+      "ans": "B) volleyball"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_15.png"),
-      "q": "15. Amir keeps all his sports stickers neatly inside an ______.",
-      "options": ["A) basket", "B) album", "C) envelope"],
-      "ans": "B) album"
+      "image": wrapCenterImage("images/GS_MODULE3_15.png"),
+      "q": "15. He is holding a bat and waiting for the ball. He is playing ______.",
+      "options": ["A) swimming", "B) cycling", "C) baseball"],
+      "ans": "C) baseball"
     }
   ],
 
   "Grammar": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_16.png"),
-      "q": "16. She ______ got long curly hair and brown eyes.",
-      "options": ["A) has", "B) have", "C) is"],
-      "ans": "A) has"
+      "image": wrapCenterImage("images/GS_MODULE3_16.png"),
+      "q": "16. Look! He ______ the football into the goal.",
+      "options": ["A) is kicking", "B) are kicking", "C) kick"],
+      "ans": "A) is kicking"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_17.png"),
-      "q": "17. They ______ got fifty shells in their baskets.",
-      "options": ["A) has", "B) are", "C) have"],
-      "ans": "C) have"
+      "image": wrapCenterImage("images/GS_MODULE3_17.png"),
+      "q": "17. Listen! They ______ playing volleyball in the hall.",
+      "options": ["A) is", "B) are", "C) am"],
+      "ans": "B) are"
     },
     {
       "type": "mcq",
-      "q": "18. ______ you got any sports stickers in your album?",
-      "options": ["A) Has", "B) Have", "C) Do"],
-      "ans": "B) Have"
+      "q": "18. What ______ you doing right now?",
+      "options": ["A) is", "B) am", "C) are"],
+      "ans": "C) are"
     },
     {
       "type": "mcq",
-      "q": "19. Mei Ling is good at sports. She ______ swim fast.",
-      "options": ["A) can't", "B) can", "C) has"],
-      "ans": "B) can"
+      "q": "19. She ______ doing gymnastics; she is playing tennis.",
+      "options": ["A) isn't", "B) aren't", "C) am not"],
+      "ans": "A) isn't"
     },
     {
       "type": "mcq",
-      "q": "20. Amir is afraid of deep water, so he ______ dive into the pool.",
-      "options": ["A) can't", "B) can", "C) hasn't"],
-      "ans": "A) can't"
+      "q": "20. ______ he swimming in the pool at the moment?",
+      "options": ["A) Are", "B) Is", "C) Do"],
+      "ans": "B) Is"
     }
   ],
 
   "Writing": [
     {
       "type": "mcq",
-      "q": "21. Choose the sentence with the correct punctuation and capital letters.",
-      "options": ["A) she has got long curly hair.", "B) She has got long, curly hair.", "C) She has got long curly hair"],
-      "ans": "B) She has got long, curly hair."
+      "q": "21. Choose the sentence with the correct punctuation.",
+      "options": ["A) is he playing baseball right now.", "B) Is he playing baseball right now.", "C) Is he playing baseball right now?"],
+      "ans": "C) Is he playing baseball right now?"
     },
     {
       "type": "mcq",
-      "q": "22. Rearrange the words to make a correct sentence: [got / I / shells / have / forty]",
-      "options": ["A) Forty shells I have got.", "B) I got have forty shells.", "C) I have got forty shells."],
-      "ans": "C) I have got forty shells."
+      "q": "22. Rearrange the words to make a sentence: [are / They / park / at / running / the]",
+      "options": ["A) They running are at the park.", "B) They are running at the park.", "C) At the park running are they."],
+      "ans": "B) They are running at the park."
     },
     {
       "type": "mcq",
-      "q": "23. Rearrange the words to form a correct sentence: [cannot / He / dive / pool / into / the]",
-      "options": ["A) He dive cannot into the pool.", "B) He cannot dive into the pool.", "C) Into the pool he dive cannot."],
-      "ans": "B) He cannot dive into the pool."
+      "q": "23. Rearrange the words to make a sentence: [is / She / not / a / helmet / wearing]",
+      "options": ["A) She is not wearing a helmet.", "B) She wearing is not helmet a.", "C) Wearing a helmet she is not."],
+      "ans": "A) She is not wearing a helmet."
     },
     {
       "type": "mcq",
-      "q": "24. Choose the word with the correct spelling for the number '50'.",
-      "options": ["A) Fifty", "B) Fivety", "C) Fiftye"],
-      "ans": "A) Fifty"
+      "q": "24. Choose the correct spelling for the action word '-ing' of 'swim':",
+      "options": ["A) swiming", "B) swimmeng", "C) swimming"],
+      "ans": "C) swimming"
     }
   ],
 
   "Speaking": [
     {
       "type": "mcq",
-      "q": "25. How do you introduce your friend Aina to your classmate Sara?",
-      "options": ["A) Sara, look at Aina now.", "B) Aina is standing there, Sara.", "C) Sara, this is my friend, Aina."],
-      "ans": "C) Sara, this is my friend, Aina."
+      "q": "25. Your teacher asks: 'What is your brother doing?' How do you answer?",
+      "options": ["A) He is playing computer games.", "B) He likes computer games.", "C) He played computer games."],
+      "ans": "A) He is playing computer games."
     },
     {
       "type": "mcq",
-      "q": "26. Your classmate asks, 'Can you play football?' How do you answer if you know how to play?",
-      "options": ["A) Yes, I have.", "B) Yes, I can.", "C) Yes, I am."],
-      "ans": "B) Yes, I can."
+      "q": "26. Someone asks: 'Are you doing your homework right now?' If YES, you say:",
+      "options": ["A) Yes, I do.", "B) Yes, I am.", "C) Yes, I can."],
+      "ans": "B) Yes, I am."
     },
     {
       "type": "mcq",
-      "q": "27. How do you ask a new classmate if they know how to swim?",
-      "options": ["A) Have you swim?", "B) Are you swim?", "C) Can you swim?"],
-      "ans": "C) Can you swim?"
+      "q": "27. How do you ask your friend what sport he is playing?",
+      "options": ["A) What sport do you like?", "B) Where is the sport?", "C) What sport are you playing?"],
+      "ans": "C) What sport are you playing?"
     }
   ],
 
   "Mixed Skills": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_28.png"),
-      "q": "28. Read the notice. What can you learn during this class?",
-      "options": ["A) Football and basketball", "B) Swimming and diving", "C) Singing and dancing"],
-      "ans": "B) Swimming and diving"
+      "image": wrapCenterImage("images/GS_MODULE3_28.png"),
+      "q": "28. Read the sign at the swimming pool: [NO RUNNING]. What does it mean?",
+      "options": ["A) You must run quickly.", "B) You must walk carefully, do not run.", "C) You should swim fast."],
+      "ans": "B) You must walk carefully, do not run."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_29.png"),
-      "q": "29. Read the card. How old is Sara?",
-      "options": ["A) 7 years old", "B) 8 years old", "C) 9 years old"],
-      "ans": "C) 9 years old"
+      "image": wrapCenterImage("images/GS_MODULE3_29.png"),
+      "q": "29. Look at the schedule: [10.00 AM - Tennis Match]. What are the players doing at 10.15 AM?",
+      "options": ["A) They are playing tennis.", "B) They are eating lunch.", "C) They are sleeping."],
+      "ans": "A) They are playing tennis."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_30.png"),
-      "q": "30. Look at the beach sign: What should you do?",
-      "options": ["A) Throw rubbish into the sea", "B) Throw rubbish in the bin", "C) Leave rubbish on the sand"],
-      "ans": "B) Throw rubbish in the bin"
+      "image": wrapCenterImage("images/GS_MODULE3_30.png"),
+      "q": "30. Look at the poster: [JOIN OUR GYMNASTICS CLUB]. Who is this club for?",
+      "options": ["A) People who want to swim.", "B) People who want to buy shoes.", "C) People who want to do gymnastics."],
+      "ans": "C) People who want to do gymnastics."
     }
   ]
 };
 
 // ==========================================
-// 2. REMEDIAL SET (30 SOALAN)
+// 2. REMEDIAL SET - MODULE 3: RIGHT NOW (30 SOALAN)
 // ==========================================
 quizBank["REMEDIAL SET"]["Module 3: Right now"] = {
   "Reading": [
-    // --- PETIKAN 1 (Soalan 1 - 5) ---
+    // --- PASSAGE 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_1.png"),
-      "q": "1. Who is Sara's friend?",
-      "options": ["A) Sara", "B) Aina", "C) Amir"],
-      "ans": "B) Aina"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE3_1.png"),
+      "q": "1. Who is doing gymnastics in the living room?",
+      "options": ["A) Brad", "B) Kelly", "C) Tom"],
+      "ans": "B) Kelly"
     },
     {
       "type": "mcq",
-      "q": "2. What hair does Sara have?",
-      "options": ["A) Dark hair", "B) Curly hair", "C) Fair hair"],
-      "ans": "A) Dark hair"
+      "q": "2. What is Brad doing in the garden?",
+      "options": ["A) Doing gymnastics", "B) Swimming", "C) Playing baseball"],
+      "ans": "C) Playing baseball"
     },
     {
       "type": "mcq",
-      "q": "3. What hair does Aina have?",
-      "options": ["A) Straight hair", "B) Short hair", "C) Curly hair"],
-      "ans": "C) Curly hair"
+      "q": "3. Where is Kelly doing gymnastics?",
+      "options": ["A) In the living room", "B) In the garden", "C) At school"],
+      "ans": "A) In the living room"
     },
     {
       "type": "mcq",
-      "q": "4. Where are Sara and Aina?",
-      "options": ["A) At the beach", "B) At school", "C) At home"],
-      "ans": "A) At the beach"
+      "q": "4. Is Brad in the living room?",
+      "options": ["A) Yes, he is.", "B) No, he isn't.", "C) Yes, she is."],
+      "ans": "B) No, he isn't."
     },
     {
       "type": "mcq",
-      "q": "5. Which word describes hair in the story?",
-      "options": ["A) Beach", "B) Curly", "C) Today"],
-      "ans": "B) Curly"
+      "q": "5. What sport is Brad playing?",
+      "options": ["A) Football", "B) Tennis", "C) Baseball"],
+      "ans": "C) Baseball"
     },
 
-    // --- PETIKAN 2 (Soalan 6 - 10) ---
+    // --- PASSAGE 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_6.png"),
-      "q": "6. Who is the boy in the story?",
-      "options": ["A) Sara", "B) Aina", "C) Amir"],
-      "ans": "C) Amir"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE3_6.png"),
+      "q": "6. Where is Mum making a cake?",
+      "options": ["A) In the kitchen", "B) In the garden", "C) In the bedroom"],
+      "ans": "A) In the kitchen"
     },
     {
       "type": "mcq",
-      "q": "7. What colour is Amir's hair?",
-      "options": ["A) Black", "B) Fair", "C) Brown"],
-      "ans": "B) Fair"
+      "q": "7. What is Dad doing outside?",
+      "options": ["A) Making a cake", "B) Washing the car", "C) Playing games"],
+      "ans": "B) Washing the car"
     },
     {
       "type": "mcq",
-      "q": "8. What sport can Amir play?",
-      "options": ["A) Football", "B) Tennis", "C) Badminton"],
-      "ans": "A) Football"
+      "q": "8. Where is Tom playing games?",
+      "options": ["A) In the kitchen", "B) Outside", "C) In his room"],
+      "ans": "C) In his room"
     },
     {
       "type": "mcq",
-      "q": "9. How many stickers does Amir have?",
-      "options": ["A) 10 stickers", "B) 20 stickers", "C) 30 stickers"],
-      "ans": "B) 20 stickers"
+      "q": "9. What is Mum making?",
+      "options": ["A) A cake", "B) Pizza", "C) Tea"],
+      "ans": "A) A cake"
     },
     {
       "type": "mcq",
-      "q": "10. Amir can swim ____.",
-      "options": ["A) slow", "B) fast", "C) bad"],
-      "ans": "B) fast"
+      "q": "10. Is Dad inside the kitchen?",
+      "options": ["A) Yes, he is.", "B) No, he is outside.", "C) Yes, she is."],
+      "ans": "B) No, he is outside."
     }
   ],
 
   "Vocabulary": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_11.png"),
-      "q": "11. Yellow or light colour hair is called ______.",
-      "options": ["A) blond / fair", "B) black", "C) dark"],
-      "ans": "A) blond / fair"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE3_11.png"),
+      "q": "11. Hitting a ball with a racket is ______.",
+      "options": ["A) running", "B) tennis", "C) sleeping"],
+      "ans": "B) tennis"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_12.png"),
-      "q": "12. You pick up ______ at the beach.",
-      "options": ["A) books", "B) shells", "C) chairs"],
-      "ans": "B) shells"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE3_12.png"),
+      "q": "12. Riding on a board with wheels is ______.",
+      "options": ["A) swimming", "B) dancing", "C) skateboarding"],
+      "ans": "C) skateboarding"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_13.png"),
-      "q": "13. A friend in your class is your ______.",
-      "options": ["A) teacher", "B) classmate", "C) father"],
-      "ans": "B) classmate"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE3_13.png"),
+      "q": "13. Doing flips and stretching body is ______.",
+      "options": ["A) gymnastics", "B) fishing", "C) singing"],
+      "ans": "A) gymnastics"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_14.png"),
-      "q": "14. Hair that is not straight is ______ hair.",
-      "options": ["A) curly", "B) short", "C) long"],
-      "ans": "A) curly"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE3_14.png"),
+      "q": "14. Hitting a big ball over a net with hands is ______.",
+      "options": ["A) football", "B) volleyball", "C) running"],
+      "ans": "B) volleyball"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_15.png"),
-      "q": "15. A book for putting stickers is an ______.",
-      "options": ["A) album", "B) bag", "C) box"],
-      "ans": "A) album"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE3_15.png"),
+      "q": "15. Hitting a small ball with a bat is ______.",
+      "options": ["A) swimming", "B) cycling", "C) baseball"],
+      "ans": "C) baseball"
     }
   ],
 
   "Grammar": [
     {
       "type": "mcq",
-      "q": "16. She ______ got curly hair.",
-      "options": ["A) has", "B) have", "C) is"],
-      "ans": "A) has"
+      "q": "16. He ______ playing baseball.",
+      "options": ["A) is", "B) are", "C) am"],
+      "ans": "A) is"
     },
     {
       "type": "mcq",
-      "q": "17. They ______ got big eyes.",
-      "options": ["A) has", "B) have", "C) is"],
-      "ans": "B) have"
+      "q": "17. They ______ washing the car.",
+      "options": ["A) is", "B) are", "C) am"],
+      "ans": "B) are"
     },
     {
       "type": "mcq",
-      "q": "18. Amir ______ swim fast.",
-      "options": ["A) can", "B) has", "C) have"],
-      "ans": "A) can"
+      "q": "18. I ______ making a cake right now.",
+      "options": ["A) is", "B) are", "C) am"],
+      "ans": "C) am"
     },
     {
       "type": "mcq",
-      "q": "19. He ______ dive. (Cannot)",
-      "options": ["A) can't", "B) hasn't", "C) haven't"],
-      "ans": "A) can't"
+      "q": "19. She is not ______ (play) games.",
+      "options": ["A) playing", "B) play", "C) plays"],
+      "ans": "A) playing"
     },
     {
       "type": "mcq",
-      "q": "20. I ______ got 10 shells.",
-      "options": ["A) have", "B) has", "C) is"],
-      "ans": "A) have"
+      "q": "20. ______ they skateboarding?",
+      "options": ["A) Is", "B) Are", "C) Am"],
+      "ans": "B) Are"
     }
   ],
 
   "Writing": [
     {
       "type": "mcq",
-      "q": "21. Choose the correct spelling:",
-      "options": ["A) Welcome", "B) Welcom", "C) Wellcome"],
-      "ans": "A) Welcome"
+      "q": "21. Choose the correct spelling for action word 'run':",
+      "options": ["A) runing", "B) runeng", "C) running"],
+      "ans": "C) running"
     },
     {
       "type": "mcq",
-      "q": "22. Rearrange: [ can / I / swim ]",
-      "options": ["A) Swim I can.", "B) I can swim.", "C) Can swim I."],
-      "ans": "B) I can swim."
+      "q": "22. Rearrange: [ is / He / swimming ]",
+      "options": ["A) He is swimming.", "B) Swimming is he.", "C) Is he swimming."],
+      "ans": "A) He is swimming."
     },
     {
       "type": "mcq",
-      "q": "23. Choose the correct number name for 10:",
-      "options": ["A) Ten", "B) Two", "C) Three"],
-      "ans": "A) Ten"
+      "q": "23. Choose the correct punctuation:",
+      "options": ["A) she is doing gymnastics", "B) She is doing gymnastics.", "C) She is doing gymnastics?"],
+      "ans": "B) She is doing gymnastics."
     },
     {
       "type": "mcq",
-      "q": "24. Choose the correct number name for 20:",
-      "options": ["A) Twenty", "B) Twelve", "C) Two"],
-      "ans": "A) Twenty"
+      "q": "24. Choose the correct spelling:",
+      "options": ["A) Baseball", "B) Basebal", "C) Baisball"],
+      "ans": "A) Baseball"
     }
   ],
 
   "Speaking": [
     {
       "type": "mcq",
-      "q": "25. How do you greet your teacher in the morning?",
-      "options": ["A) Good morning", "B) Good night", "C) Goodbye"],
-      "ans": "A) Good morning"
+      "q": "25. 'What are you doing?' - You answer:",
+      "options": ["A) I am 9 years old.", "B) I am reading.", "C) I like apples."],
+      "ans": "B) I am reading."
     },
     {
       "type": "mcq",
-      "q": "26. Your friend asks: 'Can you swim?' If YES, you say:",
-      "options": ["A) Yes, I can.", "B) Yes, I have.", "C) No, I cannot."],
-      "ans": "A) Yes, I can."
+      "q": "26. 'Is he washing the car?' - If YES, you say:",
+      "options": ["A) Yes, she is.", "B) Yes, I am.", "C) Yes, he is."],
+      "ans": "C) Yes, he is."
     },
     {
       "type": "mcq",
-      "q": "27. What do you say when meeting a new friend?",
-      "options": ["A) Hello!", "B) Bye!", "C) No!"],
-      "ans": "A) Hello!"
+      "q": "27. 'Are they playing games?' - If NO, you say:",
+      "options": ["A) No, they aren't.", "B) No, he isn't.", "C) No, I am not."],
+      "ans": "A) No, they aren't."
     }
   ],
 
   "Mixed Skills": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_28.png"),
-      "q": "28. Read the label:\n\n[10 SHELLS]\n\nWhat is inside?",
-      "options": ["A) Pencils", "B) Shells", "C) Books"],
-      "ans": "B) Shells"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE3_28.png"),
+      "q": "28. Read the label: [KITCHEN]. Who is making a cake here?",
+      "options": ["A) Dad", "B) Mum", "C) Tom"],
+      "ans": "B) Mum"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_29.png"),
-      "q": "29. Read the tag: [AMIR]\nIs this a boy or a girl?",
-      "options": ["A) Boy", "B) Girl", "C) Cat"],
-      "ans": "A) Boy"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE3_29.png"),
+      "q": "29. Look at the sign: [CAR WASH]. What is Dad doing?",
+      "options": ["A) Cooking", "B) Sleeping", "C) Washing the car"],
+      "ans": "C) Washing the car"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_30.png"),
-      "q": "30. Look at the sign: [SCHOOL]\nWhere are you?",
-      "options": ["A) School", "B) Beach", "C) Park"],
-      "ans": "A) School"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE3_30.png"),
+      "q": "30. Look at the tag: [BASEBALL BAT]. What sport is this for?",
+      "options": ["A) Baseball", "B) Swimming", "C) Running"],
+      "ans": "A) Baseball"
     }
   ]
 };
