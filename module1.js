@@ -7,7 +7,8 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
     // --- PETIKAN 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
-      "q": "Read the passage below and answer Questions 1 to 5:\n\nHello! I am Sara. I have got straight dark hair. My new classmate is Aina. She has got long curly hair and big black eyes. We are at the beach today. Aina has got fifty shells in her basket. I have got forty shells. We love collecting shells together!\n\n1. What type of hair does Aina have?",
+      "image": "image_d61f77.jpg",
+      "q": "1. What type of hair does Aina have?",
       "options": ["A) Short straight hair", "B) Long curly hair", "C) Short fair hair"],
       "ans": "B) Long curly hair"
     },
@@ -39,7 +40,8 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
     // --- PETIKAN 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
-      "q": "Read the passage below and answer Questions 6 to 10:\n\nMeet my brother, Amir. He has got short fair hair. Amir is very active and loves sports. He can play football very well, and he can swim fast. But he cannot dive into the deep pool. Amir has got twenty stickers in his album. He practises every Saturday!\n\n6. What colour is Amir's hair?",
+      "image": "GS_MODULE1B.png",
+      "q": "Read the text in the image below and answer Questions 6 to 10:\n\n6. What colour is Amir's hair?",
       "options": ["A) Black", "B) Fair", "C) Brown"],
       "ans": "B) Fair"
     },
@@ -210,15 +212,16 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
     // --- PETIKAN 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
-      "q": "Read the text below and answer Questions 1 to 5:\n\nHello! I am Sara. I have got straight dark hair. Aina is my friend. She has got curly hair. We are at the beach today.\n\n1. Who is Sara's friend?",
+      "image": "image_d61bb9.jpg",
+      "q": "Read the text in the image below and answer Questions 1 to 5:\n\n1. Who is Sara's friend?",
       "options": ["A) Sara", "B) Aina", "C) Amir"],
       "ans": "B) Aina"
     },
     {
       "type": "mcq",
       "q": "2. What hair does Sara have?",
-      "options": ["A) Straight dark hair", "B) Long curly hair", "C) Fair hair"],
-      "ans": "A) Straight dark hair"
+      "options": ["A) Dark hair", "B) Curly hair", "C) Fair hair"],
+      "ans": "A) Dark hair"
     },
     {
       "type": "mcq",
@@ -242,7 +245,8 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
     // --- PETIKAN 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
-      "q": "Read the text below and answer Questions 6 to 10:\n\nThis is Amir. He has got short fair hair. Amir can play football and swim fast. He has got 20 stickers.\n\n6. Who is the boy in the story?",
+      "image": "REMEDIALM1B.png",
+      "q": "Read the text in the image below and answer Questions 6 to 10:\n\n6. Who is the boy in the story?",
       "options": ["A) Sara", "B) Aina", "C) Amir"],
       "ans": "C) Amir"
     },
