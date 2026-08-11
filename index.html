@@ -3,199 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Kuiz Get Smart & Remedial</title>
+    <title>Portal Kuiz English Year 3</title>
     <style>
         /* Tetapan Asas Halaman */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f3f8;
+            background-color: #f0f4f9;
             margin: 0;
-            padding: 20px;
-            color: #333;
-        }
-
-        .main-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* -------------------------------------------------------------
-           HEADER GELAP (STATIC)
-           Tetapan position: static memastikan ia kekal di atas 
-           dan TIDAK mengekor semasa murid scroll.
-        ------------------------------------------------------------- */
-        .quiz-header {
-            position: static !important; /* Kekal static biasa */
-            top: auto;
-            z-index: auto;
-            
-            background-color: #1e2538;
-            color: #ffffff;
-            border-radius: 16px;
-            padding: 20px 25px;
-            margin-bottom: 25px;
+            padding: 30px 20px;
+            color: #2c3e50;
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            min-height: 90vh;
         }
 
-        .student-info {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .student-detail {
-            font-size: 0.9rem;
-            color: #a0aec0;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .module-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin: 0;
-            color: #ffffff;
-        }
-
-        .score-container {
-            border-left: 1px solid rgba(255, 255, 255, 0.15);
-            padding-left: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .score-label {
-            font-size: 0.75rem;
-            color: #a0aec0;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .score-value {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #20e39f; /* Warna hijau markah */
-        }
-
-        .btn-change {
-            background-color: rgba(255, 255, 255, 0.08);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 10px 18px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-change:hover {
-            background-color: rgba(255, 255, 255, 0.18);
-        }
-
-        /* -------------------------------------------------------------
-           BAHAGIAN SOALAN
-        ------------------------------------------------------------- */
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e2e8f0;
-            margin-bottom: 20px;
-        }
-
-        .section-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #2b6cb0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .badge-count {
-            background-color: #e2e8f0;
-            color: #4a5568;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .quiz-content {
+        /* Kad Utama (Static) */
+        .main-card {
             background-color: #ffffff;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 550px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(13, 59, 102, 0.1);
+            overflow: hidden;
+            border-top: 6px solid #f77f00; /* Aksen Garisan Oren */
+        }
+
+        /* Tajuk Atas (Biru & Oren) */
+        .card-header {
+            background: linear-gradient(135deg, #0d3b66 0%, #1d4e89 100%);
+            color: #ffffff;
+            padding: 30px 25px;
+            text-align: center;
+        }
+
+        .card-header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .card-header p {
+            margin: 8px 0 0 0;
+            color: #d1e3ff;
+            font-size: 0.95rem;
+        }
+
+        /* Kandungan Borang */
+        .card-body {
+            padding: 30px 25px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            color: #1d4e89;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e8f5;
+            border-radius: 10px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            outline: none;
+            color: #2c3e50;
+        }
+
+        .form-control:focus {
+            border-color: #f77f00;
+            box-shadow: 0 0 0 3px rgba(247, 127, 0, 0.15);
+        }
+
+        /* Seksyen Butang Set Kuiz */
+        .set-title {
+            font-weight: 700;
+            color: #1d4e89;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            display: block;
+        }
+
+        .set-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* Butang Pilihan Set (Oren & Biru) */
+        .btn-set {
+            border: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Butang Get Smart Set (Tema Biru) */
+        .btn-get-smart {
+            background-color: #1d4e89;
+            color: #ffffff;
+        }
+
+        .btn-get-smart:hover {
+            background-color: #0d3b66;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(13, 59, 102, 0.25);
+        }
+
+        /* Butang Remedial Set (Tema Oren) */
+        .btn-remedial {
+            background-color: #f77f00;
+            color: #ffffff;
+        }
+
+        .btn-remedial:hover {
+            background-color: #e06d00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(247, 127, 0, 0.3);
+        }
+
+        .btn-subtitle {
+            font-size: 0.75rem;
+            font-weight: 500;
+            opacity: 0.9;
         }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        
-        <!-- HEADER GELAP (STATIC - TIDAK MENGEKOR) -->
-        <div class="quiz-header">
-            <div class="student-info">
-                <span class="student-detail" id="header-student">Murid: ADAM (3 UKM) | GET SMART SET</span>
-                <h2 class="module-title" id="header-module">Module 1: Welcome!</h2>
-            </div>
-
-            <div class="score-container">
-                <span class="score-label">MARKAH SEMASA</span>
-                <span class="score-value" id="header-score">0 / 30</span>
-            </div>
-
-            <button class="btn-change" onclick="tukarModul()">← Tukar Modul / Set</button>
+    <div class="main-card">
+        <!-- HEADER UTAMA -->
+        <div class="card-header">
+            <h1>PORTAL KUIZ ENGLISH</h1>
+            <p>Sila masukkan maklumat murid dan pilih set latihan</p>
         </div>
 
-        <!-- BAHAGIAN KANDUNGAN KUIZ -->
-        <div class="quiz-content">
-            <div class="section-header">
-                <div class="section-title">
-                    <span>●</span> <span id="section-name">Bahagian: Reading</span>
-                </div>
-                <span class="badge-count" id="question-count">10 Soalan</span>
+        <!-- BORANG MASUKKAN MAKLUMAT -->
+        <div class="card-body">
+            <!-- Input Nama Murid -->
+            <div class="form-group">
+                <label for="nama">Nama Murid:</label>
+                <input type="text" id="nama" class="form-control" placeholder="Contoh: ADAM" required>
             </div>
 
-            <!-- Bekas Soalan Dipaparkan Di Sini -->
-            <div id="quiz-box">
-                <!-- Soalan akan dipanggil melalui JavaScript -->
+            <!-- Input / Pilihan Kelas -->
+            <div class="form-group">
+                <label for="kelas">Kelas:</label>
+                <select id="kelas" class="form-control" required>
+                    <option value="" disabled selected>-- Pilih Kelas --</option>
+                    <option value="3 UKM">3 UKM</option>
+                    <option value="3 UM">3 UM</option>
+                    <option value="3 USM">3 USM</option>
+                    <option value="3 UPM">3 UPM</option>
+                </select>
+            </div>
+
+            <!-- Butang Pilihan Set -->
+            <span class="set-title">Pilih Set Latihan:</span>
+            <div class="set-buttons">
+                <button class="btn-set btn-get-smart" onclick="mulaKuiz('GET SMART SET')">
+                    GET SMART SET
+                    <span class="btn-subtitle">Set Utama</span>
+                </button>
+
+                <button class="btn-set btn-remedial" onclick="mulaKuiz('REMEDIAL SET')">
+                    REMEDIAL SET
+                    <span class="btn-subtitle">Set Pemulihan</span>
+                </button>
             </div>
         </div>
-
     </div>
 
-    <!-- MEMUATKAN MEMORI BANK SOALAN UTAMA -->
+    <!-- LOGIK JAVASCRIPT -->
     <script>
-        window.quizBank = {
-            "GET SMART SET": {},
-            "REMEDIAL SET": {}
-        };
-    </script>
+        function mulaKuiz(setTerpilih) {
+            const nama = document.getElementById('nama').value.trim();
+            const kelas = document.getElementById('kelas').value;
 
-    <!-- MEMUATKAN FAIL MODUL (MODULE 1 SEHINGGA 10) -->
-    <script src="module1.js"></script>
-    <script src="module2.js"></script>
-    <script src="module3.js"></script>
-    <script src="module4.js"></script>
-    <script src="module5.js"></script>
-    <script src="module6.js"></script>
-    <script src="module7.js"></script>
-    <script src="module8.js"></script>
-    <script src="module9.js"></script>
-    <script src="module10.js"></script>
+            if (!nama) {
+                alert("Sila masukkan nama murid dahulu!");
+                return;
+            }
 
-    <!-- SKRIP LOGIK APLIKASI -->
-    <script>
-        function tukarModul() {
-            alert("Fungsi tukar modul / set dipanggil.");
-            // Tambah logik untuk kembali ke menu utama anda di sini
+            if (!kelas) {
+                alert("Sila pilih kelas murid!");
+                return;
+            }
+
+            // Simpan maklumat murid untuk modul
+            localStorage.setItem("murid_nama", nama);
+            localStorage.setItem("murid_kelas", kelas);
+            localStorage.setItem("pilihan_set", setTerpilih);
+
+            alert("Selamat menjawab " + nama + " (" + kelas + ") - " + setTerpilih);
+            
+            // Kod laluan ke skrin soalan / pilih modul boleh diletakkan di sini
+            // contoh: window.location.href = "modul.html";
         }
     </script>
 </body>
