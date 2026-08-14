@@ -17,7 +17,7 @@ quizBank["GET SMART SET"]["Module 4: Year in, year out"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE4_1.png"),
-      "q": "<b>Read Passage 1 and answer questions 1 to 5:</b><br><i>'In autumn, the leaves turn yellow and fall from the trees. Nurul and her brother love jumping in the leaves. In winter, it is very cold and it snows. They wear warm coats and make a snowman.'</i><br><br>1. What happens to the leaves in autumn?",
+      "q": "<b>Read Passage 1 and answer questions 1 to 5:",
       "options": ["A) They turn yellow and fall", "B) They grow bigger", "C) They turn green"],
       "ans": "A) They turn yellow and fall"
     },
@@ -50,7 +50,7 @@ quizBank["GET SMART SET"]["Module 4: Year in, year out"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE4_6.png"),
-      "q": "<b>Read Passage 2 and answer questions 6 to 10:</b><br><i>'In summer, it is hot and sunny. Lee and his family go to the beach. Lee goes swimming in the sea and his sister builds a sandcastle. In spring, it is warm and flowers bloom everywhere.'</i><br><br>6. Where do Lee and his family go in summer?",
+      "q": "<b>Read Passage 2 and answer questions 6 to 10:",
       "options": ["A) To the park", "B) To the beach", "C) To the mountains"],
       "ans": "B) To the beach"
     },
@@ -84,7 +84,7 @@ quizBank["GET SMART SET"]["Module 4: Year in, year out"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE4_11.png"),
-      "q": "11. Look at the picture. Which season is cold and has snow?",
+      "q": "11. Which season is cold and has snow?",
       "options": ["A) Summer", "B) Winter", "C) Spring"],
       "ans": "B) Winter"
     },
