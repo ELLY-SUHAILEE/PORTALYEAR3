@@ -13,13 +13,11 @@ function wrapCenterImage(imagePath) {
 // ==========================================
 quizBank["GET SMART SET"]["Module 10: World Around Us"] = {
   "Reading": [
-    // --- PASSAGE 1 (Soalan 1 - 5) ---
-    // Passage 1: The Amazing World of Animals
-    // "There are many fascinating animals in our world. The blue whale is the biggest animal on Earth. It is much larger than an elephant. On land, the cheetah is the fastest animal, running faster than a horse. Meanwhile, the giraffe is the tallest animal, with a very long neck to reach high leaves."
+    // --- GAMBAR 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_1.png"),
-      "q": "Passage 1: The Amazing World of Animals\n1. What is the biggest animal on Earth?",
+      "q": "1. What is the biggest animal on Earth?",
       "options": ["A) The elephant", "B) The blue whale", "C) The giraffe"],
       "ans": "B) The blue whale"
     },
@@ -48,11 +46,11 @@ quizBank["GET SMART SET"]["Module 10: World Around Us"] = {
       "ans": "A) Animals and their amazing physical traits."
     },
 
-    // --- PASSAGE 2 (Soalan 6 - 10) ---
-    // Passage 2: Our Solar System
+    // --- GAMBAR 2 (Soalan 6 - 10) ---
+    {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_6.png"),
-      "q": "Passage 2: Our Solar System\n6. How many planets are there in our solar system?",
+      "q": "6. How many planets are there in our solar system?",
       "options": ["A) Seven planets", "B) Eight planets", "C) Nine planets"],
       "ans": "B) Eight planets"
     },
@@ -243,79 +241,67 @@ quizBank["GET SMART SET"]["Module 10: World Around Us"] = {
 // ==========================================
 quizBank["REMEDIAL SET"]["Module 10: World Around Us"] = {
   "Reading": [
-    // --- PASSAGE 1 (Soalan 1 - 5) ---
-    // Passage 1: Big and Fast Animals
-    // "The blue whale is the biggest animal. The cheetah is the fastest. The giraffe is the tallest animal."
+    // --- GAMBAR 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE10_1.png"),
-      "q": "Passage 1: Big and Fast Animals\n1. What is the biggest animal?",
+      "q": "1. What is the biggest animal?",
       "options": ["A) Elephant", "B) Blue whale", "C) Cat"],
       "ans": "B) Blue whale"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_2.png"),
       "q": "2. What is the fastest land animal?",
       "options": ["A) Dog", "B) Cheetah", "C) Horse"],
       "ans": "B) Cheetah"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_3.png"),
       "q": "3. Which animal is the tallest?",
       "options": ["A) Giraffe", "B) Lion", "C) Monkey"],
       "ans": "A) Giraffe"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_4.png"),
       "q": "4. Is a giraffe taller than a horse?",
       "options": ["A) Yes, it is.", "B) No, it isn't.", "C) No, they are same."],
       "ans": "A) Yes, it is."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_5.png"),
       "q": "5. Is the blue whale small?",
       "options": ["A) Yes, it is.", "B) No, it is the biggest.", "C) Yes, like a fish."],
       "ans": "B) No, it is the biggest."
     },
 
-    // --- PASSAGE 2 (Soalan 6 - 10) ---
-    // Passage 2: Planets in Space
-    // "Jupiter is the biggest planet. Mercury is the smallest planet. Earth is our planet. Earth has water."
+    // --- GAMBAR 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE10_6.png"),
-      "q": "Passage 2: Planets in Space\n6. What is the biggest planet?",
+      "q": "6. What is the biggest planet?",
       "options": ["A) Earth", "B) Jupiter", "C) Mercury"],
       "ans": "B) Jupiter"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_7.png"),
       "q": "7. What is the smallest planet?",
       "options": ["A) Mercury", "B) Jupiter", "C) Saturn"],
       "ans": "A) Mercury"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_8.png"),
       "q": "8. What planet do we live on?",
       "options": ["A) Mars", "B) Earth", "C) Venus"],
       "ans": "B) Earth"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_9.png"),
       "q": "9. What does Earth have?",
       "options": ["A) Fire", "B) Water", "C) Ice rings"],
       "ans": "B) Water"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_10.png"),
       "q": "10. Is Jupiter bigger than Mercury?",
       "options": ["A) Yes, it is.", "B) No, it isn't.", "C) No, they are equal."],
       "ans": "A) Yes, it is."
