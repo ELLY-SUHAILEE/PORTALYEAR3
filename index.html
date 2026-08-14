@@ -146,6 +146,22 @@
             margin-bottom: 20px;
             border-radius: 4px;
         }
+        /* STYLING TAMBAHAN UNTUK GAMBAR */
+        .question-image-container {
+            text-align: center;
+            margin-bottom: 15px;
+            background-color: #ffffff;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+        .question-image {
+            max-width: 100%;
+            height: auto;
+            max-height: 350px;
+            border-radius: 6px;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body>
@@ -297,11 +313,16 @@
         soalanSemasa.forEach((soalan, index) => {
             htmlContent += `<div class="item-soalan">`;
             
+            // PEMBETULAN PAPARAN GAMBAR: Menggunakan tag <img>
             if (soalan.image) {
-                htmlContent += `<div class="passage-box">${soalan.image}</div>`;
+                htmlContent += `
+                    <div class="question-image-container">
+                        <img src="${soalan.image}" alt="Soalan ${index + 1}" class="question-image" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'color:red;font-size:13px;\\'>[Gambar gagal dimuatkan: ${soalan.image}]</span>';">
+                    </div>
+                `;
             }
 
-            // PEMBETULAN DI SINI: Menapis nombor sedia ada jika soalan mengandungi "21. Choose..." atau "22. Rearrange..."
+            // Menapis nombor sedia ada jika soalan mengandungi "21. Choose..." atau "22. Rearrange..."
             const teksSoalanBersih = (soalan.q || '').replace(/^\d+[\.\)]\s*/, '');
 
             htmlContent += `<h3 style="white-space: pre-line; margin-top: 5px; color: #111;">${index + 1}. ${teksSoalanBersih}</h3>`;
