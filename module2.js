@@ -198,7 +198,7 @@ quizBank["GET SMART SET"]["Module 2: Every day"] = {
     {
       "type": "mcq",
       "image": "images/GS_MODULE2_28.png",
-      "q": "Read the clock and schedule: What time is lunch?",
+      "q": "What time is lunch?",
       "options": ["A) At seven o'clock", "B) At one o'clock", "C) At eight o'clock"],
       "ans": "B) At one o'clock"
     },
