@@ -252,7 +252,7 @@
     function mulaKuiz(setTerpilih) {
         const nama = document.getElementById('nama').value.trim();
         const kelas = document.getElementById('kelas').value;
-        const modulInput = document.getElementById('modul').value; // Mengambil nombor modul (cth: "Module 5")
+        const modulInput = document.getElementById('modul').value;
 
         if (!nama || !kelas || !modulInput) {
             alert("Sila isi nama, pilih kelas, dan pilih modul terlebih dahulu!");
@@ -264,9 +264,7 @@
             return;
         }
 
-        // LOGIK AUTODETECT UNTUK MODULE 5 HINGGA 10
         const modulKeys = Object.keys(quizBank[setTerpilih]);
-        // Cari modul dalam JS yang bermula dengan kata kunci "Module X"
         const kunciPadan = modulKeys.find(key => key.toLowerCase().startsWith(modulInput.toLowerCase()));
 
         if (!kunciPadan) {
@@ -278,7 +276,6 @@
         maklumatPelajar = { nama, kelas, modul: kunciPadan, set: setTerpilih };
         soalanSemasa = [];
 
-        // Gabung semua kategori soalan
         Object.keys(dataModul).forEach(kategori => {
             soalanSemasa = soalanSemasa.concat(dataModul[kategori]);
         });
@@ -300,12 +297,14 @@
         soalanSemasa.forEach((soalan, index) => {
             htmlContent += `<div class="item-soalan">`;
             
-            // Papar petikan/gambar di atas soalan
             if (soalan.image) {
                 htmlContent += `<div class="passage-box">${soalan.image}</div>`;
             }
 
-            htmlContent += `<h3 style="white-space: pre-line; margin-top: 5px; color: #111;">${index + 1}. ${soalan.q}</h3>`;
+            // PEMBETULAN DI SINI: Menapis nombor sedia ada jika soalan mengandungi "21. Choose..." atau "22. Rearrange..."
+            const teksSoalanBersih = (soalan.q || '').replace(/^\d+[\.\)]\s*/, '');
+
+            htmlContent += `<h3 style="white-space: pre-line; margin-top: 5px; color: #111;">${index + 1}. ${teksSoalanBersih}</h3>`;
             htmlContent += `<div class="pilihan-jawapan">`;
 
             soalan.options.forEach((pilihan) => {
