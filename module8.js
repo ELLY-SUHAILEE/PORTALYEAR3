@@ -13,79 +13,67 @@ function wrapCenterImage(imagePath) {
 // ==========================================
 quizBank["GET SMART SET"]["Module 8: Where Were You Yesterday?"] = {
   "Reading": [
-    // --- PASSAGE 1 (Soalan 1 - 5) ---
-    // Passage 1: Yesterday's Activities
-    // "Yesterday was Sunday. In the morning, Maya was at the shopping centre with her mother to buy new clothes. In the afternoon, she was at the cinema with her friends. They watched a funny cartoon movie. It was exciting!"
+    // --- GAMBAR 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE8_1.png"),
-      "q": "Passage 1: Yesterday's Activities\n1. What day was yesterday?",
+      "q": "1. What day was yesterday?",
       "options": ["A) Saturday", "B) Sunday", "C) Monday"],
       "ans": "B) Sunday"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE8_2.png"),
       "q": "2. Where was Maya in the morning?",
       "options": ["A) At the cinema", "B) At the shopping centre", "C) At school"],
       "ans": "B) At the shopping centre"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE8_3.png"),
       "q": "3. Who was with Maya at the shopping centre?",
       "options": ["A) Her mother", "B) Her friends", "C) Her teacher"],
       "ans": "A) Her mother"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE8_4.png"),
       "q": "4. What did Maya and her friends watch at the cinema?",
       "options": ["A) A scary movie", "B) A funny cartoon movie", "C) A science documentary"],
       "ans": "B) A funny cartoon movie"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE8_5.png"),
       "q": "5. How did Maya feel about the movie?",
       "options": ["A) It was boring.", "B) It was scary.", "C) It was exciting!"],
       "ans": "C) It was exciting!"
     },
 
-    // --- PASSAGE 2 (Soalan 6 - 10) ---
-    // Passage 2: A Busy Afternoon
-    // "Yesterday afternoon, Kevin and his brother were at the amusement park. The weather was sunny and warm. Kevin was on the Ferris wheel, but his brother wasn't. He was too scared! Later, at five o'clock, they were at a fast food restaurant because they were hungry."
+    // --- GAMBAR 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE8_6.png"),
-      "q": "Passage 2: A Busy Afternoon\n6. Where were Kevin and his brother yesterday afternoon?",
+      "q": "6. Where were Kevin and his brother yesterday afternoon?",
       "options": ["A) At the swimming pool", "B) At the amusement park", "C) At the museum"],
       "ans": "B) At the amusement park"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE8_7.png"),
       "q": "7. How was the weather yesterday afternoon?",
       "options": ["A) Rainy and cold", "B) Sunny and warm", "C) Windy and cloudy"],
       "ans": "B) Sunny and warm"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE8_8.png"),
       "q": "8. Why wasn't Kevin's brother on the Ferris wheel?",
       "options": ["A) He was too scared.", "B) He was too tired.", "C) He was sick."],
       "ans": "A) He was too scared."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE8_9.png"),
       "q": "9. Where were they at five o'clock?",
       "options": ["A) At home", "B) At the park", "C) At a fast food restaurant"],
       "ans": "C) At a fast food restaurant"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE8_10.png"),
       "q": "10. Why did they go to the restaurant?",
       "options": ["A) Because they were thirsty.", "B) Because they were hungry.", "C) Because it was raining."],
       "ans": "B) Because they were hungry."
@@ -253,79 +241,67 @@ quizBank["GET SMART SET"]["Module 8: Where Were You Yesterday?"] = {
 // ==========================================
 quizBank["REMEDIAL SET"]["Module 8: Where Were You Yesterday?"] = {
   "Reading": [
-    // --- PASSAGE 1 (Soalan 1 - 5) ---
-    // Passage 1: Maya's Sunday
-    // "Yesterday was Sunday. Maya was at the shopping centre. In the afternoon, she was at the cinema. She watched a cartoon movie."
+    // --- GAMBAR 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE8_1.png"),
-      "q": "Passage 1: Maya's Sunday\n1. What day was yesterday?",
+      "q": "1. What day was yesterday?",
       "options": ["A) Monday", "B) Sunday", "C) Saturday"],
       "ans": "B) Sunday"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE8_2.png"),
       "q": "2. Where was Maya in the morning?",
       "options": ["A) At the cinema", "B) At school", "C) At the shopping centre"],
       "ans": "C) At the shopping centre"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE8_3.png"),
       "q": "3. Where was Maya in the afternoon?",
       "options": ["A) At the cinema", "B) At home", "C) At the park"],
       "ans": "A) At the cinema"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE8_4.png"),
       "q": "4. What did she watch?",
       "options": ["A) A news program", "B) A cartoon movie", "C) A sports game"],
       "ans": "B) A cartoon movie"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE8_5.png"),
       "q": "5. Was Maya at school yesterday?",
       "options": ["A) Yes, she was.", "B) No, she wasn't.", "C) Yes, always."],
       "ans": "B) No, she wasn't."
     },
 
-    // --- PASSAGE 2 (Soalan 6 - 10) ---
-    // Passage 2: Kevin at the Park
-    // "Kevin was at the amusement park. He was on the Ferris wheel. His brother was scared. They were hungry at five o'clock."
+    // --- GAMBAR 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE8_6.png"),
-      "q": "Passage 2: Kevin at the Park\n6. Where was Kevin?",
+      "q": "6. Where was Kevin?",
       "options": ["A) At the amusement park", "B) At the zoo", "C) At the beach"],
       "ans": "A) At the amusement park"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE8_7.png"),
       "q": "7. What ride was Kevin on?",
       "options": ["A) A bicycle", "B) The Ferris wheel", "C) A bus"],
       "ans": "B) The Ferris wheel"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE8_8.png"),
       "q": "8. How did Kevin's brother feel?",
       "options": ["A) Happy", "B) Scared", "C) Angry"],
       "ans": "B) Scared"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE8_9.png"),
       "q": "9. How did they feel at five o'clock?",
       "options": ["A) Hungry", "B) Cold", "C) Sleepy"],
       "ans": "A) Hungry"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE8_10.png"),
       "q": "10. Was Kevin at the amusement park?",
       "options": ["A) Yes, he was.", "B) No, he wasn't.", "C) No, they aren't."],
       "ans": "A) Yes, he was."
