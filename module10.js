@@ -9,9 +9,9 @@ function wrapCenterImage(imagePath) {
 }
 
 // ==========================================
-// 1. GET SMART SET - MODULE 10: WORLD AROUND US (30 SOALAN)
+// 1. GET SMART SET - MODULE 10 (30 SOALAN)
 // ==========================================
-quizBank["GET SMART SET"]["Module 10: World Around Us"] = {
+quizBank["GET SMART SET"]["Module 10"] = {
   "Reading": [
     // --- GAMBAR 1 (Soalan 1 - 5) ---
     {
@@ -237,9 +237,9 @@ quizBank["GET SMART SET"]["Module 10: World Around Us"] = {
 };
 
 // ==========================================
-// 2. REMEDIAL SET - MODULE 10: WORLD AROUND US (30 SOALAN)
+// 2. REMEDIAL SET - MODULE 10 (30 SOALAN)
 // ==========================================
-quizBank["REMEDIAL SET"]["Module 10: World Around Us"] = {
+quizBank["REMEDIAL SET"]["Module 10"] = {
   "Reading": [
     // --- GAMBAR 1 (Soalan 1 - 5) ---
     {
