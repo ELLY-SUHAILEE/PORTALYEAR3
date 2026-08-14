@@ -198,21 +198,21 @@ quizBank["GET SMART SET"]["Module 2: Every day"] = {
     {
       "type": "mcq",
       "image": "images/GS_MODULE2_28.png",
-      "q": "Read the clock and schedule:\n\n[ROUTINE]\n7:00 a.m. - Breakfast\n1:00 p.m. - Lunch\n8:00 p.m. - Dinner\n\nWhat time is lunch?",
+      "q": "Read the clock and schedule: What time is lunch?",
       "options": ["A) At seven o'clock", "B) At one o'clock", "C) At eight o'clock"],
       "ans": "B) At one o'clock"
     },
     {
       "type": "mcq",
       "image": "images/GS_MODULE2_29.png",
-      "q": "Read the notice:\n\n[CAREER DAY AT SCHOOL]\nMeet doctors, firefighters, and pilots!\nTime: 9:00 a.m. - 12:00 p.m.\n\nWho CANNOT be met at this event?",
+      "q": "Read the notice: Who CANNOT be met at this event?",
       "options": ["A) Doctors", "B) Firefighters", "C) Astronauts"],
       "ans": "C) Astronauts"
     },
     {
       "type": "mcq",
       "image": "images/GS_MODULE2_30.png",
-      "q": "Look at the sign: [FLOSS AND BRUSH TEETH TWICE A DAY]\nWho gives this advice?",
+      "q": "Read the sign:",
       "options": ["A) A dentist", "B) A pilot", "C) A chef"],
       "ans": "A) A dentist"
     }
