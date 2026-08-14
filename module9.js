@@ -13,79 +13,67 @@ function wrapCenterImage(imagePath) {
 // ==========================================
 quizBank["GET SMART SET"]["Module 9: On Holiday"] = {
   "Reading": [
-    // --- PASSAGE 1 (Soalan 1 - 5) ---
-    // Passage 1: A Fun Holiday at the Beach
-    // "Last school holiday, Daniel and his family went to Langkawi Island. They stayed at a hotel near the beach. In the morning, Daniel packed his beach bag with sunglasses and a towel. He built a huge sandcastle on the beach and collected beautiful seashells with his sister. In the evening, they ate delicious fresh seafood at a local restaurant."
+    // --- GAMBAR 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE9_1.png"),
-      "q": "Passage 1: A Fun Holiday at the Beach\n1. Where did Daniel and his family go last school holiday?",
+      "q": "1. Where did Daniel and his family go last school holiday?",
       "options": ["A) Penang Island", "B) Langkawi Island", "C) Tioman Island"],
       "ans": "B) Langkawi Island"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_2.png"),
       "q": "2. What did Daniel pack in his beach bag?",
       "options": ["A) A raincoat and boots", "B) Sunglasses and a towel", "C) Storybooks and pencils"],
       "ans": "B) Sunglasses and a towel"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_3.png"),
       "q": "3. What activity did Daniel do on the beach?",
       "options": ["A) He built a huge sandcastle.", "B) He rode a pony.", "C) He climbed a steep mountain."],
       "ans": "A) He built a huge sandcastle."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_4.png"),
       "q": "4. Who collected seashells with Daniel?",
       "options": ["A) His brother", "B) His sister", "C) His cousin"],
       "ans": "B) His sister"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_5.png"),
       "q": "5. What did the family eat in the evening?",
       "options": ["A) Fresh seafood", "B) Fried noodles", "C) Fast food burgers"],
       "ans": "A) Fresh seafood"
     },
 
-    // --- PASSAGE 2 (Soalan 6 - 10) ---
-    // Passage 2: Camping in the Forest
-    // "Last month, Aiman went camping in the forest with his father. They pitched a big tent under the tall trees. At night, they made a campfire to stay warm. Aiman listened to the sounds of nature and saw bright stars in the sky. Before sleeping, his father told him exciting stories about wild animals."
+    // --- GAMBAR 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE9_6.png"),
-      "q": "Passage 2: Camping in the Forest\n6. Where did Aiman go camping last month?",
+      "q": "6. Where did Aiman go camping last month?",
       "options": ["A) By the lake", "B) In the forest", "C) On a mountain peak"],
       "ans": "B) In the forest"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_7.png"),
       "q": "7. Where did they pitch their tent?",
       "options": ["A) Under the tall trees", "B) Near the river bank", "C) Inside a dark cave"],
       "ans": "A) Under the tall trees"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_8.png"),
       "q": "8. Why did they make a campfire at night?",
       "options": ["A) To cook a big feast", "B) To stay warm", "C) To scare away birds"],
       "ans": "B) To stay warm"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_9.png"),
       "q": "9. What did Aiman see in the night sky?",
       "options": ["A) An airplane", "B) Bright stars", "C) A full moon eclipse"],
       "ans": "B) Bright stars"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_10.png"),
       "q": "10. What did Aiman's father do before sleeping?",
       "options": ["A) Sang traditional songs", "B) Told exciting stories about wild animals", "C) Played the guitar"],
       "ans": "B) Told exciting stories about wild animals"
@@ -253,79 +241,67 @@ quizBank["GET SMART SET"]["Module 9: On Holiday"] = {
 // ==========================================
 quizBank["REMEDIAL SET"]["Module 9: On Holiday"] = {
   "Reading": [
-    // --- PASSAGE 1 (Soalan 1 - 5) ---
-    // Passage 1: Daniel at the Beach
-    // "Daniel went to the beach on holiday. He built a big sandcastle. He collected seashells with his sister. They ate seafood."
+    // --- GAMBAR 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE9_1.png"),
-      "q": "Passage 1: Daniel at the Beach\n1. Where did Daniel go on holiday?",
+      "q": "1. Where did Daniel go on holiday?",
       "options": ["A) To the zoo", "B) To the beach", "C) To school"],
       "ans": "B) To the beach"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_2.png"),
       "q": "2. What did Daniel build?",
       "options": ["A) A sandcastle", "B) A wooden house", "C) A toy car"],
       "ans": "A) A sandcastle"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_3.png"),
       "q": "3. What did he collect on the beach?",
       "options": ["A) Leaves", "B) Seashells", "C) Rocks"],
       "ans": "B) Seashells"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_4.png"),
       "q": "4. Who collected seashells with Daniel?",
       "options": ["A) His sister", "B) His mother", "C) His friend"],
       "ans": "A) His sister"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_5.png"),
       "q": "5. What food did they eat?",
       "options": ["A) Pizza", "B) Seafood", "C) Soup"],
       "ans": "B) Seafood"
     },
 
-    // --- PASSAGE 2 (Soalan 6 - 10) ---
-    // Passage 2: Aiman's Camping Trip
-    // "Aiman went camping in the forest. He put up a tent. At night, they made a campfire. Aiman saw bright stars."
+    // --- GAMBAR 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE9_6.png"),
-      "q": "Passage 2: Aiman's Camping Trip\n6. Where did Aiman go camping?",
+      "q": "6. Where did Aiman go camping?",
       "options": ["A) In the forest", "B) At the beach", "C) In the city"],
       "ans": "A) In the forest"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_7.png"),
       "q": "7. What did Aiman put up in the forest?",
       "options": ["A) A tent", "B) An umbrella", "C) A flag"],
       "ans": "A) A tent"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_8.png"),
       "q": "8. What did they make at night?",
       "options": ["A) A campfire", "B) A cake", "C) A sandcastle"],
       "ans": "A) A campfire"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_9.png"),
       "q": "9. What did Aiman see in the sky?",
       "options": ["A) Birds", "B) Stars", "C) Clouds"],
       "ans": "B) Stars"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_10.png"),
       "q": "10. Did Aiman enjoy camping?",
       "options": ["A) Yes, he did.", "B) No, he didn't.", "C) No, he wasn't."],
       "ans": "A) Yes, he did."
