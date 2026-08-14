@@ -13,11 +13,11 @@ function wrapCenterImage(imagePath) {
 // ==========================================
 quizBank["GET SMART SET"]["Module 4: Year in, year out"] = {
   "Reading": [
-    // --- PASSAGE 1 (Soalan 1 - 5) ---
+    // --- GAMBAR 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE4_1.png"),
-      "q": "<b>Read Passage 1 and answer questions 1 to 5:",
+      "q": "1. What happens to the leaves in autumn?",
       "options": ["A) They turn yellow and fall", "B) They grow bigger", "C) They turn green"],
       "ans": "A) They turn yellow and fall"
     },
@@ -46,11 +46,11 @@ quizBank["GET SMART SET"]["Module 4: Year in, year out"] = {
       "ans": "A) Make a snowman"
     },
 
-    // --- PASSAGE 2 (Soalan 6 - 10) ---
+    // --- GAMBAR 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE4_6.png"),
-      "q": "<b>Read Passage 2 and answer questions 6 to 10:",
+      "q": "6. Where do Lee and his family go in summer?",
       "options": ["A) To the park", "B) To the beach", "C) To the mountains"],
       "ans": "B) To the beach"
     },
@@ -231,11 +231,11 @@ quizBank["GET SMART SET"]["Module 4: Year in, year out"] = {
 // ==========================================
 quizBank["REMEDIAL SET"]["Module 4: Year in, year out"] = {
   "Reading": [
-    // --- PASSAGE 1 (Soalan 1 - 5) ---
+    // --- GAMBAR 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE4_1.png"),
-      "q": "<b>Read Passage 1 and answer questions 1 to 5:</b><br><i>'In autumn, leaves fall down. Nurul jumps in the leaves. In winter, it snows and she makes a snowman.'</i><br><br>1. What falls down in autumn?",
+      "q": "1. What falls down in autumn?",
       "options": ["A) Leaves", "B) Snow", "C) Rain"],
       "ans": "A) Leaves"
     },
@@ -264,11 +264,11 @@ quizBank["REMEDIAL SET"]["Module 4: Year in, year out"] = {
       "ans": "B) Winter"
     },
 
-    // --- PASSAGE 2 (Soalan 6 - 10) ---
+    // --- GAMBAR 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE4_6.png"),
-      "q": "<b>Read Passage 2 and answer questions 6 to 10:</b><br><i>'In summer, it is hot. Lee swims in the sea. In spring, flowers grow.'</i><br><br>6. What is the weather like in summer?",
+      "q": "6. What is the weather like in summer?",
       "options": ["A) Hot", "B) Cold", "C) Snowy"],
       "ans": "A) Hot"
     },
