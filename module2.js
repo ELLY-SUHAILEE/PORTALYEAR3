@@ -122,7 +122,7 @@ quizBank["GET SMART SET"]["Module 2: Every Day!"] = {
     },
     {
       "type": "mcq",
-      "image": "images/GS_MODULE2_17.png",
+     
       "q": "17. What ______ your father do? He is a pilot.",
       "options": ["A) do", "B) does", "C) is"],
       "ans": "B) does"
@@ -340,7 +340,6 @@ quizBank["REMEDIAL SET"]["Module 2: Every Day!"] = {
     },
     {
       "type": "mcq",
-      "image": "images/REMEDIAL_MODULE2_17.png",
       "q": "17. What ______ he do?",
       "options": ["A) does", "B) do", "C) is"],
       "ans": "A) does"
@@ -417,21 +416,21 @@ quizBank["REMEDIAL SET"]["Module 2: Every Day!"] = {
     {
       "type": "mcq",
       "image": "images/REMEDIAL_MODULE2_28.png",
-      "q": "28. Read the sign: [DOCTOR]\nWhere are you?",
+      "q": "28. Read the sign:
       "options": ["A) Hospital", "B) School", "C) Park"],
       "ans": "A) Hospital"
     },
     {
       "type": "mcq",
       "image": "images/REMEDIAL_MODULE2_29.png",
-      "q": "29. Read the tag: [7:00 AM]\nIs it morning or night?",
+      "q": "29. Read the tag:
       "options": ["A) Morning", "B) Night", "C) Afternoon"],
       "ans": "A) Morning"
     },
     {
       "type": "mcq",
       "image": "images/REMEDIAL_MODULE2_30.png",
-      "q": "30. Look at the sign: [FIRE STATION]\nWho works here?",
+      "q": "30. Look at the sign: 
       "options": ["A) Firefighter", "B) Teacher", "C) Chef"],
       "ans": "A) Firefighter"
     }
