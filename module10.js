@@ -25,28 +25,24 @@ quizBank["GET SMART SET"]["Module 10: World Around Us"] = {
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_2.png"),
       "q": "2. Which animal is the fastest land animal?",
       "options": ["A) The horse", "B) The lion", "C) The cheetah"],
       "ans": "C) The cheetah"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_3.png"),
       "q": "3. Which land animal is taller than an elephant?",
       "options": ["A) The giraffe", "B) The blue whale", "C) The horse"],
       "ans": "A) The giraffe"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_4.png"),
       "q": "4. Why does the giraffe have a long neck?",
       "options": ["A) To swim fast in rivers", "B) To reach high leaves", "C) To run faster than a cheetah"],
       "ans": "B) To reach high leaves"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_5.png"),
       "q": "5. What is the main idea of Passage 1?",
       "options": ["A) Animals and their amazing physical traits.", "B) How to feed farm animals.", "C) Visiting a city zoo on Sunday."],
       "ans": "A) Animals and their amazing physical traits."
@@ -54,8 +50,6 @@ quizBank["GET SMART SET"]["Module 10: World Around Us"] = {
 
     // --- PASSAGE 2 (Soalan 6 - 10) ---
     // Passage 2: Our Solar System
-    // "Our solar system has eight planets. Jupiter is the largest planet of all, while Mercury is the smallest. Saturn is famous for its beautiful rings made of ice and dust. Earth is the only planet known to have liquid water and life. It is smaller than Jupiter but bigger than Mercury."
-    {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_6.png"),
       "q": "Passage 2: Our Solar System\n6. How many planets are there in our solar system?",
@@ -64,28 +58,24 @@ quizBank["GET SMART SET"]["Module 10: World Around Us"] = {
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_7.png"),
       "q": "7. Which is the largest planet in our solar system?",
       "options": ["A) Jupiter", "B) Saturn", "C) Earth"],
       "ans": "A) Jupiter"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_8.png"),
       "q": "8. Which planet is the smallest?",
       "options": ["A) Mercury", "B) Venus", "C) Mars"],
       "ans": "A) Mercury"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_9.png"),
       "q": "9. What makes Saturn famous?",
       "options": ["A) Its green forests", "B) Its beautiful rings of ice and dust", "C) Its large oceans"],
       "ans": "B) Its beautiful rings of ice and dust"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_10.png"),
       "q": "10. What unique feature does Earth have?",
       "options": ["A) It is the largest planet.", "B) It has liquid water and life.", "C) It has thirty moons."],
       "ans": "B) It has liquid water and life."
