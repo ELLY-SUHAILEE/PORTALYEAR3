@@ -146,7 +146,7 @@
             margin-bottom: 20px;
             border-radius: 4px;
         }
-        /* STYLING TAMBAHAN UNTUK GAMBAR */
+        /* STYLING TAMBAHAN UNTUK GAMBAR (DIBESARKAN SUPAYA CLEAR) */
         .question-image-container {
             text-align: center;
             margin-bottom: 15px;
@@ -156,11 +156,20 @@
             border-radius: 8px;
         }
         .question-image {
-            max-width: 100%;
+            width: 100%;
+            max-width: 680px; /* Ditingkatkan supaya tulisan dalam gambar jelas */
             height: auto;
-            max-height: 350px;
+            max-height: 600px; /* Had ketinggian dinaikkan dari 350px ke 600px */
             border-radius: 6px;
             object-fit: contain;
+        }
+        /* MEMAKSA GAMBAR DARIPADA FUNCTION WRAPCENTERIMAGE() DI JS MODUL SUPAYA TURUT MEMBESAR */
+        .item-soalan img {
+            max-height: 600px !important;
+            width: 100% !important;
+            max-width: 680px !important;
+            height: auto !important;
+            object-fit: contain !important;
         }
     </style>
 </head>
