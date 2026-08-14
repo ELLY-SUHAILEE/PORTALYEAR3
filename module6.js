@@ -13,79 +13,67 @@ function wrapCenterImage(imagePath) {
 // ==========================================
 quizBank["GET SMART SET"]["Module 6: Food, Please!"] = {
   "Reading": [
-    // --- PASSAGE 1 (Soalan 1 - 5) ---
-    // Passage 1: Lunchtime at School
-    // "It is lunchtime at school. Tom and Kelly are sitting together at the canteen. Tom has got an omelette with cheese and some orange juice. Kelly has got two slices of pizza and a red apple. She hasn't got any milk today. They enjoy their delicious lunch together."
+    // --- GAMBAR 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE6_1.png"),
-      "q": "Passage 1: Lunchtime at School\n1. What has Tom got for lunch?",
+      "q": "1. What has Tom got for lunch?",
       "options": ["A) Two slices of pizza", "B) An omelette with cheese", "C) A red apple and milk"],
       "ans": "B) An omelette with cheese"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE6_2.png"),
       "q": "2. What drink does Tom have with his meal?",
       "options": ["A) Orange juice", "B) Fresh milk", "C) Hot chocolate"],
       "ans": "A) Orange juice"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE6_3.png"),
       "q": "3. How many slices of pizza has Kelly got?",
       "options": ["A) One slice", "B) Two slices", "C) Three slices"],
       "ans": "B) Two slices"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE6_4.png"),
       "q": "4. What fruit is Kelly eating at the canteen?",
       "options": ["A) A banana", "B) A yellow pear", "C) A red apple"],
       "ans": "C) A red apple"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE6_5.png"),
       "q": "5. Which statement is TRUE based on Passage 1?",
       "options": ["A) Kelly has got some milk.", "B) Kelly hasn't got any milk today.", "C) Tom is eating pizza for lunch."],
       "ans": "B) Kelly hasn't got any milk today."
     },
 
-    // --- PASSAGE 2 (Soalan 6 - 10) ---
-    // Passage 2: Cooking Dinner with Mum
-    // "Ben is helping his mother make dinner in the kitchen. They want to cook noodle soup. Ben checks the fridge and finds some carrots, onions, and chicken. However, there isn't any coconut milk. Mum asks Ben to walk to the nearby grocery shop to buy some coconut milk and fresh strawberries for dessert."
+    // --- GAMBAR 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE6_6.png"),
-      "q": "Passage 2: Cooking Dinner with Mum\n6. What food are Ben and his mother planning to cook?",
+      "q": "6. What food are Ben and his mother planning to cook?",
       "options": ["A) Fried rice", "B) Noodle soup", "C) Cheese omelette"],
       "ans": "B) Noodle soup"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE6_7.png"),
       "q": "7. What items does Ben find inside the fridge?",
       "options": ["A) Carrots, onions, and chicken", "B) Strawberries and coconut milk", "C) Pizza and cheese"],
       "ans": "A) Carrots, onions, and chicken"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE6_8.png"),
       "q": "8. What item is NOT inside the fridge?",
       "options": ["A) Onions", "B) Chicken", "C) Coconut milk"],
       "ans": "C) Coconut milk"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE6_9.png"),
       "q": "9. Why does Mum ask Ben to go to the grocery shop?",
       "options": ["A) To buy coconut milk and fresh strawberries", "B) To buy some carrots and onions", "C) To buy noodle soup and juice"],
       "ans": "A) To buy coconut milk and fresh strawberries"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE6_10.png"),
       "q": "10. What will they have for dessert after dinner?",
       "options": ["A) Noodle soup", "B) Fresh strawberries", "C) Cheese pizza"],
       "ans": "B) Fresh strawberries"
@@ -253,79 +241,67 @@ quizBank["GET SMART SET"]["Module 6: Food, Please!"] = {
 // ==========================================
 quizBank["REMEDIAL SET"]["Module 6: Food, Please!"] = {
   "Reading": [
-    // --- PASSAGE 1 (Soalan 1 - 5) ---
-    // Passage 1: Lunch Time
-    // "Tom has got an omelette and orange juice. Kelly has got two slices of pizza and an apple. She hasn't got any milk."
+    // --- GAMBAR 1 (Soalan 1 - 5) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE6_1.png"),
-      "q": "Passage 1: Lunch Time\n1. What has Tom got?",
+      "q": "1. What has Tom got?",
       "options": ["A) An omelette", "B) A pizza", "C) A burger"],
       "ans": "A) An omelette"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE6_2.png"),
       "q": "2. What drink does Tom have?",
       "options": ["A) Milk", "B) Water", "C) Orange juice"],
       "ans": "C) Orange juice"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE6_3.png"),
       "q": "3. How many slices of pizza has Kelly got?",
       "options": ["A) One slice", "B) Two slices", "C) Three slices"],
       "ans": "B) Two slices"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE6_4.png"),
       "q": "4. What fruit has Kelly got?",
       "options": ["A) An apple", "B) A banana", "C) A pear"],
       "ans": "A) An apple"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE6_5.png"),
       "q": "5. Has Kelly got any milk?",
       "options": ["A) Yes, she has.", "B) No, she hasn't.", "C) Yes, two."],
       "ans": "B) No, she hasn't."
     },
 
-    // --- PASSAGE 2 (Soalan 6 - 10) ---
-    // Passage 2: In the Kitchen
-    // "Ben and Mum are in the kitchen. They want noodle soup. There are carrots, onions, and chicken in the fridge. There isn't any coconut milk."
+    // --- GAMBAR 2 (Soalan 6 - 10) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE6_6.png"),
-      "q": "Passage 2: In the Kitchen\n6. Where are Ben and Mum?",
+      "q": "6. Where are Ben and Mum?",
       "options": ["A) In the garden", "B) In the kitchen", "C) In the bedroom"],
       "ans": "B) In the kitchen"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE6_7.png"),
       "q": "7. What food do they want to make?",
       "options": ["A) Pizza", "B) Cake", "C) Noodle soup"],
       "ans": "C) Noodle soup"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE6_8.png"),
       "q": "8. Are there carrots in the fridge?",
       "options": ["A) Yes, there are.", "B) No, there aren't.", "C) No, there isn't."],
       "ans": "A) Yes, there are."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE6_9.png"),
       "q": "9. Is there any coconut milk in the fridge?",
       "options": ["A) Yes, there is.", "B) No, there isn't.", "C) Yes, some."],
       "ans": "B) No, there isn't."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE6_10.png"),
       "q": "10. Is there any chicken in the fridge?",
       "options": ["A) Yes, there is.", "B) No, there isn't.", "C) No, they haven't."],
       "ans": "A) Yes, there is."
