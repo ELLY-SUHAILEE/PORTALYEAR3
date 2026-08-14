@@ -281,7 +281,17 @@
         }
 
         const modulKeys = Object.keys(quizBank[setTerpilih]);
-        const kunciPadan = modulKeys.find(key => key.toLowerCase().startsWith(modulInput.toLowerCase()));
+        
+        // Carian kekunci modul yang lebih fleksibel
+        const matchNombor = modulInput.match(/\d+/);
+        const nomborModul = matchNombor ? matchNombor[0] : '';
+        const kunciPadan = modulKeys.find(key => {
+            const keyLower = key.toLowerCase();
+            const inputLower = modulInput.toLowerCase();
+            return keyLower.startsWith(inputLower) || 
+                   keyLower.includes(`module ${nomborModul}`) || 
+                   keyLower.includes(`module${nomborModul}`);
+        });
 
         if (!kunciPadan) {
             alert(`Data soalan untuk ${modulInput} (${setTerpilih}) tidak dijumpai. Sila pastikan fail module*.js mengandungi data bagi modul ini.`);
@@ -313,16 +323,23 @@
         soalanSemasa.forEach((soalan, index) => {
             htmlContent += `<div class="item-soalan">`;
             
-            // PEMBETULAN PAPARAN GAMBAR: Menggunakan tag <img>
+            // --- PEMBETULAN PAPARAN GAMBAR (PINTAR) ---
             if (soalan.image) {
-                htmlContent += `
-                    <div class="question-image-container">
-                        <img src="${soalan.image}" alt="Soalan ${index + 1}" class="question-image" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'color:red;font-size:13px;\\'>[Gambar gagal dimuatkan: ${soalan.image}]</span>';">
-                    </div>
-                `;
+                const imgStr = String(soalan.image).trim();
+                // Jika soalan.image sudah merupakan elemen HTML (<div atau <img) daripada JS modul
+                if (imgStr.startsWith('<')) {
+                    htmlContent += imgStr;
+                } else {
+                    // Jika soalan.image hanya laluan gambar biasa (contoh: "images/pic.png")
+                    htmlContent += `
+                        <div class="question-image-container">
+                            <img src="${imgStr}" alt="Soalan ${index + 1}" class="question-image" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'color:red;font-size:13px;\\'>[Gambar gagal dimuatkan: ${imgStr}]</span>';">
+                        </div>
+                    `;
+                }
             }
 
-            // Menapis nombor sedia ada jika soalan mengandungi "21. Choose..." atau "22. Rearrange..."
+            // Menapis nombor sedia ada jika soalan mengandungi "1. What is..."
             const teksSoalanBersih = (soalan.q || '').replace(/^\d+[\.\)]\s*/, '');
 
             htmlContent += `<h3 style="white-space: pre-line; margin-top: 5px; color: #111;">${index + 1}. ${teksSoalanBersih}</h3>`;
