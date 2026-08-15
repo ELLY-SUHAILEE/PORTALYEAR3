@@ -3,144 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Guru - Analisis Rekod Murid</title>
-    <!-- Chart.js untuk Paparan Graf -->
+    <title>Analisa & Rekod Murid - Dashboard Guru</title>
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        * { box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
-        body { background-color: #f4f5f7; margin: 0; padding: 30px 20px; }
+        * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+        body { background-color: #f8fafc; margin: 0; padding: 25px; color: #1e293b; }
         
-        /* SEMBUNYIKAN KANDUNGAN UTAMA SEBELUM PASSWORD DIMASUKKAN */
         #main-dashboard { display: none; }
-        
-        .container { max-width: 1000px; margin: 0 auto; }
-        
-        .header-bar {
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* HEADER */
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #ffffff;
-            padding: 20px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
-        h1 { color: #1e40af; margin: 0; font-size: 24px; }
-        
-        .btn-home {
-            background-color: #6b7280;
-            color: #fff;
-            padding: 10px 18px;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            text-decoration: none;
-            cursor: pointer;
+        .header h1 {
+            font-size: 26px;
+            color: #0284c7;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .btn-home:hover { background-color: #4b5563; }
-
-        .btn-danger {
+        .btn-keluar {
             background-color: #ef4444;
-            color: #fff;
-            padding: 10px 16px;
+            color: white;
             border: none;
-            border-radius: 6px;
+            padding: 10px 20px;
+            border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
+            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+            transition: background 0.2s;
         }
-        .btn-danger:hover { background-color: #dc2626; }
+        .btn-keluar:hover { background-color: #dc2626; }
 
-        .grid-stats {
+        /* TOP 3 CARDS */
+        .top-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
             margin-bottom: 25px;
         }
-        .stat-card {
-            background: #ffffff;
+        .card-box {
+            background: white;
+            border-radius: 12px;
+            padding: 18px 22px;
+            height: 220px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        .card-box h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-red { border: 2px solid #fecaca; background-color: #fff5f5; }
+        .card-red h3 { color: #991b1b; }
+        .card-green { border: 2px solid #bbf7d0; background-color: #f0fdf4; }
+        .card-green h3 { color: #166534; }
+        .card-yellow { border: 2px solid #fde68a; background-color: #fefce8; }
+        .card-yellow h3 { color: #854d0e; }
+
+        .list-container {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-right: 5px;
+        }
+        .list-container ul { margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.6; }
+        .list-container li { margin-bottom: 8px; }
+
+        /* CHARTS SECTION */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .chart-card {
+            background: white;
+            border-radius: 12px;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+        }
+        .chart-card h3 {
             text-align: center;
-        }
-        .stat-card h3 { margin: 0; color: #6b7280; font-size: 14px; text-transform: uppercase; }
-        .stat-card p { margin: 10px 0 0; font-size: 28px; font-weight: bold; color: #1e3a8a; }
-
-        .chart-section {
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
+            font-size: 16px;
+            color: #334155;
+            margin-top: 0;
+            margin-bottom: 15px;
         }
 
-        .table-section {
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        /* FILTER BAR */
+        .filter-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #e5e7eb; }
-        th { background-color: #f8fafc; color: #334155; font-weight: bold; }
-        tr:hover { background-color: #f1f5f9; }
+        .search-input {
+            flex: 2;
+            min-width: 250px;
+            padding: 12px 16px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+        .search-input:focus { border-color: #0284c7; }
+        .select-filter {
+            flex: 1;
+            min-width: 160px;
+            padding: 12px 16px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            outline: none;
+            cursor: pointer;
+        }
+        .btn-reset {
+            background-color: #0284c7;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-reset:hover { background-color: #0369a1; }
 
+        /* TABLE */
+        .table-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+        }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+        th { background-color: #f1f5f9; color: #475569; padding: 14px 18px; font-weight: 700; }
+        td { padding: 14px 18px; border-top: 1px solid #f1f5f9; color: #334155; }
+        tr:hover { background-color: #f8fafc; }
+        
         .badge {
             padding: 4px 10px;
-            border-radius: 12px;
+            border-radius: 20px;
             font-size: 12px;
             font-weight: bold;
-            display: inline-block;
         }
-        .badge-lulus { background-color: #dcfce7; color: #166534; }
-        .badge-gagal { background-color: #fee2e2; color: #991b1b; }
+        .badge-intervensi { background: #fee2e2; color: #991b1b; }
+        .badge-sederhana { background: #fef3c7; color: #92400e; }
+        .badge-cemerlang { background: #dcfce7; color: #166534; }
     </style>
 </head>
 <body>
 
-<!-- KANDUNGAN UTAMA DASHBOARD -->
 <div class="container" id="main-dashboard">
-    <!-- TAJUK & BUTANG NAVIGASI -->
-    <div class="header-bar">
-        <div>
-            <h1>📊 DASHBOARD GURU - REKOD & ANALISIS</h1>
-            <span style="font-size: 13px; color: #6b7280;">Analisis Prestasi Murid Tahun 3</span>
+    <!-- HEADER -->
+    <div class="header">
+        <h1>📊 Analisa & Rekod Murid</h1>
+        <button class="btn-keluar" onclick="keluarKePortal()">Keluar Rekod</button>
+    </div>
+
+    <!-- TOP 3 BOXES -->
+    <div class="top-cards">
+        <!-- PERLU INTERVENSI -->
+        <div class="card-box card-red">
+            <h3>⚠️ Perlu Intervensi (&lt; 60%)</h3>
+            <div class="list-container">
+                <ul id="senarai-intervensi"></ul>
+            </div>
         </div>
-        <div>
-            <a href="index.html" class="btn-home">🏠 Muka Depan Murid</a>
-            <button class="btn-danger" onclick="padamSemuaRekod()">🗑️ Padam Rekod</button>
+
+        <!-- MURID CEMERLANG -->
+        <div class="card-box card-green">
+            <h3>🌟 Murid Cemerlang (&ge; 90%)</h3>
+            <div class="list-container">
+                <ul id="senarai-cemerlang"></ul>
+            </div>
+        </div>
+
+        <!-- ANALISA MODUL SUKAR -->
+        <div class="card-box card-yellow">
+            <h3>📉 Analisa Modul Sukar</h3>
+            <div class="list-container">
+                <ul id="senarai-modul-sukar"></ul>
+            </div>
         </div>
     </div>
 
-    <!-- KAD STATISTIK RINGKAS -->
-    <div class="grid-stats">
-        <div class="stat-card">
-            <h3>Jumlah Percubaan</h3>
-            <p id="total-murid">0</p>
+    <!-- CHARTS -->
+    <div class="charts-grid">
+        <div class="chart-card">
+            <h3>📊 Purata Peratusan Pencapaian Mengikut Modul</h3>
+            <canvas id="barChart" height="220"></canvas>
         </div>
-        <div class="stat-card">
-            <h3>Purata Markah Keseluruhan</h3>
-            <p id="purata-markah">0%</p>
-        </div>
-        <div class="stat-card">
-            <h3>Murid Cemerlang (≥80%)</h3>
-            <p id="total-cemerlang" style="color: #16a34a;">0</p>
-        </div>
-        <div class="stat-card">
-            <h3>Perlu Intervensi (<50%)</h3>
-            <p id="total-intervensi" style="color: #dc2626;">0</p>
+        <div class="chart-card">
+            <h3>🍩 Pecahan Tahap Penguasaan Murid</h3>
+            <canvas id="donutChart" height="220"></canvas>
         </div>
     </div>
 
-    <!-- CARTA ANALISIS -->
-    <div class="chart-section">
-        <h3>📈 Taburan Markah Murid</h3>
-        <canvas id="grafMarkah" height="100"></canvas>
+    <!-- FILTERS BAR -->
+    <div class="filter-bar">
+        <input type="text" id="carianNama" class="search-input" placeholder="🔍 Cari nama murid..." oninput="tapisData()">
+        
+        <select id="filterKelas" class="select-filter" onchange="tapisData()">
+            <option value="">-- Semua Kelas --</option>
+            <option value="3 ARIF">3 ARIF</option>
+            <option value="3 BESTARI">3 BESTARI</option>
+            <option value="3 CERDIK">3 CERDIK</option>
+            <option value="3 DEDIKASI">3 DEDIKASI</option>
+            <option value="3 ELIT">3 ELIT</option>
+            <option value="3 FIRDAUS">3 FIRDAUS</option>
+            <option value="3 GIGIH">3 GIGIH</option>
+            <option value="3 HARMONI">3 HARMONI</option>
+            <option value="3 INOVATIF">3 INOVATIF</option>
+            <option value="3 JUARA">3 JUARA</option>
+            <option value="3 KREATIF">3 KREATIF</option>
+        </select>
+
+        <select id="filterModul" class="select-filter" onchange="tapisData()">
+            <option value="">-- Semua Modul --</option>
+            <option value="Module 1">Module 1</option>
+            <option value="Module 2">Module 2</option>
+            <option value="Module 3">Module 3</option>
+            <option value="Module 4">Module 4</option>
+            <option value="Module 5">Module 5</option>
+            <option value="Module 6">Module 6</option>
+            <option value="Module 7">Module 7</option>
+            <option value="Module 8">Module 8</option>
+            <option value="Module 9">Module 9</option>
+            <option value="Module 10">Module 10</option>
+        </select>
+
+        <button class="btn-reset" onclick="muatSemuaData()">🔄 Muat Semula</button>
     </div>
 
-    <!-- JADUAL SENARAI REKOD -->
-    <div class="table-section">
-        <h3>📋 Senarai Rekod Keputusan Murid</h3>
+    <!-- TABLE -->
+    <div class="table-card">
         <table>
             <thead>
                 <tr>
@@ -150,145 +263,211 @@
                     <th>Modul</th>
                     <th>Set</th>
                     <th>Markah (%)</th>
-                    <th>Status</th>
+                    <th>Tahap Penguasaan</th>
                 </tr>
             </thead>
-            <tbody id="jadual-rekod-body">
-                <!-- Data akan dimasukkan secara dinamik -->
-            </tbody>
+            <tbody id="jadual-body"></tbody>
         </table>
     </div>
 </div>
 
 <script>
-    let rekodData = [];
+    let rekodSemua = [];
+    let barChartInstance = null;
+    let donutChartInstance = null;
 
-    // SEMAK PASSWORD SEBELUM MEMBUKA DASHBOARD
     window.onload = function() {
         semakPassword();
     };
 
     function semakPassword() {
-        const kataLaluanDisimpan = "guru123";
-        let inputPassword = prompt("🔒 Akses Terhad Guru\nSila masukkan kata laluan:");
-
-        if (inputPassword === kataLaluanDisimpan) {
-            // Jika betul, paparkan dashboard
+        const pass = prompt("🔒 Akses Guru\nSila masukkan kata laluan:");
+        if (pass === "guru123") {
             document.getElementById('main-dashboard').style.display = 'block';
-            muatData();
-        } else if (inputPassword === null) {
-            // Jika tekan Cancel, kembalikan ke index.html
-            window.location.href = "index.html";
+            muatSemuaData();
         } else {
-            // Jika salah
-            alert("Kata laluan salah! Akses ditolak.");
+            alert("Kata laluan salah!");
             window.location.href = "index.html";
         }
     }
 
-    function muatData() {
-        rekodData = JSON.parse(localStorage.getItem('rekod_portal_year3') || '[]');
-        paparStatistik();
-        paparJadual();
-        binaGraf();
+    function keluarKePortal() {
+        window.location.href = "index.html";
     }
 
-    function paparStatistik() {
-        const total = rekodData.length;
-        document.getElementById('total-murid').innerText = total;
-
-        if (total === 0) {
-            document.getElementById('purata-markah').innerText = '0%';
-            document.getElementById('total-cemerlang').innerText = '0';
-            document.getElementById('total-intervensi').innerText = '0';
-            return;
-        }
-
-        let jumlahMarkah = 0;
-        let cemerlang = 0;
-        let intervensi = 0;
-
-        rekodData.forEach(item => {
-            jumlahMarkah += item.markah;
-            if (item.markah >= 80) cemerlang++;
-            if (item.markah < 50) intervensi++;
-        });
-
-        document.getElementById('purata-markah').innerText = Math.round(jumlahMarkah / total) + '%';
-        document.getElementById('total-cemerlang').innerText = cemerlang;
-        document.getElementById('total-intervensi').innerText = intervensi;
-    }
-
-    function paparJadual() {
-        const tbody = document.getElementById('jadual-rekod-body');
-        tbody.innerHTML = '';
-
-        if (rekodData.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#9ca3af;">Tiada rekod keputusan murid disimpan lagi.</td></tr>`;
-            return;
-        }
-
-        const rekodDisusun = [...rekodData].reverse();
-
-        rekodDisusun.forEach(item => {
-            const isPass = item.markah >= 50;
-            const badgeClass = isPass ? 'badge-lulus' : 'badge-gagal';
-            const statusText = isPass ? 'LULUS' : 'INTERVENSI';
-
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${item.tarikh || '-'}</td>
-                <td><strong>${item.nama}</strong></td>
-                <td>${item.kelas}</td>
-                <td>${item.modul}</td>
-                <td>${item.set}</td>
-                <td><strong>${item.markah}%</strong></td>
-                <td><span class="badge ${badgeClass}">${statusText}</span></td>
-            `;
-            tbody.appendChild(tr);
-        });
-    }
-
-    let myChart = null;
-    function binaGraf() {
-        const ctx = document.getElementById('grafMarkah').getContext('2d');
+    function muatSemuaData() {
+        document.getElementById('carianNama').value = '';
+        document.getElementById('filterKelas').value = '';
+        document.getElementById('filterModul').value = '';
         
-        let julat = { '0-49%': 0, '50-69%': 0, '70-89%': 0, '90-100%': 0 };
+        rekodSemua = JSON.parse(localStorage.getItem('rekod_portal_year3') || '[]');
+        
+        kemaskiniTopCards();
+        kemaskiniGraf();
+        tapisData();
+    }
 
-        rekodData.forEach(item => {
-            if (item.markah < 50) julat['0-49%']++;
-            else if (item.markah < 70) julat['50-69%']++;
-            else if (item.markah < 90) julat['70-89%']++;
-            else julat['90-100%']++;
+    function kemaskiniTopCards() {
+        const ulIntervensi = document.getElementById('senarai-intervensi');
+        const ulCemerlang = document.getElementById('senarai-cemerlang');
+        const ulModulSukar = document.getElementById('senarai-modul-sukar');
+
+        ulIntervensi.innerHTML = '';
+        ulCemerlang.innerHTML = '';
+        ulModulSukar.innerHTML = '';
+
+        let kiraModul = {};
+
+        rekodSemua.forEach(item => {
+            // Perlu Intervensi (< 60%)
+            if (item.markah < 60) {
+                ulIntervensi.innerHTML += `<li><strong>${item.nama}</strong> (${item.kelas}) - ${item.modul.toUpperCase()}: <span style="color:#dc2626;font-weight:bold;">${item.markah}%</span></li>`;
+            }
+            // Murid Cemerlang (>= 90%)
+            if (item.markah >= 90) {
+                ulCemerlang.innerHTML += `<li><strong>${item.nama}</strong> (${item.kelas}) - ${item.modul.toUpperCase()}: <span style="color:#16a34a;font-weight:bold;">${item.markah}%</span></li>`;
+            }
+
+            // Kumpul Purata Modul
+            const modName = item.modul.split(':')[0].trim().toUpperCase();
+            if (!kiraModul[modName]) {
+                kiraModul[modName] = { jumlahMarkah: 0, percubaan: 0 };
+            }
+            kiraModul[modName].jumlahMarkah += item.markah;
+            kiraModul[modName].percubaan += 1;
         });
 
-        if (myChart) { myChart.destroy(); }
+        // Susun Modul mengikut Purata Markah Rendah -> Tinggi
+        const senaraiModulArr = Object.keys(kiraModul).map(m => ({
+            modul: m,
+            purata: Math.round(kiraModul[m].jumlahMarkah / kiraModul[m].percubaan),
+            percubaan: kiraModul[m].percubaan
+        })).sort((a,b) => a.purata - b.purata);
 
-        myChart = new Chart(ctx, {
+        senaraiModulArr.forEach(m => {
+            let warna = m.purata < 60 ? '#dc2626' : (m.purata < 90 ? '#d97706' : '#16a34a');
+            ulModulSukar.innerHTML += `<li><strong>${m.modul}</strong>: Purata <span style="color:${warna};font-weight:bold;">${m.purata}%</span> (${m.percubaan} percubaan)</li>`;
+        });
+
+        if (ulIntervensi.innerHTML === '') ulIntervensi.innerHTML = '<li>Tiada murid intervensi.</li>';
+        if (ulCemerlang.innerHTML === '') ulCemerlang.innerHTML = '<li>Tiada murid cemerlang lagi.</li>';
+        if (ulModulSukar.innerHTML === '') ulModulSukar.innerHTML = '<li>Tiada data modul.</li>';
+    }
+
+    function kemaskiniGraf() {
+        // Data Bar Chart
+        let modulStats = {};
+        let intervensiCount = 0;
+        let sederhanaCount = 0;
+        let cemerlangCount = 0;
+
+        for (let i = 1; i <= 10; i++) {
+            modulStats[`MODULE ${i}`] = { total: 0, count: 0 };
+        }
+
+        rekodSemua.forEach(item => {
+            // Donut Stats
+            if (item.markah < 60) intervensiCount++;
+            else if (item.markah < 90) sederhanaCount++;
+            else cemerlangCount++;
+
+            // Bar Stats
+            const match = item.modul.match(/\d+/);
+            if (match) {
+                const key = `MODULE ${match[0]}`;
+                if (modulStats[key]) {
+                    modulStats[key].total += item.markah;
+                    modulStats[key].count += 1;
+                }
+            }
+        });
+
+        const barLabels = Object.keys(modulStats).slice(0, 6); // Papar Module 1-6 seperti gambar
+        const barData = barLabels.map(k => modulStats[k].count > 0 ? Math.round(modulStats[k].total / modulStats[k].count) : 0);
+
+        // Render Bar Chart
+        const ctxBar = document.getElementById('barChart').getContext('2d');
+        if (barChartInstance) barChartInstance.destroy();
+        barChartInstance = new Chart(ctxBar, {
             type: 'bar',
             data: {
-                labels: Object.keys(julat),
+                labels: barLabels,
                 datasets: [{
-                    label: 'Bilangan Murid',
-                    data: Object.values(julat),
-                    backgroundColor: ['#ef4444', '#f59e0b', '#3b82f6', '#10b981'],
-                    borderRadius: 6
+                    data: barData,
+                    backgroundColor: '#0284c7',
+                    borderRadius: 4
                 }]
             },
             options: {
                 responsive: true,
                 plugins: { legend: { display: false } },
-                scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+                scales: { y: { min: 0, max: 100 } }
+            }
+        });
+
+        // Render Donut Chart
+        const ctxDonut = document.getElementById('donutChart').getContext('2d');
+        if (donutChartInstance) donutChartInstance.destroy();
+        donutChartInstance = new Chart(ctxDonut, {
+            type: 'doughnut',
+            data: {
+                labels: ['Intervensi (<60%)', 'Sederhana (60-89%)', 'Cemerlang (≥90%)'],
+                datasets: [{
+                    data: [intervensiCount, sederhanaCount, cemerlangCount],
+                    backgroundColor: ['#ef4444', '#f59e0b', '#22c55e']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } }
             }
         });
     }
 
-    function padamSemuaRekod() {
-        if (confirm("Adakah anda pasti mahu memadam SEMUA rekod keputusan murid? Data yang dipadam tidak boleh dikembalikan.")) {
-            localStorage.removeItem('rekod_portal_year3');
-            muatData();
-            alert("Semua rekod telah berjaya dipadam!");
+    function tapisData() {
+        const carian = document.getElementById('carianNama').value.toLowerCase();
+        const mepKelas = document.getElementById('filterKelas').value;
+        const mepModul = document.getElementById('filterModul').value.toLowerCase();
+
+        const tbody = document.getElementById('jadual-body');
+        tbody.innerHTML = '';
+
+        const dataDitapis = rekodSemua.filter(item => {
+            const padanNama = item.nama.toLowerCase().includes(carian);
+            const padanKelas = mepKelas === '' || item.kelas === mepKelas;
+            const padanModul = mepModul === '' || item.modul.toLowerCase().includes(mepModul);
+            return padanNama && padanKelas && padanModul;
+        });
+
+        if (dataDitapis.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#94a3b8; padding: 20px;">Tiada rekod dijumpai.</td></tr>`;
+            return;
         }
+
+        [...dataDitapis].reverse().forEach(item => {
+            let badgeClass = 'badge-sederhana';
+            let statusText = 'Sederhana';
+
+            if (item.markah < 60) {
+                badgeClass = 'badge-intervensi';
+                statusText = 'Intervensi';
+            } else if (item.markah >= 90) {
+                badgeClass = 'badge-cemerlang';
+                statusText = 'Cemerlang';
+            }
+
+            tbody.innerHTML += `
+                <tr>
+                    <td>${item.tarikh || '-'}</td>
+                    <td><strong>${item.nama}</strong></td>
+                    <td>${item.kelas}</td>
+                    <td>${item.modul}</td>
+                    <td>${item.set}</td>
+                    <td><strong>${item.markah}%</strong></td>
+                    <td><span class="badge ${badgeClass}">${statusText}</span></td>
+                </tr>
+            `;
+        });
     }
 </script>
 
