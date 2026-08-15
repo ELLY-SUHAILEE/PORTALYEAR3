@@ -9,74 +9,74 @@ function wrapCenterImage(imagePath) {
 }
 
 // ==========================================
-// 1. GET SMART SET - MODULE 9: ON HOLIDAY (30 SOALAN)
+// 1. GET SMART SET (30 SOALAN)
 // ==========================================
-quizBank["GET SMART SET"]["Module 9: On Holiday"] = {
+quizBank["GET SMART SET"]["Module 9: On Holiday / Get Active / World of Sports"] = {
   "Reading": [
-    // --- GAMBAR 1 (Soalan 1 - 5) ---
+    // --- PETIKAN 1 (Soalan 1 - 5: Get Active!) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE9_1.png"),
-      "q": "1. Where did Daniel and his family go last school holiday?",
-      "options": ["A) Penang Island", "B) Langkawi Island", "C) Tioman Island"],
-      "ans": "B) Langkawi Island"
+      "q": "1. Why is staying active essential?",
+      "options": ["A) For a healthy lifestyle", "B) To win video games", "C) To sleep all day"],
+      "ans": "A) For a healthy lifestyle"
     },
     {
       "type": "mcq",
-      "q": "2. What did Daniel pack in his beach bag?",
-      "options": ["A) A raincoat and boots", "B) Sunglasses and a towel", "C) Storybooks and pencils"],
-      "ans": "B) Sunglasses and a towel"
+      "q": "2. How much time should children spend doing physical activities each day?",
+      "options": ["A) At least 10 minutes", "B) At least one hour a day", "C) Three hours a day"],
+      "ans": "B) At least one hour a day"
     },
     {
       "type": "mcq",
-      "q": "3. What activity did Daniel do on the beach?",
-      "options": ["A) He built a huge sandcastle.", "B) He rode a pony.", "C) He climbed a steep mountain."],
-      "ans": "A) He built a huge sandcastle."
+      "q": "3. Which physical activities are mentioned in the poster?",
+      "options": ["A) Swimming, cycling, or playing football", "B) Reading, painting, or sleeping", "C) Cooking, dancing, or watching TV"],
+      "ans": "A) Swimming, cycling, or playing football"
     },
     {
       "type": "mcq",
-      "q": "4. Who collected seashells with Daniel?",
-      "options": ["A) His brother", "B) His sister", "C) His cousin"],
-      "ans": "B) His sister"
+      "q": "4. What does exercise strengthen in our body?",
+      "options": ["A) Our bones only", "B) Our muscles", "C) Our teeth"],
+      "ans": "B) Our muscles"
     },
     {
       "type": "mcq",
-      "q": "5. What did the family eat in the evening?",
-      "options": ["A) Fresh seafood", "B) Fried noodles", "C) Fast food burgers"],
-      "ans": "A) Fresh seafood"
+      "q": "5. How does exercise help us at night?",
+      "options": ["A) It helps us study better", "B) It helps us sleep better", "C) It helps us eat more"],
+      "ans": "B) It helps us sleep better"
     },
 
-    // --- GAMBAR 2 (Soalan 6 - 10) ---
+    // --- PETIKAN 2 (Soalan 6 - 10: World of Sports!) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE9_6.png"),
-      "q": "6. Where did Aiman go camping last month?",
-      "options": ["A) By the lake", "B) In the forest", "C) On a mountain peak"],
-      "ans": "B) In the forest"
+      "q": "6. Which sport is described as one of the most popular in Malaysia?",
+      "options": ["A) Basketball", "B) Badminton", "C) Golf"],
+      "ans": "B) Badminton"
     },
     {
       "type": "mcq",
-      "q": "7. Where did they pitch their tent?",
-      "options": ["A) Under the tall trees", "B) Near the river bank", "C) Inside a dark cave"],
-      "ans": "A) Under the tall trees"
+      "q": "7. What equipment do players need to play badminton?",
+      "options": ["A) Racquets and a shuttlecock", "B) A bat and a hard ball", "C) Goggles and fins"],
+      "ans": "A) Racquets and a shuttlecock"
     },
     {
       "type": "mcq",
-      "q": "8. Why did they make a campfire at night?",
-      "options": ["A) To cook a big feast", "B) To stay warm", "C) To scare away birds"],
-      "ans": "B) To stay warm"
+      "q": "8. How many players can play a badminton match?",
+      "options": ["A) One player only", "B) Two or four players", "C) Eleven players"],
+      "ans": "B) Two or four players"
     },
     {
       "type": "mcq",
-      "q": "9. What did Aiman see in the night sky?",
-      "options": ["A) An airplane", "B) Bright stars", "C) A full moon eclipse"],
-      "ans": "B) Bright stars"
+      "q": "9. Where can badminton be played?",
+      "options": ["A) Indoors or outdoors", "B) In the water only", "C) On ice courts only"],
+      "ans": "A) Indoors or outdoors"
     },
     {
       "type": "mcq",
-      "q": "10. What did Aiman's father do before sleeping?",
-      "options": ["A) Sang traditional songs", "B) Told exciting stories about wild animals", "C) Played the guitar"],
-      "ans": "B) Told exciting stories about wild animals"
+      "q": "10. Which skills and qualities are required to play badminton well?",
+      "options": ["A) Slow movement and heavy jumping", "B) Fast movement, good reflexes, and lots of stamina", "C) Standing still and quiet talking"],
+      "ans": "B) Fast movement, good reflexes, and lots of stamina"
     }
   ],
 
@@ -84,37 +84,37 @@ quizBank["GET SMART SET"]["Module 9: On Holiday"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE9_11.png"),
-      "q": "11. A structure built on the beach using wet sand is a ______.",
-      "options": ["A) sandcastle", "B) fortress", "C) sculpture"],
-      "ans": "A) sandcastle"
+      "q": "11. A lightweight object with feathers used in badminton is called a ______.",
+      "options": ["A) shuttlecock", "B) basketball", "C) frisbee"],
+      "ans": "A) shuttlecock"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE9_12.png"),
-      "q": "12. A shelter made of cloth supported by poles and ropes used during camping is a ______.",
-      "options": ["A) cabin", "B) tent", "C) cottage"],
-      "ans": "B) tent"
+      "q": "12. Riding a bicycle for exercise or sport is called ______.",
+      "options": ["A) cycling", "B) jogging", "C) sailing"],
+      "ans": "A) cycling"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE9_13.png"),
-      "q": "13. Hard outer covers of sea creatures found on beaches are ______.",
-      "options": ["A) rocks", "B) seashells", "C) corals"],
-      "ans": "B) seashells"
+      "q": "13. An oval frame with a stringed mesh used to hit a shuttlecock is a ______.",
+      "options": ["A) racquet", "B) bat", "C) stick"],
+      "ans": "A) racquet"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE9_14.png"),
-      "q": "14. An outdoor fire made at a campsite for warmth or cooking is a ______.",
-      "options": ["A) campfire", "B) torchlight", "C) stove"],
-      "ans": "A) campfire"
+      "q": "14. Moving through water using arms and legs is called ______.",
+      "options": ["A) swimming", "B) running", "C) climbing"],
+      "ans": "A) swimming"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE9_15.png"),
-      "q": "15. A small, thin piece of wood or plastic used to clean between teeth after eating is a ______.",
-      "options": ["A) toothpick", "B) chopstick", "C) paintbrush"],
-      "ans": "A) toothpick"
+      "q": "15. Tissues in the body that produce movement and strength are called ______.",
+      "options": ["A) muscles", "B) feathers", "C) scales"],
+      "ans": "A) muscles"
     }
   ],
 
@@ -122,92 +122,82 @@ quizBank["GET SMART SET"]["Module 9: On Holiday"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE9_16.png"),
-      "q": "16. Last week, my family and I ______ to the beach.",
-      "options": ["A) go", "B) went", "C) gone"],
-      "ans": "B) went"
+      "q": "16. Children ______ spend at least one hour a day doing physical activities.",
+      "options": ["A) should", "B) shouldn't", "C) cannot"],
+      "ans": "A) should"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE9_17.png"),
-      "q": "17. Maya ______ a beautiful postcard from the souvenir shop yesterday.",
-      "options": ["A) buy", "B) bought", "C) buys"],
-      "ans": "B) bought"
+      "q": "17. Badminton is one of the ______ popular sports in Malaysia.",
+      "options": ["A) most", "B) more", "C) many"],
+      "ans": "A) most"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_18.png"),
-      "q": "18. The children ______ swimming in the sea during their holiday.",
-      "options": ["A) enjoy", "B) enjoyed", "C) enjoying"],
-      "ans": "B) enjoyed"
+      "q": "18. Cycling is ______ than walking.",
+      "options": ["A) fast", "B) faster", "C) fastest"],
+      "ans": "B) faster"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_19.png"),
-      "q": "19. What is the past simple form of the verb 'see'?",
-      "options": ["A) saw", "B) seen", "C) seed"],
-      "ans": "A) saw"
+      "q": "19. You ______ drink plenty of water after exercising.",
+      "options": ["A) should", "B) shouldn't", "C) must not"],
+      "ans": "A) should"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_20.png"),
-      "q": "20. They ______ not go camping because it rained heavily.",
-      "options": ["A) do", "B) did", "C) does"],
-      "ans": "B) did"
+      "q": "20. Swimming is the ______ refreshing sport on a hot day.",
+      "options": ["A) most", "B) more", "C) less"],
+      "ans": "A) most"
     }
   ],
 
   "Writing": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_21.png"),
-      "q": "21. Choose the sentence with correct capitalization and punctuation.",
-      "options": ["A) Last holiday, we visited Melaka.", "B) last holiday, we visited melaka", "C) Last holiday We visited Melaka?"],
-      "ans": "A) Last holiday, we visited Melaka."
+      "q": "21. Choose the sentence with the correct capitalization and punctuation.",
+      "options": ["A) Badminton is a popular sport in malaysia.", "B) Badminton is a popular sport in Malaysia.", "C) badminton is a popular sport in Malaysia"],
+      "ans": "B) Badminton is a popular sport in Malaysia."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_22.png"),
-      "q": "22. Rearrange the words: [ sandcastle / built / a / big / He / beach / on / the ]",
-      "options": ["A) He built a big sandcastle on the beach.", "B) On the beach built he a big sandcastle.", "C) A big sandcastle he built on the beach."],
-      "ans": "A) He built a big sandcastle on the beach."
+      "q": "22. Rearrange the words to form a correct sentence: [ essential / active / Staying / healthy / a / lifestyle / for / is ]",
+      "options": ["A) Staying active is essential for a healthy lifestyle.", "B) A healthy lifestyle is essential staying active for.", "C) Active staying for a healthy lifestyle is essential."],
+      "ans": "A) Staying active is essential for a healthy lifestyle."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_23.png"),
-      "q": "23. Rearrange the words: [ We / in / stayed / comfortable / a / hotel ]",
-      "options": ["A) We stayed in a comfortable hotel.", "B) In a hotel comfortable stayed we.", "C) Hotel we stayed in a comfortable."],
-      "ans": "A) We stayed in a comfortable hotel."
+      "q": "23. Rearrange the words to form a correct sentence: [ shuttlecock / need / Players / racquets / and / a ]",
+      "options": ["A) Players need racquets and a shuttlecock.", "B) A shuttlecock need players and racquets.", "C) Racquets players need a shuttlecock and."],
+      "ans": "A) Players need racquets and a shuttlecock."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_24.png"),
-      "q": "24. Choose the correct past tense spelling for 'pack':",
-      "options": ["A) packed", "B) packked", "C) packt"],
-      "ans": "A) packed"
+      "q": "24. Choose the word with the correct spelling.",
+      "options": ["A) Shuttelcock", "B) Shuttlecock", "C) Shutlecock"],
+      "ans": "B) Shuttlecock"
     }
   ],
 
   "Speaking": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_25.png"),
-      "q": "25. Asking about a past holiday: 'Where did you go on holiday?' How do you reply?",
-      "options": ["A) I went to Cameron Highlands.", "B) I am going to school.", "C) I like holidaying."],
-      "ans": "A) I went to Cameron Highlands."
+      "q": "25. How do you suggest an outdoor exercise activity to your friend?",
+      "options": ["A) Let's go cycling in the park today!", "B) I am sleeping in my bed.", "C) Don't touch my bike."],
+      "ans": "A) Let's go cycling in the park today!"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_26.png"),
-      "q": "26. Asking about holiday activities: 'What did you do at the beach?'",
-      "options": ["A) I collected seashells.", "B) I am reading a book.", "C) I will eat lunch."],
-      "ans": "A) I collected seashells."
+      "q": "26. Someone asks: 'What equipment do we need for badminton?' How do you reply?",
+      "options": ["A) We need racquets and a shuttlecock.", "B) We need a football and a goal post.", "C) We need a bicycle and a helmet."],
+      "ans": "A) We need racquets and a shuttlecock."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE9_27.png"),
-      "q": "27. Someone asks: 'Did you enjoy your trip?' If YES, how do you reply?",
-      "options": ["A) Yes, I did! It was wonderful.", "B) Yes, I am going.", "C) Yes, I do every day."],
-      "ans": "A) Yes, I did! It was wonderful."
+      "q": "27. How do you advise a classmate who stays up late and feels tired?",
+      "options": ["A) You should exercise and sleep earlier.", "B) You should play more video games.", "C) You shouldn't eat breakfast."],
+      "ans": "A) You should exercise and sleep earlier."
     }
   ],
 
@@ -215,96 +205,96 @@ quizBank["GET SMART SET"]["Module 9: On Holiday"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE9_28.png"),
-      "q": "28. Read the postcard: [DEAR MUM, WE ARRIVED IN PENANG YESTERDAY. THE FOOD IS GREAT!]. Where is the writer?",
-      "options": ["A) In Melaka", "B) In Penang", "C) In Ipoh"],
-      "ans": "B) In Penang"
+      "q": "28. Read the banner: [BE ACTIVE! BE HEALTHY!]\nWhat is the main idea of this message?",
+      "options": ["A) Exercise regularly to stay healthy", "B) Sit down and watch television", "C) Eat junk food every day"],
+      "ans": "A) Exercise regularly to stay healthy"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE9_29.png"),
-      "q": "29. Read the brochure: [SUNNY BEACH RESORT - BUILD SANDCASTLES & SWIM IN THE SEA]. What kind of holiday is this?",
-      "options": ["A) A beach holiday", "B) A mountain hike", "C) A city museum tour"],
-      "ans": "A) A beach holiday"
+      "q": "29. Read the safety rule: [WEAR A HELMET WHILE CYCLING]\nWhich sport is this rule for?",
+      "options": ["A) Swimming", "B) Cycling", "C) Badminton"],
+      "ans": "B) Cycling"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE9_30.png"),
-      "q": "30. Read the camping checklist: [TENT, SLEEPING BAG, FLASHLIGHT, MATCHES]. Where are you going?",
-      "options": ["A) Camping", "B) Shopping at the mall", "C) Visiting an art gallery"],
-      "ans": "A) Camping"
+      "q": "30. Look at the poster slogan: [TEAMWORK MAKES THE DREAM WORK]\nWhat does this slogan encourage?",
+      "options": ["A) Working together with teammates", "B) Playing alone without sharing", "C) Quitting the sport early"],
+      "ans": "A) Working together with teammates"
     }
   ]
 };
 
 // ==========================================
-// 2. REMEDIAL SET - MODULE 9: ON HOLIDAY (30 SOALAN)
+// 2. REMEDIAL SET (30 SOALAN)
 // ==========================================
-quizBank["REMEDIAL SET"]["Module 9: On Holiday"] = {
+quizBank["REMEDIAL SET"]["Module 9: On Holiday / Get Active / World of Sports"] = {
   "Reading": [
-    // --- GAMBAR 1 (Soalan 1 - 5) ---
+    // --- PETIKAN 1 (Soalan 1 - 5: Exercise) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE9_1.png"),
-      "q": "1. Where did Daniel go on holiday?",
-      "options": ["A) To the zoo", "B) To the beach", "C) To school"],
-      "ans": "B) To the beach"
+      "q": "1. Playing sports keeps us ____.",
+      "options": ["A) healthy", "B) sick", "C) tired"],
+      "ans": "A) healthy"
     },
     {
       "type": "mcq",
-      "q": "2. What did Daniel build?",
-      "options": ["A) A sandcastle", "B) A wooden house", "C) A toy car"],
-      "ans": "A) A sandcastle"
+      "q": "2. You can run, swim, or ____ every day.",
+      "options": ["A) cycle", "B) sleep", "C) sit"],
+      "ans": "A) cycle"
     },
     {
       "type": "mcq",
-      "q": "3. What did he collect on the beach?",
-      "options": ["A) Leaves", "B) Seashells", "C) Rocks"],
-      "ans": "B) Seashells"
+      "q": "3. Exercise helps us stay ____.",
+      "options": ["A) strong", "B) weak", "C) small"],
+      "ans": "A) strong"
     },
     {
       "type": "mcq",
-      "q": "4. Who collected seashells with Daniel?",
-      "options": ["A) His sister", "B) His mother", "C) His friend"],
-      "ans": "A) His sister"
+      "q": "4. A strong body makes a ____ life!",
+      "options": ["A) happy", "B) sad", "C) bad"],
+      "ans": "A) happy"
     },
     {
       "type": "mcq",
-      "q": "5. What food did they eat?",
-      "options": ["A) Pizza", "B) Seafood", "C) Soup"],
-      "ans": "B) Seafood"
+      "q": "5. What is this poster about?",
+      "options": ["A) Exercise", "B) Sleeping", "C) Cooking"],
+      "ans": "A) Exercise"
     },
 
-    // --- GAMBAR 2 (Soalan 6 - 10) ---
+    // --- PETIKAN 2 (Soalan 6 - 10: Badminton) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE9_6.png"),
-      "q": "6. Where did Aiman go camping?",
-      "options": ["A) In the forest", "B) At the beach", "C) In the city"],
-      "ans": "A) In the forest"
+      "q": "6. Badminton is a ____ sport.",
+      "options": ["A) fun", "B) boring", "C) sad"],
+      "ans": "A) fun"
     },
     {
       "type": "mcq",
-      "q": "7. What did Aiman put up in the forest?",
-      "options": ["A) A tent", "B) An umbrella", "C) A flag"],
-      "ans": "A) A tent"
+      "q": "7. You need a ____ and a shuttlecock to play it.",
+      "options": ["A) racquet", "B) bat", "C) ball"],
+      "ans": "A) racquet"
     },
     {
       "type": "mcq",
-      "q": "8. What did they make at night?",
-      "options": ["A) A campfire", "B) A cake", "C) A sandcastle"],
-      "ans": "A) A campfire"
+      "q": "8. What hits the shuttlecock?",
+      "options": ["A) The racquet", "B) The shoe", "C) The hat"],
+      "ans": "A) The racquet"
     },
     {
       "type": "mcq",
-      "q": "9. What did Aiman see in the sky?",
-      "options": ["A) Birds", "B) Stars", "C) Clouds"],
-      "ans": "B) Stars"
+      "q": "9. Play hard, have ____!",
+      "options": ["A) fun", "B) rest", "C) food"],
+      "ans": "A) fun"
     },
     {
       "type": "mcq",
-      "q": "10. Did Aiman enjoy camping?",
-      "options": ["A) Yes, he did.", "B) No, he didn't.", "C) No, he wasn't."],
-      "ans": "A) Yes, he did."
+      "q": "10. What sport is shown in the picture?",
+      "options": ["A) Badminton", "B) Football", "C) Swimming"],
+      "ans": "A) Badminton"
     }
   ],
 
@@ -312,130 +302,118 @@ quizBank["REMEDIAL SET"]["Module 9: On Holiday"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE9_11.png"),
-      "q": "11. Made of sand on the beach: ______.",
-      "options": ["A) sandcastle", "B) chair", "C) table"],
-      "ans": "A) sandcastle"
+      "q": "11. Moving fast on feet: ______.",
+      "options": ["A) Run", "B) Sleep", "C) Sit"],
+      "ans": "A) Run"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE9_12.png"),
-      "q": "12. You sleep in this when camping: ______.",
-      "options": ["A) tent", "B) car", "C) boat"],
-      "ans": "A) tent"
+      "q": "12. Swimming in water: ______.",
+      "options": ["A) Swim", "B) Jump", "C) Fly"],
+      "ans": "A) Swim"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE9_13.png"),
-      "q": "13. You find these on the beach sand: ______.",
-      "options": ["A) seashells", "B) coins", "C) books"],
-      "ans": "A) seashells"
+      "q": "13. Riding a bicycle: ______.",
+      "options": ["A) Cycle", "B) Walk", "C) Dance"],
+      "ans": "A) Cycle"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE9_14.png"),
-      "q": "14. A fire outside at a campsite: ______.",
-      "options": ["A) campfire", "B) lamp", "C) light"],
-      "ans": "A) campfire"
+      "q": "14. Used to hit a shuttlecock: ______.",
+      "options": ["A) Racquet", "B) Box", "C) Cup"],
+      "ans": "A) Racquet"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE9_15.png"),
-      "q": "15. A place with lots of sand and sea water: ______.",
-      "options": ["A) beach", "B) field", "C) garden"],
-      "ans": "A) beach"
+      "q": "15. White feathered object for badminton: ______.",
+      "options": ["A) Shuttlecock", "B) Football", "C) Balloon"],
+      "ans": "A) Shuttlecock"
     }
   ],
 
   "Grammar": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_16.png"),
-      "q": "16. Yesterday, I ______ to the beach.",
-      "options": ["A) went", "B) go", "C) going"],
-      "ans": "A) went"
+      "q": "16. You ______ exercise to stay healthy.",
+      "options": ["A) should", "B) shouldn't", "C) cannot"],
+      "ans": "A) should"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_17.png"),
-      "q": "17. She ______ a sandcastle yesterday.",
-      "options": ["A) built", "B) build", "C) building"],
-      "ans": "A) built"
+      "q": "17. Swimming is ______ than walking.",
+      "options": ["A) faster", "B) fast", "C) fastest"],
+      "ans": "A) faster"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_18.png"),
-      "q": "18. We ______ seashells on the beach.",
-      "options": ["A) collected", "B) collect", "C) collects"],
-      "ans": "A) collected"
+      "q": "18. Badminton is a ______ sport.",
+      "options": ["A) fun", "B) more fun", "C) most fun"],
+      "ans": "A) fun"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_19.png"),
-      "q": "19. They ______ fish for dinner yesterday.",
-      "options": ["A) ate", "B) eat", "C) eating"],
-      "ans": "A) ate"
+      "q": "19. You ______ eat junk food every day.",
+      "options": ["A) shouldn't", "B) should", "C) must"],
+      "ans": "A) shouldn't"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_20.png"),
-      "q": "20. I ______ stars in the night sky.",
-      "options": ["A) saw", "B) see", "C) seeing"],
-      "ans": "A) saw"
+      "q": "20. Running makes you ______.",
+      "options": ["A) strong", "B) stronger", "C) strongest"],
+      "ans": "A) strong"
     }
   ],
 
   "Writing": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_21.png"),
       "q": "21. Choose the correct spelling:",
-      "options": ["A) beach", "B) beech", "C) beach"],
-      "ans": "A) beach"
+      "options": ["A) Swim", "B) Swimmed", "C) Swym"],
+      "ans": "A) Swim"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_22.png"),
-      "q": "22. Rearrange: [ went / I / holiday / on ]",
-      "options": ["A) I went on holiday.", "B) On holiday went I.", "C) Went I on holiday."],
-      "ans": "A) I went on holiday."
+      "q": "22. Rearrange: [ sports / Playing / us / healthy / keeps ]",
+      "options": ["A) Playing sports keeps us healthy.", "B) Healthy keeps us playing sports.", "C) Sports playing us keeps healthy."],
+      "ans": "A) Playing sports keeps us healthy."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_23.png"),
-      "q": "23. Choose the correct sentence:",
-      "options": ["A) We played on the beach.", "B) we played on the beach", "C) We played On the Beach?"],
-      "ans": "A) We played on the beach."
+      "q": "23. Choose the correct spelling:",
+      "options": ["A) Racquet", "B) Racket", "C) Raquet"],
+      "ans": "A) Racquet"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_24.png"),
-      "q": "24. Choose the correct spelling:",
-      "options": ["A) tent", "B) tennt", "C) tente"],
-      "ans": "A) tent"
+      "q": "24. Rearrange: [ fun / Badminton / a / sport / is ]",
+      "options": ["A) Badminton is a fun sport.", "B) Fun sport a is badminton.", "C) Is badminton sport a fun."],
+      "ans": "A) Badminton is a fun sport."
     }
   ],
 
   "Speaking": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_25.png"),
-      "q": "25. 'Where did you go?' - You answer:",
-      "options": ["A) I went to the beach.", "B) I am fine.", "C) I like apples."],
-      "ans": "A) I went to the beach."
+      "q": "25. Do you like playing badminton?",
+      "options": ["A) Yes, I do.", "B) No, I am.", "C) Yes, I can't."],
+      "ans": "A) Yes, I do."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_26.png"),
-      "q": "26. 'Did you build a sandcastle?' - If YES, you say:",
-      "options": ["A) Yes, I did.", "B) Yes, I am.", "C) Yes, I do."],
-      "ans": "A) Yes, I did."
+      "q": "26. What sport can keep us healthy?",
+      "options": ["A) Swimming can keep us healthy.", "B) Sleeping all day.", "C) Eating candy."],
+      "ans": "A) Swimming can keep us healthy."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE9_27.png"),
-      "q": "27. 'Was it fun?' - If YES, you say:",
-      "options": ["A) Yes, it was!", "B) Yes, it is.", "C) Yes, there is."],
-      "ans": "A) Yes, it was!"
+      "q": "27. Can you ride a bicycle?",
+      "options": ["A) Yes, I can.", "B) Yes, I do.", "C) No, I am."],
+      "ans": "A) Yes, I can."
     }
   ],
 
@@ -443,23 +421,23 @@ quizBank["REMEDIAL SET"]["Module 9: On Holiday"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE9_28.png"),
-      "q": "28. Read the card: [HOLIDAY AT THE BEACH]. What can you build here?",
-      "options": ["A) Sandcastle", "B) Snowman", "C) Treehouse"],
-      "ans": "A) Sandcastle"
+      "q": "28. Read the badge: [BE ACTIVE]\nWhat should you do?",
+      "options": ["A) Move and exercise", "B) Sit still", "C) Sleep"],
+      "ans": "A) Move and exercise"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE9_29.png"),
-      "q": "29. Read the word: [CAMPING]. What do you sleep in?",
-      "options": ["A) Tent", "B) Bed at home", "C) Desk"],
-      "ans": "A) Tent"
+      "q": "29. Read the word: [SWIM]\nWhere do you do this activity?",
+      "options": ["A) In a pool", "B) In a bedroom", "C) On a tree"],
+      "ans": "A) In a pool"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE9_30.png"),
-      "q": "30. Look at the item: [SUNGLASSES]. When do you wear them?",
-      "options": ["A) On a sunny day at the beach", "B) In a dark room at night", "C) While sleeping"],
-      "ans": "A) On a sunny day at the beach"
+      "q": "30. Look at the sign: [PLAY HARD]\nWhat does it mean?",
+      "options": ["A) Try your best in sports", "B) Give up easily", "C) Stop playing"],
+      "ans": "A) Try your best in sports"
     }
   ]
 };
