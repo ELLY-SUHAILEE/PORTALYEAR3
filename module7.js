@@ -9,74 +9,74 @@ function wrapCenterImage(imagePath) {
 }
 
 // ==========================================
-// 1. GET SMART SET - MODULE 7: OUT AND ABOUT (30 SOALAN)
+// 1. GET SMART SET (30 SOALAN)
 // ==========================================
-quizBank["GET SMART SET"]["Module 7: Out and About"] = {
+quizBank["GET SMART SET"]["Module 7: Out and About / Helping Out"] = {
   "Reading": [
-    // --- GAMBAR 1 (Soalan 1 - 5) ---
+    // --- PETIKAN 1 (Soalan 1 - 5: Out and About!) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE7_1.png"),
-      "q": "1. When did Adam and his classmates visit Uncle Sam's farm?",
-      "options": ["A) On Sunday", "B) On Saturday", "C) On Friday"],
-      "ans": "B) On Saturday"
+      "q": "1. Who went on a school trip to the National Zoo last Sunday?",
+      "options": ["A) The Year 3 pupils", "B) The Year 4 pupils", "C) The Year 5 pupils"],
+      "ans": "B) The Year 4 pupils"
     },
     {
       "type": "mcq",
-      "q": "2. What color were the horses in the field?",
-      "options": ["A) Brown", "B) Black", "C) White"],
-      "ans": "C) White"
+      "q": "2. What time did the pupils meet their teachers at the school main gate?",
+      "options": ["A) At 7:00 a.m.", "B) At 7:30 a.m.", "C) At 8:00 a.m."],
+      "ans": "B) At 7:30 a.m."
     },
     {
       "type": "mcq",
-      "q": "3. How many ducks were swimming near the pond?",
-      "options": ["A) Six ducks", "B) Four ducks", "C) Five ducks"],
-      "ans": "A) Six ducks"
+      "q": "3. How did the pupils travel to the National Zoo?",
+      "options": ["A) They boarded a big yellow bus", "B) They travelled by train", "C) They walked in a line"],
+      "ans": "A) They boarded a big yellow bus"
     },
     {
       "type": "mcq",
-      "q": "4. What rule did Uncle Sam tell the children before they left?",
-      "options": ["A) You must feed the white horses.", "B) You must close the gate.", "C) You must swim in the pond."],
-      "ans": "B) You must close the gate."
+      "q": "4. What wild animals did they see at the zoo?",
+      "options": ["A) Cats, dogs, and rabbits", "B) Tigers, elephants, and pandas", "C) Lions, monkeys, and bears"],
+      "ans": "B) Tigers, elephants, and pandas"
     },
     {
       "type": "mcq",
-      "q": "5. Why must the children close the gate?",
-      "options": ["A) So the animals do not run away.", "B) So the horses can sleep.", "C) So the ducks can swim."],
-      "ans": "A) So the animals do not run away."
+      "q": "5. What did the pupils do before going home?",
+      "options": ["A) They ate ice cream at the cafe", "B) They bought souvenirs at the gift shop", "C) They took a nap on the bus"],
+      "ans": "B) They bought souvenirs at the gift shop"
     },
 
-    // --- GAMBAR 2 (Soalan 6 - 10) ---
+    // --- PETIKAN 2 (Soalan 6 - 10: Helping Out!) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE7_6.png"),
-      "q": "6. Where are Sarah and Timmy going?",
-      "options": ["A) To Uncle Sam's farm", "B) To the public swimming pool", "C) To the school library"],
-      "ans": "B) To the public swimming pool"
+      "q": "6. How can children help their parents at home?",
+      "options": ["A) By watching television all day", "B) By washing dishes, sweeping the floor, and watering plants", "C) By playing games in their bedrooms"],
+      "ans": "B) By washing dishes, sweeping the floor, and watering plants"
     },
     {
       "type": "mcq",
-      "q": "7. What must visitors do BEFORE going into the pool?",
-      "options": ["A) Take a shower", "B) Eat lunch", "C) Throw rubbish in the pool"],
-      "ans": "A) Take a shower"
+      "q": "7. What can pupils do to help out at school?",
+      "options": ["A) Clean the classroom or pick up rubbish in the garden", "B) Paint the school walls", "C) Cook lunch in the canteen"],
+      "ans": "A) Clean the classroom or pick up rubbish in the garden"
     },
     {
       "type": "mcq",
-      "q": "8. Why must children NOT run around the pool area?",
-      "options": ["A) Because the floor is slippery.", "B) Because the pool is deep.", "C) Because the water is cold."],
-      "ans": "A) Because the floor is slippery."
+      "q": "8. What benefit comes from working together on chores?",
+      "options": ["A) It makes chores harder to finish", "B) It makes chores easier and faster to complete", "C) It causes more mess"],
+      "ans": "B) It makes chores easier and faster to complete"
     },
     {
       "type": "mcq",
-      "q": "9. Where should visitors throw their rubbish?",
-      "options": ["A) On the floor", "B) Into the rubbish bins", "C) Into the swimming pool"],
-      "ans": "B) Into the rubbish bins"
+      "q": "9. Helping others is described in the poster as a ______ habit.",
+      "options": ["A) boring", "B) wonderful", "C) difficult"],
+      "ans": "B) wonderful"
     },
     {
       "type": "mcq",
-      "q": "10. What is the main message of Passage 2?",
-      "options": ["A) Learning how to swim fast.", "B) Following safety rules at the pool.", "C) Buying tickets at the entrance."],
-      "ans": "B) Following safety rules at the pool."
+      "q": "10. What is the main message shown in the top right bubble of the poster?",
+      "options": ["A) Work hard every day!", "B) Small Help, Big Difference!", "C) Always clean your room!"],
+      "ans": "B) Small Help, Big Difference!"
     }
   ],
 
@@ -84,37 +84,37 @@ quizBank["GET SMART SET"]["Module 7: Out and About"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE7_11.png"),
-      "q": "11. A farm animal that has wool on its body is a ______.",
-      "options": ["A) goat", "B) sheep", "C) horse"],
-      "ans": "B) sheep"
+      "q": "11. A large wild animal with a trunk and big ears is an ______.",
+      "options": ["A) elephant", "B) tiger", "C) panda"],
+      "ans": "A) elephant"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE7_12.png"),
-      "q": "12. A place where pedestrian pedestrians can cross the road safely is called a ______.",
-      "options": ["A) zebra crossing", "B) traffic light", "C) pavement"],
-      "ans": "A) zebra crossing"
+      "q": "12. Cleaning dirt and dust off the floor using a broom is called ______.",
+      "options": ["A) washing", "B) sweeping", "C) watering"],
+      "ans": "B) sweeping"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE7_13.png"),
-      "q": "13. Small farm animals with feathers that lay eggs and swim in water are ______.",
-      "options": ["A) ducks", "B) cows", "C) wolves"],
-      "ans": "A) ducks"
+      "q": "13. Giving water to plants so they can grow is called ______ the plants.",
+      "options": ["A) sweeping", "B) watering", "C) picking"],
+      "ans": "B) watering"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE7_14.png"),
-      "q": "14. A container used for putting waste or trash in public places is a ______.",
-      "options": ["A) mailbox", "B) rubbish bin", "C) desk"],
-      "ans": "B) rubbish bin"
+      "q": "14. Items you buy to remember a place you visited are called ______.",
+      "options": ["A) souvenirs", "B) rubbish", "C) chores"],
+      "ans": "A) souvenirs"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE7_15.png"),
-      "q": "15. Wild animals that look like large dogs and live in forests or mountains are ______.",
-      "options": ["A) wolves", "B) mice", "C) goats"],
-      "ans": "A) wolves"
+      "q": "15. A place where wild animals are kept for people to see is a ______.",
+      "options": ["A) zoo", "B) park", "C) school"],
+      "ans": "A) zoo"
     }
   ],
 
@@ -122,92 +122,82 @@ quizBank["GET SMART SET"]["Module 7: Out and About"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE7_16.png"),
-      "q": "16. You ______ listen to the teacher when she is talking.",
-      "options": ["A) must", "B) mustn't", "C) don't"],
-      "ans": "A) must"
+      "q": "16. Last Sunday, the pupils ______ on a school trip to the zoo.",
+      "options": ["A) go", "B) went", "C) going"],
+      "ans": "B) went"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE7_17.png"),
-      "q": "17. You ______ talk loudly inside the library.",
-      "options": ["A) must", "B) mustn't", "C) can"],
+      "q": "17. Yesterday, my brother ______ the floor in the living room.",
+      "options": ["A) swept", "B) sweep", "C) sweeps"],
+      "ans": "A) swept"
+    },
+    {
+      "type": "mcq",
+      "q": "18. You ______ pick up rubbish to keep your school clean.",
+      "options": ["A) must", "B) mustn't", "C) shouldn't"],
+      "ans": "A) must"
+    },
+    {
+      "type": "mcq",
+      "q": "19. You ______ feed the wild animals at the zoo.",
+      "options": ["A) must", "B) mustn't", "C) should"],
       "ans": "B) mustn't"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE7_18.png"),
-      "q": "18. What is the correct plural form of 'mouse'?",
-      "options": ["A) mouses", "B) mice", "C) mices"],
-      "ans": "B) mice"
-    },
-    {
-      "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE7_19.png"),
-      "q": "19. There are three ______ eating grass in the field.",
-      "options": ["A) sheep", "B) sheeps", "C) sheepes"],
-      "ans": "A) sheep"
-    },
-    {
-      "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE7_20.png"),
-      "q": "20. Look at those wild animals! There are two ______ near the trees.",
-      "options": ["A) wolfs", "B) wolves", "C) wolfes"],
-      "ans": "B) wolves"
+      "q": "20. They ______ many wild animals at the National Zoo yesterday.",
+      "options": ["A) see", "B) saw", "C) seeing"],
+      "ans": "B) saw"
     }
   ],
 
   "Writing": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE7_21.png"),
-      "q": "21. Choose the sentence with correct capitalization and punctuation.",
-      "options": ["A) You must turn left at the traffic lights.", "B) you must turn left at the traffic lights", "C) You must turn Left at the traffic lights?"],
-      "ans": "A) You must turn left at the traffic lights."
+      "q": "21. Choose the sentence with the correct capitalization and punctuation.",
+      "options": ["A) Last Sunday, the pupils went to the national zoo.", "B) Last Sunday, the pupils went to the National Zoo.", "C) last sunday the pupils went to the National Zoo"],
+      "ans": "B) Last Sunday, the pupils went to the National Zoo."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE7_22.png"),
-      "q": "22. Rearrange the words: [ litter / drop / mustn't / You / park / the / in ]",
-      "options": ["A) You mustn't drop litter in the park.", "B) In the park drop litter you mustn't.", "C) You drop litter mustn't in the park."],
-      "ans": "A) You mustn't drop litter in the park."
+      "q": "22. Rearrange the words to form a correct sentence: [ bus / yellow / boarded / They / a / big ]",
+      "options": ["A) They boarded a big yellow bus.", "B) A big yellow bus boarded they.", "C) They yellow bus boarded a big."],
+      "ans": "A) They boarded a big yellow bus."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE7_23.png"),
-      "q": "23. Rearrange the words: [ see / can / farm / many / We / cows / the / on ]",
-      "options": ["A) We can see many cows on the farm.", "B) On the farm many cows we can see.", "C) Many cows can see we on the farm."],
-      "ans": "A) We can see many cows on the farm."
+      "q": "23. Rearrange the words to form a correct sentence: [ habits / others / Helping / is / wonderful / a ]",
+      "options": ["A) Helping others is a wonderful habit.", "B) A wonderful habit is others helping.", "C) Others helping habit is a wonderful."],
+      "ans": "A) Helping others is a wonderful habit."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE7_24.png"),
-      "q": "24. Choose the correct spelling for the plural of 'child':",
-      "options": ["A) childs", "B) children", "C) childrens"],
-      "ans": "B) children"
+      "q": "24. Choose the word with the correct spelling.",
+      "options": ["A) Elephent", "B) Elephant", "C) Elefant"],
+      "ans": "B) Elephant"
     }
   ],
 
   "Speaking": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE7_25.png"),
-      "q": "25. Asking for directions: 'Excuse me, how do I get to the museum?' How do you reply?",
-      "options": ["A) Go straight and turn right.", "B) Yes, I like museums.", "C) I am visiting a farm."],
-      "ans": "A) Go straight and turn right."
+      "q": "25. How do you tell someone what you did last weekend?",
+      "options": ["A) I went to the zoo with my family.", "B) I am going to the zoo tomorrow.", "C) I like zoos."],
+      "ans": "A) I went to the zoo with my family."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE7_26.png"),
-      "q": "26. Reminding a friend about safety rules: What do you say when the traffic light is red?",
-      "options": ["A) You must cross now!", "B) You must stop!", "C) You must run fast!"],
-      "ans": "B) You must stop!"
+      "q": "26. Your mother is washing dishes. How do you offer help?",
+      "options": ["A) Can I help you wash the dishes, Mum?", "B) You should wash faster.", "C) I want to play outside."],
+      "ans": "A) Can I help you wash the dishes, Mum?"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE7_27.png"),
-      "q": "27. Someone asks: 'Can we feed the animals at the zoo?' What does a 'NO FEEDING' sign mean?",
-      "options": ["A) You must feed them.", "B) You mustn't feed them.", "C) You can feed them fruit."],
-      "ans": "B) You mustn't feed them."
+      "q": "27. How do you tell someone a rule at the zoo?",
+      "options": ["A) You mustn't touch the wild animals.", "B) You can take animals home.", "C) Animals sleep all day."],
+      "ans": "A) You mustn't touch the wild animals."
     }
   ],
 
@@ -215,96 +205,96 @@ quizBank["GET SMART SET"]["Module 7: Out and About"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE7_28.png"),
-      "q": "28. Read the street sign: [STOP - ZEBRA CROSSING AHEAD]. What must drivers do?",
-      "options": ["A) Turn left immediately", "B) Stop for pedestrians to cross", "C) Drive faster"],
-      "ans": "B) Stop for pedestrians to cross"
+      "q": "28. Read the rule sign: [DO NOT FEED THE ANIMALS]\nWhat must you NOT do?",
+      "options": ["A) Take photos of animals", "B) Give food to the animals", "C) Look at the animals"],
+      "ans": "B) Give food to the animals"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE7_29.png"),
-      "q": "29. Read the park rule: [DO NOT WALK ON THE GRASS]. What is the correct rule?",
-      "options": ["A) You must walk on the grass.", "B) You mustn't walk on the grass.", "C) You can play on the grass."],
-      "ans": "B) You mustn't walk on the grass."
+      "q": "29. Read the poster: [KEEP THE PARK CLEAN - THROW RUBBISH IN THE BIN]\nWhere should you put your trash?",
+      "options": ["A) On the grass", "B) In the rubbish bin", "C) In the pond"],
+      "ans": "B) In the rubbish bin"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE7_30.png"),
-      "q": "30. Read the library sign: [BE QUIET - NO MOBILE PHONES]. What mustn't you do?",
-      "options": ["A) Read books quietly", "B) Use your mobile phone", "C) Sit on a chair"],
-      "ans": "B) Use your mobile phone"
+      "q": "30. Look at the notice: [GIFT SHOP: OPEN 9:00 A.M. TO 6:00 P.M.]\nWhat can you buy here?",
+      "options": ["A) Bus tickets", "B) Souvenirs and toys", "C) Wild animals"],
+      "ans": "B) Souvenirs and toys"
     }
   ]
 };
 
 // ==========================================
-// 2. REMEDIAL SET - MODULE 7: OUT AND ABOUT (30 SOALAN)
+// 2. REMEDIAL SET (30 SOALAN)
 // ==========================================
-quizBank["REMEDIAL SET"]["Module 7: Out and About"] = {
+quizBank["REMEDIAL SET"]["Module 7: Out and About / Helping Out"] = {
   "Reading": [
-    // --- GAMBAR 1 (Soalan 1 - 5) ---
+    // --- PETIKAN 1 (Soalan 1 - 5: Zoo Trip!) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE7_1.png"),
-      "q": "1. Where did Adam go on Saturday?",
-      "options": ["A) To the park", "B) To Uncle Sam's farm", "C) To the zoo"],
-      "ans": "B) To Uncle Sam's farm"
+      "q": "1. We went to the zoo on ____.",
+      "options": ["A) Sunday", "B) Monday", "C) Friday"],
+      "ans": "A) Sunday"
     },
     {
       "type": "mcq",
-      "q": "2. How many horses did Adam see?",
-      "options": ["A) Two", "B) Four", "C) Six"],
-      "ans": "B) Four"
+      "q": "2. We saw big ____.",
+      "options": ["A) elephants", "B) cats", "C) birds"],
+      "ans": "A) elephants"
     },
     {
       "type": "mcq",
-      "q": "3. What color were the horses?",
-      "options": ["A) Brown", "B) Black", "C) White"],
-      "ans": "C) White"
+      "q": "3. We saw fast ____.",
+      "options": ["A) tigers", "B) fish", "C) frogs"],
+      "ans": "A) tigers"
     },
     {
       "type": "mcq",
-      "q": "4. What were the ducks doing?",
-      "options": ["A) Running", "B) Swimming in the pond", "C) Flying"],
-      "ans": "B) Swimming in the pond"
+      "q": "4. The trip was ____!",
+      "options": ["A) fun", "B) sad", "C) bad"],
+      "ans": "A) fun"
     },
     {
       "type": "mcq",
-      "q": "5. What must you close on the farm?",
-      "options": ["A) The door", "B) The window", "C) The gate"],
-      "ans": "C) The gate"
+      "q": "5. What picture is this?",
+      "options": ["A) Zoo Trip", "B) My School", "C) My House"],
+      "ans": "A) Zoo Trip"
     },
 
-    // --- GAMBAR 2 (Soalan 6 - 10) ---
+    // --- PETIKAN 2 (Soalan 6 - 10: Helping at Home!) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE7_6.png"),
-      "q": "6. Where is Sarah?",
-      "options": ["A) At the swimming pool", "B) At school", "C) At home"],
-      "ans": "A) At the swimming pool"
+      "q": "6. I help my ____ at home.",
+      "options": ["A) mother", "B) teacher", "C) driver"],
+      "ans": "A) mother"
     },
     {
       "type": "mcq",
-      "q": "7. What must you do first before swimming?",
-      "options": ["A) Run around", "B) Take a shower", "C) Eat food"],
-      "ans": "B) Take a shower"
+      "q": "7. I sweep the ____.",
+      "options": ["A) floor", "B) wall", "C) door"],
+      "ans": "A) floor"
     },
     {
       "type": "mcq",
-      "q": "8. Can children run near the pool?",
-      "options": ["A) Yes, they can.", "B) No, they mustn't.", "C) Yes, always."],
-      "ans": "B) No, they mustn't."
+      "q": "8. I wash the ____ every day.",
+      "options": ["A) dishes", "B) shoes", "C) books"],
+      "ans": "A) dishes"
     },
     {
       "type": "mcq",
-      "q": "9. Where do you throw rubbish?",
-      "options": ["A) In the bin", "B) In the pool", "C) On the floor"],
-      "ans": "A) In the bin"
+      "q": "9. Helping today, ____ every day!",
+      "options": ["A) Happy", "B) Sad", "C) Angry"],
+      "ans": "A) Happy"
     },
     {
       "type": "mcq",
-      "q": "10. Are rules important at the pool?",
-      "options": ["A) Yes, they are.", "B) No, they aren't.", "C) No rules exist."],
-      "ans": "A) Yes, they are."
+      "q": "10. What is this picture about?",
+      "options": ["A) Helping at Home", "B) Playing Games", "C) Sleeping"],
+      "ans": "A) Helping at Home"
     }
   ],
 
@@ -312,130 +302,118 @@ quizBank["REMEDIAL SET"]["Module 7: Out and About"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE7_11.png"),
-      "q": "11. An animal with wool: ______.",
-      "options": ["A) sheep", "B) fish", "C) cat"],
-      "ans": "A) sheep"
+      "q": "11. A big wild animal is an ______.",
+      "options": ["A) elephant", "B) ant", "C) bee"],
+      "ans": "A) elephant"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE7_12.png"),
-      "q": "12. A safe place to cross the road: ______.",
-      "options": ["A) zebra crossing", "B) bed", "C) chair"],
-      "ans": "A) zebra crossing"
+      "q": "12. You clean the floor with a broom: ______ the floor.",
+      "options": ["A) Sweep", "B) Eat", "C) Read"],
+      "ans": "A) Sweep"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE7_13.png"),
-      "q": "13. Animal that quacks and swims: ______.",
-      "options": ["A) duck", "B) cow", "C) horse"],
-      "ans": "A) duck"
+      "q": "13. You clean dirty plates: ______ the dishes.",
+      "options": ["A) Wash", "B) Play", "C) Jump"],
+      "ans": "A) Wash"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE7_14.png"),
-      "q": "14. Put trash in the ______.",
-      "options": ["A) rubbish bin", "B) bag", "C) box"],
-      "ans": "A) rubbish bin"
+      "q": "14. A fast striped animal is a ______.",
+      "options": ["A) tiger", "B) duck", "C) goat"],
+      "ans": "A) tiger"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE7_15.png"),
-      "q": "15. An animal that rides fast on a farm: ______.",
-      "options": ["A) horse", "B) mouse", "C) duck"],
-      "ans": "A) horse"
+      "q": "15. A place with animals is a ______.",
+      "options": ["A) zoo", "B) shop", "C) room"],
+      "ans": "A) zoo"
     }
   ],
 
   "Grammar": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE7_16.png"),
-      "q": "16. You ______ stop at the red light.",
-      "options": ["A) must", "B) mustn't", "C) don't"],
+      "q": "16. Yesterday, we ______ to the zoo.",
+      "options": ["A) went", "B) go", "C) going"],
+      "ans": "A) went"
+    },
+    {
+      "type": "mcq",
+      "q": "17. We ______ big elephants yesterday.",
+      "options": ["A) saw", "B) see", "C) seeing"],
+      "ans": "A) saw"
+    },
+    {
+      "type": "mcq",
+      "q": "18. You ______ keep the class clean.",
+      "options": ["A) must", "B) mustn't", "C) cannot"],
       "ans": "A) must"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE7_17.png"),
-      "q": "17. You ______ run near the pool.",
-      "options": ["A) must", "B) mustn't", "C) can"],
-      "ans": "B) mustn't"
+      "q": "19. You ______ litter on the ground.",
+      "options": ["A) mustn't", "B) must", "C) can"],
+      "ans": "A) mustn't"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE7_18.png"),
-      "q": "18. One mouse, two ______.",
-      "options": ["A) mouses", "B) mice", "C) mices"],
-      "ans": "B) mice"
-    },
-    {
-      "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE7_19.png"),
-      "q": "19. One sheep, three ______.",
-      "options": ["A) sheep", "B) sheeps", "C) sheepes"],
-      "ans": "A) sheep"
-    },
-    {
-      "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE7_20.png"),
-      "q": "20. One child, four ______.",
-      "options": ["A) childs", "B) children", "C) childrens"],
-      "ans": "B) children"
+      "q": "20. She ______ the floor this morning.",
+      "options": ["A) swept", "B) sweep", "C) sweeping"],
+      "ans": "A) swept"
     }
   ],
 
   "Writing": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE7_21.png"),
       "q": "21. Choose the correct spelling:",
-      "options": ["A) farm", "B) faarm", "C) pharm"],
-      "ans": "A) farm"
+      "options": ["A) Tiger", "B) Tyger", "C) Tigar"],
+      "ans": "A) Tiger"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE7_22.png"),
-      "q": "22. Rearrange: [ must / stop / You ]",
-      "options": ["A) Stop must you.", "B) You must stop.", "C) Must stop you."],
-      "ans": "B) You must stop."
+      "q": "22. Rearrange: [ to / went / We / zoo / the ]",
+      "options": ["A) We went to the zoo.", "B) Zoo we went to the.", "C) Went we to zoo the."],
+      "ans": "A) We went to the zoo."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE7_23.png"),
-      "q": "23. Choose the correct sentence:",
-      "options": ["A) Close the gate.", "B) close the gate", "C) Close the gate?"],
-      "ans": "A) Close the gate."
+      "q": "23. Choose the correct spelling:",
+      "options": ["A) Sweep", "B) Sweeped", "C) Swep"],
+      "ans": "A) Sweep"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE7_24.png"),
-      "q": "24. Choose the correct spelling:",
-      "options": ["A) duck", "B) duk", "C) dukc"],
-      "ans": "A) duck"
+      "q": "24. Rearrange: [ floor / I / sweep / the ]",
+      "options": ["A) I sweep the floor.", "B) Floor I sweep the.", "C) Sweep floor I the."],
+      "ans": "A) I sweep the floor."
     }
   ],
 
   "Speaking": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE7_25.png"),
-      "q": "25. 'How do I go to the shop?' - You answer:",
-      "options": ["A) Turn left.", "B) It is blue.", "C) I like shops."],
-      "ans": "A) Turn left."
+      "q": "25. What did you see at the zoo?",
+      "options": ["A) I saw a tiger.", "B) I am sleeping.", "C) I eat pizza."],
+      "ans": "A) I saw a tiger."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE7_26.png"),
-      "q": "26. What do you say when the light is green?",
-      "options": ["A) Stop!", "B) Go!", "C) Sleep!"],
-      "ans": "B) Go!"
+      "q": "26. Do you help at home?",
+      "options": ["A) Yes, I do.", "B) No, I am.", "C) Yes, I can't."],
+      "ans": "A) Yes, I do."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE7_27.png"),
-      "q": "27. Can you litter in the park?",
-      "options": ["A) Yes, I can.", "B) No, you mustn't litter.", "C) Yes, always."],
-      "ans": "B) No, you mustn't litter."
+      "q": "27. Can you wash the dishes?",
+      "options": ["A) Yes, I can.", "B) Yes, I do.", "C) No, I am."],
+      "ans": "A) Yes, I can."
     }
   ],
 
@@ -443,23 +421,23 @@ quizBank["REMEDIAL SET"]["Module 7: Out and About"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE7_28.png"),
-      "q": "28. Read the sign: [STOP]. What must you do?",
-      "options": ["A) Run", "B) Stop", "C) Walk"],
-      "ans": "B) Stop"
+      "q": "28. Read the sign: [ZOO GATE]\nWhere are you entering?",
+      "options": ["A) The zoo", "B) The school", "C) The house"],
+      "ans": "A) The zoo"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE7_29.png"),
-      "q": "29. Read the sign: [NO LITTERING]. Where do you throw trash?",
-      "options": ["A) In the bin", "B) On the grass", "C) On the road"],
-      "ans": "A) In the bin"
+      "q": "29. Read the tag: [BIN]\nWhat goes in here?",
+      "options": ["A) Rubbish", "B) Food", "C) Toys"],
+      "ans": "A) Rubbish"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE7_30.png"),
-      "q": "30. Look at the arrow sign: [TURN RIGHT]. Which way do you go?",
-      "options": ["A) Turn left", "B) Turn right", "C) Go straight"],
-      "ans": "B) Turn right"
+      "q": "30. Look at the sign: [QUIET PLEASE]\nWhat should you do?",
+      "options": ["A) Be quiet", "B) Shout loudly", "C) Run around"],
+      "ans": "A) Be quiet"
     }
   ]
 };
