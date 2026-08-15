@@ -9,6 +9,10 @@
     <style>
         * { box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
         body { background-color: #f4f5f7; margin: 0; padding: 30px 20px; }
+        
+        /* SEMBUNYIKAN KANDUNGAN UTAMA SEBELUM PASSWORD DIMASUKKAN */
+        #main-dashboard { display: none; }
+        
         .container { max-width: 1000px; margin: 0 auto; }
         
         .header-bar {
@@ -94,7 +98,8 @@
 </head>
 <body>
 
-<div class="container">
+<!-- KANDUNGAN UTAMA DASHBOARD -->
+<div class="container" id="main-dashboard">
     <!-- TAJUK & BUTANG NAVIGASI -->
     <div class="header-bar">
         <div>
@@ -149,7 +154,7 @@
                 </tr>
             </thead>
             <tbody id="jadual-rekod-body">
-                <!-- Data akan dimasukkan secara dinamik melalui JS -->
+                <!-- Data akan dimasukkan secara dinamik -->
             </tbody>
         </table>
     </div>
@@ -158,10 +163,28 @@
 <script>
     let rekodData = [];
 
-    // Muat data dari LocalStorage bila halaman dibuka
+    // SEMAK PASSWORD SEBELUM MEMBUKA DASHBOARD
     window.onload = function() {
-        muatData();
+        semakPassword();
     };
+
+    function semakPassword() {
+        const kataLaluanDisimpan = "guru123";
+        let inputPassword = prompt("🔒 Akses Terhad Guru\nSila masukkan kata laluan:");
+
+        if (inputPassword === kataLaluanDisimpan) {
+            // Jika betul, paparkan dashboard
+            document.getElementById('main-dashboard').style.display = 'block';
+            muatData();
+        } else if (inputPassword === null) {
+            // Jika tekan Cancel, kembalikan ke index.html
+            window.location.href = "index.html";
+        } else {
+            // Jika salah
+            alert("Kata laluan salah! Akses ditolak.");
+            window.location.href = "index.html";
+        }
+    }
 
     function muatData() {
         rekodData = JSON.parse(localStorage.getItem('rekod_portal_year3') || '[]');
@@ -205,7 +228,6 @@
             return;
         }
 
-        // Susun rekod paling terkini di atas
         const rekodDisusun = [...rekodData].reverse();
 
         rekodDisusun.forEach(item => {
