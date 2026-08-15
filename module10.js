@@ -9,74 +9,74 @@ function wrapCenterImage(imagePath) {
 }
 
 // ==========================================
-// 1. GET SMART SET - MODULE 10 (30 SOALAN)
+// 1. GET SMART SET (30 SOALAN)
 // ==========================================
-quizBank["GET SMART SET"]["Module 10"] = {
+quizBank["GET SMART SET"]["Module 10: The World Around Us / Animals & Solar System"] = {
   "Reading": [
-    // --- GAMBAR 1 (Soalan 1 - 5) ---
+    // --- PETIKAN 1 (Soalan 1 - 5: The Amazing World of Animals) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_1.png"),
-      "q": "1. What is the biggest animal on Earth?",
-      "options": ["A) The elephant", "B) The blue whale", "C) The giraffe"],
-      "ans": "B) The blue whale"
+      "q": "1. Which animal is the biggest animal on Earth?",
+      "options": ["A) The blue whale", "B) The elephant", "C) The cheetah"],
+      "ans": "A) The blue whale"
     },
     {
       "type": "mcq",
-      "q": "2. Which animal is the fastest land animal?",
-      "options": ["A) The horse", "B) The lion", "C) The cheetah"],
-      "ans": "C) The cheetah"
+      "q": "2. The blue whale is much larger than which land animal?",
+      "options": ["A) A giraffe", "B) An elephant", "C) A panda"],
+      "ans": "B) An elephant"
     },
     {
       "type": "mcq",
-      "q": "3. Which land animal is taller than an elephant?",
-      "options": ["A) The giraffe", "B) The blue whale", "C) The horse"],
-      "ans": "A) The giraffe"
+      "q": "3. Which land animal is the fastest, running faster than a horse?",
+      "options": ["A) The cheetah", "B) The blue whale", "C) The giraffe"],
+      "ans": "A) The cheetah"
     },
     {
       "type": "mcq",
-      "q": "4. Why does the giraffe have a long neck?",
-      "options": ["A) To swim fast in rivers", "B) To reach high leaves", "C) To run faster than a cheetah"],
+      "q": "4. Why does the giraffe have a very long neck?",
+      "options": ["A) To swim fast in rivers", "B) To reach high leaves", "C) To run faster than a horse"],
       "ans": "B) To reach high leaves"
     },
     {
       "type": "mcq",
-      "q": "5. What is the main idea of Passage 1?",
-      "options": ["A) Animals and their amazing physical traits.", "B) How to feed farm animals.", "C) Visiting a city zoo on Sunday."],
-      "ans": "A) Animals and their amazing physical traits."
+      "q": "5. What message does the sign in the poster encourage us to do?",
+      "options": ["A) Protect our animals", "B) Feed the cheetahs", "C) Ride the whales"],
+      "ans": "A) Protect our animals"
     },
 
-    // --- GAMBAR 2 (Soalan 6 - 10) ---
+    // --- PETIKAN 2 (Soalan 6 - 10: Our Solar System) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_6.png"),
       "q": "6. How many planets are there in our solar system?",
-      "options": ["A) Seven planets", "B) Eight planets", "C) Nine planets"],
+      "options": ["A) Five planets", "B) Eight planets", "C) Ten planets"],
       "ans": "B) Eight planets"
     },
     {
       "type": "mcq",
-      "q": "7. Which is the largest planet in our solar system?",
-      "options": ["A) Jupiter", "B) Saturn", "C) Earth"],
+      "q": "7. Which planet is the largest planet of all in our solar system?",
+      "options": ["A) Jupiter", "B) Mercury", "C) Saturn"],
       "ans": "A) Jupiter"
     },
     {
       "type": "mcq",
-      "q": "8. Which planet is the smallest?",
-      "options": ["A) Mercury", "B) Venus", "C) Mars"],
-      "ans": "A) Mercury"
+      "q": "8. Which planet is the smallest in our solar system?",
+      "options": ["A) Earth", "B) Mercury", "C) Uranus"],
+      "ans": "B) Mercury"
     },
     {
       "type": "mcq",
       "q": "9. What makes Saturn famous?",
-      "options": ["A) Its green forests", "B) Its beautiful rings of ice and dust", "C) Its large oceans"],
-      "ans": "B) Its beautiful rings of ice and dust"
+      "options": ["A) Its beautiful rings made of ice and dust", "B) Having liquid water and life", "C) Being the smallest planet"],
+      "ans": "A) Its beautiful rings made of ice and dust"
     },
     {
       "type": "mcq",
-      "q": "10. What unique feature does Earth have?",
-      "options": ["A) It is the largest planet.", "B) It has liquid water and life.", "C) It has thirty moons."],
-      "ans": "B) It has liquid water and life."
+      "q": "10. Which is the only planet known to have liquid water and life?",
+      "options": ["A) Mars", "B) Earth", "C) Neptune"],
+      "ans": "B) Earth"
     }
   ],
 
@@ -84,36 +84,36 @@ quizBank["GET SMART SET"]["Module 10"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_11.png"),
-      "q": "11. A large marine mammal that is the largest creature on Earth is a ______.",
-      "options": ["A) shark", "B) blue whale", "C) dolphin"],
-      "ans": "B) blue whale"
+      "q": "11. A huge marine mammal that lives in the ocean is a ______.",
+      "options": ["A) blue whale", "B) cheetah", "C) giraffe"],
+      "ans": "A) blue whale"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_12.png"),
-      "q": "12. A large wild cat with black spots known as the fastest land animal is a ______.",
-      "options": ["A) cheetah", "B) tiger", "C) leopard"],
+      "q": "12. A large wild cat known for its extreme speed and spotted coat is a ______.",
+      "options": ["A) cheetah", "B) panda", "C) parrot"],
       "ans": "A) cheetah"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_13.png"),
-      "q": "13. A large celestial body that orbits a star, such as Earth or Jupiter, is a ______.",
-      "options": ["A) comet", "B) planet", "C) meteor"],
-      "ans": "B) planet"
+      "q": "13. A tall African mammal with a very long neck and spotted skin is a ______.",
+      "options": ["A) giraffe", "B) elephant", "C) whale"],
+      "ans": "A) giraffe"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_14.png"),
-      "q": "14. A tall African animal with a very long neck and spotted coat is a ______.",
-      "options": ["A) zebra", "B) giraffe", "C) camel"],
-      "ans": "B) giraffe"
+      "q": "14. A large celestial body that orbits a star, such as Earth or Jupiter, is a ______.",
+      "options": ["A) planet", "B) ring", "C) leaf"],
+      "ans": "A) planet"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_15.png"),
-      "q": "15. The sun and the group of planets that travel around it make up the ______.",
-      "options": ["A) solar system", "B) Milky Way", "C) universe"],
+      "q": "15. The sun and the group of planets that move around it is called the ______.",
+      "options": ["A) solar system", "B) ocean life", "C) animal kingdom"],
       "ans": "A) solar system"
     }
   ],
@@ -122,92 +122,82 @@ quizBank["GET SMART SET"]["Module 10"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_16.png"),
-      "q": "16. An elephant is ______ than a horse.",
-      "options": ["A) big", "B) bigger", "C) biggest"],
-      "ans": "B) bigger"
+      "q": "16. The blue whale is the ______ animal on Earth.",
+      "options": ["A) biggest", "B) bigger", "C) big"],
+      "ans": "A) biggest"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_17.png"),
-      "q": "17. The blue whale is the ______ animal in the ocean.",
-      "options": ["A) large", "B) larger", "C) largest"],
-      "ans": "C) largest"
+      "q": "17. The cheetah runs ______ than a horse.",
+      "options": ["A) faster", "B) fastest", "C) fast"],
+      "ans": "A) faster"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_18.png"),
-      "q": "18. A cheetah runs ______ than a dog.",
-      "options": ["A) fast", "B) faster", "C) fastest"],
-      "ans": "B) faster"
+      "q": "18. Jupiter is the ______ planet in our solar system.",
+      "options": ["A) largest", "B) larger", "C) large"],
+      "ans": "A) largest"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_19.png"),
-      "q": "19. Jupiter is the ______ planet in our solar system.",
+      "q": "19. Earth is ______ than Mercury.",
       "options": ["A) bigger", "B) biggest", "C) big"],
-      "ans": "B) biggest"
+      "ans": "A) bigger"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_20.png"),
-      "q": "20. Mercury is ______ than Earth.",
-      "options": ["A) smaller", "B) smallest", "C) small"],
-      "ans": "A) smaller"
+      "q": "20. The giraffe is the ______ land animal.",
+      "options": ["A) tallest", "B) taller", "C) tall"],
+      "ans": "A) tallest"
     }
   ],
 
   "Writing": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_21.png"),
-      "q": "21. Choose the sentence with correct capitalization and punctuation.",
-      "options": ["A) Jupiter is the largest planet in our solar system.", "B) jupiter is the largest planet in our solar system", "C) Jupiter is the Largest planet in Our Solar System?"],
+      "q": "21. Choose the sentence with the correct capitalization and punctuation.",
+      "options": ["A) Jupiter is the largest planet in our solar system.", "B) jupiter is the largest planet in our solar system", "C) Jupiter is the largest Planet in Our solar system"],
       "ans": "A) Jupiter is the largest planet in our solar system."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_22.png"),
-      "q": "22. Rearrange the words: [ fastest / cheetah / The / animal / land / is / the ]",
-      "options": ["A) The cheetah is the fastest land animal.", "B) Fastest land animal is the cheetah the.", "C) The fastest animal land is cheetah."],
-      "ans": "A) The cheetah is the fastest land animal."
+      "q": "22. Rearrange the words to form a correct sentence: [ planet / Mercury / smallest / the / is ]",
+      "options": ["A) Mercury is the smallest planet.", "B) The smallest Mercury planet is.", "C) Planet Mercury smallest is the."],
+      "ans": "A) Mercury is the smallest planet."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_23.png"),
-      "q": "23. Rearrange the words: [ than / Giraffes / taller / horses / are ]",
-      "options": ["A) Giraffes are taller than horses.", "B) Horses are taller than giraffes.", "C) Taller than giraffes are horses."],
-      "ans": "A) Giraffes are taller than horses."
+      "q": "23. Rearrange the words to form a correct sentence: [ has / system / planets / solar / Eight / Our ]",
+      "options": ["A) Our solar system has eight planets.", "B) Eight planets solar our system has.", "C) Has eight planets system our solar."],
+      "ans": "A) Our solar system has eight planets."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_24.png"),
-      "q": "24. Choose the correct comparative spelling for 'heavy':",
-      "options": ["A) heavyer", "B) heavier", "C) heaviest"],
-      "ans": "B) heavier"
+      "q": "24. Choose the word with the correct spelling.",
+      "options": ["A) Cheetah", "B) Cheeta", "C) Chetah"],
+      "ans": "A) Cheetah"
     }
   ],
 
   "Speaking": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_25.png"),
-      "q": "25. Asking about preferences: 'Which animal do you think is the smartest?' How do you answer?",
-      "options": ["A) I think the dolphin is the smartest.", "B) Dolphins can swim very fast.", "C) Yes, dolphins are animals."],
-      "ans": "A) I think the dolphin is the smartest."
+      "q": "25. How do you describe the blue whale to a friend?",
+      "options": ["A) It is the biggest animal on Earth.", "B) It is the smallest insect in the garden.", "C) It can fly high in the sky."],
+      "ans": "A) It is the biggest animal on Earth."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_26.png"),
-      "q": "26. Comparing two objects: 'Is Earth bigger than Jupiter?'",
-      "options": ["A) No, Jupiter is much bigger than Earth.", "B) Yes, Earth is the biggest.", "C) Earth has water."],
-      "ans": "A) No, Jupiter is much bigger than Earth."
+      "q": "26. Someone asks: 'Which planet do we live on?' How do you answer?",
+      "options": ["A) We live on planet Earth.", "B) We live on Jupiter.", "C) We live on the Sun."],
+      "ans": "A) We live on planet Earth."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE10_27.png"),
-      "q": "27. Giving a fact: 'What is the tallest animal in the world?'",
-      "options": ["A) The giraffe is the tallest animal.", "B) The elephant is heavy.", "C) The lion is fast."],
-      "ans": "A) The giraffe is the tallest animal."
+      "q": "27. How do you compare a giraffe and a horse?",
+      "options": ["A) A giraffe is taller than a horse.", "B) A horse is taller than a giraffe.", "C) A giraffe is smaller than a mouse."],
+      "ans": "A) A giraffe is taller than a horse."
     }
   ],
 
@@ -215,96 +205,96 @@ quizBank["GET SMART SET"]["Module 10"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_28.png"),
-      "q": "28. Read the fact card: [BLUE WHALE - WEIGHT: 150 TONNES | ELEPHANT - WEIGHT: 6 TONNES]. Which is heavier?",
-      "options": ["A) The elephant", "B) The blue whale", "C) They are equal weight"],
-      "ans": "B) The blue whale"
+      "q": "28. Read the sign: [NATURE IS WONDERFUL! LET'S PROTECT OUR ANIMALS!]\nWhat does the sign ask us to do?",
+      "options": ["A) Take care of wild animals", "B) Keep wild animals in small boxes", "C) Harm animals in nature"],
+      "ans": "A) Take care of wild animals"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_29.png"),
-      "q": "29. Read the planet chart: [JUPITER > SATURN > EARTH > MERCURY]. Which planet is the smallest?",
-      "options": ["A) Saturn", "B) Earth", "C) Mercury"],
-      "ans": "C) Mercury"
+      "q": "29. Read the fact: [SATURN HAS RINGS MADE OF ICE AND DUST]\nWhat can you find around Saturn?",
+      "options": ["A) Rings of ice and dust", "B) Oceans of hot water", "C) Green trees and grass"],
+      "ans": "A) Rings of ice and dust"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/GS_MODULE10_30.png"),
-      "q": "30. Read the quiz question: [CHEETAH: 120 KM/H | HORSE: 80 KM/H]. Which animal runs faster?",
-      "options": ["A) The cheetah", "B) The horse", "C) Both run at same speed"],
-      "ans": "A) The cheetah"
+      "q": "30. Look at the solar system diagram. Which planet is closest to the Sun?",
+      "options": ["A) Mercury", "B) Neptune", "C) Earth"],
+      "ans": "A) Mercury"
     }
   ]
 };
 
 // ==========================================
-// 2. REMEDIAL SET - MODULE 10 (30 SOALAN)
+// 2. REMEDIAL SET (30 SOALAN)
 // ==========================================
-quizBank["REMEDIAL SET"]["Module 10"] = {
+quizBank["REMEDIAL SET"]["Module 10: The World Around Us / Animals & Solar System"] = {
   "Reading": [
-    // --- GAMBAR 1 (Soalan 1 - 5) ---
+    // --- PETIKAN 1 (Soalan 1 - 5: Big and Fast Animals) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE10_1.png"),
-      "q": "1. What is the biggest animal?",
-      "options": ["A) Elephant", "B) Blue whale", "C) Cat"],
-      "ans": "B) Blue whale"
+      "q": "1. The blue whale is the ____ animal.",
+      "options": ["A) biggest", "B) smallest", "C) shortest"],
+      "ans": "A) biggest"
     },
     {
       "type": "mcq",
-      "q": "2. What is the fastest land animal?",
-      "options": ["A) Dog", "B) Cheetah", "C) Horse"],
-      "ans": "B) Cheetah"
+      "q": "2. Which animal is the fastest?",
+      "options": ["A) The cheetah", "B) The whale", "C) The snail"],
+      "ans": "A) The cheetah"
     },
     {
       "type": "mcq",
-      "q": "3. Which animal is the tallest?",
-      "options": ["A) Giraffe", "B) Lion", "C) Monkey"],
-      "ans": "A) Giraffe"
+      "q": "3. The giraffe is the ____ animal.",
+      "options": ["A) tallest", "B) smallest", "C) fastest"],
+      "ans": "A) tallest"
     },
     {
       "type": "mcq",
-      "q": "4. Is a giraffe taller than a horse?",
-      "options": ["A) Yes, it is.", "B) No, it isn't.", "C) No, they are same."],
-      "ans": "A) Yes, it is."
+      "q": "4. What color is the whale in the picture?",
+      "options": ["A) Blue", "B) Red", "C) Yellow"],
+      "ans": "A) Blue"
     },
     {
       "type": "mcq",
-      "q": "5. Is the blue whale small?",
-      "options": ["A) Yes, it is.", "B) No, it is the biggest.", "C) Yes, like a fish."],
-      "ans": "B) No, it is the biggest."
+      "q": "5. What is this poster about?",
+      "options": ["A) Big and fast animals", "B) Toys in a store", "C) Fast cars"],
+      "ans": "A) Big and fast animals"
     },
 
-    // --- GAMBAR 2 (Soalan 6 - 10) ---
+    // --- PETIKAN 2 (Soalan 6 - 10: Planets in Space) ---
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE10_6.png"),
-      "q": "6. What is the biggest planet?",
-      "options": ["A) Earth", "B) Jupiter", "C) Mercury"],
-      "ans": "B) Jupiter"
+      "q": "6. Jupiter is the ____ planet.",
+      "options": ["A) biggest", "B) smallest", "C) coldest"],
+      "ans": "A) biggest"
     },
     {
       "type": "mcq",
-      "q": "7. What is the smallest planet?",
-      "options": ["A) Mercury", "B) Jupiter", "C) Saturn"],
-      "ans": "A) Mercury"
+      "q": "7. Mercury is the ____ planet.",
+      "options": ["A) smallest", "B) biggest", "C) tallest"],
+      "ans": "A) smallest"
     },
     {
       "type": "mcq",
-      "q": "8. What planet do we live on?",
-      "options": ["A) Mars", "B) Earth", "C) Venus"],
-      "ans": "B) Earth"
+      "q": "8. Earth is our ____.",
+      "options": ["A) planet", "B) star", "C) moon"],
+      "ans": "A) planet"
     },
     {
       "type": "mcq",
-      "q": "9. What does Earth have?",
-      "options": ["A) Fire", "B) Water", "C) Ice rings"],
-      "ans": "B) Water"
+      "q": "9. Earth has ____.",
+      "options": ["A) water", "B) rings", "C) fire"],
+      "ans": "A) water"
     },
     {
       "type": "mcq",
-      "q": "10. Is Jupiter bigger than Mercury?",
-      "options": ["A) Yes, it is.", "B) No, it isn't.", "C) No, they are equal."],
-      "ans": "A) Yes, it is."
+      "q": "10. Where are Jupiter, Mercury, and Earth?",
+      "options": ["A) In space", "B) Under the sea", "C) In a forest"],
+      "ans": "A) In space"
     }
   ],
 
@@ -312,30 +302,30 @@ quizBank["REMEDIAL SET"]["Module 10"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE10_11.png"),
-      "q": "11. The biggest animal in the sea: ______.",
-      "options": ["A) blue whale", "B) crab", "C) fish"],
-      "ans": "A) blue whale"
+      "q": "11. Big animal in the sea: ______.",
+      "options": ["A) Whale", "B) Cat", "C) Bird"],
+      "ans": "A) Whale"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE10_12.png"),
-      "q": "12. The fastest animal on land: ______.",
-      "options": ["A) cheetah", "B) snail", "C) pig"],
-      "ans": "A) cheetah"
+      "q": "12. Fast animal with spots: ______.",
+      "options": ["A) Cheetah", "B) Dog", "C) Fish"],
+      "ans": "A) Cheetah"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE10_13.png"),
-      "q": "13. The planet we live on: ______.",
-      "options": ["A) Earth", "B) Moon", "C) Sun"],
-      "ans": "A) Earth"
+      "q": "13. Animal with a very long neck: ______.",
+      "options": ["A) Giraffe", "B) Frog", "C) Rabbit"],
+      "ans": "A) Giraffe"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE10_14.png"),
-      "q": "14. Animal with a very long neck: ______.",
-      "options": ["A) giraffe", "B) goat", "C) duck"],
-      "ans": "A) giraffe"
+      "q": "14. The planet where we live: ______.",
+      "options": ["A) Earth", "B) Moon", "C) Sun"],
+      "ans": "A) Earth"
     },
     {
       "type": "mcq",
@@ -349,93 +339,81 @@ quizBank["REMEDIAL SET"]["Module 10"] = {
   "Grammar": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_16.png"),
-      "q": "16. An elephant is ______ than a cat.",
-      "options": ["A) bigger", "B) big", "C) biggest"],
-      "ans": "A) bigger"
+      "q": "16. The cheetah is ______ than a horse.",
+      "options": ["A) faster", "B) fast", "C) fastest"],
+      "ans": "A) faster"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_17.png"),
       "q": "17. The giraffe is the ______ animal.",
       "options": ["A) tallest", "B) taller", "C) tall"],
       "ans": "A) tallest"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_18.png"),
-      "q": "18. A cheetah is ______ than a turtle.",
-      "options": ["A) faster", "B) fast", "C) fastest"],
-      "ans": "A) faster"
+      "q": "18. Jupiter is ______ than Earth.",
+      "options": ["A) bigger", "B) big", "C) biggest"],
+      "ans": "A) bigger"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_19.png"),
-      "q": "19. Jupiter is the ______ planet.",
-      "options": ["A) biggest", "B) bigger", "C) big"],
-      "ans": "A) biggest"
+      "q": "19. Mercury is the ______ planet.",
+      "options": ["A) smallest", "B) smaller", "C) small"],
+      "ans": "A) smallest"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_20.png"),
-      "q": "20. Mercury is ______ than Earth.",
-      "options": ["A) smaller", "B) small", "C) smallest"],
-      "ans": "A) smaller"
+      "q": "20. An elephant is ______ than a cat.",
+      "options": ["A) larger", "B) largest", "C) large"],
+      "ans": "A) larger"
     }
   ],
 
   "Writing": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_21.png"),
       "q": "21. Choose the correct spelling:",
-      "options": ["A) planet", "B) plannet", "C) planit"],
-      "ans": "A) planet"
+      "options": ["A) Giraffe", "B) Girafe", "C) Jiraffe"],
+      "ans": "A) Giraffe"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_22.png"),
-      "q": "22. Rearrange: [ is / Earth / planet / a ]",
-      "options": ["A) Earth is a planet.", "B) Planet a is Earth.", "C) Is Earth a planet."],
-      "ans": "A) Earth is a planet."
+      "q": "22. Rearrange: [ fastest / Cheetah / is / the ]",
+      "options": ["A) Cheetah is the fastest.", "B) Fastest cheetah is the.", "C) Is cheetah the fastest."],
+      "ans": "A) Cheetah is the fastest."
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_23.png"),
-      "q": "23. Choose the correct sentence:",
-      "options": ["A) The cheetah is fast.", "B) the cheetah is fast", "C) The cheetah Is Fast?"],
-      "ans": "A) The cheetah is fast."
+      "q": "23. Choose the correct spelling:",
+      "options": ["A) Planet", "B) Plannet", "C) Plenet"],
+      "ans": "A) Planet"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_24.png"),
-      "q": "24. Choose the correct spelling:",
-      "options": ["A) giraffe", "B) girafe", "C) jiraffe"],
-      "ans": "A) giraffe"
+      "q": "24. Rearrange: [ has / Earth / water ]",
+      "options": ["A) Earth has water.", "B) Water Earth has.", "C) Has water Earth."],
+      "ans": "A) Earth has water."
     }
   ],
 
   "Speaking": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_25.png"),
-      "q": "25. 'Which animal is bigger?' - You answer:",
-      "options": ["A) The elephant is bigger.", "B) It is green.", "C) I like swimming."],
-      "ans": "A) The elephant is bigger."
+      "q": "25. Is the blue whale big?",
+      "options": ["A) Yes, it is the biggest!", "B) No, it is tiny.", "C) Yes, it can fly."],
+      "ans": "A) Yes, it is the biggest!"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_26.png"),
-      "q": "26. 'Is Jupiter big?' - You answer:",
-      "options": ["A) Yes, it is the biggest.", "B) Yes, I am.", "C) No, it isn't."],
-      "ans": "A) Yes, it is the biggest."
+      "q": "26. Which animal has a long neck?",
+      "options": ["A) A giraffe", "B) A cheetah", "C) A whale"],
+      "ans": "A) A giraffe"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE10_27.png"),
-      "q": "27. 'Is a cheetah slow?' - You answer:",
-      "options": ["A) No, it is very fast!", "B) Yes, it is slow.", "C) Yes, it can fly."],
-      "ans": "A) No, it is very fast!"
+      "q": "27. Does Earth have water?",
+      "options": ["A) Yes, Earth has water.", "B) No, it is dry.", "C) Earth is a star."],
+      "ans": "A) Yes, Earth has water."
     }
   ],
 
@@ -443,23 +421,23 @@ quizBank["REMEDIAL SET"]["Module 10"] = {
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE10_28.png"),
-      "q": "28. Read the label: [BIGGEST PLANET: JUPITER]. Which planet is it?",
-      "options": ["A) Jupiter", "B) Earth", "C) Mars"],
-      "ans": "A) Jupiter"
+      "q": "28. Read the label: [BIGGEST ANIMAL]\nWhich animal is this?",
+      "options": ["A) Blue whale", "B) Ant", "C) Frog"],
+      "ans": "A) Blue whale"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE10_29.png"),
-      "q": "29. Read the word: [GIRAFFE]. Does it have a long neck or short legs?",
-      "options": ["A) Long neck", "B) Wings", "C) Fins"],
-      "ans": "A) Long neck"
+      "q": "29. Read the word: [EARTH]\nWhat color is mostly seen on planet Earth from space?",
+      "options": ["A) Blue and green", "B) Pink and purple", "C) Red and yellow"],
+      "ans": "A) Blue and green"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE10_30.png"),
-      "q": "30. Look at the animal: [BLUE WHALE]. Where does it live?",
-      "options": ["A) In the sea", "B) In a tree", "C) In a house"],
-      "ans": "A) In the sea"
+      "q": "30. Look at the title: [PLANETS IN SPACE]\nHow many planets are in our solar system?",
+      "options": ["A) 8 planets", "B) 2 planets", "C) 100 planets"],
+      "ans": "A) 8 planets"
     }
   ]
 };
