@@ -146,7 +146,7 @@
             margin-bottom: 20px;
             border-radius: 4px;
         }
-        /* STYLING TAMBAHAN UNTUK GAMBAR (DIBESARKAN SUPAYA CLEAR) */
+        /* STYLING UTAMA UNTUK GAMBAR */
         .question-image-container {
             text-align: center;
             margin-bottom: 15px;
@@ -157,19 +157,27 @@
         }
         .question-image {
             width: 100%;
-            max-width: 680px; /* Ditingkatkan supaya tulisan dalam gambar jelas */
+            max-width: 680px;
             height: auto;
-            max-height: 600px; /* Had ketinggian dinaikkan dari 350px ke 600px */
+            max-height: 600px;
             border-radius: 6px;
             object-fit: contain;
         }
-        /* MEMAKSA GAMBAR DARIPADA FUNCTION WRAPCENTERIMAGE() DI JS MODUL SUPAYA TURUT MEMBESAR */
         .item-soalan img {
             max-height: 600px !important;
             width: 100% !important;
             max-width: 680px !important;
             height: auto !important;
             object-fit: contain !important;
+        }
+
+        /* GAYA KHAS GAMBAR DIKECILKAN BAGI SOALAN 11 - 30 */
+        .item-soalan.img-small img,
+        .question-image-container.img-small img {
+            max-width: 320px !important;
+            max-height: 220px !important;
+            margin: 0 auto;
+            display: block;
         }
     </style>
 </head>
@@ -291,7 +299,6 @@
 
         const modulKeys = Object.keys(quizBank[setTerpilih]);
         
-        // Carian kekunci modul yang lebih fleksibel
         const matchNombor = modulInput.match(/\d+/);
         const nomborModul = matchNombor ? matchNombor[0] : '';
         const kunciPadan = modulKeys.find(key => {
@@ -330,28 +337,29 @@
         let htmlContent = '';
 
         soalanSemasa.forEach((soalan, index) => {
-            htmlContent += `<div class="item-soalan">`;
+            const nomborSoalan = index + 1;
+            // Semak jika nombor soalan antara 11 hingga 30 untuk mengecilkan gambar
+            const isSmallImg = (nomborSoalan >= 11 && nomborSoalan <= 30);
+            const extraClass = isSmallImg ? 'img-small' : '';
+
+            htmlContent += `<div class="item-soalan ${extraClass}">`;
             
-            // --- PEMBETULAN PAPARAN GAMBAR (PINTAR) ---
             if (soalan.image) {
                 const imgStr = String(soalan.image).trim();
-                // Jika soalan.image sudah merupakan elemen HTML (<div atau <img) daripada JS modul
                 if (imgStr.startsWith('<')) {
                     htmlContent += imgStr;
                 } else {
-                    // Jika soalan.image hanya laluan gambar biasa (contoh: "images/pic.png")
                     htmlContent += `
-                        <div class="question-image-container">
-                            <img src="${imgStr}" alt="Soalan ${index + 1}" class="question-image" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'color:red;font-size:13px;\\'>[Gambar gagal dimuatkan: ${imgStr}]</span>';">
+                        <div class="question-image-container ${extraClass}">
+                            <img src="${imgStr}" alt="Soalan ${nomborSoalan}" class="question-image" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'color:red;font-size:13px;\\'>[Gambar gagal dimuatkan: ${imgStr}]</span>';">
                         </div>
                     `;
                 }
             }
 
-            // Menapis nombor sedia ada jika soalan mengandungi "1. What is..."
             const teksSoalanBersih = (soalan.q || '').replace(/^\d+[\.\)]\s*/, '');
 
-            htmlContent += `<h3 style="white-space: pre-line; margin-top: 5px; color: #111;">${index + 1}. ${teksSoalanBersih}</h3>`;
+            htmlContent += `<h3 style="white-space: pre-line; margin-top: 5px; color: #111;">${nomborSoalan}. ${teksSoalanBersih}</h3>`;
             htmlContent += `<div class="pilihan-jawapan">`;
 
             soalan.options.forEach((pilihan) => {
