@@ -4,31 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analisa & Rekod Murid - Dashboard Guru</title>
-    <!-- Chart.js -->
+    <!-- Chart.js untuk Paparan Graf -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #f8fafc; margin: 0; padding: 25px; color: #1e293b; }
-        
-        #main-dashboard { display: none; }
         .container { max-width: 1200px; margin: 0 auto; }
 
         /* HEADER */
-        .header {
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 25px;
+            border-bottom: 3px solid #e2e8f0;
+            padding-bottom: 15px;
         }
-        .header h1 {
-            font-size: 26px;
+        header h1 {
+            font-size: 24px;
             color: #0284c7;
             margin: 0;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .btn-keluar {
+        .btn-logout {
             background-color: #ef4444;
             color: white;
             border: none;
@@ -39,7 +39,7 @@
             box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
             transition: background 0.2s;
         }
-        .btn-keluar:hover { background-color: #dc2626; }
+        .btn-logout:hover { background-color: #dc2626; }
 
         /* TOP 3 CARDS */
         .top-cards {
@@ -60,7 +60,7 @@
         .card-box h3 {
             margin-top: 0;
             margin-bottom: 12px;
-            font-size: 16px;
+            font-size: 15px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -96,53 +96,44 @@
         }
         .chart-card h3 {
             text-align: center;
-            font-size: 16px;
+            font-size: 15px;
             color: #334155;
             margin-top: 0;
             margin-bottom: 15px;
         }
 
-        /* FILTER BAR */
-        .filter-bar {
+        /* TOOLBAR CARIAN & FILTER */
+        .toolbar {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
-        .search-input {
-            flex: 2;
-            min-width: 250px;
-            padding: 12px 16px;
+        .toolbar input, .toolbar select {
+            padding: 11px 16px;
             border: 1.5px solid #cbd5e1;
             border-radius: 8px;
             font-size: 14px;
             outline: none;
-        }
-        .search-input:focus { border-color: #0284c7; }
-        .select-filter {
-            flex: 1;
-            min-width: 160px;
-            padding: 12px 16px;
-            border: 1.5px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 14px;
             background: white;
-            outline: none;
-            cursor: pointer;
         }
-        .btn-reset {
+        .toolbar input { flex: 2; min-width: 220px; }
+        .toolbar input:focus { border-color: #0284c7; }
+        .toolbar select { flex: 1; min-width: 150px; cursor: pointer; }
+        
+        .btn-refresh {
             background-color: #0284c7;
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 11px 18px;
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
-        .btn-reset:hover { background-color: #0369a1; }
+        .btn-refresh:hover { background-color: #0369a1; }
 
         /* TABLE */
         .table-card {
@@ -152,6 +143,7 @@
             overflow: hidden;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
         }
+        .table-container { overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
         th { background-color: #f1f5f9; color: #475569; padding: 14px 18px; font-weight: 700; }
         td { padding: 14px 18px; border-top: 1px solid #f1f5f9; color: #334155; }
@@ -162,24 +154,30 @@
             border-radius: 20px;
             font-size: 12px;
             font-weight: bold;
+            display: inline-block;
         }
         .badge-intervensi { background: #fee2e2; color: #991b1b; }
         .badge-sederhana { background: #fef3c7; color: #92400e; }
         .badge-cemerlang { background: #dcfce7; color: #166534; }
+
+        .loading-text {
+            text-align: center;
+            padding: 30px;
+            font-weight: bold;
+            color: #64748b;
+        }
     </style>
 </head>
 <body>
 
-<div class="container" id="main-dashboard">
-    <!-- HEADER -->
-    <div class="header">
+<div class="container">
+    <header>
         <h1>📊 Analisa & Rekod Murid</h1>
-        <button class="btn-keluar" onclick="keluarKePortal()">Keluar Rekod</button>
-    </div>
+        <button class="btn-logout" onclick="logKeluar()">Log Keluar</button>
+    </header>
 
-    <!-- TOP 3 BOXES -->
+    <!-- KAD ATAS (SUMMARY CARDS) -->
     <div class="top-cards">
-        <!-- PERLU INTERVENSI -->
         <div class="card-box card-red">
             <h3>⚠️ Perlu Intervensi (&lt; 60%)</h3>
             <div class="list-container">
@@ -187,7 +185,6 @@
             </div>
         </div>
 
-        <!-- MURID CEMERLANG -->
         <div class="card-box card-green">
             <h3>🌟 Murid Cemerlang (&ge; 90%)</h3>
             <div class="list-container">
@@ -195,7 +192,6 @@
             </div>
         </div>
 
-        <!-- ANALISA MODUL SUKAR -->
         <div class="card-box card-yellow">
             <h3>📉 Analisa Modul Sukar</h3>
             <div class="list-container">
@@ -204,7 +200,7 @@
         </div>
     </div>
 
-    <!-- CHARTS -->
+    <!-- CARTA ANALISIS -->
     <div class="charts-grid">
         <div class="chart-card">
             <h3>📊 Purata Peratusan Pencapaian Mengikut Modul</h3>
@@ -216,11 +212,11 @@
         </div>
     </div>
 
-    <!-- FILTERS BAR -->
-    <div class="filter-bar">
-        <input type="text" id="carianNama" class="search-input" placeholder="🔍 Cari nama murid..." oninput="tapisData()">
+    <!-- TOOLBAR CARIAN & FILTER -->
+    <div class="toolbar">
+        <input type="text" id="search-input" placeholder="🔍 Cari nama murid..." onkeyup="tapisData()">
         
-        <select id="filterKelas" class="select-filter" onchange="tapisData()">
+        <select id="filter-kelas" onchange="tapisData()">
             <option value="">-- Semua Kelas --</option>
             <option value="3 ARIF">3 ARIF</option>
             <option value="3 BESTARI">3 BESTARI</option>
@@ -235,79 +231,93 @@
             <option value="3 KREATIF">3 KREATIF</option>
         </select>
 
-        <select id="filterModul" class="select-filter" onchange="tapisData()">
+        <select id="filter-modul" onchange="tapisData()">
             <option value="">-- Semua Modul --</option>
-            <option value="Module 1">Module 1</option>
-            <option value="Module 2">Module 2</option>
-            <option value="Module 3">Module 3</option>
-            <option value="Module 4">Module 4</option>
-            <option value="Module 5">Module 5</option>
-            <option value="Module 6">Module 6</option>
-            <option value="Module 7">Module 7</option>
-            <option value="Module 8">Module 8</option>
-            <option value="Module 9">Module 9</option>
-            <option value="Module 10">Module 10</option>
+            <option value="MODULE 1">Module 1</option>
+            <option value="MODULE 2">Module 2</option>
+            <option value="MODULE 3">Module 3</option>
+            <option value="MODULE 4">Module 4</option>
+            <option value="MODULE 5">Module 5</option>
+            <option value="MODULE 6">Module 6</option>
+            <option value="MODULE 7">Module 7</option>
+            <option value="MODULE 8">Module 8</option>
+            <option value="MODULE 9">Module 9</option>
+            <option value="MODULE 10">Module 10</option>
         </select>
 
-        <button class="btn-reset" onclick="muatSemuaData()">🔄 Muat Semula</button>
+        <button class="btn-refresh" onclick="muatDataRekod()">🔄 Muat Semula</button>
     </div>
 
-    <!-- TABLE -->
+    <!-- JADUAL KEPUTUSAN -->
     <div class="table-card">
-        <table>
-            <thead>
-                <tr>
-                    <th>Tarikh</th>
-                    <th>Nama Pelajar</th>
-                    <th>Kelas</th>
-                    <th>Modul</th>
-                    <th>Set</th>
-                    <th>Markah (%)</th>
-                    <th>Tahap Penguasaan</th>
-                </tr>
-            </thead>
-            <tbody id="jadual-body"></tbody>
-        </table>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Masa/Tarikh</th>
+                        <th>Nama Murid</th>
+                        <th>Kelas</th>
+                        <th>Modul</th>
+                        <th>Markah</th>
+                        <th>Peratus (%)</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="rekod-body">
+                    <tr>
+                        <td colspan="8" class="loading-text">⏳ Memuatkan rekod murid... Sila tunggu.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
 <script>
-    let rekodSemua = [];
-    let barChartInstance = null;
-    let donutChartInstance = null;
-
-    window.onload = function() {
-        semakPassword();
-    };
-
-    function semakPassword() {
-        const pass = prompt("🔒 Akses Guru\nSila masukkan kata laluan:");
-        if (pass === "guru123") {
-            document.getElementById('main-dashboard').style.display = 'block';
-            muatSemuaData();
-        } else {
-            alert("Kata laluan salah!");
-            window.location.href = "index.html";
-        }
-    }
-
-    function keluarKePortal() {
+    // PENGESAHAN KATA LALUAN
+    if (sessionStorage.getItem("guru_authenticated") !== "true") {
+        alert("🔒 Akses disekat! Sila masukkan kata laluan di halaman utama terlebih dahulu.");
         window.location.href = "index.html";
     }
 
-    function muatSemuaData() {
-        document.getElementById('carianNama').value = '';
-        document.getElementById('filterKelas').value = '';
-        document.getElementById('filterModul').value = '';
-        
-        rekodSemua = JSON.parse(localStorage.getItem('rekod_portal_year3') || '[]');
-        
-        kemaskiniTopCards();
-        kemaskiniGraf();
-        tapisData();
+    const PAUTAN_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbxCd2cvXVKr2ZuUswrZWVg19spQVISjI97vzHz8nPhLi5rwhd4ydhHHEfnJMGWH1kD7/exec";
+    let senaraiRekod = [];
+    let barChartInstance = null;
+    let donutChartInstance = null;
+
+    // TARIK DATA APABILA HALAMAN DIBUKA
+    window.onload = function() {
+        muatDataRekod();
+    };
+
+    function muatDataRekod() {
+        const tbody = document.getElementById('rekod-body');
+        tbody.innerHTML = '<tr><td colspan="8" class="loading-text">⏳ Memuatkan rekod murid... Sila tunggu.</td></tr>';
+
+        fetch(PAUTAN_APPS_SCRIPT)
+            .then(res => res.json())
+            .then(data => {
+                senaraiRekod = data;
+                kemaskiniTopCards(senaraiRekod);
+                kemaskiniGraf(senaraiRekod);
+                tapisData();
+            })
+            .catch(err => {
+                console.error(err);
+                tbody.innerHTML = '<tr><td colspan="8" class="loading-text" style="color:red;">❌ Gagal memuatkan data. Sila pastikan Google Apps Script dibuka untuk paparan umum.</td></tr>';
+            });
     }
 
-    function kemaskiniTopCards() {
+    // FUNGSI UNTUK MENUKAR TEKS/NUMBER MARKAH KEPADA ANGKA (%)
+    function dapatkanAngkaPeratus(peratusRaw) {
+        if (typeof peratusRaw === 'number') return peratusRaw;
+        if (!peratusRaw) return 0;
+        let cleaned = peratusRaw.toString().replace('%', '').trim();
+        return parseFloat(cleaned) || 0;
+    }
+
+    function kemaskiniTopCards(data) {
         const ulIntervensi = document.getElementById('senarai-intervensi');
         const ulCemerlang = document.getElementById('senarai-cemerlang');
         const ulModulSukar = document.getElementById('senarai-modul-sukar');
@@ -318,26 +328,31 @@
 
         let kiraModul = {};
 
-        rekodSemua.forEach(item => {
+        data.forEach(row => {
+            const nama = row[1] || '-';
+            const kelas = row[2] || '-';
+            const modul = row[3] || '-';
+            const peratusVal = dapatkanAngkaPeratus(row[5]);
+
             // Perlu Intervensi (< 60%)
-            if (item.markah < 60) {
-                ulIntervensi.innerHTML += `<li><strong>${item.nama}</strong> (${item.kelas}) - ${item.modul.toUpperCase()}: <span style="color:#dc2626;font-weight:bold;">${item.markah}%</span></li>`;
+            if (peratusVal < 60) {
+                ulIntervensi.innerHTML += `<li><strong>${nama}</strong> (${kelas}) - ${modul}: <span style="color:#dc2626;font-weight:bold;">${peratusVal}%</span></li>`;
             }
             // Murid Cemerlang (>= 90%)
-            if (item.markah >= 90) {
-                ulCemerlang.innerHTML += `<li><strong>${item.nama}</strong> (${item.kelas}) - ${item.modul.toUpperCase()}: <span style="color:#16a34a;font-weight:bold;">${item.markah}%</span></li>`;
+            if (peratusVal >= 90) {
+                ulCemerlang.innerHTML += `<li><strong>${nama}</strong> (${kelas}) - ${modul}: <span style="color:#16a34a;font-weight:bold;">${peratusVal}%</span></li>`;
             }
 
             // Kumpul Purata Modul
-            const modName = item.modul.split(':')[0].trim().toUpperCase();
-            if (!kiraModul[modName]) {
-                kiraModul[modName] = { jumlahMarkah: 0, percubaan: 0 };
+            const modKey = modul.toUpperCase().trim();
+            if (!kiraModul[modKey]) {
+                kiraModul[modKey] = { jumlahMarkah: 0, percubaan: 0 };
             }
-            kiraModul[modName].jumlahMarkah += item.markah;
-            kiraModul[modName].percubaan += 1;
+            kiraModul[modKey].jumlahMarkah += peratusVal;
+            kiraModul[modKey].percubaan += 1;
         });
 
-        // Susun Modul mengikut Purata Markah Rendah -> Tinggi
+        // Susun Modul mengikut Purata Markah (Terendah ke Tertinggi)
         const senaraiModulArr = Object.keys(kiraModul).map(m => ({
             modul: m,
             purata: Math.round(kiraModul[m].jumlahMarkah / kiraModul[m].percubaan),
@@ -354,8 +369,7 @@
         if (ulModulSukar.innerHTML === '') ulModulSukar.innerHTML = '<li>Tiada data modul.</li>';
     }
 
-    function kemaskiniGraf() {
-        // Data Bar Chart
+    function kemaskiniGraf(data) {
         let modulStats = {};
         let intervensiCount = 0;
         let sederhanaCount = 0;
@@ -365,24 +379,27 @@
             modulStats[`MODULE ${i}`] = { total: 0, count: 0 };
         }
 
-        rekodSemua.forEach(item => {
+        data.forEach(row => {
+            const modul = (row[3] || '').toUpperCase();
+            const peratusVal = dapatkanAngkaPeratus(row[5]);
+
             // Donut Stats
-            if (item.markah < 60) intervensiCount++;
-            else if (item.markah < 90) sederhanaCount++;
+            if (peratusVal < 60) intervensiCount++;
+            else if (peratusVal < 90) sederhanaCount++;
             else cemerlangCount++;
 
             // Bar Stats
-            const match = item.modul.match(/\d+/);
+            const match = modul.match(/\d+/);
             if (match) {
                 const key = `MODULE ${match[0]}`;
                 if (modulStats[key]) {
-                    modulStats[key].total += item.markah;
+                    modulStats[key].total += peratusVal;
                     modulStats[key].count += 1;
                 }
             }
         });
 
-        const barLabels = Object.keys(modulStats).slice(0, 6); // Papar Module 1-6 seperti gambar
+        const barLabels = Object.keys(modulStats);
         const barData = barLabels.map(k => modulStats[k].count > 0 ? Math.round(modulStats[k].total / modulStats[k].count) : 0);
 
         // Render Bar Chart
@@ -424,52 +441,68 @@
         });
     }
 
-    function tapisData() {
-        const carian = document.getElementById('carianNama').value.toLowerCase();
-        const mepKelas = document.getElementById('filterKelas').value;
-        const mepModul = document.getElementById('filterModul').value.toLowerCase();
-
-        const tbody = document.getElementById('jadual-body');
+    function paparJadual(data) {
+        const tbody = document.getElementById('rekod-body');
         tbody.innerHTML = '';
 
-        const dataDitapis = rekodSemua.filter(item => {
-            const padanNama = item.nama.toLowerCase().includes(carian);
-            const padanKelas = mepKelas === '' || item.kelas === mepKelas;
-            const padanModul = mepModul === '' || item.modul.toLowerCase().includes(mepModul);
-            return padanNama && padanKelas && padanModul;
-        });
-
-        if (dataDitapis.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#94a3b8; padding: 20px;">Tiada rekod dijumpai.</td></tr>`;
+        if (!data || data.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="8" class="loading-text">Belum ada rekod murid dijumpai.</td></tr>';
             return;
         }
 
-        [...dataDitapis].reverse().forEach(item => {
+        data.forEach((row, index) => {
+            const peratusVal = dapatkanAngkaPeratus(row[5]);
+            
             let badgeClass = 'badge-sederhana';
             let statusText = 'Sederhana';
 
-            if (item.markah < 60) {
+            if (peratusVal < 60) {
                 badgeClass = 'badge-intervensi';
                 statusText = 'Intervensi';
-            } else if (item.markah >= 90) {
+            } else if (peratusVal >= 90) {
                 badgeClass = 'badge-cemerlang';
                 statusText = 'Cemerlang';
             }
 
-            tbody.innerHTML += `
-                <tr>
-                    <td>${item.tarikh || '-'}</td>
-                    <td><strong>${item.nama}</strong></td>
-                    <td>${item.kelas}</td>
-                    <td>${item.modul}</td>
-                    <td>${item.set}</td>
-                    <td><strong>${item.markah}%</strong></td>
-                    <td><span class="badge ${badgeClass}">${statusText}</span></td>
-                </tr>
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td><small>${row[0] || '-'}</small></td>
+                <td><b>${row[1] || '-'}</b></td>
+                <td>${row[2] || '-'}</td>
+                <td>${row[3] || '-'}</td>
+                <td>${row[4] || '-'}</td>
+                <td><b>${row[5] || '-'}</b></td>
+                <td><span class="badge ${badgeClass}">${statusText}</span></td>
             `;
+            tbody.appendChild(tr);
         });
     }
-</script>
 
+    function tapisData() {
+        const carian = document.getElementById('search-input').value.toLowerCase();
+        const kelasSelected = document.getElementById('filter-kelas').value;
+        const modulSelected = document.getElementById('filter-modul').value.toLowerCase();
+
+        const dataDitapis = senaraiRekod.filter(row => {
+            const nama = (row[1] || '').toString().toLowerCase();
+            const kelas = (row[2] || '').toString();
+            const modul = (row[3] || '').toString().toLowerCase();
+
+            const padanNama = nama.includes(carian);
+            const padanKelas = kelasSelected === "" || kelas === kelasSelected;
+            const padanModul = modulSelected === "" || modul.includes(modulSelected);
+
+            return padanNama && padanKelas && padanModul;
+        });
+
+        paparJadual(dataDitapis);
+    }
+
+    function logKeluar() {
+        sessionStorage.removeItem("guru_authenticated");
+        window.location.href = "index.html";
+    }
+</script>
 </body>
 </html>
