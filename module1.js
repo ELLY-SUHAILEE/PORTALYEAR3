@@ -83,35 +83,30 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
   "Vocabulary": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_11.png"),
       "q": "11. Hair that forms spirals or curves is called ______ hair.",
       "options": ["A) curly", "B) straight", "C) fair"],
       "ans": "A) curly"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_12.png"),
       "q": "12. Small hard objects found on the seashore, often collected as a hobby, are called ______.",
       "options": ["A) stickers", "B) shells", "C) baskets"],
       "ans": "B) shells"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_13.png"),
       "q": "13. Light-coloured hair (blondes or light brown) is described as ______ hair.",
       "options": ["A) dark", "B) fair", "C) black"],
       "ans": "B) fair"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_14.png"),
       "q": "14. A book used for keeping pictures or adhesive cards is a sticker ______.",
       "options": ["A) basket", "B) album", "C) pool"],
       "ans": "B) album"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_15.png"),
       "q": "15. The number that comes after thirty-nine is ______.",
       "options": ["A) thirty", "B) forty", "C) fifty"],
       "ans": "B) forty"
@@ -121,14 +116,12 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
   "Grammar": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_16.png"),
       "q": "16. Sara ______ got straight dark hair.",
       "options": ["A) has", "B) have", "C) is"],
       "ans": "A) has"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_17.png"),
       "q": "17. We ______ got forty shells in our basket.",
       "options": ["A) has", "B) have", "C) are"],
       "ans": "B) have"
@@ -301,35 +294,30 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
   "Vocabulary": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_11.png"),
       "q": "11. Hair that is not straight: ______.",
       "options": ["A) curly", "B) long", "C) dark"],
       "ans": "A) curly"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_12.png"),
       "q": "12. Found on the beach sand: ______.",
       "options": ["A) shells", "B) books", "C) toys"],
       "ans": "A) shells"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_13.png"),
       "q": "13. A game played with a round ball: ______.",
       "options": ["A) football", "B) swimming", "C) diving"],
       "ans": "A) football"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_14.png"),
       "q": "14. Moving in water: ______.",
       "options": ["A) swim", "B) run", "C) jump"],
       "ans": "A) swim"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_15.png"),
       "q": "15. The number 20 in words is ______.",
       "options": ["A) twenty", "B) thirty", "C) ten"],
       "ans": "A) twenty"
