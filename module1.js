@@ -11,145 +11,145 @@ function wrapCenterImage(imagePath) {
 // ==========================================
 // 1. GET SMART SET (30 SOALAN)
 // ==========================================
-quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
+quizBank["GET SMART SET"]["Module 5: My new house / Eating right"] = {
   "Reading": [
-    // --- PETIKAN 1 (Soalan 1 - 5) ---
+    // --- PETIKAN 1 (Soalan 1 - 5: My New House) ---
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_1.png"),
-      "q": "1. What type of hair does Aina have?",
-      "options": ["A) Short straight hair", "B) Long curly hair", "C) Short fair hair"],
-      "ans": "B) Long curly hair"
+      "image": wrapCenterImage("images/GS_MODULE5_1.png"),
+      "q": "1. When did Adam and his family move into a new house?",
+      "options": ["A) Last week", "B) Yesterday", "C) Last month"],
+      "ans": "A) Last week"
     },
     {
       "type": "mcq",
-      "q": "2. How many shells does Sara have in her basket?",
-      "options": ["A) Fifty shells", "B) Forty shells", "C) Thirty shells"],
-      "ans": "B) Forty shells"
+      "q": "2. How many bedrooms are there in the new house?",
+      "options": ["A) Two bedrooms", "B) Three bedrooms", "C) Four bedrooms"],
+      "ans": "B) Three bedrooms"
     },
     {
       "type": "mcq",
-      "q": "3. Where are Sara and Aina spending their time today?",
-      "options": ["A) At the beach", "B) At the park", "C) At school"],
-      "ans": "A) At the beach"
+      "q": "3. Where is Adam's bedroom located?",
+      "options": ["A) Downstairs next to the kitchen", "B) Upstairs next to his sister's room", "C) Outside near the garden"],
+      "ans": "B) Upstairs next to his sister's room"
     },
     {
       "type": "mcq",
-      "q": "4. Which statement is TRUE about Aina?",
-      "options": ["A) She has forty shells.", "B) She has straight dark hair.", "C) She has got big black eyes."],
-      "ans": "C) She has got big black eyes."
+      "q": "4. What does the family do in the living room downstairs?",
+      "options": ["A) They cook food together", "B) They plant colorful flowers", "C) They watch TV together"],
+      "ans": "C) They watch TV together"
     },
     {
       "type": "mcq",
-      "q": "5. Why do Sara and Aina enjoy spending time together?",
-      "options": ["A) They share a hobby of collecting shells.", "B) They go to different schools.", "C) They like playing computer games."],
-      "ans": "A) They share a hobby of collecting shells."
+      "q": "5. What is located outside the house?",
+      "options": ["A) A small garden with colorful flowers", "B) A big swimming pool", "C) A large garage for cars"],
+      "ans": "A) A small garden with colorful flowers"
     },
 
-    // --- PETIKAN 2 (Soalan 6 - 10) ---
+    // --- PETIKAN 2 (Soalan 6 - 10: Eating Right) ---
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_6.png"),
-      "q": "6. What colour is Amir's hair?",
-      "options": ["A) Black", "B) Fair", "C) Brown"],
-      "ans": "B) Fair"
+      "image": wrapCenterImage("images/GS_MODULE5_6.png"),
+      "q": "6. Why should we eat plenty of fruits and vegetables?",
+      "options": ["A) Because they give us energy to play", "B) Because they contain vitamins", "C) Because they can hurt our teeth"],
+      "ans": "B) Because they contain vitamins"
     },
     {
       "type": "mcq",
-      "q": "7. How many stickers has Amir got in his album?",
-      "options": ["A) Ten stickers", "B) Fifteen stickers", "C) Twenty stickers"],
-      "ans": "C) Twenty stickers"
+      "q": "7. What do vitamins do for our body?",
+      "options": ["A) They make us feel sleepy", "B) They keep us strong and healthy", "C) They cause health problems"],
+      "ans": "B) They keep us strong and healthy"
     },
     {
       "type": "mcq",
-      "q": "8. Which activity is Amir unable to do?",
-      "options": ["A) Play football", "B) Swim fast", "C) Dive into the deep pool"],
-      "ans": "C) Dive into the deep pool"
+      "q": "8. Which foods give us energy to study and play?",
+      "options": ["A) Rice, bread, and pasta", "B) Sweets, chocolates, and cake", "C) Water, fruits, and vegetables"],
+      "ans": "A) Rice, bread, and pasta"
     },
     {
       "type": "mcq",
-      "q": "9. Which statement is TRUE about Amir?",
-      "options": ["A) He can swim fast.", "B) He hates sports.", "C) He has got long hair."],
-      "ans": "A) He can swim fast."
+      "q": "9. What must we avoid eating too much of?",
+      "options": ["A) Rice and bread", "B) Fruits and vegetables", "C) Sweets, chocolates, and sugary drinks"],
+      "ans": "C) Sweets, chocolates, and sugary drinks"
     },
     {
       "type": "mcq",
-      "q": "10. What can we learn about Amir from his Saturday routine?",
-      "options": ["A) He stays in bed all day.", "B) He is dedicated to improving his sports skills.", "C) He prefers drawing pictures."],
-      "ans": "B) He is dedicated to improving his sports skills."
+      "q": "10. Why is eating too much sugar bad for us?",
+      "options": ["A) It gives us vitamins", "B) It can hurt our teeth and cause health problems", "C) It helps us study and play"],
+      "ans": "B) It can hurt our teeth and cause health problems"
     }
   ],
 
   "Vocabulary": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_11.png"),
-      "q": "11. My sister's hair is not straight. She has got ______ hair.",
-      "options": ["A) blond", "B) short", "C) curly"],
-      "ans": "C) curly"
+      "image": wrapCenterImage("images/GS_MODULE5_11.png"),
+      "q": "11. We sit and watch television on a comfortable sofa in the ______.",
+      "options": ["A) bedroom", "B) living room", "C) bathroom"],
+      "ans": "B) living room"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_12.png"),
-      "q": "12. Light yellow hair is described as ______ hair.",
-      "options": ["A) blond / fair", "B) black", "C) dark"],
-      "ans": "A) blond / fair"
+      "image": wrapCenterImage("images/GS_MODULE5_12.png"),
+      "q": "12. Apples, bananas, and oranges are types of ______.",
+      "options": ["A) fruits", "B) vegetables", "C) sweets"],
+      "ans": "A) fruits"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_13.png"),
-      "q": "13. Amir is a polite and good-looking boy. The word 'handsome' describes his ______.",
-      "options": ["A) family", "B) appearance", "C) school"],
-      "ans": "B) appearance"
+      "image": wrapCenterImage("images/GS_MODULE5_13.png"),
+      "q": "13. Mother is cooking dinner in the modern ______.",
+      "options": ["A) garden", "B) kitchen", "C) bedroom"],
+      "ans": "B) kitchen"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_14.png"),
-      "q": "14. Sara walked along the beach and picked up forty colourful ______.",
-      "options": ["A) books", "B) pencils", "C) shells"],
-      "ans": "C) shells"
+      "image": wrapCenterImage("images/GS_MODULE5_14.png"),
+      "q": "14. Carrots, broccoli, and cucumbers belong to the ______ group.",
+      "options": ["A) drinks", "B) vegetables", "C) snacks"],
+      "ans": "B) vegetables"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_15.png"),
-      "q": "15. Amir keeps all his sports stickers neatly inside an ______.",
-      "options": ["A) basket", "B) album", "C) envelope"],
-      "ans": "B) album"
+      "image": wrapCenterImage("images/GS_MODULE5_15.png"),
+      "q": "15. There are pretty and colorful ______ growing in the garden.",
+      "options": ["A) flowers", "B) sofas", "C) glasses"],
+      "ans": "A) flowers"
     }
   ],
 
   "Grammar": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_16.png"),
-      "q": "16. She ______ got long curly hair and brown eyes.",
-      "options": ["A) has", "B) have", "C) is"],
-      "ans": "A) has"
+      "image": wrapCenterImage("images/GS_MODULE5_16.png"),
+      "q": "16. There ______ three bedrooms upstairs in the new house.",
+      "options": ["A) is", "B) are", "C) am"],
+      "ans": "B) are"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_17.png"),
-      "q": "17. They ______ got fifty shells in their baskets.",
-      "options": ["A) has", "B) are", "C) have"],
-      "ans": "C) have"
+      "image": wrapCenterImage("images/GS_MODULE5_17.png"),
+      "q": "17. There ______ a big sofa in the living room.",
+      "options": ["A) is", "B) are", "C) were"],
+      "ans": "A) is"
     },
     {
       "type": "mcq",
-      "q": "18. ______ you got any sports stickers in your album?",
-      "options": ["A) Has", "B) Have", "C) Do"],
-      "ans": "B) Have"
+      "q": "18. We ______ eat plenty of fruits to stay healthy.",
+      "options": ["A) should", "B) shouldn't", "C) cannot"],
+      "ans": "A) should"
     },
     {
       "type": "mcq",
-      "q": "19. Mei Ling is good at sports. She ______ swim fast.",
-      "options": ["A) can't", "B) can", "C) has"],
-      "ans": "B) can"
+      "q": "19. You ______ eat too many chocolates because they hurt your teeth.",
+      "options": ["A) should", "B) must", "C) shouldn't"],
+      "ans": "C) shouldn't"
     },
     {
       "type": "mcq",
-      "q": "20. Amir is afraid of deep water, so he ______ dive into the pool.",
-      "options": ["A) can't", "B) can", "C) hasn't"],
-      "ans": "A) can't"
+      "q": "20. ______ there any milk inside the fridge?",
+      "options": ["A) Is", "B) Are", "C) Do"],
+      "ans": "A) Is"
     }
   ],
 
@@ -157,71 +157,71 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
     {
       "type": "mcq",
       "q": "21. Choose the sentence with the correct punctuation and capital letters.",
-      "options": ["A) she has got long curly hair.", "B) She has got long, curly hair.", "C) She has got long curly hair"],
-      "ans": "B) She has got long, curly hair."
+      "options": ["A) there is a garden outside.", "B) There is a small garden outside.", "C) There is a small garden outside"],
+      "ans": "B) There is a small garden outside."
     },
     {
       "type": "mcq",
-      "q": "22. Rearrange the words to make a correct sentence: [got / I / shells / have / forty]",
-      "options": ["A) Forty shells I have got.", "B) I got have forty shells.", "C) I have got forty shells."],
-      "ans": "C) I have got forty shells."
+      "q": "22. Rearrange the words to make a correct sentence: [house / a / family / into / moved / new]",
+      "options": ["A) Family moved into a new house.", "B) A new house moved into family.", "C) The family moved into a new house."],
+      "ans": "C) The family moved into a new house."
     },
     {
       "type": "mcq",
-      "q": "23. Rearrange the words to form a correct sentence: [cannot / He / dive / pool / into / the]",
-      "options": ["A) He dive cannot into the pool.", "B) He cannot dive into the pool.", "C) Into the pool he dive cannot."],
-      "ans": "B) He cannot dive into the pool."
+      "q": "23. Rearrange the words to form a correct sentence: [ energy / Rice / us / gives / to / play ]",
+      "options": ["A) Rice gives us energy to play.", "B) Energy gives us rice to play.", "C) Rice to play gives us energy."],
+      "ans": "A) Rice gives us energy to play."
     },
     {
       "type": "mcq",
-      "q": "24. Choose the word with the correct spelling for the number '50'.",
-      "options": ["A) Fifty", "B) Fivety", "C) Fiftye"],
-      "ans": "A) Fifty"
+      "q": "24. Choose the word with the correct spelling.",
+      "options": ["A) Vegeatables", "B) Vegetables", "C) Vegetabels"],
+      "ans": "B) Vegetables"
     }
   ],
 
   "Speaking": [
     {
       "type": "mcq",
-      "q": "25. How do you introduce your friend Aina to your classmate Sara?",
-      "options": ["A) Sara, look at Aina now.", "B) Aina is standing there, Sara.", "C) Sara, this is my friend, Aina."],
-      "ans": "C) Sara, this is my friend, Aina."
+      "q": "25. How do you tell your friend where your room is?",
+      "options": ["A) My room is upstairs next to my sister's room.", "B) My room is under the sofa.", "C) I don't have a room."],
+      "ans": "A) My room is upstairs next to my sister's room."
     },
     {
       "type": "mcq",
-      "q": "26. Your classmate asks, 'Can you play football?' How do you answer if you know how to play?",
-      "options": ["A) Yes, I have.", "B) Yes, I can.", "C) Yes, I am."],
-      "ans": "B) Yes, I can."
+      "q": "26. Your friend offers you too much cake. How do you politely decline?",
+      "options": ["A) No thanks, too much sugar is bad for my teeth.", "B) Give me all the cakes now!", "C) I want more sugary drinks."],
+      "ans": "A) No thanks, too much sugar is bad for my teeth."
     },
     {
       "type": "mcq",
-      "q": "27. How do you ask a new classmate if they know how to swim?",
-      "options": ["A) Have you swim?", "B) Are you swim?", "C) Can you swim?"],
-      "ans": "C) Can you swim?"
+      "q": "27. How do you ask someone about their house?",
+      "options": ["A) How many bedrooms are there in your house?", "B) What color is your hair?", "C) Can you swim fast?"],
+      "ans": "A) How many bedrooms are there in your house?"
     }
   ],
 
   "Mixed Skills": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_28.png"),
-      "q": "28. Read the notice. What can you learn during this class?",
-      "options": ["A) Football and basketball", "B) Swimming and diving", "C) Singing and dancing"],
-      "ans": "B) Swimming and diving"
+      "image": wrapCenterImage("images/GS_MODULE5_28.png"),
+      "q": "28. Read the sign: [KEEP THE KITCHEN CLEAN]\nWhat should you do?",
+      "options": ["A) Leave dirty plates on the table", "B) Wash your dishes after eating", "C) Throw food on the floor"],
+      "ans": "B) Wash your dishes after eating"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_29.png"),
-      "q": "29. Read the card. How old is Sara?",
-      "options": ["A) 7 years old", "B) 8 years old", "C) 9 years old"],
-      "ans": "C) 9 years old"
+      "image": wrapCenterImage("images/GS_MODULE5_29.png"),
+      "q": "29. Read the poster: [HEALTHY SNACK DAY: EAT FRUITS!]\nWhich item can you bring?",
+      "options": ["A) Chocolate cake", "B) Red apples", "C) Sugary soda"],
+      "ans": "B) Red apples"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_30.png"),
-      "q": "30. Look at the beach sign: What should you do?",
-      "options": ["A) Throw rubbish into the sea", "B) Throw rubbish in the bin", "C) Leave rubbish on the sand"],
-      "ans": "B) Throw rubbish in the bin"
+      "image": wrapCenterImage("images/GS_MODULE5_30.png"),
+      "q": "30. Look at the rule: [NO FOOD IN THE BEDROOM]\nWhere can you eat?",
+      "options": ["A) In the bedroom", "B) In the kitchen or dining area", "C) On the bed"],
+      "ans": "B) In the kitchen or dining area"
     }
   ]
 };
@@ -229,143 +229,143 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
 // ==========================================
 // 2. REMEDIAL SET (30 SOALAN)
 // ==========================================
-quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
+quizBank["REMEDIAL SET"]["Module 5: My new house / Eating right"] = {
   "Reading": [
-    // --- PETIKAN 1 (Soalan 1 - 5) ---
+    // --- PETIKAN 1 (Soalan 1 - 5: My House) ---
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_1.png"),
-      "q": "1. Who is Sara's friend?",
-      "options": ["A) Sara", "B) Aina", "C) Amir"],
-      "ans": "B) Aina"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE5_1.png"),
+      "q": "1. How many bedrooms?",
+      "options": ["A) 2", "B) 3", "C) 4"],
+      "ans": "B) 3"
     },
     {
       "type": "mcq",
-      "q": "2. What hair does Sara have?",
-      "options": ["A) Dark hair", "B) Curly hair", "C) Fair hair"],
-      "ans": "A) Dark hair"
+      "q": "2. The kitchen is ____.",
+      "options": ["A) small", "B) big", "C) red"],
+      "ans": "B) big"
     },
     {
       "type": "mcq",
-      "q": "3. What hair does Aina have?",
-      "options": ["A) Straight hair", "B) Short hair", "C) Curly hair"],
-      "ans": "C) Curly hair"
+      "q": "3. The writer likes the ____.",
+      "options": ["A) bedroom", "B) garden", "C) school"],
+      "ans": "A) bedroom"
     },
     {
       "type": "mcq",
-      "q": "4. Where are Sara and Aina?",
-      "options": ["A) At the beach", "B) At school", "C) At home"],
-      "ans": "A) At the beach"
+      "q": "4. What picture is this?",
+      "options": ["A) My School", "B) My House", "C) My Dog"],
+      "ans": "B) My House"
     },
     {
       "type": "mcq",
-      "q": "5. Which word describes hair in the story?",
-      "options": ["A) Beach", "B) Curly", "C) Today"],
-      "ans": "B) Curly"
+      "q": "5. I love my ____!",
+      "options": ["A) home", "B) cat", "C) car"],
+      "ans": "A) home"
     },
 
-    // --- PETIKAN 2 (Soalan 6 - 10) ---
+    // --- PETIKAN 2 (Soalan 6 - 10: Healthy Food) ---
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_6.png"),
-      "q": "6. Who is the boy in the story?",
-      "options": ["A) Sara", "B) Aina", "C) Amir"],
-      "ans": "C) Amir"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE5_6.png"),
+      "q": "6. Fruits are ____ for us.",
+      "options": ["A) bad", "B) good", "C) hot"],
+      "ans": "B) good"
     },
     {
       "type": "mcq",
-      "q": "7. What colour is Amir's hair?",
-      "options": ["A) Black", "B) Fair", "C) Brown"],
-      "ans": "B) Fair"
+      "q": "7. Eat apples and ____ every day.",
+      "options": ["A) bananas", "B) candies", "C) chips"],
+      "ans": "A) bananas"
     },
     {
       "type": "mcq",
-      "q": "8. What sport can Amir play?",
-      "options": ["A) Football", "B) Tennis", "C) Badminton"],
-      "ans": "A) Football"
+      "q": "8. Do not eat too many ____.",
+      "options": ["A) apples", "B) candies", "C) carrots"],
+      "ans": "B) candies"
     },
     {
       "type": "mcq",
-      "q": "9. How many stickers does Amir have?",
-      "options": ["A) 10 stickers", "B) 20 stickers", "C) 30 stickers"],
-      "ans": "B) 20 stickers"
+      "q": "9. Candies hurt our ____.",
+      "options": ["A) teeth", "B) hair", "C) shoes"],
+      "ans": "A) teeth"
     },
     {
       "type": "mcq",
-      "q": "10. Amir can swim ____.",
-      "options": ["A) slow", "B) fast", "C) bad"],
-      "ans": "B) fast"
+      "q": "10. Eat healthy, stay ____!",
+      "options": ["A) strong", "B) sad", "C) sleep"],
+      "ans": "A) strong"
     }
   ],
 
   "Vocabulary": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_11.png"),
-      "q": "11. Yellow or light colour hair is called ______.",
-      "options": ["A) blond / fair", "B) black", "C) dark"],
-      "ans": "A) blond / fair"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE5_11.png"),
+      "q": "11. You sleep in the ______.",
+      "options": ["A) bedroom", "B) kitchen", "C) garden"],
+      "ans": "A) bedroom"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_12.png"),
-      "q": "12. You pick up ______ at the beach.",
-      "options": ["A) books", "B) shells", "C) chairs"],
-      "ans": "B) shells"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE5_12.png"),
+      "q": "12. A banana is a ______.",
+      "options": ["A) fruit", "B) drink", "C) toy"],
+      "ans": "A) fruit"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_13.png"),
-      "q": "13. A friend in your class is your ______.",
-      "options": ["A) teacher", "B) classmate", "C) father"],
-      "ans": "B) classmate"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE5_13.png"),
+      "q": "13. You cook food in the ______.",
+      "options": ["A) kitchen", "B) bedroom", "C) garden"],
+      "ans": "A) kitchen"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_14.png"),
-      "q": "14. Hair that is not straight is ______ hair.",
-      "options": ["A) curly", "B) short", "C) long"],
-      "ans": "A) curly"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE5_14.png"),
+      "q": "14. Carrot is a ______.",
+      "options": ["A) vegetable", "B) sweet", "C) drink"],
+      "ans": "A) vegetable"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_15.png"),
-      "q": "15. A book for putting stickers is an ______.",
-      "options": ["A) album", "B) bag", "C) box"],
-      "ans": "A) album"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE5_15.png"),
+      "q": "15. You sit on a big ______ in the living room.",
+      "options": ["A) sofa", "B) flower", "C) tree"],
+      "ans": "A) sofa"
     }
   ],
 
   "Grammar": [
     {
       "type": "mcq",
-      "q": "16. She ______ got curly hair.",
-      "options": ["A) has", "B) have", "C) is"],
-      "ans": "A) has"
+      "q": "16. There ______ a sofa in the room.",
+      "options": ["A) is", "B) are", "C) am"],
+      "ans": "A) is"
     },
     {
       "type": "mcq",
-      "q": "17. They ______ got big eyes.",
-      "options": ["A) has", "B) have", "C) is"],
-      "ans": "B) have"
+      "q": "17. There ______ three rooms upstairs.",
+      "options": ["A) is", "B) are", "C) am"],
+      "ans": "B) are"
     },
     {
       "type": "mcq",
-      "q": "18. Amir ______ swim fast.",
-      "options": ["A) can", "B) has", "C) have"],
-      "ans": "A) can"
+      "q": "18. We ______ eat fruits.",
+      "options": ["A) should", "B) shouldn't", "C) cannot"],
+      "ans": "A) should"
     },
     {
       "type": "mcq",
-      "q": "19. He ______ dive. (Cannot)",
-      "options": ["A) can't", "B) hasn't", "C) haven't"],
-      "ans": "A) can't"
+      "q": "19. You ______ eat too many sweets.",
+      "options": ["A) should", "B) shouldn't", "C) can"],
+      "ans": "B) shouldn't"
     },
     {
       "type": "mcq",
-      "q": "20. I ______ got 10 shells.",
-      "options": ["A) have", "B) has", "C) is"],
-      "ans": "A) have"
+      "q": "20. ______ there a garden outside?",
+      "options": ["A) Is", "B) Are", "C) Do"],
+      "ans": "A) Is"
     }
   ],
 
@@ -373,71 +373,71 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
     {
       "type": "mcq",
       "q": "21. Choose the correct spelling:",
-      "options": ["A) Welcome", "B) Welcom", "C) Wellcome"],
-      "ans": "A) Welcome"
+      "options": ["A) House", "B) Howse", "C) Hous"],
+      "ans": "A) House"
     },
     {
       "type": "mcq",
-      "q": "22. Rearrange: [ can / I / swim ]",
-      "options": ["A) Swim I can.", "B) I can swim.", "C) Can swim I."],
-      "ans": "B) I can swim."
+      "q": "22. Rearrange: [ new / A / house ]",
+      "options": ["A) House a new.", "B) A new house.", "C) New a house."],
+      "ans": "B) A new house."
     },
     {
       "type": "mcq",
-      "q": "23. Choose the correct number name for 10:",
-      "options": ["A) Ten", "B) Two", "C) Three"],
-      "ans": "A) Ten"
+      "q": "23. Choose the correct spelling:",
+      "options": ["A) Fruit", "B) Froot", "C) Fruite"],
+      "ans": "A) Fruit"
     },
     {
       "type": "mcq",
-      "q": "24. Choose the correct number name for 20:",
-      "options": ["A) Twenty", "B) Twelve", "C) Two"],
-      "ans": "A) Twenty"
+      "q": "24. Rearrange: [ eat / healthy / food / We ]",
+      "options": ["A) We eat healthy food.", "B) Food healthy we eat.", "C) Eat we healthy food."],
+      "ans": "A) We eat healthy food."
     }
   ],
 
   "Speaking": [
     {
       "type": "mcq",
-      "q": "25. How do you greet your teacher in the morning?",
-      "options": ["A) Good morning", "B) Good night", "C) Goodbye"],
-      "ans": "A) Good morning"
+      "q": "25. Where do you sleep?",
+      "options": ["A) In my bedroom.", "B) In the kitchen.", "C) In the garden."],
+      "ans": "A) In my bedroom."
     },
     {
       "type": "mcq",
-      "q": "26. Your friend asks: 'Can you swim?' If YES, you say:",
-      "options": ["A) Yes, I can.", "B) Yes, I have.", "C) No, I cannot."],
-      "ans": "A) Yes, I can."
+      "q": "26. Are sweets good for your teeth?",
+      "options": ["A) No, they are bad.", "B) Yes, very good.", "C) I don't know."],
+      "ans": "A) No, they are bad."
     },
     {
       "type": "mcq",
-      "q": "27. What do you say when meeting a new friend?",
-      "options": ["A) Hello!", "B) Bye!", "C) No!"],
-      "ans": "A) Hello!"
+      "q": "27. Do you like eating fruits?",
+      "options": ["A) Yes, I do.", "B) Yes, I am.", "C) Yes, I can."],
+      "ans": "A) Yes, I do."
     }
   ],
 
   "Mixed Skills": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_28.png"),
-      "q": "28. Read the label:\n\n[10 SHELLS]\n\nWhat is inside?",
-      "options": ["A) Pencils", "B) Shells", "C) Books"],
-      "ans": "B) Shells"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE5_28.png"),
+      "q": "28. Read the sign: [APPLE]\nIs this a fruit or a drink?",
+      "options": ["A) Fruit", "B) Drink", "C) Toy"],
+      "ans": "A) Fruit"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_29.png"),
-      "q": "29. Read the tag: [AMIR]\nIs this a boy or a girl?",
-      "options": ["A) Boy", "B) Girl", "C) Cat"],
-      "ans": "A) Boy"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE5_29.png"),
+      "q": "29. Read the tag: [SOFA]\nWhere can you find this?",
+      "options": ["A) Living room", "B) Garden", "C) Street"],
+      "ans": "A) Living room"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_30.png"),
-      "q": "30. Look at the sign: [SCHOOL]\nWhere are you?",
-      "options": ["A) School", "B) Beach", "C) Park"],
-      "ans": "A) School"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE5_30.png"),
+      "q": "30. Look at the sign: [MILK]\nIs milk healthy?",
+      "options": ["A) Yes", "B) No", "C) Never"],
+      "ans": "A) Yes"
     }
   ]
 };
