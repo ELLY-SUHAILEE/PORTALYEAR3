@@ -179,6 +179,20 @@
             margin: 0 auto;
             display: block;
         }
+
+        /* PAUTAN TERSEMBUNYI KHAS UNTUK GURU */
+        .link-guru {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .link-guru:hover {
+            color: #2563eb;
+        }
     </style>
 </head>
 <body>
@@ -233,6 +247,9 @@
             <button class="btn-set btn-blue" onclick="mulaKuiz('GET SMART SET')">GET SMART SET</button>
             <button class="btn-set btn-green" onclick="mulaKuiz('REMEDIAL SET')">REMEDIAL SET</button>
         </div>
+
+        <!-- PAUTAN KHAS GURU UNTUK BUKA DASHBOARD -->
+        <a href="dashboard.html" class="link-guru">🔒 Dashboard Guru</a>
     </div>
 
     <!-- PAPAN SOALAN KUIZ -->
@@ -399,6 +416,19 @@
         });
 
         const peratus = Math.round((markah / jumlahSoalan) * 100);
+
+        // --- PENAMBAHAN: SIMPAN REKOD KE LOCALSTORAGE UNTUK DASHBOARD GURU ---
+        let senaraiRekod = JSON.parse(localStorage.getItem('rekod_portal_year3') || '[]');
+        senaraiRekod.push({
+            nama: maklumatPelajar.nama,
+            kelas: maklumatPelajar.kelas,
+            modul: maklumatPelajar.modul,
+            set: maklumatPelajar.set,
+            markah: peratus,
+            tarikh: new Date().toLocaleDateString('ms-MY')
+        });
+        localStorage.setItem('rekod_portal_year3', JSON.stringify(senaraiRekod));
+        // ---------------------------------------------------------------------
 
         document.getElementById('papan-kuiz').style.display = 'none';
         const bekasKeputusan = document.getElementById('keputusan-kuiz');
