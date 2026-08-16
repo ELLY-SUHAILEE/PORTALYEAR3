@@ -3,42 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Year 3 English - Dashboard Guru</title>
+  <title>Portal Year 3 English - Analisa Dashboard</title>
+  <!-- Chart.js CDN untuk paparan carta -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     * {
       box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     body {
-      background-color: #f1f5f9;
+      background-color: #f8fafc;
       margin: 0;
       padding: 20px;
       color: #0f172a;
     }
     .container {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
-      background: white;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     }
-    header {
+    
+    /* TOP NAVBAR */
+    .top-nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 3px solid #e2e8f0;
-      padding-bottom: 15px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-      gap: 10px;
+      margin-bottom: 25px;
     }
-    h1 {
-      margin: 0;
-      font-size: 22px;
+    .app-title {
+      font-size: 24px;
+      font-weight: bold;
       color: #0284c7;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .btn-logout {
+    .btn-rekod-guru {
+      background-color: #4f46e5;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* SUB HEADER */
+    .sub-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .dashboard-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #0284c7;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-keluar {
       background-color: #ef4444;
       color: white;
       border: none;
@@ -47,187 +71,322 @@
       font-weight: bold;
       cursor: pointer;
     }
-    
-    .toolbar {
+
+    /* GRID 3 KAD ANALISA */
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      height: 220px;
       display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
+      flex-direction: column;
     }
-    .toolbar input, .toolbar select {
-      padding: 10px 14px;
-      border: 2px solid #cbd5e1;
-      border-radius: 8px;
-      font-size: 14px;
-      outline: none;
-    }
-    .toolbar input { flex: 2; min-width: 200px; }
-    .toolbar select { flex: 1; min-width: 150px; }
-    
-    .btn-refresh {
-      background-color: #0284c7;
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 8px;
+    .card-title {
+      font-size: 16px;
       font-weight: bold;
-      cursor: pointer;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card-list {
+      overflow-y: auto;
+      flex: 1;
+      padding-right: 5px;
+    }
+    .card-list ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .card-list li {
+      margin-bottom: 8px;
+      font-size: 13px;
+      line-height: 1.4;
     }
 
-    .table-container {
-      overflow-x: auto;
+    /* TEMA KAD METRIK */
+    .card-intervensi {
+      border: 2px solid #fca5a5;
+      background-color: #fef2f2;
     }
-    table {
+    .card-intervensi .card-title { color: #b91c1c; }
+    
+    .card-cemerlang {
+      border: 2px solid #86efac;
+      background-color: #f0fdf4;
+    }
+    .card-cemerlang .card-title { color: #15803d; }
+
+    .card-sukar {
+      border: 2px solid #fde047;
+      background-color: #fefce8;
+    }
+    .card-sukar .card-title { color: #a16207; }
+
+    /* GRID CARTA */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 20px;
+    }
+    .chart-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .chart-container {
+      position: relative;
+      height: 280px;
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
     }
-    th, td {
-      padding: 12px 15px;
-      text-align: left;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    th {
-      background-color: #f8fafc;
-      color: #334155;
-      font-weight: bold;
-    }
-    tr:hover {
-      background-color: #f1f5f9;
-    }
-    .badge-score {
-      background-color: #dcfce7;
-      color: #15803d;
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-weight: bold;
-      display: inline-block;
-    }
-    .loading-text {
-      text-align: center;
-      padding: 30px;
-      font-weight: bold;
-      color: #64748b;
-    }
+
+    /* TEXT HIGHLIGHTS */
+    .score-red { color: #ef4444; font-weight: bold; }
+    .score-green { color: #16a34a; font-weight: bold; }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <header>
-      <h1>📊 Portal Year 3 English - Rekod Murid</h1>
-      <button class="btn-logout" onclick="logKeluar()">Log Keluar</button>
-    </header>
-
-    <div class="toolbar">
-      <input type="text" id="search-input" placeholder="🔍 Cari nama murid..." onkeyup="tapisData()">
-      <select id="filter-kelas" onchange="tapisData()">
-        <option value="">-- Semua Kelas --</option>
-        <option value="3 ARIF">3 ARIF</option>
-        <option value="3 BESTARI">3 BESTARI</option>
-        <option value="3 CERDIK">3 CERDIK</option>
-        <option value="3 DEDIKASI">3 DEDIKASI</option>
-        <option value="3 ELIT">3 ELIT</option>
-        <option value="3 FIRDAUS">3 FIRDAUS</option>
-        <option value="3 GIGIH">3 GIGIH</option>
-        <option value="3 HARMONI">3 HARMONI</option>
-        <option value="3 INOVATIF">3 INOVATIF</option>
-        <option value="3 JUARA">3 JUARA</option>
-        <option value="3 KREATIF">3 KREATIF</option>
-      </select>
-      <button class="btn-refresh" onclick="muatDataRekod()">🔄 Muat Semula</button>
+    <!-- TOP NAVBAR -->
+    <div class="top-nav">
+      <div class="app-title">📖 Reading Tracker App</div>
+      <button class="btn-rekod-guru" onclick="keSenaraiRekod()">🔒 Rekod Guru</button>
     </div>
 
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Masa/Tarikh</th>
-            <th>Nama Murid</th>
-            <th>Kelas</th>
-            <th>Modul</th>
-            <th>Markah</th>
-            <th>Peratus</th>
-          </tr>
-        </thead>
-        <tbody id="rekod-body">
-          <tr>
-            <td colspan="7" class="loading-text">⏳ Memuatkan rekod murid... Sila tunggu.</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- SUB HEADER -->
+    <div class="sub-header">
+      <div class="dashboard-title">📊 Analisa & Rekod Murid</div>
+      <button class="btn-keluar" onclick="logKeluar()">Keluar Rekod</button>
+    </div>
+
+    <!-- 3 KAD STATISTIK -->
+    <div class="analytics-grid">
+      <!-- KAD 1: INTERVENSI -->
+      <div class="card card-intervensi">
+        <div class="card-title">⚠️ Perlu Intervensi (&lt; 60%)</div>
+        <div class="card-list" id="list-intervensi">
+          <p style="font-size: 13px; color: #64748b;">⏳ Memuatkan data...</p>
+        </div>
+      </div>
+
+      <!-- KAD 2: CEMERLANG -->
+      <div class="card card-cemerlang">
+        <div class="card-title">🌟 Murid Cemerlang (&ge; 90%)</div>
+        <div class="card-list" id="list-cemerlang">
+          <p style="font-size: 13px; color: #64748b;">⏳ Memuatkan data...</p>
+        </div>
+      </div>
+
+      <!-- KAD 3: MODUL SUKAR -->
+      <div class="card card-sukar">
+        <div class="card-title">📉 Analisa Modul Sukar</div>
+        <div class="card-list" id="list-modul-sukar">
+          <p style="font-size: 13px; color: #64748b;">⏳ Memuatkan data...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARTA VISUAL -->
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="card-title" style="color: #334155;">📊 Purata Peratusan Pencapaian Mengikut Modul</div>
+        <div class="chart-container">
+          <canvas id="barChart"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="card-title" style="color: #334155;">🍩 Pecahan Tahap Penguasaan Murid</div>
+        <div class="chart-container">
+          <canvas id="doughnutChart"></canvas>
+        </div>
+      </div>
     </div>
   </div>
 
 <script>
   if (sessionStorage.getItem("guru_authenticated") !== "true") {
-    alert("🔒 Akses disekat! Sila masukkan kata laluan di halaman utama terlebih dahulu.");
+    alert("🔒 Akses disekat! Sila log masuk terlebih dahulu.");
     window.location.href = "index.html";
   }
 
   const PAUTAN_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbxCd2cvXVKr2ZuUswrZWVg19spQVISjI97vzHz8nPhLi5rwhd4ydhHHEfnJMGWH1kD7/exec";
-  let senaraiRekod = [];
+
+  let barChartInstance = null;
+  let doughnutChartInstance = null;
 
   window.onload = function() {
-    muatDataRekod();
+    muatDataAnalisa();
   };
 
-  function muatDataRekod() {
-    const tbody = document.getElementById('rekod-body');
-    tbody.innerHTML = '<tr><td colspan="7" class="loading-text">⏳ Memuatkan rekod murid... Sila tunggu.</td></tr>';
-
+  function muatDataAnalisa() {
     fetch(PAUTAN_APPS_SCRIPT)
       .then(res => res.json())
       .then(data => {
-        senaraiRekod = data;
-        paparJadual(senaraiRekod);
+        prosesDataAnalisa(data);
       })
       .catch(err => {
-        console.error(err);
-        tbody.innerHTML = '<tr><td colspan="7" class="loading-text" style="color:red;">❌ Gagal memuatkan data. Sila pastikan Google Apps Script dibuka untuk paparan umum.</td></tr>';
+        console.error("Gagal memuatkan data:", err);
       });
   }
 
-  function paparJadual(data) {
-    const tbody = document.getElementById('rekod-body');
-    tbody.innerHTML = '';
+  function prosesDataAnalisa(data) {
+    if (!data || data.length === 0) return;
 
-    if (!data || data.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="7" class="loading-text">Belum ada murid yang menjawab.</td></tr>';
-      return;
+    let intervensiArr = [];
+    let cemerlangArr = [];
+    let moduleStats = {}; 
+
+    let totalIntervensi = 0;
+    let totalSederhana = 0;
+    let totalCemerlang = 0;
+
+    data.forEach(row => {
+      const nama = row[1] || 'Murid';
+      const kelas = row[2] || '-';
+      const modul = row[3] || 'MODULE 1';
+      
+      let peratusRaw = row[5] ? row[5].toString().replace('%', '') : '0';
+      let peratus = parseFloat(peratusRaw) || 0;
+
+      // 1. Pengasingan Murid Intervensi & Cemerlang
+      if (peratus < 60) {
+        intervensiArr.push({ nama, kelas, modul, peratus });
+        totalIntervensi++;
+      } else if (peratus >= 90) {
+        cemerlangArr.push({ nama, kelas, modul, peratus });
+        totalCemerlang++;
+      } else {
+        totalSederhana++;
+      }
+
+      // 2. Kumpulan Statistik Modul
+      if (!moduleStats[modul]) {
+        moduleStats[modul] = { totalScore: 0, count: 0 };
+      }
+      moduleStats[modul].totalScore += peratus;
+      moduleStats[modul].count += 1;
+    });
+
+    // Kemaskini Kad Intervensi
+    const listIntervensi = document.getElementById('list-intervensi');
+    if (intervensiArr.length === 0) {
+      listIntervensi.innerHTML = '<p style="font-size:13px;">Tiada murid perlu intervensi.</p>';
+    } else {
+      let html = '<ul>';
+      intervensiArr.forEach(item => {
+        html += `<li><b>${item.nama}</b> (${item.kelas}) - ${item.modul}: <span class="score-red">${item.peratus}%</span></li>`;
+      });
+      html += '</ul>';
+      listIntervensi.innerHTML = html;
     }
 
-    data.forEach((row, index) => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${index + 1}</td>
-        <td><small>${row[0] || '-'}</small></td>
-        <td><b>${row[1] || '-'}</b></td>
-        <td>${row[2] || '-'}</td>
-        <td>${row[3] || '-'}</td>
-        <td><span class="badge-score">${row[4] || '-'}</span></td>
-        <td><b>${row[5] || '-'}</b></td>
-      `;
-      tbody.appendChild(tr);
+    // Kemaskini Kad Cemerlang
+    const listCemerlang = document.getElementById('list-cemerlang');
+    if (cemerlangArr.length === 0) {
+      listCemerlang.innerHTML = '<p style="font-size:13px;">Tiada murid capai ≥ 90%.</p>';
+    } else {
+      let html = '<ul>';
+      cemerlangArr.forEach(item => {
+        html += `<li><b>${item.nama}</b> (${item.kelas}) - ${item.modul}: <span class="score-green">${item.peratus}%</span></li>`;
+      });
+      html += '</ul>';
+      listCemerlang.innerHTML = html;
+    }
+
+    // Kemaskini Kad Modul Sukar & Data Carta Bar
+    let modulesList = Object.keys(moduleStats).sort();
+    let moduleAverages = [];
+    let moduleSukarArr = [];
+
+    modulesList.forEach(m => {
+      let avg = Math.round(moduleStats[m].totalScore / moduleStats[m].count);
+      moduleAverages.push(avg);
+      moduleSukarArr.push({ modul: m, avg: avg, count: moduleStats[m].count });
+    });
+
+    // Susun modul mengikut purata markah terendah
+    moduleSukarArr.sort((a, b) => a.avg - b.avg);
+
+    const listSukar = document.getElementById('list-modul-sukar');
+    let htmlSukar = '<ul>';
+    moduleSukarArr.forEach(item => {
+      htmlSukar += `<li><b>${item.modul}</b>: Purata <span class="score-green">${item.avg}%</span> (${item.count} percubaan)</li>`;
+    });
+    htmlSukar += '</ul>';
+    listSukar.innerHTML = htmlSukar;
+
+    // BINA CARTA BAR
+    binaBarChart(modulesList, moduleAverages);
+
+    // BINA CARTA DOUGHNUT
+    binaDoughnutChart(totalIntervensi, totalSederhana, totalCemerlang);
+  }
+
+  function binaBarChart(labels, dataValues) {
+    const ctx = document.getElementById('barChart').getContext('2d');
+    if (barChartInstance) barChartInstance.destroy();
+
+    barChartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: dataValues,
+          backgroundColor: '#0284c7',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            ticks: { callback: v => v + '%' }
+          }
+        }
+      }
     });
   }
 
-  function tapisData() {
-    const carian = document.getElementById('search-input').value.toLowerCase();
-    const kelasSelected = document.getElementById('filter-kelas').value;
+  function binaDoughnutChart(intervensi, sederhana, cemerlang) {
+    const ctx = document.getElementById('doughnutChart').getContext('2d');
+    if (doughnutChartInstance) doughnutChartInstance.destroy();
 
-    const dataDitapis = senaraiRekod.filter(row => {
-      const nama = (row[1] || '').toString().toLowerCase();
-      const kelas = (row[2] || '').toString();
-
-      const padanNama = nama.includes(carian);
-      const padanKelas = kelasSelected === "" || kelas === kelasSelected;
-
-      return padanNama && padanKelas;
+    doughnutChartInstance = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Intervensi (<60%)', 'Sederhana (60-89%)', 'Cemerlang (≥90%)'],
+        datasets: [{
+          data: [intervensi, sederhana, cemerlang],
+          backgroundColor: ['#ef4444', '#f59e0b', '#22c55e']
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
     });
+  }
 
-    paparJadual(dataDitapis);
+  function keSenaraiRekod() {
+    window.location.href = "rekod.html";
   }
 
   function logKeluar() {
