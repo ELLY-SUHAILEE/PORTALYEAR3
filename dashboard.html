@@ -74,7 +74,7 @@
       cursor: pointer;
     }
 
-    /* 3 KAD ANALISA METRICS */
+    /* 3 KAD STATISTIK METRICS */
     .analytics-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -146,38 +146,14 @@
       width: 100%;
     }
 
-    /* SECTION JADUAL & TOOLBAR */
+    /* SECTION JADUAL & TOOLBAR BAWAH */
     .table-section {
       background: white;
       padding: 25px;
       border-radius: 16px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
     }
-    .toolbar {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    .toolbar input, .toolbar select {
-      padding: 10px 14px;
-      border: 2px solid #cbd5e1;
-      border-radius: 8px;
-      font-size: 14px;
-      outline: none;
-    }
-    .toolbar input { flex: 2; min-width: 200px; }
-    .toolbar select { flex: 1; min-width: 150px; }
-    .btn-refresh {
-      background-color: #0284c7;
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
     .table-container {
       overflow-x: auto;
     }
@@ -210,6 +186,35 @@
       font-weight: bold;
       color: #64748b;
     }
+
+    /* TOOLBAR CARIAN BAWAH */
+    .toolbar-bottom {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 2px solid #f1f5f9;
+      flex-wrap: wrap;
+    }
+    .toolbar-bottom input, .toolbar-bottom select {
+      padding: 10px 14px;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+    }
+    .toolbar-bottom input { flex: 2; min-width: 200px; }
+    .toolbar-bottom select { flex: 1; min-width: 150px; }
+    .btn-refresh {
+      background-color: #0284c7;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
     .score-red { color: #ef4444; font-weight: bold; }
     .score-green { color: #16a34a; font-weight: bold; }
   </style>
@@ -272,25 +277,6 @@
 
     <!-- KAWASAN JADUAL REKOD MURID -->
     <div class="table-section">
-      <div class="toolbar">
-        <input type="text" id="search-input" placeholder="🔍 Cari nama murid..." onkeyup="tapisData()">
-        <select id="filter-kelas" onchange="tapisData()">
-          <option value="">-- Semua Kelas --</option>
-          <option value="3 ARIF">3 ARIF</option>
-          <option value="3 BESTARI">3 BESTARI</option>
-          <option value="3 CERDIK">3 CERDIK</option>
-          <option value="3 DEDIKASI">3 DEDIKASI</option>
-          <option value="3 ELIT">3 ELIT</option>
-          <option value="3 FIRDAUS">3 FIRDAUS</option>
-          <option value="3 GIGIH">3 GIGIH</option>
-          <option value="3 HARMONI">3 HARMONI</option>
-          <option value="3 INOVATIF">3 INOVATIF</option>
-          <option value="3 JUARA">3 JUARA</option>
-          <option value="3 KREATIF">3 KREATIF</option>
-        </select>
-        <button class="btn-refresh" onclick="muatDataRekod()">🔄 Muat Semula</button>
-      </div>
-
       <div class="table-container">
         <table>
           <thead>
@@ -310,6 +296,26 @@
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <!-- KAWASAN CARIAN & PENAPIS DI BAHAGIAN BAWAH -->
+      <div class="toolbar-bottom">
+        <input type="text" id="search-input" placeholder="🔍 Cari nama murid..." onkeyup="tapisData()">
+        <select id="filter-kelas" onchange="tapisData()">
+          <option value="">-- Semua Kelas --</option>
+          <option value="3 ARIF">3 ARIF</option>
+          <option value="3 BESTARI">3 BESTARI</option>
+          <option value="3 CERDIK">3 CERDIK</option>
+          <option value="3 DEDIKASI">3 DEDIKASI</option>
+          <option value="3 ELIT">3 ELIT</option>
+          <option value="3 FIRDAUS">3 FIRDAUS</option>
+          <option value="3 GIGIH">3 GIGIH</option>
+          <option value="3 HARMONI">3 HARMONI</option>
+          <option value="3 INOVATIF">3 INOVATIF</option>
+          <option value="3 JUARA">3 JUARA</option>
+          <option value="3 KREATIF">3 KREATIF</option>
+        </select>
+        <button class="btn-refresh" onclick="muatDataRekod()">🔄 Muat Semula</button>
       </div>
     </div>
   </div>
