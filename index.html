@@ -26,82 +26,89 @@
             overflow-x: hidden;
         }
 
-        /* ANIMASI HIDUPAN DASAR LAUT REALISTIK (GAMA-GAMBAR BESAR) */
+        /* ANIMASI HIDUPAN DASAR LAUT REALISTIK (INLINE SVG) */
         .ocean-decor {
             position: fixed;
             z-index: 1;
             pointer-events: none;
             user-select: none;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
         }
 
-        /* Paus Berenang Perlahan (Bersaiz Besar) */
+        /* Paus Berenang Perlahan (Bersaiz Sangat Besar) */
         .creature-whale {
-            top: 5%;
-            width: 320px;
+            top: 4%;
+            width: 340px;
+            height: auto;
             animation: swimRight 28s infinite linear;
-            opacity: 0.75;
+            opacity: 0.85;
         }
 
-        /* Ikan Badut / Clownfish (Kanan ke Kiri) */
+        /* Ikan Badut / Clownfish */
         .creature-fish1 {
             top: 38%;
-            width: 140px;
+            width: 150px;
+            height: auto;
             animation: swimLeft 14s infinite linear;
             animation-delay: 1s;
         }
 
-        /* Penyu Laut Berenang (Kiri ke Kanan) */
+        /* Penyu Laut Berenang */
         .creature-turtle {
             top: 60%;
-            width: 180px;
-            animation: swimRight 20s infinite linear;
-            animation-delay: 5s;
+            width: 190px;
+            height: auto;
+            animation: swimRight 22s infinite linear;
+            animation-delay: 4s;
         }
 
         /* Obor-Obor Terapung */
         .creature-jellyfish {
             top: 18%;
             right: 5%;
-            width: 130px;
+            width: 140px;
+            height: auto;
             animation: floatUpDown 7s infinite ease-in-out;
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
         /* Sotong Kurita / Octopus */
         .creature-octopus {
-            bottom: 20%;
-            left: 3%;
-            width: 160px;
+            bottom: 18%;
+            left: 2%;
+            width: 170px;
+            height: auto;
             animation: floatUpDown 6s infinite ease-in-out;
             animation-delay: 2s;
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
-        /* Tapak Sulaiman & Kerang Realistik di Dasar Laut (Bawah Skrin) */
+        /* Tapak Sulaiman & Kerang di Dasar Laut */
         .creature-starfish {
-            bottom: 10px;
+            bottom: 12px;
             left: 6%;
             width: 110px;
+            height: auto;
             animation: pulseGlow 4s infinite alternate;
         }
 
         .creature-shell {
-            bottom: 10px;
+            bottom: 12px;
             right: 8%;
             width: 120px;
+            height: auto;
             animation: pulseGlow 5s infinite alternate;
         }
 
         /* Keyframes Animasi Pergerakan */
         @keyframes swimRight {
-            0% { transform: translateX(-25vw) scaleX(1); }
+            0% { transform: translateX(-30vw) scaleX(1); }
             100% { transform: translateX(115vw) scaleX(1); }
         }
 
         @keyframes swimLeft {
             0% { transform: translateX(115vw) scaleX(-1); }
-            100% { transform: translateX(-25vw) scaleX(-1); }
+            100% { transform: translateX(-30vw) scaleX(-1); }
         }
 
         @keyframes floatUpDown {
@@ -110,11 +117,11 @@
         }
 
         @keyframes pulseGlow {
-            0% { transform: scale(1); filter: drop-shadow(0 5px 8px rgba(0,0,0,0.5)); }
-            100% { transform: scale(1.08); filter: drop-shadow(0 8px 16px rgba(255,255,255,0.4)); }
+            0% { transform: scale(1); filter: drop-shadow(0 5px 8px rgba(0,0,0,0.4)); }
+            100% { transform: scale(1.1); filter: drop-shadow(0 8px 18px rgba(255,255,255,0.5)); }
         }
 
-        /* Animasi Gelembung Air di Latar Belakang */
+        /* Animasi Gelembung Air */
         body::before, body::after {
             content: "🫧";
             position: fixed;
@@ -351,13 +358,68 @@
 </head>
 <body>
 
-<!-- IMEJ HIDUPAN DASAR LAUT REALISTIK (TRANSPARENT PNG) -->
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Humpback_whale_draw.svg/640px-Humpback_whale_draw.svg.png" class="ocean-decor creature-whale" alt="Paus">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Clownfish_transparent.png/640px-Clownfish_transparent.png" class="ocean-decor creature-fish1" alt="Ikan Badut">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Asterias_rubens.png/640px-Asterias_rubens.png" class="ocean-decor creature-starfish" alt="Tapak Sulaiman">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Scallop_shell.png/512px-Scallop_shell.png" class="ocean-decor creature-shell" alt="Kerang">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Jellyfish_transparent.png/640px-Jellyfish_transparent.png" class="ocean-decor creature-jellyfish" alt="Obor-obor">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Green_turtle_transparent.png/640px-Green_turtle_transparent.png" class="ocean-decor creature-turtle" alt="Penyu">
+<!-- LUKISAN VEKTOR SVG HIDUPAN DASAR LAUT TERBINA (GUARANTEED LOAD) -->
+
+<!-- PAUS BESAR -->
+<svg class="ocean-decor creature-whale" viewBox="0 0 200 100">
+    <path d="M10,50 Q30,15 110,15 Q170,15 190,50 Q160,85 110,85 Q50,85 10,50 Z" fill="#0284c7" />
+    <path d="M10,50 Q40,60 110,60 Q150,60 170,50 Q150,80 110,85 Q50,85 10,50 Z" fill="#e0f2fe" opacity="0.8" />
+    <path d="M190,50 L205,30 L198,50 L205,70 Z" fill="#0369a1" />
+    <circle cx="40" cy="40" r="4" fill="#ffffff"/>
+    <circle cx="41" cy="40" r="2" fill="#000000"/>
+    <path d="M85,15 C85,2 75,-5 70,2 C70,8 80,12 85,15 Z" fill="#bae6fd"/>
+    <path d="M90,15 C90,0 100,-5 105,2 C105,8 95,12 90,15 Z" fill="#bae6fd"/>
+</svg>
+
+<!-- IKAN BADUT (CLOWNFISH) -->
+<svg class="ocean-decor creature-fish1" viewBox="0 0 120 70">
+    <path d="M15,35 Q45,5 85,20 Q115,35 85,50 Q45,65 15,35 Z" fill="#ff6b00" />
+    <path d="M15,35 L0,15 L8,35 L0,55 Z" fill="#ff6b00" />
+    <path d="M40,11 Q48,35 40,59" stroke="#ffffff" stroke-width="12" fill="none" />
+    <path d="M40,11 Q48,35 40,59" stroke="#000000" stroke-width="2" fill="none" />
+    <path d="M70,19 Q75,35 70,51" stroke="#ffffff" stroke-width="10" fill="none" />
+    <circle cx="95" cy="30" r="5" fill="#ffffff"/>
+    <circle cx="96" cy="30" r="2.5" fill="#000000"/>
+</svg>
+
+<!-- PENYU LAUT -->
+<svg class="ocean-decor creature-turtle" viewBox="0 0 140 90">
+    <ellipse cx="65" cy="45" rx="42" ry="28" fill="#15803d" stroke="#166534" stroke-width="3"/>
+    <ellipse cx="115" cy="45" rx="14" ry="10" fill="#22c55e"/>
+    <circle cx="120" cy="42" r="2.5" fill="#000000"/>
+    <path d="M75,20 Q105,-8 95,22 Z" fill="#16a34a"/>
+    <path d="M75,70 Q105,98 95,68 Z" fill="#16a34a"/>
+    <path d="M30,25 Q15,8 25,30 Z" fill="#15803d"/>
+    <path d="M30,65 Q15,82 25,60 Z" fill="#15803d"/>
+</svg>
+
+<!-- OBOR-OBOR -->
+<svg class="ocean-decor creature-jellyfish" viewBox="0 0 100 120">
+    <path d="M10,50 A40,40 0 0,1 90,50 Q50,62 10,50 Z" fill="rgba(236, 72, 153, 0.85)" />
+    <path d="M25,55 Q18,80 28,110 M40,55 Q46,85 38,115 M60,55 Q54,85 62,115 M75,55 Q82,80 72,110" stroke="rgba(244, 114, 182, 0.9)" stroke-width="5" fill="none" stroke-linecap="round"/>
+</svg>
+
+<!-- SOTONG KURITA -->
+<svg class="ocean-decor creature-octopus" viewBox="0 0 120 120">
+    <circle cx="60" cy="45" r="35" fill="#e11d48"/>
+    <circle cx="48" cy="40" r="6" fill="#ffffff"/><circle cx="49" cy="40" r="3" fill="#000000"/>
+    <circle cx="72" cy="40" r="6" fill="#ffffff"/><circle cx="73" cy="40" r="3" fill="#000000"/>
+    <path d="M25,70 Q10,100 30,110 M40,75 Q30,105 50,110 M60,78 Q60,110 65,115 M80,75 Q90,105 70,110 M95,70 Q110,100 90,110" stroke="#be123c" stroke-width="9" stroke-linecap="round" fill="none"/>
+</svg>
+
+<!-- TAPAK SULAIMAN -->
+<svg class="ocean-decor creature-starfish" viewBox="0 0 100 100">
+    <polygon points="50,5 64,36 98,36 71,57 81,91 50,70 19,91 29,57 2,36 36,36" fill="#f97316" stroke="#ea580c" stroke-width="3"/>
+    <circle cx="43" cy="45" r="3" fill="#ffffff"/><circle cx="43" cy="45" r="1.5" fill="#000000"/>
+    <circle cx="57" cy="45" r="3" fill="#ffffff"/><circle cx="57" cy="45" r="1.5" fill="#000000"/>
+    <path d="M45,55 Q50,60 55,55" stroke="#000000" stroke-width="2" fill="none"/>
+</svg>
+
+<!-- KERANG -->
+<svg class="ocean-decor creature-shell" viewBox="0 0 100 90">
+    <path d="M10,70 C10,10 90,10 90,70 C90,85 10,85 10,70 Z" fill="#fef08a" stroke="#facc15" stroke-width="4"/>
+    <path d="M50,15 L50,80 M30,22 L40,80 M70,22 L60,80 M18,40 L30,78 M82,40 L70,78" stroke="#eab308" stroke-width="2.5"/>
+</svg>
 
 <div class="card">
     <!-- BORANG UTAMA -->
