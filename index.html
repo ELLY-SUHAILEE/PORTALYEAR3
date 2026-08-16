@@ -498,11 +498,15 @@
     let maklumatPelajar = {};
 
     function bukaDashboardGuru() {
-        const kataLaluanBetul = "1234"; // Tukar kata laluan di sini
         const inputLaluan = prompt("🔑 Sila masukkan kata laluan Guru:");
 
-        if (inputLaluan === kataLaluanBetul) {
-            sessionStorage.setItem("guru_authenticated", "true");
+        // Menerima kata laluan guru123 atau 1234
+        if (inputLaluan === "guru123" || inputLaluan === "1234") {
+            try {
+                sessionStorage.setItem("guru_authenticated", "true");
+            } catch(e) {
+                console.log("sessionStorage disekat pelayar.");
+            }
             window.location.href = "dashboard.html";
         } else if (inputLaluan !== null) {
             alert("❌ Kata laluan salah! Akses ditolak.");
