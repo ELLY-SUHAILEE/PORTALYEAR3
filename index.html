@@ -458,7 +458,7 @@
             <button class="btn-set btn-green" onclick="mulaKuiz('REMEDIAL SET')">🌟 REMEDIAL SET</button>
         </div>
 
-        <a href="dashboard.html" class="link-guru">🔒 Dashboard Guru</a>
+        <a href="javascript:void(0)" onclick="bukaDashboardGuru()" class="link-guru">🔒 Dashboard Guru</a>
     </div>
 
     <!-- PAPAN SOALAN KUIZ -->
@@ -496,6 +496,18 @@
     let soalanSemasa = [];
     let jawapanPengguna = {};
     let maklumatPelajar = {};
+
+    function bukaDashboardGuru() {
+        const kataLaluanBetul = "1234"; // Tukar kata laluan di sini
+        const inputLaluan = prompt("🔑 Sila masukkan kata laluan Guru:");
+
+        if (inputLaluan === kataLaluanBetul) {
+            sessionStorage.setItem("guru_authenticated", "true");
+            window.location.href = "dashboard.html";
+        } else if (inputLaluan !== null) {
+            alert("❌ Kata laluan salah! Akses ditolak.");
+        }
+    }
 
     function keHalamanUtama() {
         if (document.getElementById('papan-kuiz').style.display === 'block') {
