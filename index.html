@@ -26,6 +26,100 @@
             overflow-x: hidden;
         }
 
+        /* ANIMASI HIDUPAN DASAR LAUT (BACKGROUND DECOR) */
+        .ocean-decor {
+            position: fixed;
+            z-index: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Paus Berenang Perlahan (Kiri ke Kanan) */
+        .creature-whale {
+            top: 8%;
+            font-size: 4rem;
+            animation: swimRight 22s infinite linear;
+            opacity: 0.6;
+        }
+
+        /* Ikan Tropika (Kanan ke Kiri) */
+        .creature-fish1 {
+            top: 35%;
+            font-size: 2.5rem;
+            animation: swimLeft 12s infinite linear;
+            animation-delay: 1s;
+        }
+
+        /* Ikan Biru (Kiri ke Kanan) */
+        .creature-fish2 {
+            top: 65%;
+            font-size: 2.2rem;
+            animation: swimRight 16s infinite linear;
+            animation-delay: 4s;
+        }
+
+        /* Obor-Obor Terapung */
+        .creature-jellyfish {
+            top: 20%;
+            right: 8%;
+            font-size: 2.8rem;
+            animation: floatUpDown 6s infinite ease-in-out;
+            opacity: 0.7;
+        }
+
+        /* Sotong Kurita Terapung */
+        .creature-octopus {
+            bottom: 25%;
+            left: 5%;
+            font-size: 2.8rem;
+            animation: floatUpDown 5s infinite ease-in-out;
+            animation-delay: 2s;
+            opacity: 0.75;
+        }
+
+        /* Tapak Sulaiman & Kerang di Dasar Laut (Bawah Skrin) */
+        .creature-starfish {
+            bottom: 12px;
+            left: 8%;
+            font-size: 2.5rem;
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        .creature-shell {
+            bottom: 15px;
+            right: 10%;
+            font-size: 2.5rem;
+            animation: pulseGlow 4s infinite alternate;
+        }
+
+        .creature-starfish2 {
+            bottom: 20px;
+            right: 25%;
+            font-size: 2rem;
+            animation: pulseGlow 3.5s infinite alternate;
+        }
+
+        /* Keyframes Animasi Pergerakan */
+        @keyframes swimRight {
+            0% { transform: translateX(-15vw) scaleX(1); }
+            100% { transform: translateX(115vw) scaleX(1); }
+        }
+
+        @keyframes swimLeft {
+            0% { transform: translateX(115vw) scaleX(-1); }
+            100% { transform: translateX(-15vw) scaleX(-1); }
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(8deg); }
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(255,255,255,0.2)); }
+            100% { transform: scale(1.1); filter: drop-shadow(0 0 10px rgba(255,255,255,0.6)); }
+        }
+
         /* Animasi Gelembung Air di Latar Belakang */
         body::before, body::after {
             content: "🫧";
@@ -44,7 +138,7 @@
             100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
         }
 
-        /* Kad Kad Utama Glassmorphism */
+        /* Kad Utama Glassmorphism */
         .card {
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(12px);
@@ -262,6 +356,16 @@
     </style>
 </head>
 <body>
+
+<!-- ELEMEN HIDUPAN DASAR LAUT TERAPUNG & BERENANG -->
+<div class="ocean-decor creature-whale">🐋</div>
+<div class="ocean-decor creature-fish1">🐠</div>
+<div class="ocean-decor creature-fish2">🐟</div>
+<div class="ocean-decor creature-jellyfish">🪼</div>
+<div class="ocean-decor creature-octopus">🐙</div>
+<div class="ocean-decor creature-starfish">⭐</div>
+<div class="ocean-decor creature-starfish2">⭐</div>
+<div class="ocean-decor creature-shell">🐚</div>
 
 <div class="card">
     <!-- BORANG UTAMA -->
