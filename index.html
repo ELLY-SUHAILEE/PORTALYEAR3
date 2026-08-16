@@ -3,175 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Year 3 - English Quiz</title>
+    <title>Portal Year 3 - Ocean English Quest 🌊</title>
+    <!-- Font Mesra Kanak-Kanak -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         * {
             box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Fredoka', Arial, sans-serif;
         }
+
+        /* Latar Belakang Dasar Laut Bergelombang */
         body {
-            background-color: #f4f5f7;
+            background: linear-gradient(180deg, #0284c7 0%, #0369a1 40%, #0c4a6e 100%);
             margin: 0;
-            padding: 40px 20px;
+            padding: 30px 15px;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
-        }
-        .card {
-            background-color: #ffffff;
-            width: 100%;
-            max-width: 800px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            padding: 35px 40px;
             position: relative;
+            overflow-x: hidden;
         }
+
+        /* Animasi Gelembung Air di Latar Belakang */
+        body::before, body::after {
+            content: "🫧";
+            position: fixed;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: floatUp 8s infinite linear;
+            z-index: 0;
+        }
+        body::before { left: 10%; animation-duration: 10s; }
+        body::after { right: 15%; animation-duration: 7s; animation-delay: 2s; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        /* Kad Kad Utama Glassmorphism */
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            width: 100%;
+            max-width: 850px;
+            border-radius: 28px;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 20px 40px rgba(0, 30, 60, 0.3);
+            padding: 35px 30px;
+            position: relative;
+            z-index: 10;
+        }
+
         h1 {
-            color: #2563eb;
+            color: #0284c7;
             text-align: center;
             margin-top: 0;
             margin-bottom: 25px;
-            font-size: 28px;
-            font-weight: bold;
+            font-size: 32px;
+            font-weight: 700;
+            text-shadow: 2px 2px 0px #bae6fd;
+            letter-spacing: 0.5px;
         }
+
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
+
         label {
             display: block;
-            font-weight: bold;
+            font-weight: 600;
             margin-bottom: 8px;
-            color: #222;
-            font-size: 15px;
+            color: #0369a1;
+            font-size: 16px;
         }
-        input[type="text"] {
+
+        input[type="text"], select {
             width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 15px;
+            padding: 14px 18px;
+            border: 2px solid #38bdf8;
+            border-radius: 16px;
+            font-size: 16px;
             outline: none;
-            color: #333;
+            background-color: #f0f9ff;
+            color: #0c4a6e;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
         }
-        select {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1.5px solid #000;
-            border-radius: 8px;
-            font-size: 15px;
-            outline: none;
-            background-color: #fff;
-            color: #222;
-            cursor: pointer;
+
+        input[type="text"]:focus, select:focus {
+            border-color: #0284c7;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3);
         }
+
         .sub-title {
             text-align: center;
-            font-weight: bold;
-            margin-top: 25px;
-            margin-bottom: 18px;
-            color: #000;
-            font-size: 15px;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: #0284c7;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
+
+        /* Container & Butang Interaktif colorful */
         .btn-container {
             display: flex;
             gap: 15px;
         }
+
         .btn-set {
             flex: 1;
-            padding: 14px;
+            padding: 16px;
             border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: bold;
+            border-radius: 18px;
+            font-size: 16px;
+            font-weight: 700;
             color: #ffffff;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: opacity 0.2s;
+            letter-spacing: 0.8px;
+            box-shadow: 0 6px 0px rgba(0,0,0,0.15);
+            transition: all 0.15s ease;
         }
-        .btn-set:hover {
-            opacity: 0.9;
+
+        .btn-set:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0px rgba(0,0,0,0.15);
         }
+
         .btn-blue {
-            background-color: #1d6fe5;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            box-shadow: 0 6px 0px #0369a1;
         }
+        .btn-blue:hover { background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%); }
+
         .btn-green {
-            background-color: #2d9d51;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 6px 0px #047857;
         }
+        .btn-green:hover { background: linear-gradient(135deg, #34d399 0%, #10b981 100%); }
+
         .btn-home {
-            background-color: #6b7280;
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
             color: #fff;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 6px;
-            font-weight: bold;
+            border-radius: 14px;
+            font-weight: 700;
             cursor: pointer;
-            margin-bottom: 15px;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
+            box-shadow: 0 4px 0px #334155;
+            transition: all 0.15s ease;
         }
-        .btn-home:hover {
-            background-color: #4b5563;
+        .btn-home:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px #334155;
         }
+
         #papan-kuiz, #keputusan-kuiz {
             display: none;
         }
+
+        /* Item Soalan & Kad Jawapan */
         .item-soalan {
-            background-color: #fafafa;
-            border: 1px solid #e5e7eb;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            background-color: #ffffff;
+            border: 3px solid #bae6fd;
+            padding: 22px;
+            border-radius: 20px;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 16px rgba(2, 132, 199, 0.06);
         }
+
+        .item-soalan h3 {
+            font-size: 18px;
+            color: #0c4a6e;
+            line-height: 1.4;
+        }
+
         .pilihan-jawapan label {
-            font-weight: normal;
-            background: #fff;
-            padding: 12px 15px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            margin-bottom: 10px;
+            font-weight: 600;
+            background: #f0f9ff;
+            padding: 14px 18px;
+            border: 2px solid #e0f2fe;
+            border-radius: 14px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             cursor: pointer;
+            transition: all 0.2s ease;
+            color: #0369a1;
         }
+
         .pilihan-jawapan label:hover {
-            background-color: #f1f5f9;
+            background-color: #e0f2fe;
+            border-color: #38bdf8;
+            transform: translateX(4px);
         }
-        .passage-box {
-            background-color: #eff6ff;
-            border-left: 5px solid #2563eb;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 4px;
+
+        .pilihan-jawapan input[type="radio"] {
+            accent-color: #0284c7;
+            width: 18px;
+            height: 18px;
         }
-        /* STYLING UTAMA UNTUK GAMBAR */
+
+        /* Container Gambar Soalan */
         .question-image-container {
             text-align: center;
-            margin-bottom: 15px;
-            background-color: #ffffff;
-            padding: 10px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
+            margin-bottom: 18px;
+            background-color: #f8fafc;
+            padding: 12px;
+            border: 2px dashed #38bdf8;
+            border-radius: 16px;
         }
-        .question-image {
-            width: 100%;
-            max-width: 680px;
-            height: auto;
-            max-height: 600px;
-            border-radius: 6px;
-            object-fit: contain;
-        }
-        .item-soalan img {
-            max-height: 600px !important;
+
+        .question-image, .item-soalan img {
             width: 100% !important;
             max-width: 680px !important;
             height: auto !important;
+            max-height: 500px !important;
+            border-radius: 12px;
             object-fit: contain !important;
         }
 
-        /* GAYA KHAS GAMBAR DIKECILKAN BAGI SOALAN 11 - 30 */
+        /* Gaya Khas Gambar Dikecilkan Bagi Soalan 11 - 30 */
         .item-soalan.img-small img,
         .question-image-container.img-small img {
             max-width: 320px !important;
@@ -180,18 +243,21 @@
             display: block;
         }
 
-        /* PAUTAN TERSEMBUNYI KHAS UNTUK GURU */
+        /* Pautan Tersembunyi Khas Untuk Guru */
         .link-guru {
             display: block;
             text-align: center;
-            margin-top: 25px;
-            color: #9ca3af;
+            margin-top: 30px;
+            color: #0284c7;
             text-decoration: none;
-            font-size: 13px;
-            font-weight: bold;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 8px;
+            border-radius: 10px;
+            transition: background 0.2s;
         }
         .link-guru:hover {
-            color: #2563eb;
+            background: #e0f2fe;
         }
     </style>
 </head>
@@ -200,15 +266,15 @@
 <div class="card">
     <!-- BORANG UTAMA -->
     <div id="borang-mula">
-        <h1>PORTAL YEAR 3</h1>
+        <h1>🌊 PORTAL YEAR 3 🐠</h1>
         
         <div class="form-group">
-            <label for="nama">Nama Pelajar:</label>
-            <input type="text" id="nama" placeholder="Masukkan nama penuh">
+            <label for="nama">👤 Nama Pelajar:</label>
+            <input type="text" id="nama" placeholder="Masukkan nama penuh anda">
         </div>
         
         <div class="form-group">
-            <label for="kelas">Kelas:</label>
+            <label for="kelas">🏫 Kelas:</label>
             <select id="kelas">
                 <option value="">-- Pilih Kelas --</option>
                 <option value="3 ARIF">3 ARIF</option>
@@ -226,7 +292,7 @@
         </div>
         
         <div class="form-group">
-            <label for="modul">Pilih Modul:</label>
+            <label for="modul">📚 Pilih Modul Pembelajaran:</label>
             <select id="modul">
                 <option value="Module 1">Module 1: Welcome!</option>
                 <option value="Module 2">Module 2: Every day</option>
@@ -241,11 +307,11 @@
             </select>
         </div>
 
-        <div class="sub-title">Pilih Set Kuiz Untuk Bermula:</div>
+        <div class="sub-title">⭐ Pilih Set Kuiz Untuk Bermula ⭐</div>
         
         <div class="btn-container">
-            <button class="btn-set btn-blue" onclick="mulaKuiz('GET SMART SET')">GET SMART SET</button>
-            <button class="btn-set btn-green" onclick="mulaKuiz('REMEDIAL SET')">REMEDIAL SET</button>
+            <button class="btn-set btn-blue" onclick="mulaKuiz('GET SMART SET')">🎮 GET SMART SET</button>
+            <button class="btn-set btn-green" onclick="mulaKuiz('REMEDIAL SET')">🌟 REMEDIAL SET</button>
         </div>
 
         <!-- PAUTAN KHAS GURU UNTUK BUKA DASHBOARD -->
@@ -254,16 +320,16 @@
 
     <!-- PAPAN SOALAN KUIZ -->
     <div id="papan-kuiz">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
             <button class="btn-home" onclick="keHalamanUtama()">🏠 HOME</button>
-            <span id="label-modul-papar" style="font-weight: bold; color: #2563eb;"></span>
+            <span id="label-modul-papar" style="font-weight: 700; color: #0284c7; font-size: 18px;"></span>
         </div>
 
-        <div id="bekas-senarai-soalan" style="margin-top: 15px;"></div>
+        <div id="bekas-senarai-soalan"></div>
         
-        <div class="btn-container" style="margin-top: 20px;">
-            <button class="btn-home" onclick="keHalamanUtama()" style="flex: none; padding: 14px 20px;">🏠 HOME</button>
-            <button class="btn-set btn-blue" onclick="hantarKuiz()">Hantar Jawapan</button>
+        <div class="btn-container" style="margin-top: 25px;">
+            <button class="btn-home" onclick="keHalamanUtama()" style="flex: none; padding: 16px 24px;">🏠 HOME</button>
+            <button class="btn-set btn-blue" onclick="hantarKuiz()">🚀 HANTAR JAWAPAN</button>
         </div>
     </div>
 
@@ -355,7 +421,6 @@
 
         soalanSemasa.forEach((soalan, index) => {
             const nomborSoalan = index + 1;
-            // Semak jika nombor soalan antara 11 hingga 30 untuk mengecilkan gambar
             const isSmallImg = (nomborSoalan >= 11 && nomborSoalan <= 30);
             const extraClass = isSmallImg ? 'img-small' : '';
 
@@ -376,14 +441,14 @@
 
             const teksSoalanBersih = (soalan.q || '').replace(/^\d+[\.\)]\s*/, '');
 
-            htmlContent += `<h3 style="white-space: pre-line; margin-top: 5px; color: #111;">${nomborSoalan}. ${teksSoalanBersih}</h3>`;
+            htmlContent += `<h3 style="white-space: pre-line; margin-top: 5px;">${nomborSoalan}. ${teksSoalanBersih}</h3>`;
             htmlContent += `<div class="pilihan-jawapan">`;
 
             soalan.options.forEach((pilihan) => {
                 htmlContent += `
                     <label>
                         <input type="radio" name="soalan_${index}" value="${pilihan}" onchange="pilihJawapan(${index}, '${pilihan}')">
-                        <span style="margin-left: 10px;">${pilihan}</span>
+                        <span style="margin-left: 12px;">${pilihan}</span>
                     </label>
                 `;
             });
@@ -417,7 +482,7 @@
 
         const peratus = Math.round((markah / jumlahSoalan) * 100);
 
-        // --- PENAMBAHAN: SIMPAN REKOD KE LOCALSTORAGE UNTUK DASHBOARD GURU ---
+        // SIMPAN REKOD KE LOCALSTORAGE UNTUK DASHBOARD GURU
         let senaraiRekod = JSON.parse(localStorage.getItem('rekod_portal_year3') || '[]');
         senaraiRekod.push({
             nama: maklumatPelajar.nama,
@@ -428,22 +493,21 @@
             tarikh: new Date().toLocaleDateString('ms-MY')
         });
         localStorage.setItem('rekod_portal_year3', JSON.stringify(senaraiRekod));
-        // ---------------------------------------------------------------------
 
         document.getElementById('papan-kuiz').style.display = 'none';
         const bekasKeputusan = document.getElementById('keputusan-kuiz');
         bekasKeputusan.style.display = 'block';
         
         bekasKeputusan.innerHTML = `
-            <h2>Keputusan Kuiz</h2>
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: left; margin: 20px 0; border: 1px solid #ddd;">
-                <p><strong>Nama:</strong> ${maklumatPelajar.nama}</p>
-                <p><strong>Kelas:</strong> ${maklumatPelajar.kelas}</p>
-                <p><strong>Modul:</strong> ${maklumatPelajar.modul}</p>
-                <p><strong>Set:</strong> ${maklumatPelajar.set}</p>
+            <h2 style="color: #0284c7; font-size: 28px;">🎉 Keputusan Kuiz</h2>
+            <div style="background: #f0f9ff; padding: 20px; border-radius: 18px; text-align: left; margin: 20px 0; border: 2px solid #bae6fd;">
+                <p><strong>👤 Nama:</strong> ${maklumatPelajar.nama}</p>
+                <p><strong>🏫 Kelas:</strong> ${maklumatPelajar.kelas}</p>
+                <p><strong>📚 Modul:</strong> ${maklumatPelajar.modul}</p>
+                <p><strong>🎮 Set:</strong> ${maklumatPelajar.set}</p>
             </div>
-            <h3 style="font-size: 26px; color: #1d6fe5; margin: 10px 0;">Markah: ${markah} / ${jumlahSoalan} (${peratus}%)</h3>
-            <button class="btn-home" onclick="keHalamanUtama()" style="margin-top: 15px; padding: 12px 24px; font-size: 16px;">🏠 Halaman Utama (HOME)</button>
+            <h3 style="font-size: 32px; color: #059669; margin: 15px 0;">⭐ Markah: ${markah} / ${jumlahSoalan} (${peratus}%)</h3>
+            <button class="btn-home" onclick="keHalamanUtama()" style="margin-top: 15px; padding: 14px 28px; font-size: 18px;">🏠 Halaman Utama (HOME)</button>
         `;
     }
 </script>
