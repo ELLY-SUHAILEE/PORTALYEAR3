@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -255,6 +255,13 @@
         }
         .btn-pink:hover { background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%); }
 
+        /* SENTENCE BUILDER: Tona Teal Segar */
+        .btn-teal {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            box-shadow: 0 6px 0px #0f766e;
+        }
+        .btn-teal:hover { background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%); }
+
         .btn-home {
             background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
             color: #052e16;
@@ -453,14 +460,14 @@
         <h1>🌲 PORTAL YEAR 3 🏡</h1>
         
         <div class="form-group">
-            <label for="nama">👤 Nama Pelajar:</label>
-            <input type="text" id="nama" placeholder="Masukkan nama penuh anda">
+            <label for="nama">👤 Student Name:</label>
+            <input type="text" id="nama" placeholder="Enter your full name">
         </div>
         
         <div class="form-group">
-            <label for="kelas">🏫 Kelas:</label>
+            <label for="kelas">🏫 Class:</label>
             <select id="kelas">
-                <option value="">-- Pilih Kelas --</option>
+                <option value="">-- Select Class --</option>
                 <option value="3 ARIF">3 ARIF</option>
                 <option value="3 BESTARI">3 BESTARI</option>
                 <option value="3 CERDIK">3 CERDIK</option>
@@ -476,22 +483,22 @@
         </div>
         
         <div class="form-group">
-            <label for="modul">📚 Pilih Modul Pembelajaran:</label>
+            <label for="modul">📚 Select Learning Topic:</label>
             <select id="modul">
-                <option value="Module 1">Module 1: Welcome!</option>
-                <option value="Module 2">Module 2: Every day</option>
-                <option value="Module 3">Module 3: Right now</option>
-                <option value="Module 4">Module 4: Year in, year out</option>
-                <option value="Module 5">Module 5: My new house / Eating right</option>
-                <option value="Module 6">Module 6: Food, please! / Getting around</option>
-                <option value="Module 7">Module 7: Out and about / Helping out</option>
-                <option value="Module 8">Module 8: Where were you yesterday? / Amazing animals</option>
-                <option value="Module 9">Module 9: On holiday / Get active!</option>
-                <option value="Module 10">Module 10: The world around us</option>
+                <option value="Topic 1">Topic 1: Welcome!</option>
+                <option value="Topic 2">Topic 2: Every day</option>
+                <option value="Topic 3">Topic 3: Right now</option>
+                <option value="Topic 4">Topic 4: Year in, year out</option>
+                <option value="Topic 5">Topic 5: My new house / Eating right</option>
+                <option value="Topic 6">Topic 6: Food, please! / Getting around</option>
+                <option value="Topic 7">Topic 7: Out and about / Helping out</option>
+                <option value="Topic 8">Topic 8: Where were you yesterday? / Amazing animals</option>
+                <option value="Topic 9">Topic 9: On holiday / Get active!</option>
+                <option value="Topic 10">Topic 10: The world around us</option>
             </select>
         </div>
 
-        <div class="sub-title">⭐ Pilih Set Kuiz Untuk Bermula ⭐</div>
+        <div class="sub-title">⭐ Select Quiz Set to Begin ⭐</div>
         
         <div class="btn-container">
             <button class="btn-set btn-blue" onclick="mulaKuiz('GET SMART SET')">🎮 GET SMART SET</button>
@@ -499,14 +506,15 @@
         </div>
 
         <!-- MODUL PENEROKAAN TAMBAHAN -->
-        <div class="sub-title" style="margin-top: 25px;">🚀 Penerokaan Kendiri 🚀</div>
+        <div class="sub-title" style="margin-top: 25px;">🚀 Self-Exploration 🚀</div>
 
         <div class="btn-container">
             <a href="reading.html" class="btn-set btn-purple">📖 READING CORNER</a>
             <a href="grammar.html" class="btn-set btn-pink">✏️ GRAMMAR FUN</a>
+            <a href="sentence.html" class="btn-set btn-teal">🧩 SENTENCE BUILDER</a>
         </div>
 
-        <a href="javascript:void(0)" onclick="bukaDashboardGuru()" class="link-guru">🔒 Dashboard Guru</a>
+        <a href="javascript:void(0)" onclick="bukaDashboardGuru()" class="link-guru">🔒 Teacher's Dashboard</a>
     </div>
 
     <!-- PAPAN SOALAN KUIZ -->
@@ -520,7 +528,7 @@
         
         <div class="btn-container" style="margin-top: 25px;">
             <button class="btn-home" onclick="keHalamanUtama()" style="flex: none; padding: 16px 24px;">🏠 HOME</button>
-            <button class="btn-set btn-blue" onclick="hantarKuiz()">🚀 HANTAR JAWAPAN</button>
+            <button class="btn-set btn-blue" onclick="hantarKuiz()">🚀 SUBMIT ANSWERS</button>
         </div>
     </div>
 
@@ -546,24 +554,23 @@
     let maklumatPelajar = {};
 
     function bukaDashboardGuru() {
-        const inputLaluan = prompt("🔑 Sila masukkan kata laluan Guru:");
+        const inputLaluan = prompt("🔑 Please enter Teacher's password:");
 
-        // Menerima kata laluan guru123 atau 1234
         if (inputLaluan === "guru123" || inputLaluan === "1234") {
             try {
                 sessionStorage.setItem("guru_authenticated", "true");
             } catch(e) {
-                console.log("sessionStorage disekat pelayar.");
+                console.log("sessionStorage blocked by browser.");
             }
             window.location.href = "dashboard.html";
         } else if (inputLaluan !== null) {
-            alert("❌ Kata laluan salah! Akses ditolak.");
+            alert("❌ Incorrect password! Access denied.");
         }
     }
 
     function keHalamanUtama() {
         if (document.getElementById('papan-kuiz').style.display === 'block') {
-            if (!confirm("Adakah anda pasti mahu kembali ke Utama? Jawapan semasa tidak akan disimpan.")) {
+            if (!confirm("Are you sure you want to return to Home? Your current answers will not be saved.")) {
                 return;
             }
         }
@@ -578,22 +585,20 @@
         const modulInput = document.getElementById('modul').value;
 
         if (!nama || !kelas || !modulInput) {
-            alert("Sila isi nama, pilih kelas, dan pilih modul terlebih dahulu!");
+            alert("Please enter your name, select a class, and select a topic first!");
             return;
         }
 
         if (typeof quizBank === 'undefined' || !quizBank[setTerpilih]) {
-            alert("Data quizBank tidak dijumpai! Pastikan fail JS modul dimuatkan.");
+            alert("quizBank data not found! Make sure the module JS files are loaded.");
             return;
         }
 
         const modulKeys = Object.keys(quizBank[setTerpilih]);
         
-        // Ambil nombor modul sahaja daripada input dropdown (contoh: "1" untuk Module 1, "10" untuk Module 10)
         const matchNombor = modulInput.match(/\d+/);
         const nomborModul = matchNombor ? matchNombor[0] : '';
 
-        // Padankan nombor modul secara tepat supaya Module 1 tidak dipadankan dengan Module 10
         const kunciPadan = modulKeys.find(key => {
             const matchKey = key.match(/\d+/);
             const nomborKey = matchKey ? matchKey[0] : '';
@@ -601,7 +606,7 @@
         });
 
         if (!kunciPadan) {
-            alert(`Data soalan untuk ${modulInput} (${setTerpilih}) tidak dijumpai. Sila pastikan fail module*.js mengandungi data bagi modul ini.`);
+            alert(`Question data for ${modulInput} (${setTerpilih}) not found. Please ensure the module*.js file contains data for this topic.`);
             return;
         }
 
@@ -641,7 +646,7 @@
                 } else {
                     htmlContent += `
                         <div class="question-image-container ${extraClass}">
-                            <img src="${imgStr}" alt="Soalan ${nomborSoalan}" class="question-image" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'color:red;font-size:16px;\\'>[Gambar gagal dimuatkan: ${imgStr}]</span>';">
+                            <img src="${imgStr}" alt="Question ${nomborSoalan}" class="question-image" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'color:red;font-size:16px;\\'>[Failed to load image: ${imgStr}]</span>';">
                         </div>
                     `;
                 }
@@ -676,7 +681,7 @@
         const dijawab = Object.keys(jawapanPengguna).length;
 
         if (dijawab < jumlahSoalan) {
-            if (!confirm(`Anda hanya menjawab ${dijawab} daripada ${jumlahSoalan} soalan. Adakah anda pasti ingin menghantar?`)) {
+            if (!confirm(`You have only answered ${dijawab} out of ${jumlahSoalan} questions. Are you sure you want to submit?`)) {
                 return;
             }
         }
@@ -697,7 +702,7 @@
             modul: maklumatPelajar.modul,
             set: maklumatPelajar.set,
             markah: peratus,
-            tarikh: new Date().toLocaleDateString('ms-MY')
+            tarikh: new Date().toLocaleDateString('en-GB')
         });
         localStorage.setItem('rekod_portal_year3', JSON.stringify(senaraiRekod));
 
@@ -706,15 +711,15 @@
         bekasKeputusan.style.display = 'block';
         
         bekasKeputusan.innerHTML = `
-            <h2 style="color: #166534; font-size: 30px;">🎉 Keputusan Kuiz</h2>
+            <h2 style="color: #166534; font-size: 30px;">🎉 Quiz Results</h2>
             <div style="background: #f0fdf4; padding: 22px; border-radius: 18px; text-align: left; margin: 20px 0; border: 2px solid #fed7aa; font-size: 20px;">
-                <p><strong>👤 Nama:</strong> ${maklumatPelajar.nama}</p>
-                <p><strong>🏫 Kelas:</strong> ${maklumatPelajar.kelas}</p>
-                <p><strong>📚 Modul:</strong> ${maklumatPelajar.modul}</p>
+                <p><strong>👤 Name:</strong> ${maklumatPelajar.nama}</p>
+                <p><strong>🏫 Class:</strong> ${maklumatPelajar.kelas}</p>
+                <p><strong>📚 Topic:</strong> ${maklumatPelajar.modul}</p>
                 <p><strong>🎮 Set:</strong> ${maklumatPelajar.set}</p>
             </div>
-            <h3 style="font-size: 32px; color: #f97316; margin: 15px 0;">⭐ Markah: ${markah} / ${jumlahSoalan} (${peratus}%)</h3>
-            <button class="btn-home" onclick="keHalamanUtama()" style="margin-top: 15px; padding: 14px 28px; font-size: 20px;">🏠 Halaman Utama (HOME)</button>
+            <h3 style="font-size: 32px; color: #f97316; margin: 15px 0;">⭐ Score: ${markah} / ${jumlahSoalan} (${peratus}%)</h3>
+            <button class="btn-home" onclick="keHalamanUtama()" style="margin-top: 15px; padding: 14px 28px; font-size: 20px;">🏠 Main Menu (HOME)</button>
         `;
     }
 </script>
