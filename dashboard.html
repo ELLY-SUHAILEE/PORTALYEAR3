@@ -12,7 +12,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     body {
-      background-color: #f4fbf7;
+      background-color: #d1fae5; /* Latar belakang hijau yang lebih pekat */
       margin: 0;
       padding: 20px;
       color: #0f172a;
@@ -28,13 +28,13 @@
       justify-content: space-between;
       align-items: center;
       padding-bottom: 15px;
-      border-bottom: 2px solid #a7f3d0;
+      border-bottom: 2px solid #059669;
       margin-bottom: 20px;
     }
     .app-title {
       font-size: 24px;
       font-weight: bold;
-      color: #059669; /* Hijau Utama */
+      color: #065f46; /* Hijau Gelap */
       display: flex;
       align-items: center;
       gap: 8px;
@@ -63,7 +63,7 @@
     .dashboard-title {
       font-size: 22px;
       font-weight: bold;
-      color: #059669; /* Hijau Utama */
+      color: #065f46;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -91,7 +91,7 @@
       height: 220px;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
     }
     .card-title {
       font-size: 15px;
@@ -141,8 +141,8 @@
       background: white;
       border-radius: 12px;
       padding: 20px;
-      border: 1px solid #d1fae5;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      border: 1px solid #a7f3d0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
     }
     .chart-container {
       position: relative;
@@ -155,9 +155,9 @@
       background: white;
       padding: 25px;
       border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(5, 150, 105, 0.08);
+      box-shadow: 0 10px 25px rgba(5, 150, 105, 0.12);
       margin-bottom: 30px;
-      border: 1px solid #d1fae5;
+      border: 1px solid #a7f3d0;
     }
     .table-container {
       overflow-x: auto;
@@ -523,7 +523,7 @@
         labels: labels,
         datasets: [{
           data: dataValues,
-          backgroundColor: '#059669', /* Hijau Tema */
+          backgroundColor: '#059669',
           borderRadius: 6
         }]
       },
@@ -548,7 +548,7 @@
         labels: ['Intervensi (<60%)', 'Sederhana (60-89%)', 'Cemerlang (≥90%)'],
         datasets: [{
           data: [intervensi, sederhana, cemerlang],
-          backgroundColor: ['#ef4444', '#ea580c', '#10b981'] /* Red, Orange, Green */
+          backgroundColor: ['#ef4444', '#ea580c', '#10b981']
         }]
       },
       options: {
