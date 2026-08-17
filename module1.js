@@ -200,21 +200,21 @@ window.quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
    "Mixed Skills": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_28.png"),
+      "image": wrapCenterImage("images/GS_MODULE1_28.png"),
       "q": "28. Read the notice. When are the swimming lessons held?",
       "options": ["A) Every Saturday", "B) Every Sunday", "C) Every Friday"],
       "ans": "A) Every Saturday"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_29.png"),
+      "image": wrapCenterImage("images/GS_MODULE1_29.png"),
       "q": "29. Read the card. How old is Sara?",
       "options": ["A) Nine years old", "B) Ten years old", "C) Eight years old"],
       "ans": "A) Nine years old"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/REMEDIAL_MODULE1_30.png"),
+      "image": wrapCenterImage("images/GS_MODULE1_30.png"),
       "q": "30. Read the poster. What should we do at the beach?",
       "options": ["A) Keep the beach clean", "B) Throw rubbish on the sand", "C) Swim in deep water"],
       "ans": "A) Keep the beach clean"
