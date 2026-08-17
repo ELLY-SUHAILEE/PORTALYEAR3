@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,12 +24,12 @@
             font-size: 20px !important;
         }
 
-        /* KAD UTAMA */
+        /* KAD UTAMA GLASSMORPHISM */
         .card {
             background: rgba(245, 253, 248, 0.95);
             backdrop-filter: blur(12px);
             width: 100%;
-            max-width: 800px;
+            max-width: 850px;
             border-radius: 28px;
             border: 4px solid #fed7aa;
             box-shadow: 0 20px 45px rgba(5, 46, 22, 0.4);
@@ -57,6 +57,11 @@
             display: inline-flex;
             align-items: center;
             box-shadow: 0 4px 0px #16a34a;
+            transition: all 0.15s ease;
+        }
+        .btn-home:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px #16a34a;
         }
 
         h1 {
@@ -74,12 +79,42 @@
             font-size: 20px !important;
         }
 
-        /* TAJUK VIDEO SEMASA */
+        /* TAB PILIHAN MOD READING */
+        .tab-container {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 220px;
+            padding: 16px;
+            font-size: 20px !important;
+            font-weight: 700;
+            border: 3px solid #bfdbfe;
+            border-radius: 18px;
+            background: #ffffff;
+            color: #1e40af;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 0px rgba(30, 64, 175, 0.15);
+        }
+
+        .tab-btn.active-tab {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: #ffffff;
+            border-color: #1e40af;
+            box-shadow: 0 6px 0px #1e3a8a;
+        }
+
+        /* TAJUK / STATUS SEMASA */
         .current-title {
             background: #dbeafe;
             color: #1e40af;
-            padding: 12px;
-            border-radius: 12px;
+            padding: 12px 18px;
+            border-radius: 14px;
             font-weight: 700;
             margin-bottom: 20px;
             border: 2px solid #93c5fd;
@@ -108,14 +143,40 @@
             border: none;
         }
 
-        /* SENARAI BUTANG VIDEO */
+        /* PAPARAN POSTER GAMBAR */
+        .poster-container {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 15px;
+            border: 4px solid #93c5fd;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .poster-container img {
+            width: 100%;
+            max-width: 750px;
+            height: auto;
+            max-height: 700px;
+            border-radius: 12px;
+            object-fit: contain;
+        }
+
+        /* SENARAI BUTANG VIDEO & POSTER */
         .reading-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        .video-btn {
+        .poster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        .item-btn {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -131,14 +192,14 @@
             text-align: left;
         }
 
-        .video-btn:hover, .video-btn.active {
+        .item-btn:hover, .item-btn.active {
             background-color: #dbeafe;
             border-color: #3b82f6;
-            transform: translateX(5px);
+            transform: translateX(4px);
             box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
         }
 
-        .play-icon {
+        .icon-indicator {
             font-size: 22px;
         }
     </style>
@@ -152,66 +213,180 @@
     </div>
 
     <h1>📖 Year 3 Reading Corner</h1>
-    <p class="instruction">Klik mana-mana tajuk di bawah untuk memainkan video terus di skrin:</p>
+    <p class="instruction">Choose your preferred reading mode below:</p>
 
-    <!-- TAJUK VIDEO SEMASA -->
-    <div class="current-title" id="now-playing">▶️ Sedang Dipapar: 1. My House</div>
-
-    <!-- PEMAIN VIDEO YOUTUBE -->
-    <div class="video-container">
-        <iframe 
-            id="main-player"
-            src="https://www.youtube.com/embed/dvwRKWvU1go?autoplay=0&rel=0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
+    <!-- BUTTON TAB SWITCHER -->
+    <div class="tab-container">
+        <button id="tab-youtube" class="tab-btn active-tab" onclick="pilihMod('youtube')">🎥 Reading with YouTube</button>
+        <button id="tab-poster" class="tab-btn" onclick="pilihMod('poster')">🖼️ Reading with Poster</button>
     </div>
 
-    <!-- SENARAI PAUTAN READING -->
-    <div class="reading-list">
-        <button class="video-btn active" onclick="tukarVideo('dvwRKWvU1go', '1. My House', this)">
-            <span>📖 1. My House</span>
-            <span class="play-icon">▶️</span>
-        </button>
-        
-        <button class="video-btn" onclick="tukarVideo('wSOUN2VxeaI', '2. My Day', this)">
-            <span>📖 2. My Day</span>
-            <span class="play-icon">▶️</span>
-        </button>
+    <!-- ==================== SEKSYEN 1: READING WITH YOUTUBE ==================== -->
+    <div id="seksyen-youtube">
+        <div class="current-title" id="now-playing-video">▶️ Currently Playing: 1. My House</div>
 
-        <button class="video-btn" onclick="tukarVideo('Nwb31bhBRdc', '3. Frog\'s Lunch', this)">
-            <span>📖 3. Frog's Lunch</span>
-            <span class="play-icon">▶️</span>
-        </button>
+        <!-- PEMAIN VIDEO YOUTUBE -->
+        <div class="video-container">
+            <iframe 
+                id="main-player"
+                src="https://www.youtube.com/embed/dvwRKWvU1go?autoplay=0&rel=0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
 
-        <button class="video-btn" onclick="tukarVideo('eXw3MH9MT2k', '4. Hello, How Are You?', this)">
-            <span>📖 4. Hello, How Are You?</span>
-            <span class="play-icon">▶️</span>
-        </button>
+        <!-- SENARAI BUTANG VIDEO -->
+        <div class="reading-list">
+            <button class="item-btn active" onclick="tukarVideo('dvwRKWvU1go', '1. My House', this)">
+                <span>📖 1. My House</span>
+                <span class="icon-indicator">▶️</span>
+            </button>
 
-        <button class="video-btn" onclick="tukarVideo('MCQoWGAmj7w', '5. Speaking Practice', this)">
-            <span>📖 5. Speaking Practice</span>
-            <span class="play-icon">▶️</span>
-        </button>
+            <button class="item-btn" onclick="tukarVideo('wSOUN2VxeaI', '2. My Day', this)">
+                <span>📖 2. My Day</span>
+                <span class="icon-indicator">▶️</span>
+            </button>
+
+            <button class="item-btn" onclick="tukarVideo('Nwb31bhBRdc', '3. Frog\'s Lunch', this)">
+                <span>📖 3. Frog's Lunch</span>
+                <span class="icon-indicator">▶️</span>
+            </button>
+
+            <button class="item-btn" onclick="tukarVideo('eXw3MH9MT2k', '4. Hello, How Are You?', this)">
+                <span>📖 4. Hello, How Are You?</span>
+                <span class="icon-indicator">▶️</span>
+            </button>
+
+            <button class="item-btn" onclick="tukarVideo('MCQoWGAmj7w', '5. Speaking Practice', this)">
+                <span>📖 5. Speaking Practice</span>
+                <span class="icon-indicator">▶️</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== SEKSYEN 2: READING WITH POSTER ==================== -->
+    <div id="seksyen-poster" style="display: none;">
+        <div class="current-title" id="now-playing-poster">🖼️ Currently Viewing: Poster 1</div>
+
+        <!-- PAPARAN GAMBAR POSTER -->
+        <div class="poster-container">
+            <img id="main-poster" src="poster/poster1.png" alt="Reading Poster" onerror="cubaLainFormat(this)">
+        </div>
+
+        <!-- SENARAI 10 BUTANG POSTER -->
+        <div class="poster-grid">
+            <button class="item-btn active" onclick="tukarPoster('poster/poster1.png', 'Poster 1', this)">
+                <span>🖼️ Poster 1</span>
+                <span class="icon-indicator">🔍</span>
+            </button>
+
+            <button class="item-btn" onclick="tukarPoster('poster/poster2.png', 'Poster 2', this)">
+                <span>🖼️ Poster 2</span>
+                <span class="icon-indicator">🔍</span>
+            </button>
+
+            <button class="item-btn" onclick="tukarPoster('poster/poster3.png', 'Poster 3', this)">
+                <span>🖼️ Poster 3</span>
+                <span class="icon-indicator">🔍</span>
+            </button>
+
+            <button class="item-btn" onclick="tukarPoster('poster/poster4.png', 'Poster 4', this)">
+                <span>🖼️ Poster 4</span>
+                <span class="icon-indicator">🔍</span>
+            </button>
+
+            <button class="item-btn" onclick="tukarPoster('poster/poster5.png', 'Poster 5', this)">
+                <span>🖼️ Poster 5</span>
+                <span class="icon-indicator">🔍</span>
+            </button>
+
+            <button class="item-btn" onclick="tukarPoster('poster/poster6.png', 'Poster 6', this)">
+                <span>🖼️ Poster 6</span>
+                <span class="icon-indicator">🔍</span>
+            </button>
+
+            <button class="item-btn" onclick="tukarPoster('poster/poster7.png', 'Poster 7', this)">
+                <span>🖼️ Poster 7</span>
+                <span class="icon-indicator">🔍</span>
+            </button>
+
+            <button class="item-btn" onclick="tukarPoster('poster/poster8.png', 'Poster 8', this)">
+                <span>🖼️ Poster 8</span>
+                <span class="icon-indicator">🔍</span>
+            </button>
+
+            <button class="item-btn" onclick="tukarPoster('poster/poster9.png', 'Poster 9', this)">
+                <span>🖼️ Poster 9</span>
+                <span class="icon-indicator">🔍</span>
+            </button>
+
+            <button class="item-btn" onclick="tukarPoster('poster/poster10.png', 'Poster 10', this)">
+                <span>🖼️ Poster 10</span>
+                <span class="icon-indicator">🔍</span>
+            </button>
+        </div>
     </div>
 </div>
 
 <script>
+    // FUNGSI TUKAR TAB (MOD)
+    function pilihMod(mod) {
+        const tabYoutube = document.getElementById('tab-youtube');
+        const tabPoster = document.getElementById('tab-poster');
+        const seksyenYoutube = document.getElementById('seksyen-youtube');
+        const seksyenPoster = document.getElementById('seksyen-poster');
+
+        if (mod === 'youtube') {
+            tabYoutube.classList.add('active-tab');
+            tabPoster.classList.remove('active-tab');
+            seksyenYoutube.style.display = 'block';
+            seksyenPoster.style.display = 'none';
+        } else {
+            tabPoster.classList.add('active-tab');
+            tabYoutube.classList.remove('active-tab');
+            seksyenPoster.style.display = 'block';
+            seksyenYoutube.style.display = 'none';
+        }
+    }
+
+    // FUNGSI TUKAR VIDEO YOUTUBE
     function tukarVideo(videoId, tajuk, element) {
-        // Tukar ID Video YouTube
         const player = document.getElementById('main-player');
         player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
 
-        // Kemaskini Tajuk Dipapar
-        document.getElementById('now-playing').innerText = `▶️ Sedang Dipapar: ${tajuk}`;
+        document.getElementById('now-playing-video').innerText = `▶️ Currently Playing: ${tajuk}`;
 
-        // Kemaskini Butang Aktif
-        const buttons = document.querySelectorAll('.video-btn');
+        const buttons = document.querySelectorAll('#seksyen-youtube .item-btn');
         buttons.forEach(btn => btn.classList.remove('active'));
         element.classList.add('active');
 
-        // Skrol automatik ke pemain video
         document.querySelector('.card').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // FUNGSI TUKAR GAMBAR POSTER
+    function tukarPoster(pathGambar, tajuk, element) {
+        const poster = document.getElementById('main-poster');
+        poster.src = pathGambar;
+
+        document.getElementById('now-playing-poster').innerText = `🖼️ Currently Viewing: ${tajuk}`;
+
+        const buttons = document.querySelectorAll('#seksyen-poster .item-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        element.classList.add('active');
+
+        document.querySelector('.card').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // FUNGSI ERROR HANDLING UNTUK FORMAT GAMBAR (.png / .jpg / .jpeg)
+    function cubaLainFormat(img) {
+        if (img.src.endsWith('.png')) {
+            img.src = img.src.replace('.png', '.jpg');
+        } else if (img.src.endsWith('.jpg')) {
+            img.src = img.src.replace('.jpg', '.jpeg');
+        } else {
+            img.onerror = null;
+            img.parentElement.innerHTML = '<p style="color:red; font-size:18px; padding:20px;">⚠️ Image failed to load. Please make sure poster files exist in the <strong>poster/</strong> folder (e.g., poster1.png or poster1.jpg).</p>';
+        }
     }
 </script>
 
