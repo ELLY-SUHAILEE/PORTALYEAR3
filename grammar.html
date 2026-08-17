@@ -29,7 +29,7 @@
             background: rgba(245, 253, 248, 0.95);
             backdrop-filter: blur(12px);
             width: 100%;
-            max-width: 850px;
+            max-width: 880px;
             border-radius: 28px;
             border: 4px solid #fed7aa;
             box-shadow: 0 20px 45px rgba(5, 46, 22, 0.4);
@@ -110,7 +110,7 @@
             box-shadow: 0 6px 0px #be185d;
         }
 
-        /* PILIHAN TAJUK (SELECT TOPIC) */
+        /* PILIHAN TAJUK */
         .topic-select-container {
             margin-bottom: 25px;
         }
@@ -251,7 +251,7 @@
     <!-- TAB SWITCHER -->
     <div class="tab-container">
         <button id="tab-grammar" class="tab-btn active-tab" onclick="switchCategory('grammar')">📘 GRAMMAR</button>
-        <button id="tab-tenses" class="tab-btn" onclick="switchCategory('tenses')">⏰ TENSES</button>
+        <button id="tab-tenses" class="tab-btn" onclick="switchCategory('tenses')">⏰ TENSES & VERBS</button>
     </div>
 
     <!-- TOPIC SELECTOR -->
@@ -275,117 +275,207 @@
     let currentCategory = 'grammar';
 
     const grammarData = {
-        topic1: {
-            title: "1. Have got / Has got",
+        nouns: {
+            title: "1. Nouns (Common, Proper, Singular & Plural)",
+            notes: `
+                <h2>💡 Grammar Rule: Nouns</h2>
+                <ul>
+                    <li><strong>Common Nouns</strong>: General names for people, places, or things (e.g., <em>boy, school, dog, book</em>).</li>
+                    <li><strong>Proper Nouns</strong>: Specific names starting with a <strong>Capital Letter</strong> (e.g., <em>Ali, SK Bukit, Malaysia, Monday</em>).</li>
+                    <li><strong>Singular & Plural</strong>: Add <strong>-s / -es</strong> for plural (<em>box ➔ boxes, child ➔ children</em>).</li>
+                </ul>
+            `,
+            questions: [
+                { q: "1. Which word is a Proper Noun?", options: ["teacher", "Mr. Lee", "city"], ans: "Mr. Lee" },
+                { q: "2. What is the plural form of 'child'?", options: ["childs", "childes", "children"], ans: "children" },
+                { q: "3. Choose the Common Noun in this sentence: 'Siti goes to the park.'", options: ["Siti", "park", "goes"], ans: "park" },
+                { q: "4. What is the plural form of 'box'?", options: ["boxs", "boxes", "boxies"], ans: "boxes" },
+                { q: "5. Proper Nouns must always start with a _____ letter.", options: ["small", "capital", "bold"], ans: "capital" },
+                { q: "6. What is the plural form of 'foot'?", options: ["foots", "feets", "feet"], ans: "feet" },
+                { q: "7. Which of these is a Proper Noun?", options: ["Malaysia", "country", "flag"], ans: "Malaysia" },
+                { q: "8. There are two _____ (bus) at the station.", options: ["buses", "buss", "busies"], ans: "buses" }
+            ]
+        },
+        prepPlace: {
+            title: "2. Prepositions of Place (in, on, under, between, in front of, above, below)",
+            notes: `
+                <h2>💡 Grammar Rule: Prepositions of Place</h2>
+                <ul>
+                    <li><strong>In</strong>: Inside a space (e.g., <em>in the box</em>)</li>
+                    <li><strong>On</strong>: Touching a surface (e.g., <em>on the desk</em>)</li>
+                    <li><strong>Under / Below</strong>: Lower than something (e.g., <em>under the table</em>)</li>
+                    <li><strong>In front of</strong>: Facing something (e.g., <em>in front of the house</em>)</li>
+                    <li><strong>Between</strong>: In the middle of two objects (e.g., <em>between two trees</em>)</li>
+                    <li><strong>Above</strong>: Higher than something without touching (e.g., <em>above the bed</em>)</li>
+                </ul>
+            `,
+            questions: [
+                { q: "1. The cat is sleeping _____ the table.", options: ["under", "between", "in front of"], ans: "under" },
+                { q: "2. The ball is _____ the two boxes.", options: ["on", "between", "above"], ans: "between" },
+                { q: "3. The clock is hanging on the wall _____ the sofa.", options: ["under", "above", "in"], ans: "above" },
+                { q: "4. Put the books _____ your school bag.", options: ["in", "on", "between"], ans: "in" },
+                { q: "5. The car is parked _____ the house.", options: ["in front of", "between", "in"], ans: "in front of" },
+                { q: "6. An apple is sitting _____ the teacher's desk.", options: ["on", "under", "between"], ans: "on" },
+                { q: "7. The shoes are placed _____ the shelf.", options: ["below", "between", "in"], ans: "below" },
+                { q: "8. The teacher stands _____ the class to teach.", options: ["in front of", "under", "between"], ans: "in front of" }
+            ]
+        },
+        time: {
+            title: "3. Telling the Time (o'clock, half past, quarter past, quarter to)",
+            notes: `
+                <h2>💡 Grammar Rule: Telling the Time</h2>
+                <ul>
+                    <li><strong>o'clock</strong>: Used for exact hours (e.g., <em>3:00 = three o'clock</em>).</li>
+                    <li><strong>half past</strong>: 30 minutes past the hour (e.g., <em>3:30 = half past three</em>).</li>
+                    <li><strong>quarter past</strong>: 15 minutes past the hour (e.g., <em>3:15 = quarter past three</em>).</li>
+                    <li><strong>quarter to</strong>: 15 minutes before the next hour (e.g., <em>3:45 = quarter to four</em>).</li>
+                </ul>
+            `,
+            questions: [
+                { q: "1. 4:00 is read as four _____.", options: ["o'clock", "half past", "quarter to"], ans: "o'clock" },
+                { q: "2. 2:30 is read as _____ two.", options: ["quarter past", "half past", "quarter to"], ans: "half past" },
+                { q: "3. 5:15 is read as _____ five.", options: ["quarter past", "quarter to", "half past"], ans: "quarter past" },
+                { q: "4. 6:45 is read as quarter to _____.", options: ["six", "seven", "five"], ans: "seven" },
+                { q: "5. 8:30 is read as _____ eight.", options: ["half past", "o'clock", "quarter to"], ans: "half past" },
+                { q: "6. 10:15 is read as quarter _____ ten.", options: ["past", "to", "at"], ans: "past" },
+                { q: "7. 1:45 is read as quarter to _____.", options: ["one", "two", "three"], ans: "two" },
+                { q: "8. 12:00 is read as twelve _____.", options: ["o'clock", "half past", "quarter to"], ans: "o'clock" }
+            ]
+        },
+        daysMonths: {
+            title: "4. Days of the Week & Months of the Year",
+            notes: `
+                <h2>💡 Grammar Rule: Days & Months</h2>
+                <ul>
+                    <li><strong>7 Days</strong>: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday.</li>
+                    <li><strong>12 Months</strong>: January, February, March, April, May, June, July, August, September, October, November, December.</li>
+                    <li>Always use <strong>Capital Letters</strong> for days and months!</li>
+                    <li>Use preposition <strong>ON</strong> for days (<em>on Monday</em>) and <strong>IN</strong> for months (<em>in August</em>).</li>
+                </ul>
+            `,
+            questions: [
+                { q: "1. What day comes after Tuesday?", options: ["Monday", "Wednesday", "Thursday"], ans: "Wednesday" },
+                { q: "2. How many months are there in a year?", options: ["7", "10", "12"], ans: "12" },
+                { q: "3. What is the first month of the year?", options: ["January", "February", "December"], ans: "January" },
+                { q: "4. We go to school _____ Mondays.", options: ["in", "on", "at"], ans: "on" },
+                { q: "5. Merdeka Day is celebrated _____ August.", options: ["in", "on", "at"], ans: "in" },
+                { q: "6. Which day comes before Sunday?", options: ["Friday", "Saturday", "Monday"], ans: "Saturday" },
+                { q: "7. The month after October is _____.", options: ["September", "November", "December"], ans: "November" },
+                { q: "8. Saturday and Sunday are called the _____.", options: ["weekdays", "weekend", "year"], ans: "weekend" }
+            ]
+        },
+        numbers: {
+            title: "5. Numbers (Cardinal & Ordinal)",
+            notes: `
+                <h2>💡 Grammar Rule: Numbers</h2>
+                <ul>
+                    <li><strong>Cardinal Numbers (Counting)</strong>: one, two, three, twenty, thirty, one hundred.</li>
+                    <li><strong>Ordinal Numbers (Order/Dates)</strong>: 1st (first), 2nd (second), 3rd (third), 4th (fourth)... 31st (thirty-first).</li>
+                    <li>Used for dates: "My birthday is on the <em>4th of May</em>."</li>
+                </ul>
+            `,
+            questions: [
+                { q: "1. What is the ordinal number for 1?", options: ["one", "1st (first)", "1th (oneth)"], ans: "1st (first)" },
+                { q: "2. How do you spell the number 20?", options: ["twenty", "twenteen", "twoty"], ans: "twenty" },
+                { q: "3. What is the ordinal number for 3?", options: ["three", "3rd (third)", "3th (threeth)"], ans: "3rd (third)" },
+                { q: "4. She finished in 2nd place. '2nd' means _____.", options: ["first", "second", "third"], ans: "second" },
+                { q: "5. 50 is spelled as _____.", options: ["fifteen", "fifty", "fivety"], ans: "fifty" },
+                { q: "6. Today is the _____ (31) of August.", options: ["thirty-one", "thirty-first", "thirtieth"], ans: "thirty-first" },
+                { q: "7. What is the ordinal number for 2?", options: ["second", "two", "twoth"], ans: "second" },
+                { q: "8. 100 is read as one _____.", options: ["thousand", "hundred", "million"], ans: "hundred" }
+            ]
+        },
+        countableUncountable: {
+            title: "6. Countable & Uncountable Nouns",
+            notes: `
+                <h2>💡 Grammar Rule: Countable & Uncountable Nouns</h2>
+                <ul>
+                    <li><strong>Countable Nouns</strong>: Can be counted (e.g., <em>an apple, three pencils, four books</em>). Use <strong>How many...?</strong></li>
+                    <li><strong>Uncountable Nouns</strong>: Cannot be counted individually (e.g., <em>water, milk, rice, sugar, money</em>). Use <strong>How much...?</strong></li>
+                    <li>Use <strong>some</strong> for positive and <strong>any</strong> for questions/negatives.</li>
+                </ul>
+            `,
+            questions: [
+                { q: "1. _____ water do you drink every day?", options: ["How many", "How much", "How some"], ans: "How much" },
+                { q: "2. _____ apples are there in the basket?", options: ["How many", "How much", "How any"], ans: "How many" },
+                { q: "3. Rice is an example of an _____ noun.", options: ["countable", "uncountable", "plural"], ans: "uncountable" },
+                { q: "4. Is there _____ milk left in the carton?", options: ["some", "any", "many"], ans: "any" },
+                { q: "5. I would like _____ sugar in my tea, please.", options: ["some", "any", "many"], ans: "some" },
+                { q: "6. Which of these is a Countable Noun?", options: ["water", "banana", "rice"], ans: "banana" },
+                { q: "7. _____ books did you buy yesterday?", options: ["How much", "How many", "How any"], ans: "How many" },
+                { q: "8. Bread, butter, and cheese are _____ nouns.", options: ["countable", "uncountable", "singular"], ans: "uncountable" }
+            ]
+        },
+        thereIsAre: {
+            title: "7. There is & There are",
+            notes: `
+                <h2>💡 Grammar Rule: There is & There are</h2>
+                <ul>
+                    <li><strong>There is (There's)</strong>: Used for <em>Singular</em> or <em>Uncountable</em> nouns (e.g., "There is a cat", "There is some milk").</li>
+                    <li><strong>There are</strong>: Used for <em>Plural</em> nouns (e.g., "There are three birds").</li>
+                    <li><strong>Negative</strong>: <em>There isn't / There aren't any...</em></li>
+                </ul>
+            `,
+            questions: [
+                { q: "1. _____ a bird on the branch.", options: ["There is", "There are", "Is there"], ans: "There is" },
+                { q: "2. _____ four chairs in the kitchen.", options: ["There is", "There are", "There isn't"], ans: "There are" },
+                { q: "3. _____ some juice in the glass.", options: ["There is", "There are", "There aren't"], ans: "There is" },
+                { q: "4. _____ aren't any sweets left in the jar.", options: ["There", "There's", "Is"], ans: "There" },
+                { q: "5. _____ any water in the bottle?", options: ["Is there", "Are there", "There is"], ans: "Is there" },
+                { q: "6. _____ many students in the playground.", options: ["There is", "There are", "There isn't"], ans: "There are" },
+                { q: "7. _____ isn't a computer in this room.", options: ["There", "They", "Are"], ans: "There" },
+                { q: "8. _____ any apples in the fridge?", options: ["Is there", "Are there", "There are"], ans: "Are there" }
+            ]
+        },
+        haveGotHasGot: {
+            title: "8. Have got / Has got (Positive, Negative & Questions)",
             notes: `
                 <h2>💡 Grammar Rule: Have got / Has got</h2>
                 <ul>
-                    <li><strong>Have got</strong> is used with: <em>I, You, We, They</em> (e.g., "I have got brown eyes.")</li>
-                    <li><strong>Has got</strong> is used with: <em>He, She, It</em> (e.g., "She has got straight hair.")</li>
-                    <li><strong>Haven't got / Hasn't got</strong> are used for negative sentences.</li>
+                    <li><strong>Positive</strong>: I/You/We/They <em>have got</em> | He/She/It <em>has got</em></li>
+                    <li><strong>Negative</strong>: I/You/We/They <em>haven't got</em> | He/She/It <em>hasn't got</em></li>
+                    <li><strong>Questions</strong>: <em>Have you got...?</em> / <em>Has she got...?</em></li>
                 </ul>
             `,
             questions: [
                 { q: "1. She _____ got long curly hair.", options: ["has", "have", "is"], ans: "has" },
                 { q: "2. I _____ got twenty marbles.", options: ["has", "have", "are"], ans: "have" },
                 { q: "3. They _____ got blonde hair.", options: ["hasn't", "haven't", "isn't"], ans: "haven't" },
-                { q: "4. He _____ got a big shell collection.", options: ["has", "have", "am"], ans: "has" },
-                { q: "5. _____ you got a purple bag?", options: ["Has", "Have", "Do"], ans: "Have" },
-                { q: "6. My brother _____ got glasses.", options: ["hasn't", "haven't", "don't"], ans: "hasn't" },
-                { q: "7. We _____ got English class today.", options: ["has", "have", "is"], ans: "have" },
-                { q: "8. _____ she got a pet cat?", options: ["Has", "Have", "Is"], ans: "Has" }
+                { q: "4. _____ you got a purple bag?", options: ["Has", "Have", "Do"], ans: "Have" },
+                { q: "5. My brother _____ got glasses.", options: ["hasn't", "haven't", "don't"], ans: "hasn't" },
+                { q: "6. _____ she got a pet cat?", options: ["Has", "Have", "Is"], ans: "Has" },
+                { q: "7. Yes, I _____.", options: ["have", "has", "got"], ans: "have" },
+                { q: "8. No, he _____.", options: ["hasn't", "haven't", "isn't"], ans: "hasn't" }
             ]
         },
-        topic2: {
-            title: "2. Prepositions of Time (in, on, at)",
+        modalsRules: {
+            title: "9. Modals & Rules (Can/Can't, Must/Mustn't)",
             notes: `
-                <h2>💡 Grammar Rule: Prepositions of Time</h2>
-                <ul>
-                    <li><strong>IN</strong>: Months, years, seasons (e.g., <em>in December, in summer</em>)</li>
-                    <li><strong>ON</strong>: Days, specific dates (e.g., <em>on Monday, on 5th May</em>)</li>
-                    <li><strong>AT</strong>: Specific times, night (e.g., <em>at 8 o'clock, at night</em>)</li>
-                </ul>
-            `,
-            questions: [
-                { q: "1. My birthday is _____ July.", options: ["in", "on", "at"], ans: "in" },
-                { q: "2. We play football _____ Fridays.", options: ["in", "on", "at"], ans: "on" },
-                { q: "3. I wake up _____ 6:30 AM.", options: ["in", "on", "at"], ans: "at" },
-                { q: "4. It is cold _____ winter.", options: ["in", "on", "at"], ans: "in" },
-                { q: "5. The party is _____ Saturday afternoon.", options: ["in", "on", "at"], ans: "on" },
-                { q: "6. Stars shine bright _____ night.", options: ["in", "on", "at"], ans: "at" },
-                { q: "7. School starts _____ August.", options: ["in", "on", "at"], ans: "in" },
-                { q: "8. Let's meet _____ 3 o'clock.", options: ["in", "on", "at"], ans: "at" }
-            ]
-        },
-        topic3: {
-            title: "3. Possessive Pronouns & Quantifiers",
-            notes: `
-                <h2>💡 Grammar Rule: Possessive Pronouns & Quantifiers</h2>
-                <ul>
-                    <li><strong>Possessive Pronouns</strong>: <em>mine, yours, his, hers, ours, theirs</em>.</li>
-                    <li><strong>SOME</strong>: Used in positive sentences (e.g., "There are <em>some</em> apples.")</li>
-                    <li><strong>ANY</strong>: Used in negative sentences & questions (e.g., "Are there <em>any</em> eggs?")</li>
-                </ul>
-            `,
-            questions: [
-                { q: "1. This bag belongs to me. It is _____.", options: ["mine", "yours", "his"], ans: "mine" },
-                { q: "2. Is there _____ milk in the fridge?", options: ["some", "any", "a"], ans: "any" },
-                { q: "3. She has got _____ sweets in her pocket.", options: ["some", "any", "an"], ans: "some" },
-                { q: "4. That hat belongs to John. It is _____.", options: ["hers", "his", "mine"], ans: "his" },
-                { q: "5. We haven't got _____ orange juice left.", options: ["some", "any", "a"], ans: "any" },
-                { q: "6. Is this pencil _____?", options: ["yours", "your", "my"], ans: "yours" },
-                { q: "7. There are _____ books on the table.", options: ["some", "any", "an"], ans: "some" },
-                { q: "8. The cat belongs to them. It is _____.", options: ["ours", "theirs", "hers"], ans: "theirs" }
-            ]
-        },
-        topic4: {
-            title: "4. Modals & Imperatives (Can/Can't, Turn Left)",
-            notes: `
-                <h2>💡 Grammar Rule: Modals & Imperatives</h2>
+                <h2>💡 Grammar Rule: Can/Can't & Must/Mustn't</h2>
                 <ul>
                     <li><strong>Can / Can't</strong>: Ability or permission (e.g., "I <em>can</em> swim." / "He <em>can't</em> fly.")</li>
-                    <li><strong>Imperatives</strong>: Giving commands/directions (e.g., "<em>Turn left</em>", "<em>Don't touch</em>").</li>
+                    <li><strong>Must</strong>: Obligation / Rule (e.g., "You <em>must</em> wear a helmet.")</li>
+                    <li><strong>Mustn't</strong>: Forbidden (e.g., "You <em>mustn't</em> talk in the test.")</li>
                 </ul>
             `,
             questions: [
-                { q: "1. Birds _____ fly high in the sky.", options: ["can", "can't", "mustn't"], ans: "can" },
-                { q: "2. _____ right at the corner.", options: ["Turn", "Turning", "Turned"], ans: "Turn" },
-                { q: "3. Fish _____ live on land.", options: ["can", "can't", "must"], ans: "can't" },
-                { q: "4. _____ noisy in the library!", options: ["Don't be", "Not be", "Can't"], ans: "Don't be" },
-                { q: "5. _____ you play the piano?", options: ["Can", "Are", "Do"], ans: "Can" },
-                { q: "6. _____ the door, please.", options: ["Open", "Opens", "Opening"], ans: "Open" },
-                { q: "7. A baby _____ ride a bicycle.", options: ["can", "can't", "is"], ans: "can't" },
-                { q: "8. _____ straight ahead.", options: ["Go", "Going", "Gone"], ans: "Go" }
+                { q: "1. Fish _____ live underwater.", options: ["can", "can't", "mustn't"], ans: "can" },
+                { q: "2. You _____ eat inside the library.", options: ["must", "mustn't", "can"], ans: "mustn't" },
+                { q: "3. A baby _____ ride a motorcycle.", options: ["can", "can't", "must"], ans: "can't" },
+                { q: "4. You _____ wash your hands before eating.", options: ["must", "mustn't", "can't"], ans: "must" },
+                { q: "5. _____ you play the piano?", options: ["Can", "Must", "Are"], ans: "Can" },
+                { q: "6. Drivers _____ stop at the red light.", options: ["must", "mustn't", "can't"], ans: "must" },
+                { q: "7. Birds _____ fly, but pigs _____.", options: ["can / can't", "can't / can", "must / mustn't"], ans: "can / can't" },
+                { q: "8. You _____ throw rubbish on the floor.", options: ["must", "mustn't", "can"], ans: "mustn't" }
             ]
         },
-        topic5: {
-            title: "5. Rules & Object Pronouns (Must/Mustn't, Me/Him/Her)",
-            notes: `
-                <h2>💡 Grammar Rule: Rules & Object Pronouns</h2>
-                <ul>
-                    <li><strong>Must</strong>: Strong obligation / rule (e.g., "You <em>must</em> listen to the teacher.")</li>
-                    <li><strong>Mustn't</strong>: Prohibition (e.g., "You <em>mustn't</em> run in the hall.")</li>
-                    <li><strong>Object Pronouns</strong>: <em>me, you, him, her, it, us, them</em>.</li>
-                </ul>
-            `,
-            questions: [
-                { q: "1. You _____ eat inside the museum.", options: ["must", "mustn't", "can"], ans: "mustn't" },
-                { q: "2. Look at Sarah! Wave to _____.", options: ["him", "her", "them"], ans: "her" },
-                { q: "3. Students _____ wear their school uniform.", options: ["must", "mustn't", "can't"], ans: "must" },
-                { q: "4. John needs help. Please help _____.", options: ["him", "her", "us"], ans: "him" },
-                { q: "5. You _____ throw trash in the bin.", options: ["must", "mustn't", "can't"], ans: "must" },
-                { q: "6. We are here! Look at _____!", options: ["them", "us", "him"], ans: "us" },
-                { q: "7. You _____ cross the road when the light is red.", options: ["must", "mustn't", "can"], ans: "mustn't" },
-                { q: "8. Where are my keys? I can't find _____.", options: ["it", "them", "her"], ans: "them" }
-            ]
-        },
-        topic6: {
-            title: "6. Comparatives & Superlatives",
+        comparativesSuperlatives: {
+            title: "10. Comparatives & Superlatives",
             notes: `
                 <h2>💡 Grammar Rule: Comparatives & Superlatives</h2>
                 <ul>
-                    <li><strong>Comparatives (-er than)</strong>: Comparing 2 things (e.g., "A cheetah is <em>faster than</em> a horse.")</li>
-                    <li><strong>Superlatives (the -est / the most)</strong>: Comparing 3+ things (e.g., "The blue whale is <em>the biggest</em> animal.")</li>
+                    <li><strong>Comparatives (-er than)</strong>: Compare 2 things (e.g., "A cheetah is <em>faster than</em> a horse.")</li>
+                    <li><strong>Superlatives (the -est / the most)</strong>: Compare 3+ things (e.g., "The blue whale is <em>the biggest</em> animal.")</li>
                 </ul>
             `,
             questions: [
@@ -402,29 +492,50 @@
     };
 
     const tensesData = {
-        topic1: {
-            title: "1. Simple Present Tense (Routine & Frequency)",
+        sva: {
+            title: "1. Subject-Verb Agreement",
             notes: `
-                <h2>💡 Tenses Rule: Simple Present Tense</h2>
+                <h2>💡 Tenses Rule: Subject-Verb Agreement</h2>
                 <ul>
-                    <li>Used for daily habits, routines, and facts.</li>
-                    <li>Add <strong>-s / -es</strong> for <em>He, She, It</em> (e.g., "He <em>plays</em> tennis.")</li>
-                    <li>Use <strong>always, sometimes, never</strong> before the verb.</li>
+                    <li><strong>Singular Subject (He, She, It, Ali)</strong> ➔ Verb + <strong>-s / -es / is / was / has</strong> (e.g., "He <em>runs</em> fast").</li>
+                    <li><strong>Plural Subject (They, We, You, Cats)</strong> ➔ Base Verb / <strong>are / were / have</strong> (e.g., "They <em>run</em> fast").</li>
+                    <li><strong>I</strong> ➔ <em>am / do / have / play</em>.</li>
                 </ul>
             `,
             questions: [
-                { q: "1. She _____ her teeth every morning.", options: ["brush", "brushes", "brushing"], ans: "brushes" },
-                { q: "2. They always _____ to school by bus.", options: ["go", "goes", "went"], ans: "go" },
-                { q: "3. He sometimes _____ football on Sundays.", options: ["play", "plays", "playing"], ans: "plays" },
-                { q: "4. The sun _____ in the east.", options: ["rise", "rises", "rising"], ans: "rises" },
-                { q: "5. I never _____ late for school.", options: ["am", "is", "are"], ans: "am" },
-                { q: "6. My mother _____ delicious food.", options: ["cook", "cooks", "cooking"], ans: "cooks" },
-                { q: "7. We _____ TV after dinner.", options: ["watch", "watches", "watched"], ans: "watch" },
-                { q: "8. Does he _____ milk every day?", options: ["drink", "drinks", "drinking"], ans: "drink" }
+                { q: "1. She _____ to school every day.", options: ["walk", "walks", "walking"], ans: "walks" },
+                { q: "2. They _____ football in the petang.", options: ["play", "plays", "playing"], ans: "play" },
+                { q: "3. The dog _____ at night.", options: ["bark", "barks", "barking"], ans: "barks" },
+                { q: "4. We _____ happy to see you.", options: ["am", "is", "are"], ans: "are" },
+                { q: "5. My father _____ a red car.", options: ["drive", "drives", "driving"], ans: "drives" },
+                { q: "6. Cats _____ milk.", options: ["like", "likes", "liking"], ans: "like" },
+                { q: "7. He _____ his homework at night.", options: ["do", "does", "doing"], ans: "does" },
+                { q: "8. I _____ a student.", options: ["am", "is", "are"], ans: "am" }
             ]
         },
-        topic2: {
-            title: "2. Present Continuous Tense (Right Now)",
+        simplePresent: {
+            title: "2. Simple Present Tense (Positive, Negative & Questions)",
+            notes: `
+                <h2>💡 Tenses Rule: Simple Present Tense</h2>
+                <ul>
+                    <li><strong>Positive</strong>: "He <em>plays</em> tennis" / "They <em>play</em> tennis".</li>
+                    <li><strong>Negative</strong>: Use <strong>don't / doesn't</strong> + base verb (e.g., "He <em>doesn't play</em>" / "They <em>don't play</em>").</li>
+                    <li><strong>Questions</strong>: <strong>Do / Does</strong> + Subject + Base verb? (e.g., "<em>Does he play...?</em>").</li>
+                </ul>
+            `,
+            questions: [
+                { q: "1. She _____ like apples.", options: ["don't", "doesn't", "isn't"], ans: "doesn't" },
+                { q: "2. _____ you brush your teeth twice a day?", options: ["Do", "Does", "Are"], ans: "Do" },
+                { q: "3. He always _____ early in the morning.", options: ["wake up", "wakes up", "waking up"], ans: "wakes up" },
+                { q: "4. They _____ live in Kuala Lumpur.", options: ["don't", "doesn't", "aren't"], ans: "don't" },
+                { q: "5. _____ she ride her bicycle on weekends?", options: ["Do", "Does", "Is"], ans: "Does" },
+                { q: "6. I never _____ late for class.", options: ["am", "is", "are"], ans: "am" },
+                { q: "7. My brother _____ eat vegetables.", options: ["don't", "doesn't", "not"], ans: "doesn't" },
+                { q: "8. Do they _____ TV after dinner?", options: ["watch", "watches", "watching"], ans: "watch" }
+            ]
+        },
+        presentContinuous: {
+            title: "3. Present Continuous Tense (am / is / are + verb-ing)",
             notes: `
                 <h2>💡 Tenses Rule: Present Continuous Tense</h2>
                 <ul>
@@ -444,14 +555,14 @@
                 { q: "8. He isn't watching TV, he _____.", options: ["is studying", "are studying", "studies"], ans: "is studying" }
             ]
         },
-        topic3: {
-            title: "3. Simple Past Tense (Was / Were)",
+        simplePastWasWere: {
+            title: "4. Simple Past Tense: Was / Were (Positive, Negative & Questions)",
             notes: `
                 <h2>💡 Tenses Rule: Was / Were</h2>
                 <ul>
-                    <li>Used for past state or location (yesterday, last night, last week).</li>
-                    <li><strong>WAS</strong>: Used with <em>I, He, She, It</em> (e.g., "I <em>was</em> at home yesterday.")</li>
-                    <li><strong>WERE</strong>: Used with <em>You, We, They</em> (e.g., "They <em>were</em> happy.")</li>
+                    <li><strong>WAS / WASN'T</strong>: Used with <em>I, He, She, It</em> (e.g., "I <em>was</em> at home yesterday").</li>
+                    <li><strong>WERE / WEREN'T</strong>: Used with <em>You, We, They</em> (e.g., "They <em>were</em> happy").</li>
+                    <li><strong>Questions</strong>: <em>Was he...? / Were you...?</em></li>
                 </ul>
             `,
             questions: [
@@ -459,18 +570,18 @@
                 { q: "2. They _____ at the cinema last night.", options: ["was", "were", "are"], ans: "were" },
                 { q: "3. She _____ sick last Monday.", options: ["was", "were", "am"], ans: "was" },
                 { q: "4. Where _____ you yesterday?", options: ["was", "were", "are"], ans: "were" },
-                { q: "5. The weather _____ sunny two days ago.", options: ["was", "were", "is"], ans: "was" },
-                { q: "6. We _____ at the zoo last weekend.", options: ["was", "were", "are"], ans: "were" },
-                { q: "7. He _____ not at school yesterday.", options: ["was", "were", "isn't"], ans: "was" },
-                { q: "8. The toys _____ in the box yesterday.", options: ["was", "were", "are"], ans: "were" }
+                { q: "5. We _____ at school yesterday because it was Sunday.", options: ["wasn't", "weren't", "isn't"], ans: "weren't" },
+                { q: "6. _____ he at home two hours ago?", options: ["Was", "Were", "Is"], ans: "Was" },
+                { q: "7. The toys _____ in the box yesterday.", options: ["was", "were", "are"], ans: "were" },
+                { q: "8. No, they _____ at the library.", options: ["wasn't", "weren't", "aren't"], ans: "weren't" }
             ]
         },
-        topic4: {
-            title: "4. Simple Past Tense (Regular & Irregular Verbs)",
+        simplePastVerbs: {
+            title: "5. Simple Past Tense: Regular & Irregular Verbs",
             notes: `
                 <h2>💡 Tenses Rule: Past Action Verbs</h2>
                 <ul>
-                    <li><strong>Regular Verbs (+ed)</strong>: <em>play ➔ played, walk ➔ walked, listen ➔ listened</em>.</li>
+                    <li><strong>Regular Verbs (+ed)</strong>: <em>play ➔ played, walk ➔ walked, wash ➔ washed</em>.</li>
                     <li><strong>Irregular Verbs (Change form)</strong>: <em>go ➔ went, eat ➔ ate, see ➔ saw, buy ➔ bought</em>.</li>
                 </ul>
             `,
