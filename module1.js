@@ -197,31 +197,31 @@ window.quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
     }
   ],
 
-  "Mixed Skills": [
+   "Mixed Skills": [
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_28.png"),
-      "q": "28. Read the label: [MY STICKER ALBUM - 20 STICKERS]\nWhat is inside the album?",
-      "options": ["A) Twenty stickers", "B) Fifty shells", "C) Football shoes"],
-      "ans": "A) Twenty stickers"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE1_28.png"),
+      "q": "28. Read the notice. When are the swimming lessons held?",
+      "options": ["A) Every Saturday", "B) Every Sunday", "C) Every Friday"],
+      "ans": "A) Every Saturday"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_29.png"),
-      "q": "29. Read the warning sign at the pool: [NO DIVING - DEEP WATER]\nWhat should you NOT do?",
-      "options": ["A) Dive into the pool", "B) Swim fast", "C) Collect shells"],
-      "ans": "A) Dive into the pool"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE1_29.png"),
+      "q": "29. Read the card. How old is Sara?",
+      "options": ["A) Nine years old", "B) Ten years old", "C) Eight years old"],
+      "ans": "A) Nine years old"
     },
     {
       "type": "mcq",
-      "image": wrapCenterImage("images/GS_MODULE1_30.png"),
-      "q": "30. Look at the basket count: [Aina: 50 shells | Sara: 40 shells]\nWho collected more shells?",
-      "options": ["A) Aina", "B) Sara", "C) Amir"],
-      "ans": "A) Aina"
+      "image": wrapCenterImage("images/REMEDIAL_MODULE1_30.png"),
+      "q": "30. Read the poster. What should we do at the beach?",
+      "options": ["A) Keep the beach clean", "B) Throw rubbish on the sand", "C) Swim in deep water"],
+      "ans": "A) Keep the beach clean"
     }
   ]
 };
-
+ 
 // ==========================================
 // 2. REMEDIAL SET (30 SOALAN)
 // ==========================================
