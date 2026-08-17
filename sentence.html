@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Builder - Year 3 Forest Quest 🧩</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Fredoka', Arial, sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: #047857;
+            margin: 0;
+            padding: 25px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            font-size: 20px !important;
+        }
+
+        .card {
+            background: rgba(245, 253, 248, 0.96);
+            backdrop-filter: blur(12px);
+            width: 100%;
+            max-width: 900px;
+            border-radius: 28px;
+            border: 4px solid #fed7aa;
+            box-shadow: 0 20px 45px rgba(5, 46, 22, 0.4);
+            padding: 25px 20px;
+        }
+
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .btn-home {
+            background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
+            color: #052e16;
+            padding: 10px 18px;
+            border: 2px solid #fed7aa;
+            border-radius: 14px;
+            font-size: 18px !important;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 0px #16a34a;
+        }
+
+        h1 {
+            color: #065f46;
+            margin: 0 0 5px 0;
+            font-size: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 0px #a7f3d0;
+        }
+
+        .sub-title {
+            color: #047857;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        /* TAB KATEGORI MOD */
+        .mode-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: 12px 8px;
+            font-size: 16px !important;
+            font-weight: 700;
+            border: 3px solid #a7f3d0;
+            border-radius: 16px;
+            background: #ffffff;
+            color: #047857;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .mode-btn.active-mode {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            border-color: #047857;
+            box-shadow: 0 5px 0px #064e3b;
+        }
+
+        /* SELEKSI TOPIC */
+        .select-group {
+            margin-bottom: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 3px solid #34d399;
+            border-radius: 14px;
+            font-size: 18px !important;
+            background: #ecfdf5;
+            color: #064e3b;
+            font-weight: 700;
+            outline: none;
+        }
+
+        /* AREA RUANG JAWAPAN & BLOK PERKATAAN */
+        .question-box {
+            background: #ffffff;
+            border: 3px solid #a7f3d0;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .q-text {
+            font-weight: 700;
+            color: #065f46;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .drop-zone {
+            min-height: 65px;
+            background: #f0fdf4;
+            border: 3px dashed #34d399;
+            border-radius: 16px;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .word-bank {
+            min-height: 65px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .word-chip {
+            background: linear-gradient(135deg, #fef08a 0%, #fde047 100%);
+            color: #713f12;
+            border: 2px solid #eab308;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0px #ca8a04;
+            transition: transform 0.1s;
+            font-size: 18px;
+        }
+
+        .word-chip:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px #ca8a04;
+        }
+
+        .word-chip.subject { background: #fef08a; border-color: #eab308; box-shadow: 0 4px 0px #ca8a04; color: #713f12; }
+        .word-chip.verb { background: #fbcfe8; border-color: #f472b6; box-shadow: 0 4px 0px #db2777; color: #831843; }
+        .word-chip.object { background: #bae6fd; border-color: #38bdf8; box-shadow: 0 4px 0px #0284c7; color: #0c4a6e; }
+
+        /* ACTION BUTTONS */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-action {
+            flex: 1;
+            padding: 14px;
+            font-size: 18px !important;
+            font-weight: 700;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .btn-check {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 5px 0px #047857;
+        }
+
+        .btn-reset {
+            background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+            box-shadow: 0 5px 0px #be123c;
+        }
+
+        .feedback-card {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: 700;
+            display: none;
+        }
+
+        .feedback-correct { background: #dcfce7; color: #15803d; border: 2px solid #86efac; }
+        .feedback-wrong { background: #ffe4e6; color: #be123c; border: 2px solid #fecdd3; }
+
+        .score-display {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: #065f46;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="nav-header">
+        <a href="index.html" class="btn-home">🏠 HOME</a>
+        <span style="font-weight: 700; color: #047857;">Sentence Builder 🧩</span>
+    </div>
+
+    <h1>🧩 Year 3 Sentence Builder</h1>
+    <p class="sub-title">Tap or drag words to construct correct sentences!</p>
+
+    <!-- MOD SELECTION -->
+    <div class="mode-container">
+        <button id="m1-btn" class="mode-btn active-mode" onclick="changeMode(1)">Mod 1: Unscramble</button>
+        <button id="m2-btn" class="mode-btn" onclick="changeMode(2)">Mod 2: Fill Blank</button>
+        <button id="m3-btn" class="mode-btn" onclick="changeMode(3)">Mod 3: Substitution</button>
+    </div>
+
+    <!-- TOPIC SELECTION -->
+    <div class="select-group">
+        <select id="module-select" onchange="loadCurrentQuiz()">
+            <option value="m1">Module 1: Welcome!</option>
+            <option value="m2">Module 2: Every day</option>
+            <option value="m3">Module 3: Right now</option>
+            <option value="m4">Module 4: Year in, year out</option>
+            <option value="m5">Module 5: My new house / Eating right</option>
+            <option value="m6">Module 6: Food, please! / Getting around</option>
+            <option value="m7">Module 7: Out and about / Helping out</option>
+            <option value="m8">Module 8: Where were you yesterday?</option>
+            <option value="m9">Module 9: On holiday / Get active!</option>
+            <option value="m10">Module 10: The world around us</option>
+        </select>
+    </div>
+
+    <div class="score-display" id="q-counter">Question 1 / 8</div>
+
+    <!-- QUESTION CONTENT -->
+    <div class="question-box">
+        <p class="q-text" id="prompt-text">Arrange the words to form a correct sentence:</p>
+        
+        <div class="drop-zone" id="drop-zone" ondragover="allowDrop(event)" ondrop="handleDrop(event)"></div>
+        <div class="word-bank" id="word-bank" ondragover="allowDrop(event)" ondrop="handleDrop(event)"></div>
+
+        <div class="feedback-card" id="feedback"></div>
+
+        <div class="btn-group">
+            <button class="btn-action btn-reset" onclick="resetCurrentQuestion()">🔄 Reset</button>
+            <button class="btn-action btn-check" onclick="checkAnswer()">✅ Check</button>
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <button class="btn-action" style="background:#64748b; box-shadow:0 4px 0 #334155;" onclick="prevQuestion()">⬅️ Previous</button>
+        <button class="btn-action" style="background:#0284c7; box-shadow:0 4px 0 #0369a1;" onclick="nextQuestion()">Next ➡️</button>
+    </div>
+</div>
+
+<script>
+    let currentModule = 'm1';
+    let currentMode = 1;
+    let questionIndex = 0;
+
+    // DATASET 10 MODULES x 20 QUESTIONS EACH (Split across 3 Modes)
+    const dataset = {
+        m1: {
+            mode1: [
+                { target: ["She", "has", "got", "straight", "hair."], dist: ["hair.", "has", "straight", "She", "got"] },
+                { target: ["Have", "you", "got", "twenty", "marbles?"], dist: ["marbles?", "got", "Have", "twenty", "you"] },
+                { target: ["He", "hasn't", "got", "brown", "eyes."], dist: ["brown", "got", "He", "eyes.", "hasn't"] },
+                { target: ["They", "have", "got", "blonde", "hair."], dist: ["got", "They", "hair.", "blonde", "have"] },
+                { target: ["I", "have", "got", "a", "shell", "collection."], dist: ["collection.", "got", "have", "a", "shell", "I"] },
+                { target: ["Has", "she", "got", "curly", "hair?"], dist: ["curly", "got", "she", "hair?", "Has"] },
+                { target: ["We", "haven't", "got", "purple", "bags."], dist: ["purple", "got", "haven't", "We", "bags."] },
+                { target: ["It", "has", "got", "big", "eyes."], dist: ["big", "has", "eyes.", "It", "got"] }
+            ],
+            mode2: [
+                { prompt: "She _____ got long hair.", ans: "has", options: ["has", "have", "is"] },
+                { prompt: "They _____ got fifty shells.", ans: "have", options: ["have", "has", "are"] },
+                { prompt: "_____ you got dark eyes?", ans: "Have", options: ["Have", "Has", "Do"] },
+                { prompt: "He _____ got glasses.", ans: "hasn't", options: ["hasn't", "haven't", "don't"] },
+                { prompt: "_____ she got a brother?", ans: "Has", options: ["Has", "Have", "Is"] },
+                { prompt: "We _____ got English class.", ans: "have", options: ["have", "has", "are"] },
+                { prompt: "I _____ got a big family.", ans: "have", options: ["have", "has", "am"] }
+            ],
+            mode3: [
+                { prompt: "Build: Subject + Verb + Object", slots: [
+                    { type: "subject", text: "She", typeCls: "subject" },
+                    { type: "verb", text: "has got", typeCls: "verb" },
+                    { type: "object", text: "blue eyes.", typeCls: "object" }
+                ], options: ["She", "has got", "blue eyes.", "They", "have got", "marbles."] },
+                { prompt: "Build: Subject + Verb + Object", slots: [
+                    { type: "subject", text: "I", typeCls: "subject" },
+                    { type: "verb", text: "have got", typeCls: "verb" },
+                    { type: "object", text: "ten shells.", typeCls: "object" }
+                ], options: ["I", "have got", "ten shells.", "He", "has got", "glasses."] },
+                { prompt: "Build: Negative Sentence", slots: [
+                    { type: "subject", text: "He", typeCls: "subject" },
+                    { type: "verb", text: "hasn't got", typeCls: "verb" },
+                    { type: "object", text: "straight hair.", typeCls: "object" }
+                ], options: ["He", "hasn't got", "straight hair.", "We", "haven't got", "a cat."] },
+                { prompt: "Build: Question", slots: [
+                    { type: "verb", text: "Have", typeCls: "verb" },
+                    { type: "subject", text: "you", typeCls: "subject" },
+                    { type: "object", text: "got a doll?", typeCls: "object" }
+                ], options: ["Have", "you", "got a doll?", "Has", "she", "got a dog?"] },
+                { prompt: "Build: Plural Possession", slots: [
+                    { type: "subject", text: "They", typeCls: "subject" },
+                    { type: "verb", text: "have got", typeCls: "verb" },
+                    { type: "object", text: "cute puppies.", typeCls: "object" }
+                ], options: ["They", "have got", "cute puppies.", "It", "has got", "tail."] }
+            ]
+        },
+        m2: {
+            mode1: [
+                { target: ["He", "always", "brushes", "his", "teeth."], dist: ["teeth.", "always", "his", "He", "brushes"] },
+                { target: ["I", "sometimes", "play", "chess", "after", "school."], dist: ["after", "play", "chess", "I", "school.", "sometimes"] },
+                { target: ["She", "never", "walks", "to", "school."], dist: ["school.", "never", "walks", "She", "to"] },
+                { target: ["Do", "you", "do", "karate", "on", "Saturdays?"], dist: ["on", "karate", "Do", "Saturdays?", "you", "do"] },
+                { target: ["They", "always", "have", "shower", "at", "night."], dist: ["have", "They", "at", "shower", "always", "night."] },
+                { target: ["What", "time", "do", "you", "wake", "up?"], dist: ["wake", "do", "What", "up?", "time", "you"] },
+                { target: ["My", "father", "drives", "a", "red", "car."], dist: ["car.", "drives", "a", "red", "My", "father"] },
+                { target: ["We", "sometimes", "watch", "TV", "together."], dist: ["together.", "watch", "sometimes", "TV", "We"] }
+            ],
+            mode2: [
+                { prompt: "She always _____ her teeth in the morning.", ans: "brushes", options: ["brushes", "brush", "brushing"] },
+                { prompt: "They sometimes _____ football on Sundays.", ans: "play", options: ["play", "plays", "playing"] },
+                { prompt: "I never _____ late for school.", ans: "am", options: ["am", "is", "are"] },
+                { prompt: "_____ he do gymnastics after school?", ans: "Does", options: ["Does", "Do", "Is"] },
+                { prompt: "What time _____ you wake up?", ans: "do", options: ["do", "does", "are"] },
+                { prompt: "My brother _____ his homework at 8 PM.", ans: "does", options: ["does", "do", "doing"] },
+                { prompt: "We always _____ breakfast together.", ans: "eat", options: ["eat", "eats", "eating"] }
+            ],
+            mode3: [
+                { prompt: "Build: Daily Routine", slots: [
+                    { text: "I", typeCls: "subject" },
+                    { text: "always brush", typeCls: "verb" },
+                    { text: "my teeth.", typeCls: "object" }
+                ], options: ["I", "always brush", "my teeth.", "She", "sometimes plays", "piano."] },
+                { prompt: "Build: Frequency Sentence", slots: [
+                    { text: "He", typeCls: "subject" },
+                    { text: "sometimes rides", typeCls: "verb" },
+                    { text: "his bike.", typeCls: "object" }
+                ], options: ["He", "sometimes rides", "his bike.", "They", "never go", "by bus."] },
+                { prompt: "Build: Negative Routine", slots: [
+                    { text: "She", typeCls: "subject" },
+                    { text: "doesn't do", typeCls: "verb" },
+                    { text: "karate.", typeCls: "object" }
+                ], options: ["She", "doesn't do", "karate.", "We", "don't walk", "home."] },
+                { prompt: "Build: Question Sentence", slots: [
+                    { text: "Do", typeCls: "verb" },
+                    { text: "you play", typeCls: "subject" },
+                    { text: "chess?", typeCls: "object" }
+                ], options: ["Do", "you play", "chess?", "Does", "he watch", "TV?"] },
+                { prompt: "Build: Morning Routine", slots: [
+                    { text: "We", typeCls: "subject" },
+                    { text: "always eat", typeCls: "verb" },
+                    { text: "cereal.", typeCls: "object" }
+                ], options: ["We", "always eat", "cereal.", "He", "never wakes", "early."] }
+            ]
+        }
+    };
+
+    // Duplicate structure template for m3 to m10 dynamically if missing to prevent error
+    for(let i=3; i<=10; i++) {
+        dataset[`m${i}`] = dataset.m1; 
+    }
+
+    function changeMode(mode) {
+        currentMode = mode;
+        questionIndex = 0;
+        document.getElementById('m1-btn').classList.toggle('active-mode', mode === 1);
+        document.getElementById('m2-btn').classList.toggle('active-mode', mode === 2);
+        document.getElementById('m3-btn').classList.toggle('active-mode', mode === 3);
+        loadCurrentQuiz();
+    }
+
+    function loadCurrentQuiz() {
+        const mod = document.getElementById('module-select').value;
+        const modData = dataset[mod];
+        let qList = [];
+
+        if(currentMode === 1) qList = modData.mode1;
+        else if(currentMode === 2) qList = modData.mode2;
+        else qList = modData.mode3;
+
+        if(questionIndex >= qList.length) questionIndex = qList.length - 1;
+        if(questionIndex < 0) questionIndex = 0;
+
+        document.getElementById('q-counter').innerText = `Question ${questionIndex + 1} / ${qList.length}`;
+        document.getElementById('feedback').style.display = 'none';
+
+        const q = qList[questionIndex];
+        const dropZone = document.getElementById('drop-zone');
+        const wordBank = document.getElementById('word-bank');
+        const promptText = document.getElementById('prompt-text');
+
+        dropZone.innerHTML = '';
+        wordBank.innerHTML = '';
+
+        if(currentMode === 1) {
+            promptText.innerText = "Arrange the words to form a correct sentence:";
+            let shuffled = [...q.dist];
+            shuffled.forEach((w, idx) => {
+                wordBank.appendChild(createChip(w, `w_${idx}`));
+            });
+        } else if(currentMode === 2) {
+            promptText.innerText = q.prompt;
+            q.options.forEach((opt, idx) => {
+                wordBank.appendChild(createChip(opt, `opt_${idx}`));
+            });
+        } else {
+            promptText.innerText = q.prompt;
+            q.options.forEach((opt, idx) => {
+                wordBank.appendChild(createChip(opt, `s_${idx}`));
+            });
+        }
+    }
+
+    function createChip(text, id) {
+        const chip = document.createElement('div');
+        chip.className = 'word-chip';
+        chip.innerText = text;
+        chip.id = id;
+        chip.draggable = true;
+
+        chip.ondragstart = (e) => {
+            e.dataTransfer.setData('text/plain', id);
+        };
+
+        chip.onclick = () => {
+            const dropZone = document.getElementById('drop-zone');
+            const wordBank = document.getElementById('word-bank');
+
+            if(chip.parentElement === wordBank) {
+                dropZone.appendChild(chip);
+            } else {
+                wordBank.appendChild(chip);
+            }
+        };
+
+        return chip;
+    }
+
+    function allowDrop(e) {
+        e.preventDefault();
+    }
+
+    function handleDrop(e) {
+        e.preventDefault();
+        const id = e.dataTransfer.getData('text/plain');
+        const draggedEl = document.getElementById(id);
+        if(draggedEl) {
+            e.currentTarget.appendChild(draggedEl);
+        }
+    }
+
+    function checkAnswer() {
+        const mod = document.getElementById('module-select').value;
+        const modData = dataset[mod];
+        const feedback = document.getElementById('feedback');
+        feedback.style.display = 'block';
+
+        const dropZone = document.getElementById('drop-zone');
+        const userChips = Array.from(dropZone.children).map(c => c.innerText);
+
+        let isCorrect = false;
+
+        if(currentMode === 1) {
+            const target = modData.mode1[questionIndex].target.join(" ");
+            const userAns = userChips.join(" ");
+            isCorrect = (target === userAns);
+        } else if(currentMode === 2) {
+            const ans = modData.mode2[questionIndex].ans;
+            isCorrect = (userChips.length === 1 && userChips[0] === ans);
+        } else {
+            const targetSlots = modData.mode3[questionIndex].slots.map(s => s.text).join(" ");
+            const userAns = userChips.join(" ");
+            isCorrect = (targetSlots === userAns);
+        }
+
+        if(isCorrect) {
+            feedback.className = "feedback-card feedback-correct";
+            feedback.innerText = "🎉 Excellent! That's correct!";
+        } else {
+            feedback.className = "feedback-card feedback-wrong";
+            feedback.innerText = "❌ Oops! Try again or reset.";
+        }
+    }
+
+    function resetCurrentQuestion() {
+        loadCurrentQuiz();
+    }
+
+    function nextQuestion() {
+        questionIndex++;
+        loadCurrentQuiz();
+    }
+
+    function prevQuestion() {
+        questionIndex--;
+        loadCurrentQuiz();
+    }
+
+    window.onload = function() {
+        loadCurrentQuiz();
+    };
+</script>
+
+</body>
+</html>
