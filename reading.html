@@ -33,7 +33,7 @@
             border-radius: 28px;
             border: 4px solid #fed7aa;
             box-shadow: 0 20px 45px rgba(5, 46, 22, 0.4);
-            padding: 35px 30px;
+            padding: 30px 25px;
             text-align: center;
         }
 
@@ -41,13 +41,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .btn-home {
             background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
             color: #052e16;
-            padding: 12px 22px;
+            padding: 10px 20px;
             border: 2px solid #fed7aa;
             border-radius: 14px;
             font-size: 20px !important;
@@ -70,46 +70,76 @@
         .instruction {
             color: #1e40af;
             font-weight: 600;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-size: 20px !important;
         }
 
-        /* SENARAI SENARAI VIDEO */
+        /* TAJUK VIDEO SEMASA */
+        .current-title {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            border: 2px solid #93c5fd;
+            font-size: 20px !important;
+        }
+
+        /* PEMAIN VIDEO YOUTUBE (EMBED) */
+        .video-container {
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 4px solid #93c5fd;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 56.25%; /* Nisbah 16:9 */
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* SENARAI BUTANG VIDEO */
         .reading-list {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
 
-        .video-card {
+        .video-btn {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 18px 24px;
+            padding: 16px 20px;
             background-color: #ffffff;
             color: #1d4ed8;
             border: 3px solid #bfdbfe;
-            border-radius: 20px;
+            border-radius: 16px;
             font-weight: bold;
             font-size: 20px !important;
-            text-decoration: none;
+            cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 6px 0px #93c5fd;
+            text-align: left;
         }
 
-        .video-card:hover {
+        .video-btn:hover, .video-btn.active {
             background-color: #dbeafe;
-            border-color: #2563eb;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 0px #3b82f6;
+            border-color: #3b82f6;
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
         }
 
-        .play-btn-tag {
-            background: #2563eb;
-            color: #ffffff;
-            padding: 6px 16px;
-            border-radius: 12px;
-            font-size: 18px !important;
+        .play-icon {
+            font-size: 22px;
         }
     </style>
 </head>
@@ -122,61 +152,68 @@
     </div>
 
     <h1>📖 Year 3 Reading Corner</h1>
-    <p class="instruction">Klik mana-mana tajuk di bawah untuk terus menonton video membaca:</p>
+    <p class="instruction">Klik mana-mana tajuk di bawah untuk memainkan video terus di skrin:</p>
+
+    <!-- TAJUK VIDEO SEMASA -->
+    <div class="current-title" id="now-playing">▶️ Sedang Dipapar: 1. My House</div>
+
+    <!-- PEMAIN VIDEO YOUTUBE -->
+    <div class="video-container">
+        <iframe 
+            id="main-player"
+            src="https://www.youtube.com/embed/dvwRKWvU1go?autoplay=0&rel=0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
 
     <!-- SENARAI PAUTAN READING -->
     <div class="reading-list">
-        <a href="https://www.facebook.com/share/r/1cwbM7g5s9/" target="_blank" class="video-card">
-            <span>📖 1. My Teacher</span>
-            <span class="play-btn-tag">▶️ Tonton Video</span>
-        </a>
+        <button class="video-btn active" onclick="tukarVideo('dvwRKWvU1go', '1. My House', this)">
+            <span>📖 1. My House</span>
+            <span class="play-icon">▶️</span>
+        </button>
         
-        <a href="https://www.facebook.com/share/r/1DRwuT6uDa/" target="_blank" class="video-card">
-            <span>📖 2. My Favourite Animal</span>
-            <span class="play-btn-tag">▶️ Tonton Video</span>
-        </a>
+        <button class="video-btn" onclick="tukarVideo('wSOUN2VxeaI', '2. My Day', this)">
+            <span>📖 2. My Day</span>
+            <span class="play-icon">▶️</span>
+        </button>
 
-        <a href="https://www.facebook.com/share/r/1M2eUTQTQu/" target="_blank" class="video-card">
-            <span>📖 3. Healthy Sleep</span>
-            <span class="play-btn-tag">▶️ Tonton Video</span>
-        </a>
+        <button class="video-btn" onclick="tukarVideo('Nwb31bhBRdc', '3. Frog\'s Lunch', this)">
+            <span>📖 3. Frog's Lunch</span>
+            <span class="play-icon">▶️</span>
+        </button>
 
-        <a href="https://www.facebook.com/share/r/1DJyJkzVpV/" target="_blank" class="video-card">
-            <span>📖 4. Honesty</span>
-            <span class="play-btn-tag">▶️ Tonton Video</span>
-        </a>
+        <button class="video-btn" onclick="tukarVideo('eXw3MH9MT2k', '4. Hello, How Are You?', this)">
+            <span>📖 4. Hello, How Are You?</span>
+            <span class="play-icon">▶️</span>
+        </button>
 
-        <a href="https://www.facebook.com/share/r/1Cs4rLby1D/" target="_blank" class="video-card">
-            <span>📖 5. Helping Others</span>
-            <span class="play-btn-tag">▶️ Tonton Video</span>
-        </a>
-
-        <a href="https://www.facebook.com/share/r/186N6T5gG3/" target="_blank" class="video-card">
-            <span>📖 6. English Reading</span>
-            <span class="play-btn-tag">▶️ Tonton Video</span>
-        </a>
-
-        <a href="https://www.facebook.com/share/r/1E19rw1XyR/" target="_blank" class="video-card">
-            <span>📖 7. My Favourite Animal - Cat</span>
-            <span class="play-btn-tag">▶️ Tonton Video</span>
-        </a>
-
-        <a href="https://www.facebook.com/share/r/1U7TPr7Eta/" target="_blank" class="video-card">
-            <span>📖 8. Elephant</span>
-            <span class="play-btn-tag">▶️ Tonton Video</span>
-        </a>
-
-        <a href="https://www.facebook.com/share/r/1DRmFqLsMU/" target="_blank" class="video-card">
-            <span>📖 9. A Rainy Day</span>
-            <span class="play-btn-tag">▶️ Tonton Video</span>
-        </a>
-
-        <a href="https://www.facebook.com/share/r/1BitMfaBRu/" target="_blank" class="video-card">
-            <span>📖 10. Clean the House</span>
-            <span class="play-btn-tag">▶️ Tonton Video</span>
-        </a>
+        <button class="video-btn" onclick="tukarVideo('MCQoWGAmj7w', '5. Speaking Practice', this)">
+            <span>📖 5. Speaking Practice</span>
+            <span class="play-icon">▶️</span>
+        </button>
     </div>
 </div>
+
+<script>
+    function tukarVideo(videoId, tajuk, element) {
+        // Tukar ID Video YouTube
+        const player = document.getElementById('main-player');
+        player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+
+        // Kemaskini Tajuk Dipapar
+        document.getElementById('now-playing').innerText = `▶️ Sedang Dipapar: ${tajuk}`;
+
+        // Kemaskini Butang Aktif
+        const buttons = document.querySelectorAll('.video-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        element.classList.add('active');
+
+        // Skrol automatik ke pemain video
+        document.querySelector('.card').scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
 
 </body>
 </html>
