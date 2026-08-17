@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grammar Fun - Year 3 Forest English Quest ✏️</title>
+    <title>Grammar & Tenses - Year 3 Forest Quest ✏️</title>
     <!-- Font Mesra Kanak-Kanak -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -21,49 +21,10 @@
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
             font-size: 20px !important;
         }
 
-        /* ANIMASI HIDUPAN HUTAN */
-        .forest-decor {
-            position: fixed;
-            z-index: 1;
-            pointer-events: none;
-            user-select: none;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
-        }
-
-        .creature-bird {
-            top: 6%;
-            width: 200px;
-            height: auto;
-            animation: flyRight 25s infinite linear;
-            opacity: 0.9;
-        }
-
-        .creature-owl {
-            top: 10%;
-            right: 4%;
-            width: 120px;
-            height: auto;
-            animation: floatUpDown 6s infinite ease-in-out;
-            opacity: 0.95;
-        }
-
-        @keyframes flyRight {
-            0% { transform: translateX(-30vw) translateY(0px); }
-            50% { transform: translateX(45vw) translateY(-20px); }
-            100% { transform: translateX(115vw) translateY(10px); }
-        }
-
-        @keyframes floatUpDown {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-18px); }
-        }
-
-        /* KAD UTAMA */
+        /* KAD UTAMA GLASSMORPHISM */
         .card {
             background: rgba(245, 253, 248, 0.95);
             backdrop-filter: blur(12px);
@@ -72,32 +33,20 @@
             border-radius: 28px;
             border: 4px solid #fed7aa;
             box-shadow: 0 20px 45px rgba(5, 46, 22, 0.4);
-            padding: 35px 30px;
-            position: relative;
-            z-index: 10;
-        }
-
-        h1 {
-            color: #db2777; /* Tema Pink / Magenta */
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 34px;
-            font-weight: 700;
-            text-shadow: 2px 2px 0px #fed7aa;
+            padding: 30px 25px;
         }
 
         .nav-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .btn-home {
             background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
             color: #052e16;
-            padding: 12px 22px;
+            padding: 10px 20px;
             border: 2px solid #fed7aa;
             border-radius: 14px;
             font-size: 20px !important;
@@ -106,7 +55,6 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
             box-shadow: 0 4px 0px #16a34a;
             transition: all 0.15s ease;
         }
@@ -116,390 +64,519 @@
             box-shadow: 0 2px 0px #16a34a;
         }
 
-        /* TAB KATEGORI TATABAHASA */
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        h1 {
+            color: #831843;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            font-size: 32px;
+            text-align: center;
+            text-shadow: 2px 2px 0px #fbcfe8;
+        }
+
+        .instruction {
+            color: #9d174d;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 20px !important;
+            text-align: center;
+        }
+
+        /* TAB KATEGORI: GRAMMAR VS TENSES */
+        .tab-container {
+            display: flex;
             gap: 12px;
             margin-bottom: 25px;
         }
 
         .tab-btn {
-            background: #fce7f3;
-            border: 2px solid #fbcfe8;
-            color: #be185d;
-            padding: 14px;
-            border-radius: 16px;
+            flex: 1;
+            padding: 16px;
             font-size: 20px !important;
             font-weight: 700;
+            border: 3px solid #fbcfe8;
+            border-radius: 18px;
+            background: #ffffff;
+            color: #be185d;
             cursor: pointer;
-            text-align: center;
             transition: all 0.2s ease;
+            box-shadow: 0 4px 0px rgba(190, 24, 93, 0.15);
+            text-align: center;
         }
 
-        .tab-btn:hover, .tab-btn.active {
+        .tab-btn.active-tab {
             background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
             color: #ffffff;
             border-color: #be185d;
-            box-shadow: 0 4px 12px rgba(219, 39, 119, 0.3);
+            box-shadow: 0 6px 0px #be185d;
         }
 
-        /* KOTAK NOTA TATABAHASA - SAIZ 20px */
-        .note-box {
-            background: #fff5f8;
-            border: 3px solid #fbcfe8;
-            border-left: 8px solid #ec4899;
-            border-radius: 20px;
-            padding: 22px;
+        /* PILIHAN TAJUK (SELECT TOPIC) */
+        .topic-select-container {
             margin-bottom: 25px;
         }
 
-        .note-title {
-            font-size: 20px !important;
-            color: #9d174d;
+        label {
+            display: block;
             font-weight: 700;
-            margin-top: 0;
-            margin-bottom: 15px;
+            color: #831843;
+            margin-bottom: 8px;
         }
 
-        .grammar-item {
-            background: #ffffff;
-            border-radius: 14px;
+        select {
+            width: 100%;
             padding: 14px 18px;
-            margin-bottom: 12px;
-            border: 2px solid #fce7f3;
+            border: 3px solid #f472b6;
+            border-radius: 16px;
             font-size: 20px !important;
-            color: #334155;
-            line-height: 1.6;
-        }
-
-        .grammar-item strong {
-            color: #db2777;
-        }
-
-        /* SOALAN KUIZ - SAIZ 20px */
-        .question-card {
-            background-color: #ffffff;
-            border: 3px solid #bbf7d0;
-            border-left: 8px solid #ec4899;
-            padding: 22px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-        }
-
-        .question-title {
-            font-size: 20px !important;
-            color: #052e16;
-            font-weight: 700;
-            margin-top: 0;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        /* PILIHAN JAWAPAN - SAIZ 20px */
-        .option-label {
+            outline: none;
+            background-color: #fdf2f8;
+            color: #831843;
             font-weight: 600;
-            background: #f0fdf4;
-            padding: 14px 18px;
-            border: 2px solid #dcfce7;
-            border-radius: 14px;
-            margin-bottom: 12px;
+        }
+
+        /* KAD NOTA RINGKAS */
+        .notes-card {
+            background: #ffffff;
+            border: 3px solid #fbcfe8;
+            border-left: 8px solid #ec4899;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+        }
+
+        .notes-card h2 {
+            margin-top: 0;
+            color: #be185d;
+            font-size: 24px;
+        }
+
+        .notes-card ul {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+
+        .notes-card li {
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        /* KUIZ SOALAN */
+        .quiz-container {
+            margin-top: 20px;
+        }
+
+        .question-card {
+            background: #ffffff;
+            border: 2px solid #fbcfe8;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+
+        .question-card p {
+            margin: 0 0 12px 0;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .option-label {
             display: flex;
             align-items: center;
+            background: #fdf2f8;
+            padding: 12px 16px;
+            border: 2px solid #fbcfe8;
+            border-radius: 12px;
+            margin-bottom: 8px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            color: #166534;
-            font-size: 20px !important;
+            transition: all 0.2s;
+            color: #831843;
+            font-weight: 600;
         }
 
         .option-label:hover {
-            background-color: #fce7f3;
-            border-color: #fbcfe8;
-            transform: translateX(4px);
+            background: #fce7f3;
+            border-color: #ec4899;
         }
 
-        .option-label input[type="radio"] {
-            accent-color: #db2777;
-            width: 22px;
-            height: 22px;
+        .option-label input {
             margin-right: 12px;
+            accent-color: #ec4899;
+            width: 20px;
+            height: 20px;
         }
 
-        .btn-check {
+        .btn-submit {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
-            border: none;
-            border-radius: 18px;
+            color: white;
             font-size: 20px !important;
             font-weight: 700;
-            color: #ffffff;
+            border: none;
+            border-radius: 18px;
             cursor: pointer;
             box-shadow: 0 6px 0px #be185d;
-            transition: all 0.15s ease;
-            margin-top: 10px;
+            margin-top: 15px;
+            text-transform: uppercase;
         }
 
-        .btn-check:active {
+        .btn-submit:active {
             transform: translateY(4px);
             box-shadow: 0 2px 0px #be185d;
         }
 
-        #result-box {
+        .score-box {
             display: none;
-            text-align: center;
-            padding: 20px;
-            background-color: #f0fdf4;
-            border: 3px solid #86efac;
+            background: #fdf2f8;
+            border: 3px solid #ec4899;
             border-radius: 20px;
-            margin-top: 25px;
-            font-size: 20px !important;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-<!-- VEKTOR SVG HUTAN -->
-<svg class="forest-decor creature-bird" viewBox="0 0 160 80">
-    <path d="M10,40 Q40,10 70,35 Q100,10 130,40 Q100,25 70,45 Q40,25 10,40 Z" fill="#ec4899"/>
-    <polygon points="130,40 150,38 135,45" fill="#f59e0b"/>
-</svg>
-
-<svg class="forest-decor creature-owl" viewBox="0 0 120 140">
-    <path d="M20,50 Q20,10 60,10 Q100,10 100,50 Q100,110 60,110 Q20,110 20,50 Z" fill="#78350f"/>
-    <circle cx="45" cy="45" r="16" fill="#ffffff"/>
-    <circle cx="75" cy="45" r="16" fill="#ffffff"/>
-    <circle cx="45" cy="45" r="8" fill="#000000"/>
-    <circle cx="75" cy="45" r="8" fill="#000000"/>
-    <polygon points="60,52 53,65 67,65" fill="#d97706"/>
-</svg>
-
 <div class="card">
     <div class="nav-header">
         <a href="index.html" class="btn-home">🏠 HOME</a>
-        <span style="font-weight: 700; color: #db2777; font-size: 20px !important;">Grammar Quest ✏️</span>
+        <span style="font-weight: 700; color: #be185d;">Grammar Fun ✏️</span>
     </div>
 
-    <h1>✏️ GRAMMAR FUN 🌲</h1>
+    <h1>✏️ Year 3 Grammar & Tenses</h1>
+    <p class="instruction">Select category and topic to read notes & test your skills!</p>
 
-    <!-- TABS KATEGORI MAIN TATABAHASA -->
-    <div class="category-grid">
-        <button class="tab-btn active" onclick="pilihKategori('prep')">📍 Prepositions</button>
-        <button class="tab-btn" onclick="pilihKategori('nouns')">📦 Nouns & Pronouns</button>
-        <button class="tab-btn" onclick="pilihKategori('verbs')">⚡ Verbs & Tenses</button>
-        <button class="tab-btn" onclick="pilihKategori('questions')">❓ Questions & Time</button>
+    <!-- TAB SWITCHER -->
+    <div class="tab-container">
+        <button id="tab-grammar" class="tab-btn active-tab" onclick="switchCategory('grammar')">📘 GRAMMAR</button>
+        <button id="tab-tenses" class="tab-btn" onclick="switchCategory('tenses')">⏰ TENSES</button>
     </div>
 
-    <!-- KANDUNGAN MODUL -->
-    <div id="grammar-content"></div>
+    <!-- TOPIC SELECTOR -->
+    <div class="topic-select-container">
+        <label for="topic-select">📌 Select Topic:</label>
+        <select id="topic-select" onchange="loadTopicData()"></select>
+    </div>
 
-    <!-- BUTTON SEMAK JAWAPAN -->
-    <button class="btn-check" onclick="semakJawapanGrammar()">✨ Check Answers / Semak Jawapan ✨</button>
+    <!-- NOTES DISPLAY -->
+    <div class="notes-card" id="notes-display"></div>
 
-    <!-- PAPARAN KEPUTUSAN -->
-    <div id="result-box">
-        <h2 style="color: #166534; margin-top: 0; font-size: 26px;">🎉 Excellent Job!</h2>
-        <p id="score-text" style="font-size: 20px !important; font-weight: 700; color: #db2777; margin: 10px 0;"></p>
+    <!-- QUIZ DISPLAY -->
+    <div class="quiz-container">
+        <div id="questions-display"></div>
+        <button class="btn-submit" onclick="submitQuiz()">🚀 Submit Quiz</button>
+        <div class="score-box" id="score-box"></div>
     </div>
 </div>
 
 <script>
-    // DATA MODUL TATABAHASA
-    const grammarModules = {
-        prep: {
-            title: "📍 Prepositions of Place (between, above, below)",
-            notes: [
-                "<strong>BETWEEN (Di antara):</strong> Sesuatu objek berada di tengah-tengah antara <u>dua</u> benda lain.<br><i>Example: The owl is sitting <b>between</b> two trees. 🦉</i>",
-                "<strong>ABOVE (Di atas):</strong> Posisi lebih tinggi di udara tanpa menyentuh permukaan.<br><i>Example: The bird is flying <b>above</b> the clouds. ☁️</i>",
-                "<strong>BELOW (Di bawah):</strong> Posisi lebih rendah daripada sesuatu objek.<br><i>Example: The mushrooms grow <b>below</b> the tall oak tree. 🍄</i>"
-            ],
+    let currentCategory = 'grammar';
+
+    const grammarData = {
+        topic1: {
+            title: "1. Have got / Has got",
+            notes: `
+                <h2>💡 Grammar Rule: Have got / Has got</h2>
+                <ul>
+                    <li><strong>Have got</strong> is used with: <em>I, You, We, They</em> (e.g., "I have got brown eyes.")</li>
+                    <li><strong>Has got</strong> is used with: <em>He, She, It</em> (e.g., "She has got straight hair.")</li>
+                    <li><strong>Haven't got / Hasn't got</strong> are used for negative sentences.</li>
+                </ul>
+            `,
             questions: [
-                {
-                    q: "1. The bird is flying ________ the tall trees.",
-                    options: ["between", "above", "below"],
-                    ans: "above"
-                },
-                {
-                    q: "2. The fox is sleeping ________ the tree and the river.",
-                    options: ["between", "above", "below"],
-                    ans: "between"
-                },
-                {
-                    q: "3. The fish swims ________ the surface of the water.",
-                    options: ["above", "between", "below"],
-                    ans: "below"
-                },
-                {
-                    q: "4. A bridge goes ________ two hills.",
-                    options: ["between", "above", "below"],
-                    ans: "between"
-                },
-                {
-                    q: "5. The bright stars are high ________ us in the sky.",
-                    options: ["below", "above", "between"],
-                    ans: "above"
-                }
+                { q: "1. She _____ got long curly hair.", options: ["has", "have", "is"], ans: "has" },
+                { q: "2. I _____ got twenty marbles.", options: ["has", "have", "are"], ans: "have" },
+                { q: "3. They _____ got blonde hair.", options: ["hasn't", "haven't", "isn't"], ans: "haven't" },
+                { q: "4. He _____ got a big shell collection.", options: ["has", "have", "am"], ans: "has" },
+                { q: "5. _____ you got a purple bag?", options: ["Has", "Have", "Do"], ans: "Have" },
+                { q: "6. My brother _____ got glasses.", options: ["hasn't", "haven't", "don't"], ans: "hasn't" },
+                { q: "7. We _____ got English class today.", options: ["has", "have", "is"], ans: "have" },
+                { q: "8. _____ she got a pet cat?", options: ["Has", "Have", "Is"], ans: "Has" }
             ]
         },
-        nouns: {
-            title: "📦 Nouns & Pronouns (Singular, Plural & Possessives)",
-            notes: [
-                "<strong>Singular vs Plural:</strong> 1 Cat 🐱 -> 2 Cat<b>s</b> 🐱🐱 | 1 Box 📦 -> 2 Box<b>es</b> 📦📦",
-                "<strong>Personal Pronouns:</strong> I, You, He (Lelaki), She (Perempuan), It (Benda/Haiwan), We, They.",
-                "<strong>Possessive Adjectives:</strong> <b>My</b> cat, <b>His</b> bag, <b>Her</b> hat, <b>Their</b> house."
-            ],
+        topic2: {
+            title: "2. Prepositions of Time (in, on, at)",
+            notes: `
+                <h2>💡 Grammar Rule: Prepositions of Time</h2>
+                <ul>
+                    <li><strong>IN</strong>: Months, years, seasons (e.g., <em>in December, in summer</em>)</li>
+                    <li><strong>ON</strong>: Days, specific dates (e.g., <em>on Monday, on 5th May</em>)</li>
+                    <li><strong>AT</strong>: Specific times, night (e.g., <em>at 8 o'clock, at night</em>)</li>
+                </ul>
+            `,
             questions: [
-                {
-                    q: "1. Look at those three small ________ playing in the garden.",
-                    options: ["cat", "cats", "caats"],
-                    ans: "cats"
-                },
-                {
-                    q: "2. Sarah is happy. ________ is playing with her new doll.",
-                    options: ["He", "She", "They"],
-                    ans: "She"
-                },
-                {
-                    q: "3. That is Adam's bicycle. It is ________ bicycle.",
-                    options: ["his", "her", "my"],
-                    ans: "his"
-                }
+                { q: "1. My birthday is _____ July.", options: ["in", "on", "at"], ans: "in" },
+                { q: "2. We play football _____ Fridays.", options: ["in", "on", "at"], ans: "on" },
+                { q: "3. I wake up _____ 6:30 AM.", options: ["in", "on", "at"], ans: "at" },
+                { q: "4. It is cold _____ winter.", options: ["in", "on", "at"], ans: "in" },
+                { q: "5. The party is _____ Saturday afternoon.", options: ["in", "on", "at"], ans: "on" },
+                { q: "6. Stars shine bright _____ night.", options: ["in", "on", "at"], ans: "at" },
+                { q: "7. School starts _____ August.", options: ["in", "on", "at"], ans: "in" },
+                { q: "8. Let's meet _____ 3 o'clock.", options: ["in", "on", "at"], ans: "at" }
             ]
         },
-        verbs: {
-            title: "⚡ Verbs & Tenses (Present Simple & Continuous)",
-            notes: [
-                "<strong>Verb 'to be':</strong> He / She / It ➡️ <b>is</b> | They / We / You ➡️ <b>are</b> | I ➡️ <b>am</b>",
-                "<strong>Present Continuous (Right now):</strong> She is <b>reading</b> a book now. 📖",
-                "<strong>Can / Can't:</strong> Birds <b>can</b> fly. 🦅 Fish <b>can't</b> fly. 🐟"
-            ],
+        topic3: {
+            title: "3. Possessive Pronouns & Quantifiers",
+            notes: `
+                <h2>💡 Grammar Rule: Possessive Pronouns & Quantifiers</h2>
+                <ul>
+                    <li><strong>Possessive Pronouns</strong>: <em>mine, yours, his, hers, ours, theirs</em>.</li>
+                    <li><strong>SOME</strong>: Used in positive sentences (e.g., "There are <em>some</em> apples.")</li>
+                    <li><strong>ANY</strong>: Used in negative sentences & questions (e.g., "Are there <em>any</em> eggs?")</li>
+                </ul>
+            `,
             questions: [
-                {
-                    q: "1. They ________ playing football at the field right now.",
-                    options: ["is", "am", "are"],
-                    ans: "are"
-                },
-                {
-                    q: "2. Monkeys ________ climb trees very easily.",
-                    options: ["can", "can't", "mustn't"],
-                    ans: "can"
-                },
-                {
-                    q: "3. He ________ his teeth every morning.",
-                    options: ["brush", "brushes", "brushing"],
-                    ans: "brushes"
-                }
+                { q: "1. This bag belongs to me. It is _____.", options: ["mine", "yours", "his"], ans: "mine" },
+                { q: "2. Is there _____ milk in the fridge?", options: ["some", "any", "a"], ans: "any" },
+                { q: "3. She has got _____ sweets in her pocket.", options: ["some", "any", "an"], ans: "some" },
+                { q: "4. That hat belongs to John. It is _____.", options: ["hers", "his", "mine"], ans: "his" },
+                { q: "5. We haven't got _____ orange juice left.", options: ["some", "any", "a"], ans: "any" },
+                { q: "6. Is this pencil _____?", options: ["yours", "your", "my"], ans: "yours" },
+                { q: "7. There are _____ books on the table.", options: ["some", "any", "an"], ans: "some" },
+                { q: "8. The cat belongs to them. It is _____.", options: ["ours", "theirs", "hers"], ans: "theirs" }
             ]
         },
-        questions: {
-            title: "❓ Questions & Sentence Structure (WH-Questions & Time)",
-            notes: [
-                "<strong>WH-Questions:</strong> <b>What</b> (Apa), <b>Where</b> (Mana), <b>Who</b> (Siapa), <b>When</b> (Bila).",
-                "<strong>Telling Time:</strong> 8:00 ➡️ 8 <b>o'clock</b> | 8:30 ➡️ <b>half past</b> eight."
-            ],
+        topic4: {
+            title: "4. Modals & Imperatives (Can/Can't, Turn Left)",
+            notes: `
+                <h2>💡 Grammar Rule: Modals & Imperatives</h2>
+                <ul>
+                    <li><strong>Can / Can't</strong>: Ability or permission (e.g., "I <em>can</em> swim." / "He <em>can't</em> fly.")</li>
+                    <li><strong>Imperatives</strong>: Giving commands/directions (e.g., "<em>Turn left</em>", "<em>Don't touch</em>").</li>
+                </ul>
+            `,
             questions: [
-                {
-                    q: "1. ________ is your name?",
-                    options: ["Where", "What", "Who"],
-                    ans: "What"
-                },
-                {
-                    q: "2. ________ do you live?",
-                    options: ["Where", "What", "When"],
-                    ans: "Where"
-                },
-                {
-                    q: "3. It is 9:00. It is nine ________.",
-                    options: ["half past", "o'clock", "quarter to"],
-                    ans: "o'clock"
-                }
+                { q: "1. Birds _____ fly high in the sky.", options: ["can", "can't", "mustn't"], ans: "can" },
+                { q: "2. _____ right at the corner.", options: ["Turn", "Turning", "Turned"], ans: "Turn" },
+                { q: "3. Fish _____ live on land.", options: ["can", "can't", "must"], ans: "can't" },
+                { q: "4. _____ noisy in the library!", options: ["Don't be", "Not be", "Can't"], ans: "Don't be" },
+                { q: "5. _____ you play the piano?", options: ["Can", "Are", "Do"], ans: "Can" },
+                { q: "6. _____ the door, please.", options: ["Open", "Opens", "Opening"], ans: "Open" },
+                { q: "7. A baby _____ ride a bicycle.", options: ["can", "can't", "is"], ans: "can't" },
+                { q: "8. _____ straight ahead.", options: ["Go", "Going", "Gone"], ans: "Go" }
+            ]
+        },
+        topic5: {
+            title: "5. Rules & Object Pronouns (Must/Mustn't, Me/Him/Her)",
+            notes: `
+                <h2>💡 Grammar Rule: Rules & Object Pronouns</h2>
+                <ul>
+                    <li><strong>Must</strong>: Strong obligation / rule (e.g., "You <em>must</em> listen to the teacher.")</li>
+                    <li><strong>Mustn't</strong>: Prohibition (e.g., "You <em>mustn't</em> run in the hall.")</li>
+                    <li><strong>Object Pronouns</strong>: <em>me, you, him, her, it, us, them</em>.</li>
+                </ul>
+            `,
+            questions: [
+                { q: "1. You _____ eat inside the museum.", options: ["must", "mustn't", "can"], ans: "mustn't" },
+                { q: "2. Look at Sarah! Wave to _____.", options: ["him", "her", "them"], ans: "her" },
+                { q: "3. Students _____ wear their school uniform.", options: ["must", "mustn't", "can't"], ans: "must" },
+                { q: "4. John needs help. Please help _____.", options: ["him", "her", "us"], ans: "him" },
+                { q: "5. You _____ throw trash in the bin.", options: ["must", "mustn't", "can't"], ans: "must" },
+                { q: "6. We are here! Look at _____!", options: ["them", "us", "him"], ans: "us" },
+                { q: "7. You _____ cross the road when the light is red.", options: ["must", "mustn't", "can"], ans: "mustn't" },
+                { q: "8. Where are my keys? I can't find _____.", options: ["it", "them", "her"], ans: "them" }
+            ]
+        },
+        topic6: {
+            title: "6. Comparatives & Superlatives",
+            notes: `
+                <h2>💡 Grammar Rule: Comparatives & Superlatives</h2>
+                <ul>
+                    <li><strong>Comparatives (-er than)</strong>: Comparing 2 things (e.g., "A cheetah is <em>faster than</em> a horse.")</li>
+                    <li><strong>Superlatives (the -est / the most)</strong>: Comparing 3+ things (e.g., "The blue whale is <em>the biggest</em> animal.")</li>
+                </ul>
+            `,
+            questions: [
+                { q: "1. An elephant is _____ than a cat.", options: ["bigger", "biggest", "the biggest"], ans: "bigger" },
+                { q: "2. Mt. Everest is _____ mountain in the world.", options: ["tallest", "the tallest", "taller"], ans: "the tallest" },
+                { q: "3. A plane is _____ than a bicycle.", options: ["faster", "fastest", "the fastest"], ans: "faster" },
+                { q: "4. Giraffes are the _____ animals.", options: ["taller", "tallest", "tall"], ans: "tallest" },
+                { q: "5. Lions are _____ dangerous than rabbits.", options: ["more", "most", "the most"], ans: "more" },
+                { q: "6. Cheetahs are _____ animals on land.", options: ["the fastest", "faster", "fast"], ans: "the fastest" },
+                { q: "7. Summer is _____ than winter.", options: ["hotter", "hottest", "the hottest"], ans: "hotter" },
+                { q: "8. Who is the _____ student in class?", options: ["smartest", "smarter", "more smart"], ans: "smartest" }
             ]
         }
     };
 
-    let selectedCategory = 'prep';
-    let userAnswers = {};
+    const tensesData = {
+        topic1: {
+            title: "1. Simple Present Tense (Routine & Frequency)",
+            notes: `
+                <h2>💡 Tenses Rule: Simple Present Tense</h2>
+                <ul>
+                    <li>Used for daily habits, routines, and facts.</li>
+                    <li>Add <strong>-s / -es</strong> for <em>He, She, It</em> (e.g., "He <em>plays</em> tennis.")</li>
+                    <li>Use <strong>always, sometimes, never</strong> before the verb.</li>
+                </ul>
+            `,
+            questions: [
+                { q: "1. She _____ her teeth every morning.", options: ["brush", "brushes", "brushing"], ans: "brushes" },
+                { q: "2. They always _____ to school by bus.", options: ["go", "goes", "went"], ans: "go" },
+                { q: "3. He sometimes _____ football on Sundays.", options: ["play", "plays", "playing"], ans: "plays" },
+                { q: "4. The sun _____ in the east.", options: ["rise", "rises", "rising"], ans: "rises" },
+                { q: "5. I never _____ late for school.", options: ["am", "is", "are"], ans: "am" },
+                { q: "6. My mother _____ delicious food.", options: ["cook", "cooks", "cooking"], ans: "cooks" },
+                { q: "7. We _____ TV after dinner.", options: ["watch", "watches", "watched"], ans: "watch" },
+                { q: "8. Does he _____ milk every day?", options: ["drink", "drinks", "drinking"], ans: "drink" }
+            ]
+        },
+        topic2: {
+            title: "2. Present Continuous Tense (Right Now)",
+            notes: `
+                <h2>💡 Tenses Rule: Present Continuous Tense</h2>
+                <ul>
+                    <li>Used for actions happening <strong>right now</strong>.</li>
+                    <li>Formula: <strong>am / is / are + verb-ing</strong></li>
+                    <li>Example: "I <em>am reading</em>", "She <em>is cooking</em>", "They <em>are playing</em>".</li>
+                </ul>
+            `,
+            questions: [
+                { q: "1. Look! The boys _____ football right now.", options: ["play", "is playing", "are playing"], ans: "are playing" },
+                { q: "2. She _____ a story book at the moment.", options: ["is reading", "are reading", "reads"], ans: "is reading" },
+                { q: "3. I _____ my English homework now.", options: ["am doing", "is doing", "are doing"], ans: "am doing" },
+                { q: "4. Listen! The birds _____ sweetly.", options: ["is singing", "are singing", "sing"], ans: "are singing" },
+                { q: "5. What _____ you doing?", options: ["am", "is", "are"], ans: "are" },
+                { q: "6. The cat _____ under the tree.", options: ["is sleeping", "are sleeping", "sleep"], ans: "is sleeping" },
+                { q: "7. We _____ lunch together right now.", options: ["is eating", "are eating", "eats"], ans: "are eating" },
+                { q: "8. He isn't watching TV, he _____.", options: ["is studying", "are studying", "studies"], ans: "is studying" }
+            ]
+        },
+        topic3: {
+            title: "3. Simple Past Tense (Was / Were)",
+            notes: `
+                <h2>💡 Tenses Rule: Was / Were</h2>
+                <ul>
+                    <li>Used for past state or location (yesterday, last night, last week).</li>
+                    <li><strong>WAS</strong>: Used with <em>I, He, She, It</em> (e.g., "I <em>was</em> at home yesterday.")</li>
+                    <li><strong>WERE</strong>: Used with <em>You, We, They</em> (e.g., "They <em>were</em> happy.")</li>
+                </ul>
+            `,
+            questions: [
+                { q: "1. I _____ at the park yesterday afternoon.", options: ["was", "were", "is"], ans: "was" },
+                { q: "2. They _____ at the cinema last night.", options: ["was", "were", "are"], ans: "were" },
+                { q: "3. She _____ sick last Monday.", options: ["was", "were", "am"], ans: "was" },
+                { q: "4. Where _____ you yesterday?", options: ["was", "were", "are"], ans: "were" },
+                { q: "5. The weather _____ sunny two days ago.", options: ["was", "were", "is"], ans: "was" },
+                { q: "6. We _____ at the zoo last weekend.", options: ["was", "were", "are"], ans: "were" },
+                { q: "7. He _____ not at school yesterday.", options: ["was", "were", "isn't"], ans: "was" },
+                { q: "8. The toys _____ in the box yesterday.", options: ["was", "were", "are"], ans: "were" }
+            ]
+        },
+        topic4: {
+            title: "4. Simple Past Tense (Regular & Irregular Verbs)",
+            notes: `
+                <h2>💡 Tenses Rule: Past Action Verbs</h2>
+                <ul>
+                    <li><strong>Regular Verbs (+ed)</strong>: <em>play ➔ played, walk ➔ walked, listen ➔ listened</em>.</li>
+                    <li><strong>Irregular Verbs (Change form)</strong>: <em>go ➔ went, eat ➔ ate, see ➔ saw, buy ➔ bought</em>.</li>
+                </ul>
+            `,
+            questions: [
+                { q: "1. We _____ to the beach yesterday.", options: ["go", "went", "going"], ans: "went" },
+                { q: "2. She _____ a delicious cake last night.", options: ["bake", "baked", "baking"], ans: "baked" },
+                { q: "3. He _____ an apple this morning.", options: ["eat", "ate", "eaten"], ans: "ate" },
+                { q: "4. They _____ football last Sunday.", options: ["play", "played", "playing"], ans: "played" },
+                { q: "5. I _____ a huge elephant at the zoo.", options: ["see", "saw", "seen"], ans: "saw" },
+                { q: "6. My mother _____ a new bag yesterday.", options: ["buy", "bought", "buying"], ans: "bought" },
+                { q: "7. You _____ your milk this morning.", options: ["drink", "drank", "drinking"], ans: "drank" },
+                { q: "8. He _____ his hands before dinner.", options: ["wash", "washed", "washing"], ans: "washed" }
+            ]
+        }
+    };
 
-    function pilihKategori(katKey) {
-        selectedCategory = katKey;
-        
-        // Kemaskini Gaya Tab Active
-        const buttons = document.querySelectorAll('.tab-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
+    function switchCategory(cat) {
+        currentCategory = cat;
+        document.getElementById('tab-grammar').classList.toggle('active-tab', cat === 'grammar');
+        document.getElementById('tab-tenses').classList.toggle('active-tab', cat === 'tenses');
 
-        paparModul();
-    }
+        const select = document.getElementById('topic-select');
+        select.innerHTML = '';
 
-    function paparModul() {
-        const modulData = grammarModules[selectedCategory];
-        const container = document.getElementById('grammar-content');
-        
-        userAnswers = {};
-        document.getElementById('result-box').style.display = 'none';
+        const activeDataSource = cat === 'grammar' ? grammarData : tensesData;
 
-        let html = `
-            <div class="note-box">
-                <div class="note-title">${modulData.title}</div>
-        `;
-
-        modulData.notes.forEach(nota => {
-            html += `<div class="grammar-item">${nota}</div>`;
+        Object.keys(activeDataSource).forEach(key => {
+            const opt = document.createElement('option');
+            opt.value = key;
+            opt.innerText = activeDataSource[key].title;
+            select.appendChild(opt);
         });
 
-        html += `</div>`;
+        loadTopicData();
+    }
 
-        modulData.questions.forEach((qObj, index) => {
-            html += `
+    function loadTopicData() {
+        const topicKey = document.getElementById('topic-select').value;
+        const dataSource = currentCategory === 'grammar' ? grammarData : tensesData;
+        const data = dataSource[topicKey];
+
+        if (!data) return;
+
+        // Render Notes
+        document.getElementById('notes-display').innerHTML = data.notes;
+
+        // Render Questions
+        let qHtml = '';
+        data.questions.forEach((q, idx) => {
+            qHtml += `
                 <div class="question-card">
-                    <div class="question-title">${qObj.q}</div>
+                    <p>${q.q}</p>
             `;
-
-            qObj.options.forEach(opt => {
-                html += `
+            q.options.forEach(opt => {
+                qHtml += `
                     <label class="option-label">
-                        <input type="radio" name="g_q_${index}" value="${opt}" onchange="simpanJawapan(${index}, '${opt}')">
-                        ${opt}
+                        <input type="radio" name="q_${idx}" value="${opt}">
+                        <span>${opt}</span>
                     </label>
                 `;
             });
-
-            html += `</div>`;
+            qHtml += `</div>`;
         });
 
-        container.innerHTML = html;
+        document.getElementById('questions-display').innerHTML = qHtml;
+        document.getElementById('score-box').style.display = 'none';
     }
 
-    function simpanJawapan(qIdx, opt) {
-        userAnswers[qIdx] = opt;
-    }
+    function submitQuiz() {
+        const topicKey = document.getElementById('topic-select').value;
+        const dataSource = currentCategory === 'grammar' ? grammarData : tensesData;
+        const questions = dataSource[topicKey].questions;
 
-    function semakJawapanGrammar() {
-        const questions = grammarModules[selectedCategory].questions;
+        let score = 0;
+        let answered = 0;
 
-        if (Object.keys(userAnswers).length < questions.length) {
-            alert("Sila jawab semua soalan tatabahasa terlebih dahulu!");
-            return;
-        }
-
-        let markah = 0;
-        questions.forEach((qObj, index) => {
-            if (userAnswers[index] === qObj.ans) {
-                markah++;
+        questions.forEach((q, idx) => {
+            const selected = document.querySelector(`input[name="q_${idx}"]:checked`);
+            if (selected) {
+                answered++;
+                if (selected.value === q.ans) {
+                    score++;
+                }
             }
         });
 
-        const resultBox = document.getElementById('result-box');
-        const scoreText = document.getElementById('score-text');
+        if (answered < questions.length) {
+            if (!confirm(`You answered ${answered} out of ${questions.length} questions. Submit anyway?`)) {
+                return;
+            }
+        }
 
-        scoreText.innerText = `⭐ You scored ${markah} / ${questions.length}! ⭐`;
-        resultBox.style.display = 'block';
-        resultBox.scrollIntoView({ behavior: 'smooth' });
+        const scoreBox = document.getElementById('score-box');
+        scoreBox.style.display = 'block';
+        scoreBox.innerHTML = `
+            <h2 style="color: #be185d; margin: 0 0 10px 0;">🎉 Quiz Complete!</h2>
+            <p style="font-size: 26px; font-weight: 700; color: #ec4899; margin: 0;">
+                Your Score: ${score} / ${questions.length}
+            </p>
+        `;
+        scoreBox.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Muat modul pertama automatik
+    // Initialize Page
     window.onload = function() {
-        paparModul();
+        switchCategory('grammar');
     };
 </script>
 
