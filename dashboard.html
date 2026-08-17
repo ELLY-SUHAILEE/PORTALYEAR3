@@ -12,7 +12,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     body {
-      background-color: #f8fafc;
+      background-color: #f4fbf7;
       margin: 0;
       padding: 20px;
       color: #0f172a;
@@ -28,25 +28,29 @@
       justify-content: space-between;
       align-items: center;
       padding-bottom: 15px;
-      border-bottom: 2px solid #e2e8f0;
+      border-bottom: 2px solid #a7f3d0;
       margin-bottom: 20px;
     }
     .app-title {
       font-size: 24px;
       font-weight: bold;
-      color: #0284c7;
+      color: #059669; /* Hijau Utama */
       display: flex;
       align-items: center;
       gap: 8px;
     }
     .btn-rekod-guru {
-      background-color: #4f46e5;
+      background-color: #ea580c; /* Oren Accent */
       color: white;
       border: none;
       padding: 10px 18px;
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-rekod-guru:hover {
+      background-color: #c2410c;
     }
 
     /* SUB HEADER */
@@ -59,7 +63,7 @@
     .dashboard-title {
       font-size: 22px;
       font-weight: bold;
-      color: #0284c7;
+      color: #059669; /* Hijau Utama */
       display: flex;
       align-items: center;
       gap: 8px;
@@ -121,10 +125,10 @@
     .card-cemerlang .card-title { color: #15803d; }
 
     .card-sukar {
-      border: 2px solid #fde047;
-      background-color: #fefce8;
+      border: 2px solid #ffedd5;
+      background-color: #fff7ed;
     }
-    .card-sukar .card-title { color: #a16207; }
+    .card-sukar .card-title { color: #c2410c; }
 
     /* CHARTS GRID */
     .charts-grid {
@@ -137,7 +141,7 @@
       background: white;
       border-radius: 12px;
       padding: 20px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #d1fae5;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }
     .chart-container {
@@ -151,8 +155,9 @@
       background: white;
       padding: 25px;
       border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      box-shadow: 0 10px 25px rgba(5, 150, 105, 0.08);
       margin-bottom: 30px;
+      border: 1px solid #d1fae5;
     }
     .table-container {
       overflow-x: auto;
@@ -168,11 +173,11 @@
       border-bottom: 1px solid #e2e8f0;
     }
     th {
-      background-color: #f8fafc;
-      color: #334155;
+      background-color: #ecfdf5;
+      color: #065f46;
       font-weight: bold;
     }
-    tr:hover { background-color: #f1f5f9; }
+    tr:hover { background-color: #f0fdf4; }
     .badge-score {
       background-color: #dcfce7;
       color: #15803d;
@@ -184,7 +189,7 @@
       text-align: center;
       padding: 30px;
       font-weight: bold;
-      color: #64748b;
+      color: #059669;
     }
 
     /* TOOLBAR CARIAN BAWAH */
@@ -193,21 +198,24 @@
       gap: 10px;
       margin-top: 20px;
       padding-top: 15px;
-      border-top: 2px solid #f1f5f9;
+      border-top: 2px solid #e2e8f0;
       flex-wrap: wrap;
     }
     .toolbar-bottom input, .toolbar-bottom select {
       padding: 10px 14px;
-      border: 2px solid #cbd5e1;
+      border: 2px solid #a7f3d0;
       border-radius: 8px;
       font-size: 14px;
       outline: none;
+    }
+    .toolbar-bottom input:focus, .toolbar-bottom select:focus {
+      border-color: #059669;
     }
     .toolbar-bottom input { flex: 2; min-width: 200px; }
     .toolbar-bottom select { flex: 1; min-width: 150px; }
     
     .btn-refresh {
-      background-color: #0284c7;
+      background-color: #059669; /* Hijau */
       color: white;
       border: none;
       padding: 10px 16px;
@@ -216,7 +224,7 @@
       cursor: pointer;
     }
     .btn-export {
-      background-color: #10b981;
+      background-color: #ea580c; /* Oren */
       color: white;
       border: none;
       padding: 10px 16px;
@@ -225,7 +233,7 @@
       cursor: pointer;
     }
     .btn-print {
-      background-color: #64748b;
+      background-color: #475569;
       color: white;
       border: none;
       padding: 10px 16px;
@@ -235,7 +243,7 @@
     }
 
     .score-red { color: #ef4444; font-weight: bold; }
-    .score-yellow { color: #d97706; font-weight: bold; }
+    .score-yellow { color: #ea580c; font-weight: bold; }
     .score-green { color: #16a34a; font-weight: bold; }
 
     /* CSS CETAKAN / PRINT */
@@ -296,14 +304,14 @@
     <!-- CARTA ANALISA -->
     <div class="charts-grid">
       <div class="chart-card">
-        <div style="font-weight:bold; margin-bottom:12px; color:#334155;">📊 Purata Peratusan Pencapaian Mengikut Modul</div>
+        <div style="font-weight:bold; margin-bottom:12px; color:#065f46;">📊 Purata Peratusan Pencapaian Mengikut Modul</div>
         <div class="chart-container">
           <canvas id="barChart"></canvas>
         </div>
       </div>
 
       <div class="chart-card">
-        <div style="font-weight:bold; margin-bottom:12px; color:#334155;">🍩 Pecahan Tahap Penguasaan Murid</div>
+        <div style="font-weight:bold; margin-bottom:12px; color:#065f46;">🍩 Pecahan Tahap Penguasaan Murid</div>
         <div class="chart-container">
           <canvas id="doughnutChart"></canvas>
         </div>
@@ -515,7 +523,7 @@
         labels: labels,
         datasets: [{
           data: dataValues,
-          backgroundColor: '#0284c7',
+          backgroundColor: '#059669', /* Hijau Tema */
           borderRadius: 6
         }]
       },
@@ -540,7 +548,7 @@
         labels: ['Intervensi (<60%)', 'Sederhana (60-89%)', 'Cemerlang (≥90%)'],
         datasets: [{
           data: [intervensi, sederhana, cemerlang],
-          backgroundColor: ['#ef4444', '#f59e0b', '#22c55e']
+          backgroundColor: ['#ef4444', '#ea580c', '#10b981'] /* Red, Orange, Green */
         }]
       },
       options: {
