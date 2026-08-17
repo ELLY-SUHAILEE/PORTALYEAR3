@@ -408,7 +408,7 @@ window.quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
     }
   ],
 
- "Mixed Skills": [
+  "Mixed Skills": [
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE1_28.png"),
@@ -431,3 +431,4 @@ window.quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
       "ans": "A) Keep the beach clean"
     }
   ]
+};
