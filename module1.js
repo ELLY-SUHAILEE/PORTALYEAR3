@@ -405,27 +405,26 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
     }
   ],
 
-  "Mixed Skills": [
+ "Mixed Skills": [
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE1_28.png"),
-      "q": "28. Read the card: [BEACH]\nWhere are the children?",
-      "options": ["A) At the beach", "B) In the classroom", "C) At home"],
-      "ans": "A) At the beach"
+      "q": "28. Read the notice. When are the swimming lessons held?",
+      "options": ["A) Every Saturday", "B) Every Sunday", "C) Every Friday"],
+      "ans": "A) Every Saturday"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE1_29.png"),
-      "q": "29. Read the number: [20]\nWhat is this number?",
-      "options": ["A) Twenty", "B) Thirty", "C) Ten"],
-      "ans": "A) Twenty"
+      "q": "29. Read the card. How old is Sara?",
+      "options": ["A) Nine years old", "B) Ten years old", "C) Eight years old"],
+      "ans": "A) Nine years old"
     },
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE1_30.png"),
-      "q": "30. Look at the picture of a ball:\nWhat game is it for?",
-      "options": ["A) Football", "B) Swimming", "C) Running"],
-      "ans": "A) Football"
+      "q": "30. Read the poster. What should we do at the beach?",
+      "options": ["A) Keep the beach clean", "B) Throw rubbish on the sand", "C) Swim in deep water"],
+      "ans": "A) Keep the beach clean"
     }
   ]
-};
