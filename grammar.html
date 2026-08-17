@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Fun - Year 3 Forest English Quest ✏️</title>
+    <!-- Font Mesra Kanak-Kanak -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Fredoka', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #047857;
+            margin: 0;
+            padding: 30px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            font-size: 20px !important;
+        }
+
+        /* ANIMASI HIDUPAN HUTAN */
+        .forest-decor {
+            position: fixed;
+            z-index: 1;
+            pointer-events: none;
+            user-select: none;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+        }
+
+        .creature-bird {
+            top: 6%;
+            width: 200px;
+            height: auto;
+            animation: flyRight 25s infinite linear;
+            opacity: 0.9;
+        }
+
+        .creature-owl {
+            top: 10%;
+            right: 4%;
+            width: 120px;
+            height: auto;
+            animation: floatUpDown 6s infinite ease-in-out;
+            opacity: 0.95;
+        }
+
+        @keyframes flyRight {
+            0% { transform: translateX(-30vw) translateY(0px); }
+            50% { transform: translateX(45vw) translateY(-20px); }
+            100% { transform: translateX(115vw) translateY(10px); }
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-18px); }
+        }
+
+        /* KAD UTAMA */
+        .card {
+            background: rgba(245, 253, 248, 0.95);
+            backdrop-filter: blur(12px);
+            width: 100%;
+            max-width: 850px;
+            border-radius: 28px;
+            border: 4px solid #fed7aa;
+            box-shadow: 0 20px 45px rgba(5, 46, 22, 0.4);
+            padding: 35px 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #db2777; /* Tema Pink / Magenta */
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 34px;
+            font-weight: 700;
+            text-shadow: 2px 2px 0px #fed7aa;
+        }
+
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .btn-home {
+            background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
+            color: #052e16;
+            padding: 12px 22px;
+            border: 2px solid #fed7aa;
+            border-radius: 14px;
+            font-size: 20px !important;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 0px #16a34a;
+            transition: all 0.15s ease;
+        }
+
+        .btn-home:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px #16a34a;
+        }
+
+        /* TAB KATEGORI TATABAHASA */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            background: #fce7f3;
+            border: 2px solid #fbcfe8;
+            color: #be185d;
+            padding: 14px;
+            border-radius: 16px;
+            font-size: 20px !important;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            color: #ffffff;
+            border-color: #be185d;
+            box-shadow: 0 4px 12px rgba(219, 39, 119, 0.3);
+        }
+
+        /* KOTAK NOTA TATABAHASA - SAIZ 20px */
+        .note-box {
+            background: #fff5f8;
+            border: 3px solid #fbcfe8;
+            border-left: 8px solid #ec4899;
+            border-radius: 20px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+
+        .note-title {
+            font-size: 20px !important;
+            color: #9d174d;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .grammar-item {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            border: 2px solid #fce7f3;
+            font-size: 20px !important;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .grammar-item strong {
+            color: #db2777;
+        }
+
+        /* SOALAN KUIZ - SAIZ 20px */
+        .question-card {
+            background-color: #ffffff;
+            border: 3px solid #bbf7d0;
+            border-left: 8px solid #ec4899;
+            padding: 22px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .question-title {
+            font-size: 20px !important;
+            color: #052e16;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        /* PILIHAN JAWAPAN - SAIZ 20px */
+        .option-label {
+            font-weight: 600;
+            background: #f0fdf4;
+            padding: 14px 18px;
+            border: 2px solid #dcfce7;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #166534;
+            font-size: 20px !important;
+        }
+
+        .option-label:hover {
+            background-color: #fce7f3;
+            border-color: #fbcfe8;
+            transform: translateX(4px);
+        }
+
+        .option-label input[type="radio"] {
+            accent-color: #db2777;
+            width: 22px;
+            height: 22px;
+            margin-right: 12px;
+        }
+
+        .btn-check {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            border: none;
+            border-radius: 18px;
+            font-size: 20px !important;
+            font-weight: 700;
+            color: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 6px 0px #be185d;
+            transition: all 0.15s ease;
+            margin-top: 10px;
+        }
+
+        .btn-check:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0px #be185d;
+        }
+
+        #result-box {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: #f0fdf4;
+            border: 3px solid #86efac;
+            border-radius: 20px;
+            margin-top: 25px;
+            font-size: 20px !important;
+        }
+    </style>
+</head>
+<body>
+
+<!-- VEKTOR SVG HUTAN -->
+<svg class="forest-decor creature-bird" viewBox="0 0 160 80">
+    <path d="M10,40 Q40,10 70,35 Q100,10 130,40 Q100,25 70,45 Q40,25 10,40 Z" fill="#ec4899"/>
+    <polygon points="130,40 150,38 135,45" fill="#f59e0b"/>
+</svg>
+
+<svg class="forest-decor creature-owl" viewBox="0 0 120 140">
+    <path d="M20,50 Q20,10 60,10 Q100,10 100,50 Q100,110 60,110 Q20,110 20,50 Z" fill="#78350f"/>
+    <circle cx="45" cy="45" r="16" fill="#ffffff"/>
+    <circle cx="75" cy="45" r="16" fill="#ffffff"/>
+    <circle cx="45" cy="45" r="8" fill="#000000"/>
+    <circle cx="75" cy="45" r="8" fill="#000000"/>
+    <polygon points="60,52 53,65 67,65" fill="#d97706"/>
+</svg>
+
+<div class="card">
+    <div class="nav-header">
+        <a href="index.html" class="btn-home">🏠 HOME</a>
+        <span style="font-weight: 700; color: #db2777; font-size: 20px !important;">Grammar Quest ✏️</span>
+    </div>
+
+    <h1>✏️ GRAMMAR FUN 🌲</h1>
+
+    <!-- TABS KATEGORI MAIN TATABAHASA -->
+    <div class="category-grid">
+        <button class="tab-btn active" onclick="pilihKategori('prep')">📍 Prepositions</button>
+        <button class="tab-btn" onclick="pilihKategori('nouns')">📦 Nouns & Pronouns</button>
+        <button class="tab-btn" onclick="pilihKategori('verbs')">⚡ Verbs & Tenses</button>
+        <button class="tab-btn" onclick="pilihKategori('questions')">❓ Questions & Time</button>
+    </div>
+
+    <!-- KANDUNGAN MODUL -->
+    <div id="grammar-content"></div>
+
+    <!-- BUTTON SEMAK JAWAPAN -->
+    <button class="btn-check" onclick="semakJawapanGrammar()">✨ Check Answers / Semak Jawapan ✨</button>
+
+    <!-- PAPARAN KEPUTUSAN -->
+    <div id="result-box">
+        <h2 style="color: #166534; margin-top: 0; font-size: 26px;">🎉 Excellent Job!</h2>
+        <p id="score-text" style="font-size: 20px !important; font-weight: 700; color: #db2777; margin: 10px 0;"></p>
+    </div>
+</div>
+
+<script>
+    // DATA MODUL TATABAHASA
+    const grammarModules = {
+        prep: {
+            title: "📍 Prepositions of Place (between, above, below)",
+            notes: [
+                "<strong>BETWEEN (Di antara):</strong> Sesuatu objek berada di tengah-tengah antara <u>dua</u> benda lain.<br><i>Example: The owl is sitting <b>between</b> two trees. 🦉</i>",
+                "<strong>ABOVE (Di atas):</strong> Posisi lebih tinggi di udara tanpa menyentuh permukaan.<br><i>Example: The bird is flying <b>above</b> the clouds. ☁️</i>",
+                "<strong>BELOW (Di bawah):</strong> Posisi lebih rendah daripada sesuatu objek.<br><i>Example: The mushrooms grow <b>below</b> the tall oak tree. 🍄</i>"
+            ],
+            questions: [
+                {
+                    q: "1. The bird is flying ________ the tall trees.",
+                    options: ["between", "above", "below"],
+                    ans: "above"
+                },
+                {
+                    q: "2. The fox is sleeping ________ the tree and the river.",
+                    options: ["between", "above", "below"],
+                    ans: "between"
+                },
+                {
+                    q: "3. The fish swims ________ the surface of the water.",
+                    options: ["above", "between", "below"],
+                    ans: "below"
+                },
+                {
+                    q: "4. A bridge goes ________ two hills.",
+                    options: ["between", "above", "below"],
+                    ans: "between"
+                },
+                {
+                    q: "5. The bright stars are high ________ us in the sky.",
+                    options: ["below", "above", "between"],
+                    ans: "above"
+                }
+            ]
+        },
+        nouns: {
+            title: "📦 Nouns & Pronouns (Singular, Plural & Possessives)",
+            notes: [
+                "<strong>Singular vs Plural:</strong> 1 Cat 🐱 -> 2 Cat<b>s</b> 🐱🐱 | 1 Box 📦 -> 2 Box<b>es</b> 📦📦",
+                "<strong>Personal Pronouns:</strong> I, You, He (Lelaki), She (Perempuan), It (Benda/Haiwan), We, They.",
+                "<strong>Possessive Adjectives:</strong> <b>My</b> cat, <b>His</b> bag, <b>Her</b> hat, <b>Their</b> house."
+            ],
+            questions: [
+                {
+                    q: "1. Look at those three small ________ playing in the garden.",
+                    options: ["cat", "cats", "caats"],
+                    ans: "cats"
+                },
+                {
+                    q: "2. Sarah is happy. ________ is playing with her new doll.",
+                    options: ["He", "She", "They"],
+                    ans: "She"
+                },
+                {
+                    q: "3. That is Adam's bicycle. It is ________ bicycle.",
+                    options: ["his", "her", "my"],
+                    ans: "his"
+                }
+            ]
+        },
+        verbs: {
+            title: "⚡ Verbs & Tenses (Present Simple & Continuous)",
+            notes: [
+                "<strong>Verb 'to be':</strong> He / She / It ➡️ <b>is</b> | They / We / You ➡️ <b>are</b> | I ➡️ <b>am</b>",
+                "<strong>Present Continuous (Right now):</strong> She is <b>reading</b> a book now. 📖",
+                "<strong>Can / Can't:</strong> Birds <b>can</b> fly. 🦅 Fish <b>can't</b> fly. 🐟"
+            ],
+            questions: [
+                {
+                    q: "1. They ________ playing football at the field right now.",
+                    options: ["is", "am", "are"],
+                    ans: "are"
+                },
+                {
+                    q: "2. Monkeys ________ climb trees very easily.",
+                    options: ["can", "can't", "mustn't"],
+                    ans: "can"
+                },
+                {
+                    q: "3. He ________ his teeth every morning.",
+                    options: ["brush", "brushes", "brushing"],
+                    ans: "brushes"
+                }
+            ]
+        },
+        questions: {
+            title: "❓ Questions & Sentence Structure (WH-Questions & Time)",
+            notes: [
+                "<strong>WH-Questions:</strong> <b>What</b> (Apa), <b>Where</b> (Mana), <b>Who</b> (Siapa), <b>When</b> (Bila).",
+                "<strong>Telling Time:</strong> 8:00 ➡️ 8 <b>o'clock</b> | 8:30 ➡️ <b>half past</b> eight."
+            ],
+            questions: [
+                {
+                    q: "1. ________ is your name?",
+                    options: ["Where", "What", "Who"],
+                    ans: "What"
+                },
+                {
+                    q: "2. ________ do you live?",
+                    options: ["Where", "What", "When"],
+                    ans: "Where"
+                },
+                {
+                    q: "3. It is 9:00. It is nine ________.",
+                    options: ["half past", "o'clock", "quarter to"],
+                    ans: "o'clock"
+                }
+            ]
+        }
+    };
+
+    let selectedCategory = 'prep';
+    let userAnswers = {};
+
+    function pilihKategori(katKey) {
+        selectedCategory = katKey;
+        
+        // Kemaskini Gaya Tab Active
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        paparModul();
+    }
+
+    function paparModul() {
+        const modulData = grammarModules[selectedCategory];
+        const container = document.getElementById('grammar-content');
+        
+        userAnswers = {};
+        document.getElementById('result-box').style.display = 'none';
+
+        let html = `
+            <div class="note-box">
+                <div class="note-title">${modulData.title}</div>
+        `;
+
+        modulData.notes.forEach(nota => {
+            html += `<div class="grammar-item">${nota}</div>`;
+        });
+
+        html += `</div>`;
+
+        modulData.questions.forEach((qObj, index) => {
+            html += `
+                <div class="question-card">
+                    <div class="question-title">${qObj.q}</div>
+            `;
+
+            qObj.options.forEach(opt => {
+                html += `
+                    <label class="option-label">
+                        <input type="radio" name="g_q_${index}" value="${opt}" onchange="simpanJawapan(${index}, '${opt}')">
+                        ${opt}
+                    </label>
+                `;
+            });
+
+            html += `</div>`;
+        });
+
+        container.innerHTML = html;
+    }
+
+    function simpanJawapan(qIdx, opt) {
+        userAnswers[qIdx] = opt;
+    }
+
+    function semakJawapanGrammar() {
+        const questions = grammarModules[selectedCategory].questions;
+
+        if (Object.keys(userAnswers).length < questions.length) {
+            alert("Sila jawab semua soalan tatabahasa terlebih dahulu!");
+            return;
+        }
+
+        let markah = 0;
+        questions.forEach((qObj, index) => {
+            if (userAnswers[index] === qObj.ans) {
+                markah++;
+            }
+        });
+
+        const resultBox = document.getElementById('result-box');
+        const scoreText = document.getElementById('score-text');
+
+        scoreText.innerText = `⭐ You scored ${markah} / ${questions.length}! ⭐`;
+        resultBox.style.display = 'block';
+        resultBox.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Muat modul pertama automatik
+    window.onload = function() {
+        paparModul();
+    };
+</script>
+
+</body>
+</html>
