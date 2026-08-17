@@ -198,10 +198,12 @@
         .btn-container {
             display: flex;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         .btn-set {
             flex: 1;
+            min-width: 220px;
             padding: 16px;
             border: none;
             border-radius: 18px;
@@ -213,6 +215,11 @@
             letter-spacing: 0.8px;
             box-shadow: 0 6px 0px rgba(0,0,0,0.15);
             transition: all 0.15s ease;
+            text-decoration: none;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
         .btn-set:active {
@@ -233,6 +240,20 @@
             box-shadow: 0 6px 0px #c2410c;
         }
         .btn-green:hover { background: linear-gradient(135deg, #fdba74 0%, #fb923c 100%); }
+
+        /* READING CORNER: Tona Ungu Ceria */
+        .btn-purple {
+            background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+            box-shadow: 0 6px 0px #7e22ce;
+        }
+        .btn-purple:hover { background: linear-gradient(135deg, #c084fc 0%, #a855f7 100%); }
+
+        /* GRAMMAR FUN: Tona Merah Jambu / Magenta */
+        .btn-pink {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            box-shadow: 0 6px 0px #be185d;
+        }
+        .btn-pink:hover { background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%); }
 
         .btn-home {
             background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
@@ -475,6 +496,14 @@
         <div class="btn-container">
             <button class="btn-set btn-blue" onclick="mulaKuiz('GET SMART SET')">🎮 GET SMART SET</button>
             <button class="btn-set btn-green" onclick="mulaKuiz('REMEDIAL SET')">🌟 REMEDIAL SET</button>
+        </div>
+
+        <!-- MODUL PENEROKAAN TAMBAHAN -->
+        <div class="sub-title" style="margin-top: 25px;">🚀 Penerokaan Kendiri 🚀</div>
+
+        <div class="btn-container">
+            <a href="reading.html" class="btn-set btn-purple">📖 READING CORNER</a>
+            <a href="grammar.html" class="btn-set btn-pink">✏️ GRAMMAR FUN</a>
         </div>
 
         <a href="javascript:void(0)" onclick="bukaDashboardGuru()" class="link-guru">🔒 Dashboard Guru</a>
