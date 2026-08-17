@@ -205,6 +205,7 @@
     }
     .toolbar-bottom input { flex: 2; min-width: 200px; }
     .toolbar-bottom select { flex: 1; min-width: 150px; }
+    
     .btn-refresh {
       background-color: #0284c7;
       color: white;
@@ -214,9 +215,43 @@
       font-weight: bold;
       cursor: pointer;
     }
+    .btn-export {
+      background-color: #10b981;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-print {
+      background-color: #64748b;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
     .score-red { color: #ef4444; font-weight: bold; }
+    .score-yellow { color: #d97706; font-weight: bold; }
     .score-green { color: #16a34a; font-weight: bold; }
+
+    /* CSS CETAKAN / PRINT */
+    @media print {
+      .top-nav, .btn-logout, .toolbar-bottom {
+        display: none !important;
+      }
+      body {
+        background-color: #fff;
+        padding: 0;
+      }
+      .card, .chart-card, .table-section {
+        box-shadow: none;
+        border: 1px solid #cbd5e1;
+      }
+    }
   </style>
 </head>
 <body>
@@ -224,7 +259,7 @@
   <div class="container">
     <!-- TOP NAV -->
     <div class="top-nav">
-      <div class="app-title">📖 Reading Tracker App</div>
+      <div class="app-title">📖 PORTAL YEAR 3</div>
       <button class="btn-rekod-guru">🔒 Rekod Guru</button>
     </div>
 
@@ -298,7 +333,7 @@
         </table>
       </div>
 
-      <!-- KAWASAN CARIAN & PENAPIS DI BAHAGIAN BAWAH -->
+      <!-- KAWASAN CARIAN & TOOLBAR BAWAH -->
       <div class="toolbar-bottom">
         <input type="text" id="search-input" placeholder="🔍 Cari nama murid..." onkeyup="tapisData()">
         <select id="filter-kelas" onchange="tapisData()">
@@ -316,6 +351,8 @@
           <option value="3 KREATIF">3 KREATIF</option>
         </select>
         <button class="btn-refresh" onclick="muatDataRekod()">🔄 Muat Semula</button>
+        <button class="btn-export" onclick="exportKeCSV()">📥 Muat Turun CSV</button>
+        <button class="btn-print" onclick="window.print()">🖨️ Cetak / PDF</button>
       </div>
     </div>
   </div>
@@ -454,7 +491,11 @@
     const listSukar = document.getElementById('list-modul-sukar');
     let htmlSukar = '<ul>';
     modulSukarArr.forEach(s => {
-      htmlSukar += `<li><b>${s.modul}</b>: Purata <span class="score-green">${s.avg}%</span> (${s.count} percubaan)</li>`;
+      let warnaKelas = 'score-green';
+      if (s.avg < 60) warnaKelas = 'score-red';
+      else if (s.avg < 90) warnaKelas = 'score-yellow';
+
+      htmlSukar += `<li><b>${s.modul}</b>: Purata <span class="${warnaKelas}">${s.avg}%</span> (${s.count} percubaan)</li>`;
     });
     htmlSukar += '</ul>';
     listSukar.innerHTML = htmlSukar;
@@ -525,6 +566,46 @@
     });
 
     paparJadual(dataDitapis);
+  }
+
+  function exportKeCSV() {
+    if (!senaraiRekod || senaraiRekod.length === 0) {
+      alert("⚠️ Tiada data untuk dimuat turun.");
+      return;
+    }
+
+    const carian = document.getElementById('search-input').value.toLowerCase();
+    const kelasSelected = document.getElementById('filter-kelas').value;
+
+    const dataDitapis = senaraiRekod.filter(row => {
+      const nama = (row[1] || '').toString().toLowerCase();
+      const kelas = (row[2] || '').toString();
+      return nama.includes(carian) && (kelasSelected === "" || kelas === kelasSelected);
+    });
+
+    let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
+    csvContent += "Bil,Masa/Tarikh,Nama Murid,Kelas,Modul,Markah,Peratus\n";
+
+    dataDitapis.forEach((row, index) => {
+      let line = [
+        index + 1,
+        `"${row[0] || ''}"`,
+        `"${row[1] || ''}"`,
+        `"${row[2] || ''}"`,
+        `"${row[3] || ''}"`,
+        `"${row[4] || ''}"`,
+        `"${row[5] || ''}"`
+      ].join(",");
+      csvContent += line + "\n";
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `Rekod_Murid_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   function logKeluar() {
