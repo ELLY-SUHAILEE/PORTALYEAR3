@@ -1,17 +1,20 @@
-if (typeof quizBank === 'undefined') { var quizBank = {}; }
-if (!quizBank["GET SMART SET"]) { quizBank["GET SMART SET"] = {}; }
-if (!quizBank["REMEDIAL SET"]) { quizBank["REMEDIAL SET"] = {}; }
+// Memastikan pangkalan data global wujud tanpa memadam data sedia ada
+window.quizBank = window.quizBank || {};
+window.quizBank["GET SMART SET"] = window.quizBank["GET SMART SET"] || {};
+window.quizBank["REMEDIAL SET"] = window.quizBank["REMEDIAL SET"] || {};
 
-// Fungsi pembantu untuk memastikan gambar berada di tengah (Center)
-function wrapCenterImage(imagePath) {
+// Fungsi pembantu gambar secara selamat (mencegah pertindihan jika dipanggil berulang kali)
+if (typeof window.wrapCenterImage !== 'function') {
+  window.wrapCenterImage = function(imagePath) {
     if (!imagePath) return "";
     return `<div style="text-align: center; margin: 15px 0;"><img src="${imagePath}" style="display: block; margin: 0 auto; max-width: 100%; max-height: 250px; border-radius: 10px; border: 1px solid #ddd;" onerror="this.style.display='none'"></div>`;
+  };
 }
 
 // ==========================================
 // 1. GET SMART SET (30 SOALAN)
 // ==========================================
-quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
+window.quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
   "Reading": [
     // --- PETIKAN 1 (Soalan 1 - 5: Sara and Aina at the Beach) ---
     {
@@ -222,7 +225,7 @@ quizBank["GET SMART SET"]["Module 1: Welcome!"] = {
 // ==========================================
 // 2. REMEDIAL SET (30 SOALAN)
 // ==========================================
-quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
+window.quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
   "Reading": [
     // --- PETIKAN 1 (Soalan 1 - 5: Sara and Aina) ---
     {
@@ -395,7 +398,7 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
       "type": "mcq",
       "q": "26. Can you play football?",
       "options": ["A) Yes, I can.", "B) No, I haven't.", "C) Yes, I do."],
-      "ans": "A) Yes, I can."
+      "ans": "A) Yes, I do."
     },
     {
       "type": "mcq",
@@ -405,7 +408,7 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
     }
   ],
 
- "Mixed Skills": [
+  "Mixed Skills": [
     {
       "type": "mcq",
       "image": wrapCenterImage("images/REMEDIAL_MODULE1_28.png"),
@@ -428,3 +431,4 @@ quizBank["REMEDIAL SET"]["Module 1: Welcome!"] = {
       "ans": "A) Keep the beach clean"
     }
   ]
+};
