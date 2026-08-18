@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Year 3 - Forest English Quest 🌲</title>
+    <title>Portal Year 3 - Ocean English Quest 🌊</title>
     <!-- Font Mesra Kanak-Kanak -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -13,9 +13,9 @@
             font-family: 'Fredoka', Arial, sans-serif;
         }
 
-        /* Latar Belakang Hijau Emerald Terang */
+        /* Latar Belakang Biru Lautan Gradien */
         body {
-            background-color: #047857;
+            background: linear-gradient(180deg, #38bdf8 0%, #0284c7 50%, #0369a1 100%);
             margin: 0;
             padding: 30px 15px;
             display: flex;
@@ -26,77 +26,75 @@
             overflow-x: hidden;
         }
 
-        /* ANIMASI HIDUPAN & ELEMENT HUTAN / KABIN / GUNUNG */
-        .forest-decor {
+        /* ANIMASI HIDUPAN & ELEMENT LAUTAN */
+        .ocean-decor {
             position: fixed;
             z-index: 1;
             pointer-events: none;
             user-select: none;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
         }
 
-        .creature-bird {
-            top: 6%;
-            width: 220px;
+        .creature-dolphin {
+            top: 5%;
+            width: 200px;
             height: auto;
-            animation: flyRight 22s infinite linear;
+            animation: swimRight 22s infinite linear;
             opacity: 0.9;
         }
 
-        .creature-owl {
-            top: 10%;
+        .creature-jellyfish {
+            top: 8%;
             right: 4%;
-            width: 130px;
+            width: 120px;
             height: auto;
             animation: floatUpDown 6s infinite ease-in-out;
             opacity: 0.95;
         }
 
-        .creature-butterfly1 {
+        .creature-fish1 {
             top: 38%;
             left: 3%;
-            width: 100px;
-            height: auto;
-            animation: flutter 9s infinite ease-in-out;
-        }
-
-        .creature-butterfly2 {
-            top: 52%;
-            right: 4%;
             width: 90px;
             height: auto;
-            animation: flutter 11s infinite ease-in-out;
+            animation: swimWiggle 9s infinite ease-in-out;
+        }
+
+        .creature-fish2 {
+            top: 52%;
+            right: 4%;
+            width: 85px;
+            height: auto;
+            animation: swimWiggle 11s infinite ease-in-out;
             animation-delay: 2s;
         }
 
-        /* Kabin & Gunung Hutan (Bahagian Bawah Kiri) */
-        .creature-cabin {
-            bottom: 10px;
-            left: 2%;
-            width: 220px;
+        .creature-coral {
+            bottom: 0px;
+            left: 1%;
+            width: 200px;
             height: auto;
             animation: pulseGlow 5s infinite alternate;
         }
 
-        /* Cendawan Hutan (Bahagian Bawah Kanan) */
-        .creature-mushroom {
+        .creature-submarine {
             bottom: 10px;
             right: 3%;
-            width: 130px;
+            width: 140px;
             height: auto;
             animation: pulseGlow 4s infinite alternate;
         }
 
-        @keyframes flyRight {
+        @keyframes swimRight {
             0% { transform: translateX(-30vw) translateY(0px) scale(0.9); }
-            50% { transform: translateX(45vw) translateY(-20px) scale(1.1); }
+            50% { transform: translateX(45vw) translateY(-20px) scale(1.05); }
             100% { transform: translateX(115vw) translateY(10px) scale(0.9); }
         }
 
-        @keyframes flutter {
+        @keyframes swimWiggle {
             0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-            25% { transform: translateY(-25px) rotate(-8deg) scale(1.05); }
-            75% { transform: translateY(15px) rotate(8deg) scale(0.95); }
+            25% { transform: translateY(-20px) rotate(-6deg) scale(1.05); }
+            75% { transform: translateY(15px) rotate(6deg) scale(0.95); }
         }
 
         @keyframes floatUpDown {
@@ -105,49 +103,50 @@
         }
 
         @keyframes pulseGlow {
-            0% { transform: scale(1); filter: drop-shadow(0 6px 10px rgba(0,0,0,0.5)); }
-            100% { transform: scale(1.05); filter: drop-shadow(0 10px 20px rgba(255, 237, 213, 0.3)); }
+            0% { transform: scale(1); filter: drop-shadow(0 6px 10px rgba(0,0,0,0.4)); }
+            100% { transform: scale(1.04); filter: drop-shadow(0 10px 20px rgba(186, 230, 253, 0.4)); }
         }
 
+        /* Animasi Buih Belakang Card */
         body::before, body::after {
-            content: "🍃";
+            content: "🫧";
             position: fixed;
             font-size: 2rem;
-            opacity: 0.4;
-            animation: leafFall 10s infinite linear;
+            opacity: 0.5;
+            animation: bubbleRise 9s infinite linear;
             z-index: 0;
         }
-        body::before { left: 18%; animation-duration: 11s; }
-        body::after { right: 25%; animation-duration: 8s; animation-delay: 3s; }
+        body::before { left: 18%; animation-duration: 10s; }
+        body::after { right: 25%; animation-duration: 7s; animation-delay: 2s; }
 
-        @keyframes leafFall {
-            0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
-            30% { opacity: 0.7; }
-            100% { transform: translateY(105vh) rotate(360deg) translateX(80px); opacity: 0; }
+        @keyframes bubbleRise {
+            0% { transform: translateY(105vh) scale(0.8) translateX(0); opacity: 0; }
+            30% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.2) translateX(50px); opacity: 0; }
         }
 
-        /* Kad Utama Glassmorphism Tema Hijau Cair & Oren Cair */
+        /* Kad Utama Glassmorphism Tema Lautan */
         .card {
-            background: rgba(245, 253, 248, 0.93);
+            background: rgba(240, 253, 250, 0.94);
             backdrop-filter: blur(12px);
             width: 100%;
             max-width: 850px;
             border-radius: 28px;
-            border: 4px solid #fed7aa; /* Frame Oren Cair */
-            box-shadow: 0 20px 45px rgba(5, 46, 22, 0.4);
+            border: 4px solid #7dd3fc;
+            box-shadow: 0 20px 45px rgba(3, 105, 161, 0.4);
             padding: 35px 30px;
             position: relative;
             z-index: 10;
         }
 
         h1 {
-            color: #166534;
+            color: #0f766e;
             text-align: center;
             margin-top: 0;
             margin-bottom: 25px;
             font-size: 34px;
             font-weight: 700;
-            text-shadow: 2px 2px 0px #fed7aa; /* Bayangan Oren Cair */
+            text-shadow: 2px 2px 0px #bae6fd;
             letter-spacing: 0.5px;
         }
 
@@ -160,28 +159,28 @@
             display: block;
             font-weight: 600;
             margin-bottom: 8px;
-            color: #166534;
+            color: #0f766e;
             font-size: 20px !important;
         }
 
         input[type="text"], select {
             width: 100%;
             padding: 14px 18px;
-            border: 2px solid #86efac; /* Hijau Cair */
+            border: 2px solid #5eead4;
             border-radius: 16px;
             font-size: 20px !important;
             outline: none;
-            background-color: #f0fdf4; /* Soft Mint */
-            color: #052e16;
+            background-color: #f0fdf4;
+            color: #042f2e;
             font-weight: 600;
             transition: all 0.2s ease;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
         }
 
         input[type="text"]:focus, select:focus {
-            border-color: #fb923c; /* Focus Oren Cair */
+            border-color: #0284c7;
             background-color: #ffffff;
-            box-shadow: 0 0 0 4px rgba(253, 186, 116, 0.4);
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.35);
         }
 
         .sub-title {
@@ -189,7 +188,7 @@
             font-weight: 700;
             margin-top: 30px;
             margin-bottom: 20px;
-            color: #c2410c; /* Oren gelap sedikit untuk kontras */
+            color: #0284c7;
             font-size: 20px !important;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -227,19 +226,19 @@
             box-shadow: 0 2px 0px rgba(0,0,0,0.15);
         }
 
-        /* GET SMART SET: Tona Hijau Cair */
+        /* GET SMART SET: Hijau Emerald Segar */
         .btn-blue {
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-            box-shadow: 0 6px 0px #15803d;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 6px 0px #047857;
         }
-        .btn-blue:hover { background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%); }
+        .btn-blue:hover { background: linear-gradient(135deg, #34d399 0%, #10b981 100%); }
 
-        /* REMEDIAL SET: Tona Oren Cair */
+        /* REMEDIAL SET: Oren Karang Laut */
         .btn-green {
-            background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
             box-shadow: 0 6px 0px #c2410c;
         }
-        .btn-green:hover { background: linear-gradient(135deg, #fdba74 0%, #fb923c 100%); }
+        .btn-green:hover { background: linear-gradient(135deg, #fb923c 0%, #f97316 100%); }
 
         /* READING CORNER: Tona Ungu Ceria */
         .btn-purple {
@@ -248,7 +247,7 @@
         }
         .btn-purple:hover { background: linear-gradient(135deg, #c084fc 0%, #a855f7 100%); }
 
-        /* GRAMMAR FUN: Tona Merah Jambu / Magenta */
+        /* GRAMMAR FUN: Tona Merah Jambu */
         .btn-pink {
             background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
             box-shadow: 0 6px 0px #be185d;
@@ -263,10 +262,10 @@
         .btn-teal:hover { background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%); }
 
         .btn-home {
-            background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
-            color: #052e16;
+            background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+            color: #ffffff;
             padding: 12px 22px;
-            border: 2px solid #fed7aa;
+            border: 2px solid #bae6fd;
             border-radius: 14px;
             font-size: 18px;
             font-weight: 700;
@@ -274,33 +273,33 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 0px #16a34a;
+            box-shadow: 0 4px 0px #0369a1;
             transition: all 0.15s ease;
         }
         .btn-home:active {
             transform: translateY(2px);
-            box-shadow: 0 2px 0px #16a34a;
+            box-shadow: 0 2px 0px #0369a1;
         }
 
         #papan-kuiz, #keputusan-kuiz {
             display: none;
         }
 
-        /* Item Soalan & Kad Jawapan (Hijau Cair & Oren Cair) */
+        /* Item Soalan & Kad Jawapan */
         .item-soalan {
             background-color: #ffffff;
-            border: 3px solid #bbf7d0; /* Sisi Hijau Cair */
-            border-left: 8px solid #fb923c; /* Jalur Akses Oren Cair */
+            border: 3px solid #99f6e4;
+            border-left: 8px solid #0284c7;
             padding: 24px;
             border-radius: 20px;
             margin-bottom: 24px;
-            box-shadow: 0 8px 16px rgba(22, 101, 52, 0.06);
+            box-shadow: 0 8px 16px rgba(15, 118, 110, 0.08);
         }
 
         /* TULISAN SOALAN - SAIZ 20px */
         .item-soalan h3 {
             font-size: 20px !important;
-            color: #052e16;
+            color: #042f2e;
             line-height: 1.5;
             font-weight: 700;
         }
@@ -308,27 +307,27 @@
         /* TULISAN PILIHAN JAWAPAN - SAIZ 20px */
         .pilihan-jawapan label {
             font-weight: 600;
-            background: #f0fdf4; /* Hijau cair */
+            background: #f0fdf4;
             padding: 16px 20px;
-            border: 2px solid #dcfce7;
+            border: 2px solid #ccfbf1;
             border-radius: 14px;
             margin-bottom: 14px;
             display: flex;
             align-items: center;
             cursor: pointer;
             transition: all 0.2s ease;
-            color: #166534;
+            color: #0f766e;
             font-size: 20px !important;
         }
 
         .pilihan-jawapan label:hover {
-            background-color: #ffedd5; /* Pertukaran ke Oren cair apabila tetikus lalu */
-            border-color: #fed7aa;
+            background-color: #e0f2fe;
+            border-color: #bae6fd;
             transform: translateX(4px);
         }
 
         .pilihan-jawapan input[type="radio"] {
-            accent-color: #f97316; /* Warna radio button Oren */
+            accent-color: #0284c7;
             width: 22px;
             height: 22px;
         }
@@ -336,9 +335,9 @@
         .question-image-container {
             text-align: center;
             margin-bottom: 18px;
-            background-color: #fff7ed; /* Oren sangat cair */
+            background-color: #f0f9ff;
             padding: 12px;
-            border: 2px dashed #fb923c;
+            border: 2px dashed #38bdf8;
             border-radius: 16px;
         }
 
@@ -363,7 +362,7 @@
             display: block;
             text-align: center;
             margin-top: 30px;
-            color: #166534;
+            color: #0f766e;
             text-decoration: none;
             font-size: 18px;
             font-weight: 700;
@@ -372,92 +371,61 @@
             transition: background 0.2s;
         }
         .link-guru:hover {
-            background: #ffedd5;
-            color: #c2410c;
+            background: #e0f2fe;
+            color: #0369a1;
         }
     </style>
 </head>
 <body>
 
-<!-- VEKTOR SVG HIDUPAN HUTAN, KABIN & GUNUNG -->
-<svg class="forest-decor creature-bird" viewBox="0 0 160 80">
-    <path d="M10,40 Q40,10 70,35 Q100,10 130,40 Q100,25 70,45 Q40,25 10,40 Z" fill="#3b82f6"/>
-    <path d="M15,42 Q40,20 70,38 Q100,20 125,42 Q100,32 70,48 Q40,32 15,42 Z" fill="#60a5fa"/>
-    <polygon points="130,40 150,38 135,45" fill="#f59e0b"/>
+<!-- VEKTOR SVG HIDUPAN LAUTAN, UNGKAAN & TERUMBU KARANG -->
+<svg class="ocean-decor creature-dolphin" viewBox="0 0 160 80">
+    <path d="M10,45 Q40,10 90,20 Q140,25 150,40 Q130,55 90,50 Q40,55 10,45 Z" fill="#38bdf8"/>
+    <path d="M70,22 L85,5 L95,23 Z" fill="#0284c7"/>
+    <path d="M135,42 L155,28 L150,45 L158,58 Z" fill="#0284c7"/>
+    <circle cx="25" cy="38" r="3" fill="#0f172a"/>
 </svg>
 
-<svg class="forest-decor creature-owl" viewBox="0 0 120 140">
-    <path d="M20,50 Q20,10 60,10 Q100,10 100,50 Q100,110 60,110 Q20,110 20,50 Z" fill="#78350f"/>
-    <path d="M30,55 Q30,22 60,22 Q90,22 90,55 Q90,100 60,100 Q30,100 30,55 Z" fill="#fef3c7"/>
-    <circle cx="45" cy="45" r="16" fill="#ffffff" stroke="#d97706" stroke-width="3"/>
-    <circle cx="75" cy="45" r="16" fill="#ffffff" stroke="#d97706" stroke-width="3"/>
-    <circle cx="45" cy="45" r="8" fill="#000000"/>
-    <circle cx="75" cy="45" r="8" fill="#000000"/>
-    <circle cx="42" cy="42" r="3" fill="#ffffff"/>
-    <circle cx="72" cy="42" r="3" fill="#ffffff"/>
-    <polygon points="60,52 53,65 67,65" fill="#d97706"/>
-    <path d="M15,50 Q5,80 25,95 Q30,70 20,50 Z" fill="#451a03"/>
-    <path d="M105,50 Q115,80 95,95 Q90,70 100,50 Z" fill="#451a03"/>
+<svg class="ocean-decor creature-jellyfish" viewBox="0 0 120 140">
+    <path d="M20,60 Q20,10 60,10 Q100,10 100,60 Q80,70 60,65 Q40,70 20,60 Z" fill="#f472b6" opacity="0.85"/>
+    <path d="M30,65 Q30,110 35,130 M45,67 Q50,115 48,135 M60,65 Q60,120 62,138 M75,67 Q70,115 72,135 M85,65 Q85,110 82,130" stroke="#e879f9" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <circle cx="45" cy="40" r="4" fill="#475569"/>
+    <circle cx="75" cy="40" r="4" fill="#475569"/>
 </svg>
 
-<svg class="forest-decor creature-butterfly1" viewBox="0 0 100 100">
-    <path d="M50,50 Q20,10 5,30 Q0,60 45,55 Z" fill="#fb923c"/>
-    <path d="M50,50 Q80,10 95,30 Q100,60 55,55 Z" fill="#fb923c"/>
-    <path d="M50,50 Q25,65 15,85 Q40,95 48,60 Z" fill="#f97316"/>
-    <path d="M50,50 Q75,65 85,85 Q60,95 52,60 Z" fill="#f97316"/>
-    <ellipse cx="50" cy="52" rx="3" ry="22" fill="#451a03"/>
-    <circle cx="50" cy="28" r="4" fill="#451a03"/>
+<svg class="ocean-decor creature-fish1" viewBox="0 0 100 100">
+    <path d="M80,50 Q40,15 10,40 Q5,50 10,60 Q40,85 80,50 Z" fill="#fb923c"/>
+    <polygon points="10,50 0,30 0,70" fill="#f97316"/>
+    <circle cx="65" cy="42" r="4" fill="#ffffff"/>
+    <circle cx="66" cy="42" r="2" fill="#000000"/>
 </svg>
 
-<svg class="forest-decor creature-butterfly2" viewBox="0 0 100 100">
-    <path d="M50,50 Q15,5 5,35 Q10,65 45,55 Z" fill="#4ade80"/>
-    <path d="M50,50 Q85,5 95,35 Q90,65 55,55 Z" fill="#4ade80"/>
-    <path d="M50,50 Q20,70 18,90 Q42,95 48,60 Z" fill="#22c55e"/>
-    <path d="M50,50 Q80,70 82,90 Q58,95 52,60 Z" fill="#22c55e"/>
-    <ellipse cx="50" cy="52" rx="3" ry="20" fill="#052e16"/>
+<svg class="ocean-decor creature-fish2" viewBox="0 0 100 100">
+    <path d="M20,50 Q60,15 90,40 Q95,50 90,60 Q60,85 20,50 Z" fill="#34d399"/>
+    <polygon points="90,50 100,30 100,70" fill="#059669"/>
+    <circle cx="35" cy="42" r="4" fill="#ffffff"/>
+    <circle cx="34" cy="42" r="2" fill="#000000"/>
 </svg>
 
-<!-- GUNUNG, KABIN HUTAN & POKOK-POKOK -->
-<svg class="forest-decor creature-cabin" viewBox="0 0 200 160">
-    <!-- Gunung-Ganang Latar Belakang -->
-    <polygon points="10,130 60,40 110,130" fill="#2d523c" opacity="0.7"/>
-    <polygon points="70,130 130,20 190,130" fill="#1e3a2b" opacity="0.85"/>
-    <polygon points="130,20 142,42 120,42" fill="#ffffff" opacity="0.8"/> <!-- Puncak Gunung Salji/Kabut -->
-    <!-- Bumbung Kabin -->
-    <polygon points="100,50 50,90 150,90" fill="#ea580c"/>
-    <polygon points="100,42 45,86 50,90 100,50 150,90 155,86" fill="#7c2d12"/>
-    <!-- Dinding Kabin Kayu -->
-    <rect x="60" y="90" width="80" height="55" fill="#f97316" rx="4"/>
-    <rect x="65" y="94" width="70" height="6" fill="#c2410c"/>
-    <rect x="65" y="104" width="70" height="6" fill="#c2410c"/>
-    <rect x="65" y="114" width="70" height="6" fill="#c2410c"/>
-    <!-- Pintu & Tingkap Kabin -->
-    <rect x="90" y="110" width="20" height="35" fill="#78350f" rx="2"/>
-    <rect x="70" y="102" width="14" height="14" fill="#fef08a" stroke="#78350f" stroke-width="2"/>
-    <rect x="116" y="102" width="14" height="14" fill="#fef08a" stroke="#78350f" stroke-width="2"/>
-    <!-- Pokok-Pokok Hutan -->
-    <polygon points="35,145 20,110 50,110" fill="#15803d"/>
-    <polygon points="35,120 25,95 45,95" fill="#22c55e"/>
-    <rect x="32" y="145" width="6" height="10" fill="#78350f"/>
-    <polygon points="170,145 155,105 185,105" fill="#16a34a"/>
-    <rect x="167" y="145" width="6" height="10" fill="#78350f"/>
+<svg class="ocean-decor creature-coral" viewBox="0 0 200 160">
+    <path d="M20,160 Q10,100 30,80 Q45,65 35,40 Q55,50 50,80 Q70,60 80,90 Q90,160 20,160 Z" fill="#f43f5e"/>
+    <path d="M80,160 Q70,110 90,90 Q105,75 100,50 Q120,60 115,90 Q135,70 145,100 Q150,160 80,160 Z" fill="#fb7185"/>
+    <path d="M130,160 Q130,120 150,100 Q165,110 160,80 Q180,95 175,120 Q190,130 185,160 Z" fill="#38bdf8"/>
 </svg>
 
-<svg class="forest-decor creature-mushroom" viewBox="0 0 120 120">
-    <path d="M38,65 Q35,110 45,115 Q60,115 62,115 Q72,110 68,65 Z" fill="#fef3c7" stroke="#fde047" stroke-width="2"/>
-    <path d="M70,80 Q70,110 78,115 Q98,115 92,80 Z" fill="#fef3c7"/>
-    <path d="M15,65 Q52,10 90,65 Q52,72 15,65 Z" fill="#f97316"/>
-    <circle cx="35" cy="45" r="6" fill="#ffffff"/>
-    <circle cx="55" cy="32" r="8" fill="#ffffff"/>
-    <circle cx="72" cy="50" r="5" fill="#ffffff"/>
-    <path d="M60,82 Q82,45 102,82 Z" fill="#22c55e"/>
-    <circle cx="81" cy="66" r="3.5" fill="#ffffff"/>
+<svg class="ocean-decor creature-submarine" viewBox="0 0 140 120">
+    <rect x="20" y="40" width="90" height="50" rx="25" fill="#facc15"/>
+    <rect x="55" y="20" width="20" height="25" fill="#eab308"/>
+    <rect x="50" y="15" width="20" height="8" fill="#ca8a04"/>
+    <circle cx="45" cy="65" r="10" fill="#38bdf8" stroke="#ca8a04" stroke-width="3"/>
+    <circle cx="75" cy="65" r="10" fill="#38bdf8" stroke="#ca8a04" stroke-width="3"/>
+    <polygon points="110,65 130,50 130,80" fill="#eab308"/>
 </svg>
 
 <div class="card">
     <!-- BORANG UTAMA -->
     <div id="borang-mula">
-        <h1>🌲 PORTAL YEAR 3 🏡</h1>
+        <h1>🌊 PORTAL YEAR 3 🐬</h1>
         
         <div class="form-group">
             <label for="nama">👤 Student Name:</label>
@@ -521,7 +489,7 @@
     <div id="papan-kuiz">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
             <button class="btn-home" onclick="keHalamanUtama()">🏠 HOME</button>
-            <span id="label-modul-papar" style="font-weight: 700; color: #166534; font-size: 20px;"></span>
+            <span id="label-modul-papar" style="font-weight: 700; color: #0f766e; font-size: 20px;"></span>
         </div>
 
         <div id="bekas-senarai-soalan"></div>
@@ -725,8 +693,8 @@
         bekasKeputusan.style.display = 'block';
         
         bekasKeputusan.innerHTML = `
-            <h2 style="color: #166534; font-size: 30px;">🎉 Quiz Results</h2>
-            <div style="background: #f0fdf4; padding: 22px; border-radius: 18px; text-align: left; margin: 20px 0; border: 2px solid #fed7aa; font-size: 20px;">
+            <h2 style="color: #0f766e; font-size: 30px;">🎉 Quiz Results</h2>
+            <div style="background: #f0fdf4; padding: 22px; border-radius: 18px; text-align: left; margin: 20px 0; border: 2px solid #7dd3fc; font-size: 20px;">
                 <p><strong>👤 Name:</strong> ${maklumatPelajar.nama}</p>
                 <p><strong>🏫 Class:</strong> ${maklumatPelajar.kelas}</p>
                 <p><strong>📚 Topic:</strong> ${maklumatPelajar.modul}</p>
