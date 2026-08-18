@@ -81,31 +81,6 @@
             text-align: center;
         }
 
-        /* RUANGAN NAMA MURID */
-        .user-input-container {
-            margin-bottom: 20px;
-            background: #ffffff;
-            padding: 15px;
-            border-radius: 16px;
-            border: 2px solid #fbcfe8;
-        }
-
-        .user-input-container label {
-            display: block;
-            margin-bottom: 8px;
-            color: #be185d;
-            font-weight: 700;
-        }
-
-        .user-input-container input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #f472b6;
-            border-radius: 12px;
-            font-size: 18px;
-            outline: none;
-        }
-
         /* TAB KATEGORI: GRAMMAR VS TENSES */
         .tab-container {
             display: flex;
@@ -271,13 +246,7 @@
     </div>
 
     <h1>✏️ Year 3 Grammar & Tenses</h1>
-    <p class="instruction">Enter your name, select a category and topic to read notes & test your skills!</p>
-
-    <!-- INPUT NAMA MURID -->
-    <div class="user-input-container">
-        <label for="student-name">👤 Student Name:</label>
-        <input type="text" id="student-name" placeholder="Type your full name here...">
-    </div>
+    <p class="instruction">Select a category and topic to read notes & test your skills!</p>
 
     <!-- TAB SWITCHER -->
     <div class="tab-container">
@@ -303,7 +272,6 @@
 </div>
 
 <script>
-    // MASUKKAN URL GOOGLE APPS SCRIPT ANDA DI SINI
     const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
 
     let currentCategory = 'grammar';
@@ -613,158 +581,121 @@
         simplePastVerbs: {
             title: "5. Simple Past Tense: Regular & Irregular Verbs",
             notes: `
-                <h2>💡 Tenses Rule: Past Action Verbs</h2>
+                <h2>💡 Tenses Rule: Simple Past Tense (Verbs)</h2>
                 <ul>
-                    <li><strong>Regular Verbs (+ed)</strong>: <em>play ➔ played, walk ➔ walked, wash ➔ washed</em>.</li>
-                    <li><strong>Irregular Verbs (Change form)</strong>: <em>go ➔ went, eat ➔ ate, see ➔ saw, buy ➔ bought</em>.</li>
+                    <li><strong>Regular Verbs</strong>: Add <strong>-ed / -d</strong> (e.g., <em>walk ➔ walked, play ➔ played</em>).</li>
+                    <li><strong>Irregular Verbs</strong>: Change form completely (e.g., <em>go ➔ went, eat ➔ ate, buy ➔ bought</em>).</li>
+                    <li>Used for finished actions in the past (e.g., <em>yesterday, last week, ago</em>).</li>
                 </ul>
             `,
             questions: [
-                { q: "1. We _____ to the beach yesterday.", options: ["go", "went", "going"], ans: "went" },
-                { q: "2. She _____ a delicious cake last night.", options: ["bake", "baked", "baking"], ans: "baked" },
-                { q: "3. He _____ an apple this morning.", options: ["eat", "ate", "eaten"], ans: "ate" },
-                { q: "4. They _____ football last Sunday.", options: ["play", "played", "playing"], ans: "played" },
-                { q: "5. I _____ a huge elephant at the zoo.", options: ["see", "saw", "seen"], ans: "saw" },
-                { q: "6. My mother _____ a new bag yesterday.", options: ["buy", "bought", "buying"], ans: "bought" },
-                { q: "7. You _____ milk before going to bed last night.", options: ["drink", "drank", "drinking"], ans: "drank" },
-                { q: "8. They _____ their hands clean before lunch.", options: ["wash", "washed", "washing"], ans: "washed" }
+                { q: "1. Yesterday, I _____ (go) to the zoo.", options: ["go", "went", "gone"], ans: "went" },
+                { q: "2. She _____ (play) badminton last Sunday.", options: ["played", "play", "plays"], ans: "played" },
+                { q: "3. My mother _____ (bake) a delicious cake yesterday.", options: ["bakes", "baked", "baking"], ans: "baked" },
+                { q: "4. They _____ (eat) fried rice for breakfast this morning.", options: ["eated", "eat", "ate"], ans: "ate" },
+                { q: "5. He _____ (buy) a new toy two days ago.", options: ["bought", "buys", "buyed"], ans: "bought" },
+                { q: "6. We _____ (see) a beautiful bird in the garden.", options: ["saw", "see", "seed"], ans: "saw" },
+                { q: "7. The dog _____ (bark) at the stranger last night.", options: ["barked", "barks", "bark"], ans: "barked" },
+                { q: "8. What is the past tense of 'drink'?", options: ["drinked", "drank", "drinks"], ans: "drank" }
             ]
         }
     };
 
     function switchCategory(category) {
         currentCategory = category;
-        
-        // Kemaskini tab aktif
         document.getElementById('tab-grammar').classList.toggle('active-tab', category === 'grammar');
         document.getElementById('tab-tenses').classList.toggle('active-tab', category === 'tenses');
-        
-        // Muat pilihan tajuk mengikut kategori
-        const topicSelect = document.getElementById('topic-select');
-        topicSelect.innerHTML = '';
-        
-        const currentData = category === 'grammar' ? grammarData : tensesData;
-        
-        for (let key in currentData) {
-            let option = document.createElement('option');
-            option.value = key;
-            option.innerText = currentData[key].title;
-            topicSelect.appendChild(option);
-        }
-
+        populateTopicSelect();
         loadTopicData();
     }
 
+    function populateTopicSelect() {
+        const select = document.getElementById('topic-select');
+        select.innerHTML = '';
+        const data = currentCategory === 'grammar' ? grammarData : tensesData;
+        for (const key in data) {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = data[key].title;
+            select.appendChild(option);
+        }
+    }
+
     function loadTopicData() {
-        const topicKey = document.getElementById('topic-select').value;
-        const currentData = currentCategory === 'grammar' ? grammarData : tensesData;
-        const selectedTopic = currentData[topicKey];
+        const select = document.getElementById('topic-select');
+        const selectedTopic = select.value;
+        const data = currentCategory === 'grammar' ? grammarData : tensesData;
+        const topic = data[selectedTopic];
 
-        if (!selectedTopic) return;
+        if (!topic) return;
 
-        // Tampilkan nota
-        document.getElementById('notes-display').innerHTML = selectedTopic.notes;
+        document.getElementById('notes-display').innerHTML = topic.notes;
 
-        // Tampilkan soalan kuiz
-        const questionsDisplay = document.getElementById('questions-display');
-        questionsDisplay.innerHTML = '';
+        const questionsContainer = document.getElementById('questions-display');
+        questionsContainer.innerHTML = '';
+        document.getElementById('score-box').style.display = 'none';
 
-        selectedTopic.questions.forEach((item, index) => {
-            let qCard = document.createElement('div');
+        topic.questions.forEach((qObj, index) => {
+            const qCard = document.createElement('div');
             qCard.className = 'question-card';
             
-            let qTitle = document.createElement('p');
-            qTitle.innerText = item.q;
-            qCard.appendChild(qTitle);
-
-            item.options.forEach(opt => {
-                let label = document.createElement('label');
-                label.className = 'option-label';
-                
-                let input = document.createElement('input');
-                input.type = 'radio';
-                input.name = `question_${index}`;
-                input.value = opt;
-                
-                label.appendChild(input);
-                label.appendChild(document.createTextNode(' ' + opt));
-                qCard.appendChild(label);
+            let optionsHTML = '';
+            qObj.options.forEach(opt => {
+                optionsHTML += `
+                    <label class="option-label">
+                        <input type="radio" name="q${index}" value="${opt}">
+                        ${opt}
+                    </label>
+                `;
             });
 
-            questionsDisplay.appendChild(qCard);
+            qCard.innerHTML = `
+                <p>${qObj.q}</p>
+                ${optionsHTML}
+            `;
+            questionsContainer.appendChild(qCard);
         });
-
-        document.getElementById('score-box').style.display = 'none';
     }
 
     function submitQuiz() {
-        const nameInput = document.getElementById('student-name').value.trim();
-        if (!nameInput) {
-            alert('Sila masukkan nama anda terlebih dahulu!');
-            return;
-        }
+        const select = document.getElementById('topic-select');
+        const selectedTopic = select.value;
+        const data = currentCategory === 'grammar' ? grammarData : tensesData;
+        const topic = data[selectedTopic];
 
-        const topicKey = document.getElementById('topic-select').value;
-        const currentData = currentCategory === 'grammar' ? grammarData : tensesData;
-        const selectedTopic = currentData[topicKey];
-        
         let score = 0;
-        let total = selectedTopic.questions.length;
+        let total = topic.questions.length;
 
-        selectedTopic.questions.forEach((item, index) => {
-            const selectedOpt = document.querySelector(`input[name="question_${index}"]:checked`);
-            if (selectedOpt && selectedOpt.value === item.ans) {
+        topic.questions.forEach((qObj, index) => {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            if (selected && selected.value === qObj.ans) {
                 score++;
             }
         });
 
-        // Paparkan skor
         const scoreBox = document.getElementById('score-box');
         scoreBox.style.display = 'block';
-        scoreBox.innerHTML = `
-            <h2>🎉 Great Job, ${nameInput}!</h2>
-            <p style="font-size: 24px; font-weight: 700; color: #be185d;">
-                Your Score: ${score} / ${total}
-            </p>
-            <p>Data is saving to Google Sheets...</p>
-        `;
+        scoreBox.innerHTML = `<h3>🎉 Your Score: ${score} / ${total}</h3>`;
 
-        // Hantar rekod ke Google Sheets
-        saveToGoogleSheet(nameInput, currentCategory, selectedTopic.title, score, total);
-    }
-
-    function saveToGoogleSheet(studentName, category, topicTitle, score, total) {
-        if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") {
-            console.log("URL Google Apps Script belum disetkan.");
-            return;
+        if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") {
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    category: currentCategory,
+                    topic: topic.title,
+                    score: score,
+                    total: total
+                })
+            }).catch(err => console.error(err));
         }
-
-        const payload = {
-            name: studentName,
-            category: category.toUpperCase(),
-            topic: topicTitle,
-            score: score,
-            total: total,
-            timestamp: new Date().toLocaleString()
-        };
-
-        fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        })
-        .then(() => {
-            console.log('Record saved successfully!');
-        })
-        .catch(err => console.error('Error saving record:', err));
     }
 
-    // Inisialisasi awal pada muatan halaman
     window.onload = function() {
-        switchCategory('grammar');
+        populateTopicSelect();
+        loadTopicData();
     };
 </script>
-
 </body>
 </html>
