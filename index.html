@@ -25,7 +25,7 @@
             overflow-x: hidden;
         }
 
-        /* ANIMASI HIDUPAN & ELEMENT HUTAN / KABIN / GUNUNG */
+        /* ANIMASI HIDUPAN & ELEMENT HUTAN */
         .forest-decor {
             position: fixed;
             z-index: 1;
@@ -68,24 +68,6 @@
             animation-delay: 2s;
         }
 
-        /* Kabin & Gunung Hutan (Bahagian Bawah Kiri) */
-        .creature-cabin {
-            bottom: 10px;
-            left: 2%;
-            width: 220px;
-            height: auto;
-            animation: pulseGlow 5s infinite alternate;
-        }
-
-        /* Cendawan Hutan (Bahagian Bawah Kanan) */
-        .creature-mushroom {
-            bottom: 10px;
-            right: 3%;
-            width: 130px;
-            height: auto;
-            animation: pulseGlow 4s infinite alternate;
-        }
-
         @keyframes flyRight {
             0% { transform: translateX(-30vw) translateY(0px) scale(0.9); }
             50% { transform: translateX(45vw) translateY(-20px) scale(1.1); }
@@ -101,11 +83,6 @@
         @keyframes floatUpDown {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-18px) rotate(-4deg); }
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(1); filter: drop-shadow(0 6px 10px rgba(0,0,0,0.5)); }
-            100% { transform: scale(1.05); filter: drop-shadow(0 10px 20px rgba(255, 237, 213, 0.3)); }
         }
 
         body::before, body::after {
@@ -125,166 +102,162 @@
             100% { transform: translateY(105vh) rotate(360deg) translateX(80px); opacity: 0; }
         }
 
-        /* Kad Utama Glassmorphism Tema Hijau Cair & Oren Cair */
+        /* Kad Utama Portal */
         .card {
-            background: rgba(245, 253, 248, 0.93);
+            background: rgba(245, 253, 248, 0.95);
             backdrop-filter: blur(12px);
             width: 100%;
             max-width: 850px;
             border-radius: 28px;
-            border: 4px solid #fed7aa; /* Frame Oren Cair */
+            border: 4px solid #fed7aa;
             box-shadow: 0 20px 45px rgba(5, 46, 22, 0.4);
             padding: 35px 30px;
             position: relative;
             z-index: 10;
         }
 
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .header-top .brand {
-            color: #be185d;
-            font-weight: 700;
-            font-size: 22px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
         h1 {
-            color: #be185d;
+            color: #166534;
             text-align: center;
-            margin-top: 10px;
-            margin-bottom: 12px;
+            margin-top: 0;
+            margin-bottom: 10px;
             font-size: 34px;
             font-weight: 700;
+            text-shadow: 2px 2px 0px #fed7aa;
             letter-spacing: 0.5px;
         }
 
-        .instruction {
+        .subtitle-portal {
             text-align: center;
-            color: #be185d;
+            color: #15803d;
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 25px;
         }
 
         .form-group {
-            margin-bottom: 22px;
+            margin-bottom: 25px;
         }
 
-        /* TULISAN PAPARAN UTAMA (LABEL, INPUT, SELECT) - SAIZ 20px */
         label {
             display: block;
             font-weight: 600;
             margin-bottom: 8px;
-            color: #be185d;
+            color: #166534;
             font-size: 20px !important;
         }
 
-        input[type="text"], select {
+        input[type="text"] {
             width: 100%;
             padding: 14px 18px;
-            border: 2px solid #ec4899;
+            border: 2px solid #86efac;
             border-radius: 16px;
             font-size: 20px !important;
             outline: none;
-            background-color: #ffffff;
+            background-color: #f0fdf4;
             color: #052e16;
             font-weight: 600;
             transition: all 0.2s ease;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
         }
 
-        input[type="text"]:focus, select:focus {
-            border-color: #db2777;
-            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.2);
+        input[type="text"]:focus {
+            border-color: #fb923c;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(253, 186, 116, 0.4);
         }
 
         .sub-title {
-            text-align: left;
+            text-align: center;
             font-weight: 700;
             margin-top: 25px;
-            margin-bottom: 15px;
-            color: #be185d;
-            font-size: 20px !important;
+            margin-bottom: 20px;
+            color: #c2410c;
+            font-size: 22px !important;
+            text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .btn-container {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+        /* SUSUNAN 5 BUTANG MODUL UTIMA */
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
         }
 
         .btn-set {
-            flex: 1;
-            min-width: 220px;
-            padding: 16px;
-            border: 2px solid #ec4899;
-            border-radius: 18px;
+            padding: 18px 15px;
+            border: none;
+            border-radius: 20px;
             font-size: 20px !important;
             font-weight: 700;
+            color: #ffffff;
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 0.8px;
+            box-shadow: 0 6px 0px rgba(0,0,0,0.18);
             transition: all 0.15s ease;
             text-decoration: none;
-            display: inline-flex;
+            display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            gap: 8px;
-        }
-
-        .btn-pink {
-            background: #db2777;
-            color: #ffffff;
-            border-color: #be185d;
-            box-shadow: 0 6px 0px #9d174d;
-        }
-
-        .btn-outline-pink {
-            background: #ffffff;
-            color: #db2777;
-            border: 2px solid #ec4899;
-            box-shadow: 0 6px 0px #fbcfe8;
+            gap: 10px;
         }
 
         .btn-set:active {
             transform: translateY(4px);
-            box-shadow: 0 2px 0px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 0px rgba(0,0,0,0.18);
         }
 
-        .btn-home {
-            background: #4ade80;
-            color: #052e16;
-            padding: 10px 20px;
-            border: 2px solid #16a34a;
-            border-radius: 14px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 4px 0px #15803d;
-            transition: all 0.15s ease;
+        /* 1. GET SMART SET: Hijau Cair */
+        .btn-blue {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            box-shadow: 0 6px 0px #15803d;
         }
+        .btn-blue:hover { background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%); }
 
-        .btn-home:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0px #15803d;
+        /* 2. REMEDIAL SET: Oren Cair */
+        .btn-green {
+            background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+            box-shadow: 0 6px 0px #c2410c;
+        }
+        .btn-green:hover { background: linear-gradient(135deg, #fdba74 0%, #fb923c 100%); }
+
+        /* 3. READING CORNER: Ungu Ceria */
+        .btn-purple {
+            background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+            box-shadow: 0 6px 0px #7e22ce;
+        }
+        .btn-purple:hover { background: linear-gradient(135deg, #c084fc 0%, #a855f7 100%); }
+
+        /* 4. GRAMMAR FUN: Magenta / Pink */
+        .btn-pink {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            box-shadow: 0 6px 0px #be185d;
+        }
+        .btn-pink:hover { background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%); }
+
+        /* 5. SENTENCE BUILDER: Teal Segar */
+        .btn-teal {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            box-shadow: 0 6px 0px #0f766e;
+            grid-column: span 1;
+        }
+        .btn-teal:hover { background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%); }
+
+        @media (min-width: 600px) {
+            .btn-teal-wide {
+                grid-column: span 2;
+            }
         }
 
         .link-guru {
             display: block;
             text-align: center;
             margin-top: 30px;
-            color: #be185d;
+            color: #166534;
             font-weight: 600;
             text-decoration: none;
             font-size: 18px;
@@ -297,36 +270,60 @@
 </head>
 <body>
 
+    <!-- Animasi Hiasan -->
+    <div class="forest-decor creature-bird">🦅</div>
+    <div class="forest-decor creature-owl">🦉</div>
+    <div class="forest-decor creature-butterfly1">🦋</div>
+    <div class="forest-decor creature-butterfly2">🦋</div>
+
+    <!-- Kad Utama Portal -->
     <div class="card">
-        <div class="header-top">
-            <button class="btn-home">🏠 HOME</button>
-            <div class="brand">Grammar Fun ✏️</div>
-        </div>
+        <h1>🌲 Forest English Quest - Year 3</h1>
+        <p class="subtitle-portal">Welcome Explorer! Enter your name and choose a learning quest below.</p>
 
-        <h1>✏️ Year 3 Grammar & Tenses</h1>
-        <p class="instruction">Enter your name, select a category and topic to read notes & test your skills!</p>
-
+        <!-- Borang Masukan Nama Murid -->
         <div class="form-group">
-            <label for="studentName">👤 Student Name:</label>
-            <input type="text" id="studentName" placeholder="Type your full name here...">
+            <label for="studentName">👤 Enter Student Name:</label>
+            <input type="text" id="studentName" placeholder="Type your full name here..." oninput="saveName()">
         </div>
 
-        <div class="btn-container">
-            <button class="btn-set btn-pink">📘 GRAMMAR</button>
-            <button class="btn-set btn-outline-pink">⏰ TENSES & VERBS</button>
+        <div class="sub-title">🎮 SELECT LEARNING MODULE:</div>
+
+        <!-- 5 Butang Utama Modul -->
+        <div class="btn-grid">
+            <a href="getsmart.html" onclick="checkName(event)" class="btn-set btn-blue">📘 GET SMART SET</a>
+            <a href="remedial.html" onclick="checkName(event)" class="btn-set btn-green">📙 REMEDIAL SET</a>
+            <a href="reading.html" onclick="checkName(event)" class="btn-set btn-purple">📚 READING CORNER</a>
+            <a href="grammar.html" onclick="checkName(event)" class="btn-set btn-pink">✏️ GRAMMAR FUN</a>
+            <a href="sentence.html" onclick="checkName(event)" class="btn-set btn-teal btn-teal-wide">🧩 SENTENCE BUILDER</a>
         </div>
 
-        <div class="sub-title">📌 Select Topic:</div>
-        <div class="form-group">
-            <select id="topicSelect">
-                <option value="">-- Choose a Topic --</option>
-                <option value="topic1">Topic 1: Nouns & Pronouns</option>
-                <option value="topic2">Topic 2: Present & Past Tense</option>
-            </select>
-        </div>
-
-        <a href="#" class="link-guru">🔑 Teacher / Admin Access</a>
+        <a href="admin.html" class="link-guru">🔑 Teacher / Admin Access</a>
     </div>
 
+    <script>
+        // Simpan nama murid secara automatik
+        function saveName() {
+            const name = document.getElementById('studentName').value;
+            localStorage.setItem('studentName', name);
+        }
+
+        // Muatkan nama jika pernah ditaip
+        window.onload = function() {
+            const savedName = localStorage.getItem('studentName');
+            if (savedName) {
+                document.getElementById('studentName').value = savedName;
+            }
+        };
+
+        // Semak nama sebelum masuk modul
+        function checkName(e) {
+            const name = document.getElementById('studentName').value.trim();
+            if (!name) {
+                e.preventDefault();
+                alert('Sila taip nama anda terlebih dahulu sebelum memilih modul! / Please enter your name first!');
+            }
+        }
+    </script>
 </body>
 </html>
