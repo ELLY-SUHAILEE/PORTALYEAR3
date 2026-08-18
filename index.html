@@ -14,37 +14,38 @@
             padding: 0;
         }
 
-        /* POSTER SEBAGAI LATAR BELAKANG UTAMA PORTAL */
-      body {
-    background: #0284c7 url('poster.png') no-repeat center top fixed;
-    background-size: 100% 100%; /* Memaksa poster memenuhi keseluruhan skrin */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 12px 50px 12px;
-    font-size: 20px;
-}
+        /* LATAR BELAKANG POSTER KEMBALI KEPADA SAIZ ASAL */
+        body {
+            background: #0284c7 url('poster.png') no-repeat center top fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 12px 50px 12px;
+            font-size: 20px;
+        }
 
-        /* CONTAINER UTAMA (TANPA KOTAK KELABU) */
+        /* CONTAINER UTAMA */
         .main-portal-container {
             width: 100%;
             max-width: 720px;
             margin: 0 auto;
         }
 
-        /* KOTAK PUTIH KANDUNGAN */
+        /* KOTAK KACA LUTSISNAR (GLASSMORPHISM) */
         .inner-panel {
-            background: rgba(255, 255, 255, 0.95);
-            border: 4px solid #0284c7;
+            background: rgba(255, 255, 255, 0.25);
+            border: 3px solid rgba(255, 255, 255, 0.6);
             border-radius: 24px;
             padding: 28px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(4px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
-        /* BORANG INPUT (NAME, CLASS, TOPIC) - SAIZ 20PX */
+        /* BORANG INPUT (NAME, CLASS, TOPIC) - LUTSISNAR & SAIZ 20PX */
         .form-group {
             margin-bottom: 16px;
         }
@@ -55,38 +56,42 @@
             gap: 8px;
             font-weight: 800;
             margin-bottom: 6px;
-            color: #1e3a8a;
+            color: #ffffff;
             font-size: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         input[type="text"], select {
             width: 100%;
             padding: 12px 16px;
-            border: 3px solid #93c5fd;
+            border: 3px solid rgba(255, 255, 255, 0.8);
             border-radius: 14px;
             font-size: 20px;
             outline: none;
-            background-color: #ffffff;
-            color: #1e293b;
-            font-weight: 700;
+            background-color: rgba(255, 255, 255, 0.65);
+            color: #0f172a;
+            font-weight: 800;
             transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
         }
 
         input[type="text"]:focus, select:focus {
+            background-color: rgba(255, 255, 255, 0.9);
             border-color: #0284c7;
-            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.4);
         }
 
-        /* TAJUK SEKSYEN - SAIZ 20PX */
+        /* TAJUK SEKSYEN - SAIZ 20PX & BAYANG TEKS */
         .sub-title-section {
             text-align: center;
-            font-weight: 800;
+            font-weight: 900;
             margin-top: 22px;
             margin-bottom: 14px;
-            color: #0284c7;
+            color: #ffffff;
             font-size: 20px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         /* SUSUNAN GRID BUTANG RESPONSIF */
@@ -149,26 +154,28 @@
             display: block;
             text-align: center;
             margin-top: 22px;
-            color: #0284c7;
+            color: #ffffff;
             text-decoration: none;
             font-size: 20px;
             font-weight: 800;
             padding: 12px;
-            background: #e0f2fe;
+            background: rgba(2, 132, 199, 0.6);
             border-radius: 14px;
-            border: 2px dashed #38bdf8;
+            border: 2px dashed #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
         }
 
         /* SOALAN DAN PILIHAN - SAIZ 20PX */
         #papan-kuiz, #keputusan-kuiz { display: none; }
 
         .item-soalan {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.95);
             border: 3px solid #93c5fd;
             padding: 18px;
             border-radius: 16px;
             margin-bottom: 18px;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
         .item-soalan h3 {
@@ -190,6 +197,7 @@
             cursor: pointer;
             color: #0f172a;
             font-size: 20px;
+            text-shadow: none;
         }
 
         .pilihan-jawapan label:hover {
@@ -197,7 +205,6 @@
             border-color: #38bdf8;
         }
 
-        /* TWEAK UNTUK SKRIN SANGAT KECIL (TELEFON) */
         @media (max-width: 480px) {
             .inner-panel {
                 padding: 18px;
@@ -274,7 +281,7 @@
         <div id="papan-kuiz">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 8px;">
                 <button class="btn-home" onclick="keHalamanUtama()">🏠 HOME</button>
-                <span id="label-modul-papar" style="font-weight: 800; color: #1e3a8a; font-size: 20px; text-align: right;"></span>
+                <span id="label-modul-papar" style="font-weight: 800; color: #ffffff; font-size: 20px; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);"></span>
             </div>
             <div id="bekas-senarai-soalan"></div>
             <div class="btn-grid-2" style="margin-top: 18px;">
@@ -449,14 +456,14 @@
         bekasKeputusan.style.display = 'block';
         
         bekasKeputusan.innerHTML = `
-            <h2 style="color: #0f172a; font-size: 26px;">🎉 Quiz Results</h2>
-            <div style="background: #ffffff; padding: 18px; border-radius: 14px; text-align: left; margin: 16px 0; border: 3px solid #bae6fd; font-size: 20px;">
+            <h2 style="color: #ffffff; font-size: 26px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">🎉 Quiz Results</h2>
+            <div style="background: rgba(255, 255, 255, 0.95); padding: 18px; border-radius: 14px; text-align: left; margin: 16px 0; border: 3px solid #bae6fd; font-size: 20px;">
                 <p style="margin-bottom: 8px;"><strong>👤 Name:</strong> ${maklumatPelajar.nama}</p>
                 <p style="margin-bottom: 8px;"><strong>🏫 Class:</strong> ${maklumatPelajar.kelas}</p>
                 <p style="margin-bottom: 8px;"><strong>📚 Topic:</strong> ${maklumatPelajar.modul}</p>
                 <p><strong>🎮 Set:</strong> ${maklumatPelajar.set}</p>
             </div>
-            <h3 style="font-size: 28px; color: #16a34a; margin: 16px 0;">Score: ${markah} / ${jumlahSoalan} (${peratus}%)</h3>
+            <h3 style="font-size: 28px; color: #facc15; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin: 16px 0;">Score: ${markah} / ${jumlahSoalan} (${peratus}%)</h3>
             <button class="btn-home" onclick="keHalamanUtama()" style="padding: 12px 24px;">🏠 Main Menu (HOME)</button>
         `;
     }
