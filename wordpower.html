@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📖 WORD POWER - Year 3 English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700;800&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Fredoka', 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #0284c7 url('poster.png') no-repeat center top fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 12px 50px 12px;
+            font-size: 20px;
+        }
+
+        .main-portal-container {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .inner-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border: 4px solid #0284c7;
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(4px);
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .student-info {
+            background: #e0f2fe;
+            border: 2px dashed #0284c7;
+            padding: 10px 16px;
+            border-radius: 14px;
+            font-weight: 800;
+            color: #1e3a8a;
+            font-size: 18px;
+        }
+
+        .btn-home {
+            background: linear-gradient(180deg, #facc15 0%, #ca8a04 100%);
+            color: #422006;
+            border: 3px solid #713f12;
+            padding: 10px 20px;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 0px #713f12;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-home:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px #713f12;
+        }
+
+        .sub-title-section {
+            text-align: center;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #d97706;
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: #1e3a8a;
+            font-size: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 3px solid #93c5fd;
+            border-radius: 14px;
+            font-size: 20px;
+            outline: none;
+            background-color: #ffffff;
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* GRID FLASHCARD */
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .word-card {
+            background: #ffffff;
+            border: 3px solid #fcd34d;
+            border-radius: 18px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .word-card:hover {
+            transform: translateY(-4px);
+            border-color: #f59e0b;
+        }
+
+        .word-card .emoji {
+            font-size: 48px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .word-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .word-meaning {
+            font-size: 16px;
+            font-weight: 700;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .btn-sound {
+            background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: 2px solid #1e293b;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 3px 0px #1e293b;
+        }
+
+        .btn-sound:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0px #1e293b;
+        }
+
+        @media (max-width: 480px) {
+            .inner-panel { padding: 18px; }
+            .word-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-portal-container">
+    <div class="inner-panel">
+        
+        <div class="header-bar">
+            <button class="btn-home" onclick="goHome()">🏠 HOME</button>
+            <div class="student-info" id="papar-pelajar">👤 Student</div>
+        </div>
+
+        <div class="sub-title-section">📖 WORD POWER</div>
+
+        <div class="form-group">
+            <label for="pilih-topik">📚 Select Topic:</label>
+            <select id="pilih-topik" onchange="tukarTopik()">
+                <option value="1">Topic 1: Welcome!</option>
+                <option value="2">Topic 2: Every day</option>
+                <option value="3">Topic 3: Right now</option>
+                <option value="4">Topic 4: Year in, year out</option>
+                <option value="5">Topic 5: My new house / Eating right</option>
+                <option value="6">Topic 6: Food, please! / Getting around</option>
+                <option value="7">Topic 7: Out and about / Helping out</option>
+                <option value="8">Topic 8: Where were you yesterday? / Amazing animals</option>
+                <option value="9">Topic 9: On holiday / Get active!</option>
+                <option value="10">Topic 10: The world around us</option>
+            </select>
+        </div>
+
+        <div class="word-grid" id="bekas-perkataan"></div>
+
+    </div>
+</div>
+
+<script>
+    // DATA PERKATAAN + MAKSUD + EMOJI SEBAGAI VISUAL
+    const bankPerkataan = {
+        "1": [
+            { word: "Pretty", mean: "Cantik", emoji: "👸" },
+            { word: "Ugly", mean: "Hodoh", emoji: "👹" },
+            { word: "Straight hair", mean: "Rambut lurus", emoji: "👩" },
+            { word: "Curly hair", mean: "Rambut keriting", emoji: "👨‍🦱" },
+            { word: "Blonde hair", mean: "Rambut perang", emoji: "👱‍♀️" },
+            { word: "Shells", mean: "Kulit kerang", emoji: "🐚" }
+        ],
+        "2": [
+            { word: "Brush my teeth", mean: "Memberus gigi", emoji: "🪥" },
+            { word: "Comb my hair", mean: "Menyikat rambut", emoji: "💇‍♂️" },
+            { word: "Get dressed", mean: "Memakai baju", emoji: "👕" },
+            { word: "Walk to school", mean: "Jalan ke sekolah", emoji: "🚶‍♂️" },
+            { word: "Take the bus", mean: "Naik bas", emoji: "🚌" },
+            { word: "Do homework", mean: "Buat kerja sekolah", emoji: "📝" }
+        ],
+        "3": [
+            { word: "Playing chess", mean: "Bermain catur", emoji: "♟️" },
+            { word: "Playing volleyball", mean: "Bermain bola tampar", emoji: "🏐" },
+            { word: "Skateboard", mean: "Papan seluncur", emoji: "🛹" },
+            { word: "Juggling", mean: "Menimang / Juggling", emoji: "🤹" },
+            { word: "Doing gymnastics", mean: "Melakukan gimnastik", emoji: "🤸" }
+        ],
+        "4": [
+            { word: "Spring", mean: "Musim Bunga", emoji: "🌸" },
+            { word: "Summer", mean: "Musim Panas", emoji: "☀️" },
+            { word: "Autumn", mean: "Musim Luruh", emoji: "🍁" },
+            { word: "Winter", mean: "Musim Sejuk", emoji: "❄️" },
+            { word: "Windy", mean: "Berangin", emoji: "💨" },
+            { word: "Cold", mean: "Sejuk", emoji: "🥶" }
+        ],
+        "5": [
+            { word: "Door", mean: "Pintu", emoji: "🚪" },
+            { word: "Floor", mean: "Lantai", emoji: "🟫" },
+            { word: "Armchair", mean: "Kerusi berjangat", emoji: "🪑" },
+            { word: "Bookcase", mean: "Rak buku", emoji: "📚" },
+            { word: "Cushion", mean: "Bantal peluk", emoji: "🛋️" },
+            { word: "Vegetables", mean: "Sayur-sayuran", emoji: "🥦" }
+        ],
+        "6": [
+            { word: "Omelette", mean: "Telur dadar", emoji: "🍳" },
+            { word: "Pancakes", mean: "Lempeng / Pankek", emoji: "🥞" },
+            { word: "Pineapple", mean: "Nanas", emoji: "🍍" },
+            { word: "Fasten seatbelt", mean: "Pakai tali keledar", emoji: "🪢" },
+            { word: "Zebra crossing", mean: "Lintas pejalan kaki", emoji: "🏁" }
+        ],
+        "7": [
+            { word: "Recycle", mean: "Kitar semula", emoji: "♻️" },
+            { word: "Throw rubbish", mean: "Buang sampah", emoji: "🗑️" },
+            { word: "Library", mean: "Perpustakaan", emoji: "🏛️" },
+            { word: "Water plants", mean: "Menyiram pokok", emoji: "🪴" },
+            { word: "Clear the table", mean: "Merapikan meja", emoji: "🍽️" }
+        ],
+        "8": [
+            { word: "Shopping centre", mean: "Pusat beli-belah", emoji: "🛍️" },
+            { word: "Amusement park", mean: "Taman tema", emoji: "🎡" },
+            { word: "Cheetah", mean: "Harimau bintang", emoji: "🐆" },
+            { word: "Blue whale", mean: "Paus biru", emoji: "🐋" },
+            { word: "Dinosaur", mean: "Dinosaurus", emoji: "🦕" }
+        ],
+        "9": [
+            { word: "Pack bags", mean: "Kemas beg", emoji: "🎒" },
+            { word: "Take photos", mean: "Ambil gambar", emoji: "📷" },
+            { word: "Play badminton", mean: "Bermain badminton", emoji: "🏸" },
+            { word: "Go swimming", mean: "Pergi berenang", emoji: "🏊" }
+        ],
+        "10": [
+            { word: "Sun", mean: "Matahari", emoji: "☀️" },
+            { word: "Moon", mean: "Bulan", emoji: "🌙" },
+            { word: "Stars", mean: "Bintang-bintang", emoji: "⭐" },
+            { word: "Planet", mean: "Planet", emoji: "🪐" },
+            { word: "Rocket", mean: "Roket", emoji: "🚀" }
+        ]
+    };
+
+    window.onload = function() {
+        const dataStr = localStorage.getItem('pelajar_aktif');
+        if (dataStr) {
+            const data = JSON.parse(dataStr);
+            document.getElementById('papar-pelajar').innerText = `👤 ${data.nama} (${data.kelas})`;
+        } else {
+            document.getElementById('papar-pelajar').innerText = `👤 Guest Student`;
+        }
+        tukarTopik();
+    };
+
+    function goHome() {
+        window.location.href = 'index.html';
+    }
+
+    function tukarTopik() {
+        const top = document.getElementById('pilih-topik').value;
+        const senarai = bankPerkataan[top] || [];
+        const bekas = document.getElementById('bekas-perkataan');
+        let html = '';
+
+        senarai.forEach((item) => {
+            html += `
+                <div class="word-card" onclick="sebutWord('${escapeQuotes(item.word)}')">
+                    <span class="emoji">${item.emoji}</span>
+                    <div class="word-title">${item.word}</div>
+                    <div class="word-meaning">${item.mean}</div>
+                    <button class="btn-sound">🔊 Listen</button>
+                </div>
+            `;
+        });
+
+        bekas.innerHTML = html;
+    }
+
+    function escapeQuotes(str) {
+        return str.replace(/'/g, "\\'");
+    }
+
+    function sebutWord(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.85;
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+</script>
+
+</body>
+</html>
