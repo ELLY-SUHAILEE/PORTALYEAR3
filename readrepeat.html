@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🗣️ READ & REPEAT - Year 3 English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700;800&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Fredoka', 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #0284c7 url('poster.png') no-repeat center top fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 12px 50px 12px;
+            font-size: 20px;
+        }
+
+        .main-portal-container {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .inner-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border: 4px solid #0284c7;
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(4px);
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .student-info {
+            background: #e0f2fe;
+            border: 2px dashed #0284c7;
+            padding: 10px 16px;
+            border-radius: 14px;
+            font-weight: 800;
+            color: #1e3a8a;
+            font-size: 18px;
+        }
+
+        .btn-home {
+            background: linear-gradient(180deg, #facc15 0%, #ca8a04 100%);
+            color: #422006;
+            border: 3px solid #713f12;
+            padding: 10px 20px;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 0px #713f12;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-home:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px #713f12;
+        }
+
+        .sub-title-section {
+            text-align: center;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #0284c7;
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: #1e3a8a;
+            font-size: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 3px solid #93c5fd;
+            border-radius: 14px;
+            font-size: 20px;
+            outline: none;
+            background-color: #ffffff;
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        .card-sentence {
+            background: #ffffff;
+            border: 3px solid #93c5fd;
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .sentence-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 14px;
+            line-height: 1.4;
+        }
+
+        .btn-action-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            padding: 10px 18px;
+            border: 3px solid #1e293b;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: 800;
+            color: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 4px 0px #1e293b;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-action:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px #1e293b;
+        }
+
+        .btn-listen { background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%); }
+        .btn-repeat { background: linear-gradient(180deg, #10b981 0%, #047857 100%); }
+
+        .speech-result {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #475569;
+        }
+
+        @media (max-width: 480px) {
+            .inner-panel { padding: 18px; }
+            .sentence-text { font-size: 20px; }
+            .btn-action { font-size: 16px; width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-portal-container">
+    <div class="inner-panel">
+        
+        <div class="header-bar">
+            <button class="btn-home" onclick="goHome()">🏠 HOME</button>
+            <div class="student-info" id="papar-pelajar">👤 Student</div>
+        </div>
+
+        <div class="sub-title-section">🗣️ READ & REPEAT</div>
+
+        <div class="form-group">
+            <label for="pilih-topik">📚 Select Topic:</label>
+            <select id="pilih-topik" onchange="tukarTopik()">
+                <option value="1">Topic 1: Welcome!</option>
+                <option value="2">Topic 2: Every day</option>
+                <option value="3">Topic 3: Right now</option>
+                <option value="4">Topic 4: Year in, year out</option>
+                <option value="5">Topic 5: My new house / Eating right</option>
+                <option value="6">Topic 6: Food, please! / Getting around</option>
+                <option value="7">Topic 7: Out and about / Helping out</option>
+                <option value="8">Topic 8: Where were you yesterday? / Amazing animals</option>
+                <option value="9">Topic 9: On holiday / Get active!</option>
+                <option value="10">Topic 10: The world around us</option>
+            </select>
+        </div>
+
+        <div id="senarai-ayat"></div>
+
+    </div>
+</div>
+
+<script>
+    // DATA AYAT UNTUK READ & REPEAT (YEAR 3 SYLLABUS)
+    const bankAyat = {
+        "1": [
+            "Hello, my name is Greg.",
+            "She has got brown hair and blue eyes.",
+            "He hasn't got curly hair.",
+            "Have you got thirty shells? Yes, I have."
+        ],
+        "2": [
+            "I always brush my teeth in the morning.",
+            "She usually plays chess on Sundays.",
+            "Does he walk to school every day?",
+            "He doesn't get up at six o'clock."
+        ],
+        "3": [
+            "What are you doing right now?",
+            "I am doing my homework.",
+            "She is playing volleyball in the garden.",
+            "They aren't watching TV."
+        ],
+        "4": [
+            "My favourite season is summer.",
+            "It is cold and windy in winter.",
+            "When is your birthday? It's in May.",
+            "We go swimming in July."
+        ],
+        "5": [
+            "There is a big mirror in the bathroom.",
+            "There are two cushions on the sofa.",
+            "You should eat more vegetables.",
+            "Is there any cereal in the cupboard?"
+        ],
+        "6": [
+            "How much is this bottle of milk?",
+            "Fasten your seatbelt in the car.",
+            "Always look left and right before crossing.",
+            "I would like a glass of water, please."
+        ],
+        "7": [
+            "Don't throw rubbish on the floor.",
+            "You must keep quiet in the library.",
+            "He is helping his parents clean the house.",
+            "She always waters the plants."
+        ],
+        "8": [
+            "Where were you yesterday morning?",
+            "I was at the shopping centre.",
+            "Cheetahs are faster than tigers.",
+            "Blue whales are the biggest animals."
+        ],
+        "9": [
+            "We packed our bags for the trip.",
+            "He took photos at the beach.",
+            "She can play basketball very well.",
+            "Let's play badminton this afternoon!"
+        ],
+        "10": [
+            "The sun is brighter than the moon.",
+            "Mercury is the closest planet to the sun.",
+            "Saturn has beautiful rings around it.",
+            "Earth is our home planet."
+        ]
+    };
+
+    // SEMAK DATA PELAJAR
+    window.onload = function() {
+        const dataStr = localStorage.getItem('pelajar_aktif');
+        if (dataStr) {
+            const data = JSON.parse(dataStr);
+            document.getElementById('papar-pelajar').innerText = `👤 ${data.nama} (${data.kelas})`;
+        } else {
+            document.getElementById('papar-pelajar').innerText = `👤 Guest Student`;
+        }
+        tukarTopik();
+    };
+
+    function goHome() {
+        window.location.href = 'index.html';
+    }
+
+    // FUNGSI TUKAR TOPIK AYAT
+    function tukarTopik() {
+        const top = document.getElementById('pilih-topik').value;
+        const senarai = bankAyat[top] || [];
+        const bekas = document.getElementById('senarai-ayat');
+        let html = '';
+
+        senarai.forEach((ayat, idx) => {
+            html += `
+                <div class="card-sentence">
+                    <div class="sentence-text">"${ayat}"</div>
+                    <div class="btn-action-group">
+                        <button class="btn-action btn-listen" onclick="sebutAyat('${escapeQuotes(ayat)}')">
+                            🔊 Listen
+                        </button>
+                        <button class="btn-action btn-repeat" id="btn-mic-${idx}" onclick="rakamSuara(${idx}, '${escapeQuotes(ayat)}')">
+                            🎤 Practice / Repeat
+                        </button>
+                    </div>
+                    <div class="speech-result" id="result-${idx}"></div>
+                </div>
+            `;
+        });
+
+        bekas.innerHTML = html;
+    }
+
+    function escapeQuotes(str) {
+        return str.replace(/'/g, "\\'");
+    }
+
+    // FUNGSI LISTEN (TEXT-TO-SPEECH)
+    function sebutAyat(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel(); // Hentikan audio lama jika ada
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.85; // Sebutan lebih perlahan untuk murid Tahun 3
+            utterance.pitch = 1.0;
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("Maaf, browser anda tidak menyokong fungsi Text-to-Speech.");
+        }
+    }
+
+    // FUNGSI REPEAT (SPEECH RECOGNITION)
+    function rakamSuara(idx, targetText) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        
+        if (!SpeechRecognition) {
+            alert("Speech Recognition tidak disokong pada pelayar ini. Sila gunakan Google Chrome pada Android/PC.");
+            return;
+        }
+
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+
+        const btn = document.getElementById(`btn-mic-${idx}`);
+        const resultDiv = document.getElementById(`result-${idx}`);
+
+        btn.innerText = "🎙️ Listening...";
+        btn.style.background = "#ef4444";
+        resultDiv.innerText = "Listening to your voice...";
+
+        recognition.start();
+
+        recognition.onresult = function(event) {
+            const spokenText = event.results[0][0].transcript;
+            btn.innerText = "🎤 Practice / Repeat";
+            btn.style.background = "";
+
+            // Semak ketepatan ringkas
+            const cleanTarget = targetText.toLowerCase().replace(/[^a-z0-9 ]/g, '');
+            const cleanSpoken = spokenText.toLowerCase().replace(/[^a-z0-9 ]/g, '');
+
+            if (cleanTarget === cleanSpoken) {
+                resultDiv.innerHTML = `<span style="color: #16a34a;">🌟 Excellent! You said: "${spokenText}"</span>`;
+            } else {
+                resultDiv.innerHTML = `<span style="color: #0284c7;">💬 You said: "${spokenText}" (Try again to sound closer!)</span>`;
+            }
+        };
+
+        recognition.onerror = function() {
+            btn.innerText = "🎤 Practice / Repeat";
+            btn.style.background = "";
+            resultDiv.innerText = "⚠️ Could not hear clearly. Please try again!";
+        };
+
+        recognition.onend = function() {
+            btn.innerText = "🎤 Practice / Repeat";
+            btn.style.background = "";
+        };
+    }
+</script>
+
+</body>
+</html>
