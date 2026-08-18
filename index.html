@@ -12,9 +12,10 @@
             font-family: 'Fredoka', 'Nunito', sans-serif;
         }
 
-        /* LATAR BELAKANG LAUTAN GRADIENT */
+        /* LATAR BELAKANG GAMBAR POSTER + FALLBACK GRADIENT */
         body {
-            background: linear-gradient(180deg, #6fd5fc 0%, #3ca0e7 40%, #1a6fbf 85%, #0e4e96 100%);
+            background: #0b4f8c url('poster.png') no-repeat center top fixed;
+            background-size: cover;
             margin: 0;
             padding: 20px 10px 140px 10px;
             min-height: 100vh;
@@ -47,15 +48,15 @@
                -3px -3px 0px #ffffff,
                 3px -3px 0px #ffffff,
                -3px 3px 0px #ffffff,
-                0px 6px 12px rgba(0,0,0,0.25);
+                0px 6px 12px rgba(0,0,0,0.3);
         }
 
         .sub-title-header {
             font-size: 20px;
             font-weight: 700;
-            color: #082846;
+            color: #ffffff;
             margin-top: 8px;
-            text-shadow: 1px 1px 0px #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
         }
 
         /* 3 BUIH KACA PEMBELAJARAN (3 GLASS BUBBLES ATAS) */
@@ -73,9 +74,9 @@
         }
 
         .step-bubble {
-            background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.95), rgba(186, 230, 253, 0.75));
+            background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.95), rgba(186, 230, 253, 0.85));
             border: 4px solid #ffffff;
-            box-shadow: 0 10px 20px rgba(0, 50, 100, 0.2), inset -4px -4px 8px rgba(2, 132, 199, 0.25);
+            box-shadow: 0 10px 20px rgba(0, 50, 100, 0.3), inset -4px -4px 8px rgba(2, 132, 199, 0.25);
             border-radius: 50%;
             width: 160px;
             height: 160px;
@@ -86,6 +87,7 @@
             text-align: center;
             padding: 12px;
             transition: transform 0.3s ease;
+            backdrop-filter: blur(2px);
         }
 
         .step-bubble:hover {
@@ -114,7 +116,7 @@
         .dolphin-svg {
             position: absolute;
             z-index: 12;
-            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.3));
             pointer-events: none;
         }
 
@@ -134,18 +136,19 @@
 
         /* STRUKTUR BATU BATAN UTAMA (STONE FORMATION) */
         .rock-container {
-            background: linear-gradient(145deg, #a3998e 0%, #80766b 50%, #61574d 100%);
+            background: linear-gradient(145deg, rgba(163, 153, 142, 0.95) 0%, rgba(128, 118, 107, 0.95) 50%, rgba(97, 87, 77, 0.95) 100%);
             border: 6px solid #473e35;
             border-radius: 36px;
             box-shadow: 
                 inset 0 8px 0 rgba(255,255,255,0.25),
                 inset 0 -10px 0 rgba(0,0,0,0.35),
-                0 20px 40px rgba(0,0,0,0.4);
+                0 20px 40px rgba(0,0,0,0.5);
             width: 100%;
             max-width: 780px;
             padding: 35px 25px 25px 25px;
             position: relative;
             z-index: 10;
+            backdrop-filter: blur(4px);
         }
 
         .rock-badge {
@@ -173,7 +176,7 @@
 
         /* PANEL DALAM BATU */
         .inner-stone-panel {
-            background: #eef9ff;
+            background: rgba(238, 249, 255, 0.96);
             border: 4px solid #8c8277;
             border-radius: 22px;
             padding: 25px;
@@ -534,7 +537,6 @@
         <circle cx="51" cy="20" r="2" fill="#000000"/>
     </svg>
 
-    <!-- TEKS BANNER DIKEMAS KINI -->
     <div class="parchment-banner">
         Learn English. Have Fun. Be Amazing!
     </div>
