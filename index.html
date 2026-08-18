@@ -139,15 +139,38 @@
             z-index: 10;
         }
 
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header-top .brand {
+            color: #be185d;
+            font-weight: 700;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         h1 {
-            color: #166534;
+            color: #be185d;
             text-align: center;
-            margin-top: 0;
-            margin-bottom: 25px;
+            margin-top: 10px;
+            margin-bottom: 12px;
             font-size: 34px;
             font-weight: 700;
-            text-shadow: 2px 2px 0px #fed7aa; /* Bayangan Oren Cair */
             letter-spacing: 0.5px;
+        }
+
+        .instruction {
+            text-align: center;
+            color: #be185d;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 25px;
         }
 
         .form-group {
@@ -159,38 +182,35 @@
             display: block;
             font-weight: 600;
             margin-bottom: 8px;
-            color: #166534;
+            color: #be185d;
             font-size: 20px !important;
         }
 
         input[type="text"], select {
             width: 100%;
             padding: 14px 18px;
-            border: 2px solid #86efac; /* Hijau Cair */
+            border: 2px solid #ec4899;
             border-radius: 16px;
             font-size: 20px !important;
             outline: none;
-            background-color: #f0fdf4; /* Soft Mint */
+            background-color: #ffffff;
             color: #052e16;
             font-weight: 600;
             transition: all 0.2s ease;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
         }
 
         input[type="text"]:focus, select:focus {
-            border-color: #fb923c; /* Focus Oren Cair */
-            background-color: #ffffff;
-            box-shadow: 0 0 0 4px rgba(253, 186, 116, 0.4);
+            border-color: #db2777;
+            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.2);
         }
 
         .sub-title {
-            text-align: center;
+            text-align: left;
             font-weight: 700;
-            margin-top: 30px;
-            margin-bottom: 20px;
-            color: #c2410c; /* Oren gelap sedikit untuk kontras */
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #be185d;
             font-size: 20px !important;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
@@ -204,21 +224,34 @@
             flex: 1;
             min-width: 220px;
             padding: 16px;
-            border: none;
+            border: 2px solid #ec4899;
             border-radius: 18px;
             font-size: 20px !important;
             font-weight: 700;
-            color: #ffffff;
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            box-shadow: 0 6px 0px rgba(0,0,0,0.15);
             transition: all 0.15s ease;
             text-decoration: none;
             display: inline-flex;
             justify-content: center;
             align-items: center;
             text-align: center;
+            gap: 8px;
+        }
+
+        .btn-pink {
+            background: #db2777;
+            color: #ffffff;
+            border-color: #be185d;
+            box-shadow: 0 6px 0px #9d174d;
+        }
+
+        .btn-outline-pink {
+            background: #ffffff;
+            color: #db2777;
+            border: 2px solid #ec4899;
+            box-shadow: 0 6px 0px #fbcfe8;
         }
 
         .btn-set:active {
@@ -226,46 +259,11 @@
             box-shadow: 0 2px 0px rgba(0,0,0,0.15);
         }
 
-        /* GET SMART SET: Tona Hijau Cair */
-        .btn-blue {
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-            box-shadow: 0 6px 0px #15803d;
-        }
-        .btn-blue:hover { background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%); }
-
-        /* REMEDIAL SET: Tona Oren Cair */
-        .btn-green {
-            background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
-            box-shadow: 0 6px 0px #c2410c;
-        }
-        .btn-green:hover { background: linear-gradient(135deg, #fdba74 0%, #fb923c 100%); }
-
-        /* READING CORNER: Tona Ungu Ceria */
-        .btn-purple {
-            background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
-            box-shadow: 0 6px 0px #7e22ce;
-        }
-        .btn-purple:hover { background: linear-gradient(135deg, #c084fc 0%, #a855f7 100%); }
-
-        /* GRAMMAR FUN: Tona Merah Jambu / Magenta */
-        .btn-pink {
-            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
-            box-shadow: 0 6px 0px #be185d;
-        }
-        .btn-pink:hover { background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%); }
-
-        /* SENTENCE BUILDER: Tona Teal Segar */
-        .btn-teal {
-            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
-            box-shadow: 0 6px 0px #0f766e;
-        }
-        .btn-teal:hover { background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%); }
-
         .btn-home {
-            background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
+            background: #4ade80;
             color: #052e16;
-            padding: 12px 22px;
-            border: 2px solid #fed7aa;
+            padding: 10px 20px;
+            border: 2px solid #16a34a;
             border-radius: 14px;
             font-size: 18px;
             font-weight: 700;
@@ -273,102 +271,62 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 0px #16a34a;
+            box-shadow: 0 4px 0px #15803d;
             transition: all 0.15s ease;
         }
+
         .btn-home:active {
             transform: translateY(2px);
-            box-shadow: 0 2px 0px #16a34a;
-        }
-
-        /* GAYA APABILA MODUL DIKUNCI (LOCKED STATE) */
-        .locked {
-            opacity: 0.45 !important;
-            pointer-events: none !important;
-            filter: grayscale(85%) !important;
-            box-shadow: none !important;
-            cursor: not-allowed !important;
-        }
-
-        #papan-kuiz, #keputusan-kuiz {
-            display: none;
-        }
-
-        /* Item Soalan & Kad Jawapan (Hijau Cair & Oren Cair) */
-        .item-soalan {
-            background-color: #ffffff;
-            border: 3px solid #bbf7d0; /* Sisi Hijau Cair */
-            border-left: 8px solid #fb923c; /* Jalur Akses Oren Cair */
-            padding: 24px;
-            border-radius: 20px;
-            margin-bottom: 24px;
-            box-shadow: 0 8px 16px rgba(22, 101, 52, 0.06);
-        }
-
-        /* TULISAN SOALAN - SAIZ 20px */
-        .item-soalan h3 {
-            font-size: 20px !important;
-            color: #052e16;
-            line-height: 1.5;
-            font-weight: 700;
-        }
-
-        /* TULISAN PILIHAN JAWAPAN - SAIZ 20px */
-        .pilihan-jawapan label {
-            font-weight: 600;
-            background: #f0fdf4; /* Hijau cair */
-            padding: 16px 20px;
-            border: 2px solid #dcfce7;
-            border-radius: 14px;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: #166534;
-            font-size: 20px !important;
-        }
-
-        .pilihan-jawapan label:hover {
-            background-color: #ffedd5; /* Pertukaran ke Oren cair apabila tetikus lalu */
-            border-color: #fed7aa;
-            transform: translateX(4px);
-        }
-
-        .pilihan-jawapan input[type="radio"] {
-            accent-color: #f97316; /* Warna radio button Oren */
-            width: 22px;
-            height: 22px;
-        }
-
-        .question-image-container {
-            text-align: center;
-            margin-bottom: 18px;
-            background-color: #fff7ed; /* Oren sangat cair */
-            padding: 12px;
-            border: 2px dashed #fb923c;
-            border-radius: 16px;
-        }
-
-        .question-image, .item-soalan img {
-            width: 100% !important;
-            max-width: 680px !important;
-            height: auto !important;
-            max-height: 500px !important;
-            border-radius: 12px;
-            object-fit: contain !important;
-        }
-
-        .item-soalan.img-small img,
-        .question-image-container.img-small img {
-            max-width: 320px !important;
-            max-height: 220px !important;
-            margin: 0 auto;
-            display: block;
+            box-shadow: 0 2px 0px #15803d;
         }
 
         .link-guru {
             display: block;
             text-align: center;
             margin-top: 30px;
-            color: #
+            color: #be185d;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .link-guru:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="header-top">
+            <button class="btn-home">🏠 HOME</button>
+            <div class="brand">Grammar Fun ✏️</div>
+        </div>
+
+        <h1>✏️ Year 3 Grammar & Tenses</h1>
+        <p class="instruction">Enter your name, select a category and topic to read notes & test your skills!</p>
+
+        <div class="form-group">
+            <label for="studentName">👤 Student Name:</label>
+            <input type="text" id="studentName" placeholder="Type your full name here...">
+        </div>
+
+        <div class="btn-container">
+            <button class="btn-set btn-pink">📘 GRAMMAR</button>
+            <button class="btn-set btn-outline-pink">⏰ TENSES & VERBS</button>
+        </div>
+
+        <div class="sub-title">📌 Select Topic:</div>
+        <div class="form-group">
+            <select id="topicSelect">
+                <option value="">-- Choose a Topic --</option>
+                <option value="topic1">Topic 1: Nouns & Pronouns</option>
+                <option value="topic2">Topic 2: Present & Past Tense</option>
+            </select>
+        </div>
+
+        <a href="#" class="link-guru">🔑 Teacher / Admin Access</a>
+    </div>
+
+</body>
+</html>
