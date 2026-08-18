@@ -81,6 +81,31 @@
             text-align: center;
         }
 
+        /* RUANGAN NAMA MURID */
+        .user-input-container {
+            margin-bottom: 20px;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 16px;
+            border: 2px solid #fbcfe8;
+        }
+
+        .user-input-container label {
+            display: block;
+            margin-bottom: 8px;
+            color: #be185d;
+            font-weight: 700;
+        }
+
+        .user-input-container input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #f472b6;
+            border-radius: 12px;
+            font-size: 18px;
+            outline: none;
+        }
+
         /* TAB KATEGORI: GRAMMAR VS TENSES */
         .tab-container {
             display: flex;
@@ -246,7 +271,13 @@
     </div>
 
     <h1>✏️ Year 3 Grammar & Tenses</h1>
-    <p class="instruction">Select category and topic to read notes & test your skills!</p>
+    <p class="instruction">Enter your name, select a category and topic to read notes & test your skills!</p>
+
+    <!-- INPUT NAMA MURID -->
+    <div class="user-input-container">
+        <label for="student-name">👤 Student Name:</label>
+        <input type="text" id="student-name" placeholder="Type your full name here...">
+    </div>
 
     <!-- TAB SWITCHER -->
     <div class="tab-container">
@@ -272,6 +303,9 @@
 </div>
 
 <script>
+    // MASUKKAN URL GOOGLE APPS SCRIPT ANDA DI SINI
+    const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
     let currentCategory = 'grammar';
 
     const grammarData = {
@@ -504,7 +538,7 @@
             `,
             questions: [
                 { q: "1. She _____ to school every day.", options: ["walk", "walks", "walking"], ans: "walks" },
-                { q: "2. They _____ football in the petang.", options: ["play", "plays", "playing"], ans: "play" },
+                { q: "2. They _____ football in the evening.", options: ["play", "plays", "playing"], ans: "play" },
                 { q: "3. The dog _____ at night.", options: ["bark", "barks", "barking"], ans: "barks" },
                 { q: "4. We _____ happy to see you.", options: ["am", "is", "are"], ans: "are" },
                 { q: "5. My father _____ a red car.", options: ["drive", "drives", "driving"], ans: "drives" },
@@ -592,100 +626,141 @@
                 { q: "4. They _____ football last Sunday.", options: ["play", "played", "playing"], ans: "played" },
                 { q: "5. I _____ a huge elephant at the zoo.", options: ["see", "saw", "seen"], ans: "saw" },
                 { q: "6. My mother _____ a new bag yesterday.", options: ["buy", "bought", "buying"], ans: "bought" },
-                { q: "7. You _____ your milk this morning.", options: ["drink", "drank", "drinking"], ans: "drank" },
-                { q: "8. He _____ his hands before dinner.", options: ["wash", "washed", "washing"], ans: "washed" }
+                { q: "7. You _____ milk before going to bed last night.", options: ["drink", "drank", "drinking"], ans: "drank" },
+                { q: "8. They _____ their hands clean before lunch.", options: ["wash", "washed", "washing"], ans: "washed" }
             ]
         }
     };
 
-    function switchCategory(cat) {
-        currentCategory = cat;
-        document.getElementById('tab-grammar').classList.toggle('active-tab', cat === 'grammar');
-        document.getElementById('tab-tenses').classList.toggle('active-tab', cat === 'tenses');
-
-        const select = document.getElementById('topic-select');
-        select.innerHTML = '';
-
-        const activeDataSource = cat === 'grammar' ? grammarData : tensesData;
-
-        Object.keys(activeDataSource).forEach(key => {
-            const opt = document.createElement('option');
-            opt.value = key;
-            opt.innerText = activeDataSource[key].title;
-            select.appendChild(opt);
-        });
+    function switchCategory(category) {
+        currentCategory = category;
+        
+        // Kemaskini tab aktif
+        document.getElementById('tab-grammar').classList.toggle('active-tab', category === 'grammar');
+        document.getElementById('tab-tenses').classList.toggle('active-tab', category === 'tenses');
+        
+        // Muat pilihan tajuk mengikut kategori
+        const topicSelect = document.getElementById('topic-select');
+        topicSelect.innerHTML = '';
+        
+        const currentData = category === 'grammar' ? grammarData : tensesData;
+        
+        for (let key in currentData) {
+            let option = document.createElement('option');
+            option.value = key;
+            option.innerText = currentData[key].title;
+            topicSelect.appendChild(option);
+        }
 
         loadTopicData();
     }
 
     function loadTopicData() {
         const topicKey = document.getElementById('topic-select').value;
-        const dataSource = currentCategory === 'grammar' ? grammarData : tensesData;
-        const data = dataSource[topicKey];
+        const currentData = currentCategory === 'grammar' ? grammarData : tensesData;
+        const selectedTopic = currentData[topicKey];
 
-        if (!data) return;
+        if (!selectedTopic) return;
 
-        // Render Notes
-        document.getElementById('notes-display').innerHTML = data.notes;
+        // Tampilkan nota
+        document.getElementById('notes-display').innerHTML = selectedTopic.notes;
 
-        // Render Questions
-        let qHtml = '';
-        data.questions.forEach((q, idx) => {
-            qHtml += `
-                <div class="question-card">
-                    <p>${q.q}</p>
-            `;
-            q.options.forEach(opt => {
-                qHtml += `
-                    <label class="option-label">
-                        <input type="radio" name="q_${idx}" value="${opt}">
-                        <span>${opt}</span>
-                    </label>
-                `;
+        // Tampilkan soalan kuiz
+        const questionsDisplay = document.getElementById('questions-display');
+        questionsDisplay.innerHTML = '';
+
+        selectedTopic.questions.forEach((item, index) => {
+            let qCard = document.createElement('div');
+            qCard.className = 'question-card';
+            
+            let qTitle = document.createElement('p');
+            qTitle.innerText = item.q;
+            qCard.appendChild(qTitle);
+
+            item.options.forEach(opt => {
+                let label = document.createElement('label');
+                label.className = 'option-label';
+                
+                let input = document.createElement('input');
+                input.type = 'radio';
+                input.name = `question_${index}`;
+                input.value = opt;
+                
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(' ' + opt));
+                qCard.appendChild(label);
             });
-            qHtml += `</div>`;
+
+            questionsDisplay.appendChild(qCard);
         });
 
-        document.getElementById('questions-display').innerHTML = qHtml;
         document.getElementById('score-box').style.display = 'none';
     }
 
     function submitQuiz() {
+        const nameInput = document.getElementById('student-name').value.trim();
+        if (!nameInput) {
+            alert('Sila masukkan nama anda terlebih dahulu!');
+            return;
+        }
+
         const topicKey = document.getElementById('topic-select').value;
-        const dataSource = currentCategory === 'grammar' ? grammarData : tensesData;
-        const questions = dataSource[topicKey].questions;
-
+        const currentData = currentCategory === 'grammar' ? grammarData : tensesData;
+        const selectedTopic = currentData[topicKey];
+        
         let score = 0;
-        let answered = 0;
+        let total = selectedTopic.questions.length;
 
-        questions.forEach((q, idx) => {
-            const selected = document.querySelector(`input[name="q_${idx}"]:checked`);
-            if (selected) {
-                answered++;
-                if (selected.value === q.ans) {
-                    score++;
-                }
+        selectedTopic.questions.forEach((item, index) => {
+            const selectedOpt = document.querySelector(`input[name="question_${index}"]:checked`);
+            if (selectedOpt && selectedOpt.value === item.ans) {
+                score++;
             }
         });
 
-        if (answered < questions.length) {
-            if (!confirm(`You answered ${answered} out of ${questions.length} questions. Submit anyway?`)) {
-                return;
-            }
-        }
-
+        // Paparkan skor
         const scoreBox = document.getElementById('score-box');
         scoreBox.style.display = 'block';
         scoreBox.innerHTML = `
-            <h2 style="color: #be185d; margin: 0 0 10px 0;">🎉 Quiz Complete!</h2>
-            <p style="font-size: 26px; font-weight: 700; color: #ec4899; margin: 0;">
-                Your Score: ${score} / ${questions.length}
+            <h2>🎉 Great Job, ${nameInput}!</h2>
+            <p style="font-size: 24px; font-weight: 700; color: #be185d;">
+                Your Score: ${score} / ${total}
             </p>
+            <p>Data is saving to Google Sheets...</p>
         `;
-        scoreBox.scrollIntoView({ behavior: 'smooth' });
+
+        // Hantar rekod ke Google Sheets
+        saveToGoogleSheet(nameInput, currentCategory, selectedTopic.title, score, total);
     }
 
-    // Initialize Page
+    function saveToGoogleSheet(studentName, category, topicTitle, score, total) {
+        if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") {
+            console.log("URL Google Apps Script belum disetkan.");
+            return;
+        }
+
+        const payload = {
+            name: studentName,
+            category: category.toUpperCase(),
+            topic: topicTitle,
+            score: score,
+            total: total,
+            timestamp: new Date().toLocaleString()
+        };
+
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(() => {
+            console.log('Record saved successfully!');
+        })
+        .catch(err => console.error('Error saving record:', err));
+    }
+
+    // Inisialisasi awal pada muatan halaman
     window.onload = function() {
         switchCategory('grammar');
     };
