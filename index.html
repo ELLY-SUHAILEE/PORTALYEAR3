@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Year 3 - UASA Digital Ocean Quest 🌊</title>
-    <!-- Font Mesra Kanak-Kanak & Bubbly -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+    <title>PORTAL YEAR 3 BAHASA INGGERIS 🌊</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700;800&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -13,11 +12,11 @@
             font-family: 'Fredoka', 'Nunito', sans-serif;
         }
 
-        /* LATAR BELAKANG LAUTAN PERSIS GRAFIK (GRADIENT BIRU AIR) */
+        /* LATAR BELAKANG LAUTAN GRADIENT */
         body {
             background: linear-gradient(180deg, #6fd5fc 0%, #3ca0e7 40%, #1a6fbf 85%, #0e4e96 100%);
             margin: 0;
-            padding: 20px 10px 120px 10px;
+            padding: 20px 10px 140px 10px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -26,21 +25,23 @@
             overflow-x: hidden;
         }
 
-        /* HEADING UTAMA PERSIS TAJUK "UASA DIGITAL" */
+        /* TAJUK UTAMA "PORTAL YEAR 3 BAHASA INGGERIS" */
         .header-title-container {
             text-align: center;
             margin-top: 10px;
             margin-bottom: 20px;
             z-index: 10;
+            max-width: 900px;
         }
 
         .main-title {
-            font-size: 48px;
+            font-size: 36px;
             font-weight: 900;
             color: #0d3b66;
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 1px;
+            line-height: 1.2;
             text-shadow: 
                 3px 3px 0px #ffffff,
                -3px -3px 0px #ffffff,
@@ -50,22 +51,22 @@
         }
 
         .sub-title-header {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 700;
             color: #082846;
-            margin-top: 5px;
+            margin-top: 8px;
             text-shadow: 1px 1px 0px #ffffff;
         }
 
-        /* 3 BUIH KACA DI BAHAGIAN ATAS (STEPS BUBBLES) */
+        /* 3 BUIH KACA PEMBELAJARAN (3 GLASS BUBBLES ATAS) */
         .bubbles-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 15px;
             width: 100%;
-            max-width: 900px;
-            margin-bottom: 30px;
+            max-width: 850px;
+            margin-bottom: 35px;
             position: relative;
             z-index: 10;
             flex-wrap: wrap;
@@ -76,15 +77,14 @@
             border: 4px solid #ffffff;
             box-shadow: 0 10px 20px rgba(0, 50, 100, 0.2), inset -4px -4px 8px rgba(2, 132, 199, 0.25);
             border-radius: 50%;
-            width: 170px;
-            height: 170px;
+            width: 160px;
+            height: 160px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 15px;
-            position: relative;
+            padding: 12px;
             transition: transform 0.3s ease;
         }
 
@@ -93,40 +93,41 @@
         }
 
         .step-bubble .icon {
-            font-size: 38px;
-            margin-bottom: 4px;
+            font-size: 36px;
+            margin-bottom: 2px;
         }
 
         .step-bubble .text {
-            font-size: 17px;
-            font-weight: 700;
+            font-size: 15px;
+            font-weight: 800;
             color: #0f3854;
             line-height: 1.2;
         }
 
         .arrow-connect {
-            width: 50px;
-            height: 30px;
+            width: 45px;
+            height: 25px;
         }
 
-        /* IKAN LUMBA-LUMBA (DOLPHINS) */
+        /* DOLPHIN SVGs */
         .dolphin-svg {
             position: absolute;
             z-index: 12;
             filter: drop-shadow(0 6px 10px rgba(0,0,0,0.2));
+            pointer-events: none;
         }
 
         .dolphin-top-right {
-            top: 60px;
+            top: 70px;
             right: 5%;
-            width: 130px;
+            width: 120px;
             transform: rotate(-10deg);
         }
 
         .dolphin-mid-right {
-            top: 250px;
-            right: 3%;
-            width: 150px;
+            top: 260px;
+            right: 2%;
+            width: 140px;
             transform: rotate(15deg);
         }
 
@@ -134,14 +135,14 @@
         .rock-container {
             background: linear-gradient(145deg, #a3998e 0%, #80766b 50%, #61574d 100%);
             border: 6px solid #473e35;
-            border-radius: 40px;
+            border-radius: 36px;
             box-shadow: 
                 inset 0 8px 0 rgba(255,255,255,0.25),
                 inset 0 -10px 0 rgba(0,0,0,0.35),
                 0 20px 40px rgba(0,0,0,0.4);
             width: 100%;
-            max-width: 820px;
-            padding: 35px 30px;
+            max-width: 780px;
+            padding: 35px 25px 25px 25px;
             position: relative;
             z-index: 10;
         }
@@ -150,157 +151,158 @@
             background: linear-gradient(180deg, #b5aba0 0%, #8c8277 100%);
             border: 4px solid #473e35;
             border-radius: 20px;
-            padding: 10px 25px;
+            padding: 8px 22px;
             display: inline-block;
             position: absolute;
-            top: -28px;
+            top: -26px;
             left: 50%;
             transform: translateX(-50%);
-            box-shadow: 0 6px 0 #362e27;
+            box-shadow: 0 5px 0 #362e27;
+            white-space: nowrap;
         }
 
         .rock-badge h2 {
             margin: 0;
             color: #ffffff;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 800;
             text-shadow: 2px 2px 0 #362e27;
             text-transform: uppercase;
         }
 
-        /* BORANG & INPUT PADA BATU */
+        /* PANEL DALAM BATU */
         .inner-stone-panel {
-            background: #fdfbf7;
+            background: #eef9ff;
             border: 4px solid #8c8277;
-            border-radius: 24px;
+            border-radius: 22px;
             padding: 25px;
             margin-top: 10px;
             box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         label {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-weight: 800;
-            margin-bottom: 8px;
-            color: #2d261e;
-            font-size: 20px !important;
+            margin-bottom: 6px;
+            color: #1e3a8a;
+            font-size: 18px;
         }
 
         input[type="text"], select {
             width: 100%;
-            padding: 14px 18px;
-            border: 3px solid #b8aea1;
-            border-radius: 16px;
-            font-size: 20px !important;
+            padding: 12px 16px;
+            border: 3px solid #93c5fd;
+            border-radius: 14px;
+            font-size: 18px;
             outline: none;
-            background-color: #fffefb;
-            color: #2d261e;
+            background-color: #ffffff;
+            color: #1e293b;
             font-weight: 700;
             transition: all 0.2s ease;
         }
 
         input[type="text"]:focus, select:focus {
-            border-color: #38bdf8;
-            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.4);
+            border-color: #0284c7;
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3);
         }
 
-        .sub-title {
+        .sub-title-section {
             text-align: center;
             font-weight: 800;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            color: #2d261e;
-            font-size: 20px !important;
+            margin-top: 22px;
+            margin-bottom: 12px;
+            color: #0284c7;
+            font-size: 18px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        /* BUTANG PILIHAN SEPERTI BATU / SUBJEK */
+        /* BUTANG-BUTANG WARNA PORTAL */
         .btn-container {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .btn-set {
             flex: 1;
-            min-width: 200px;
-            padding: 16px 20px;
-            border: 3px solid #362e27;
-            border-radius: 20px;
-            font-size: 20px !important;
+            min-width: 180px;
+            padding: 14px 18px;
+            border: 3px solid #1e293b;
+            border-radius: 16px;
+            font-size: 17px;
             font-weight: 800;
             color: #ffffff;
             cursor: pointer;
             text-transform: uppercase;
-            box-shadow: 0 6px 0px #362e27;
+            box-shadow: 0 5px 0px #1e293b;
             transition: all 0.15s ease;
-            text-decoration: none;
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            text-shadow: 1px 2px 0px rgba(0,0,0,0.4);
+            gap: 8px;
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.3);
         }
 
         .btn-set:active {
-            transform: translateY(4px);
-            box-shadow: 0 2px 0px #362e27;
+            transform: translateY(3px);
+            box-shadow: 0 2px 0px #1e293b;
         }
 
-        /* BUTANG BERWARNA TEMATIK */
-        .btn-blue { background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%); }
-        .btn-green { background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%); }
-        .btn-purple { background: linear-gradient(180deg, #c084fc 0%, #9333ea 100%); }
-        .btn-pink { background: linear-gradient(180deg, #f472b6 0%, #db2777 100%); }
-        .btn-teal { background: linear-gradient(180deg, #2dd4bf 0%, #0d9488 100%); }
+        .btn-smart { background: linear-gradient(180deg, #10b981 0%, #059669 100%); }
+        .btn-remedial { background: linear-gradient(180deg, #f97316 0%, #ea580c 100%); }
+        .btn-purple { background: linear-gradient(180deg, #a855f7 0%, #7e22ce 100%); }
+        .btn-pink { background: linear-gradient(180deg, #ec4899 0%, #be185d 100%); }
+        .btn-teal { background: linear-gradient(180deg, #14b8a6 0%, #0f766e 100%); }
 
         .btn-home {
             background: linear-gradient(180deg, #facc15 0%, #ca8a04 100%);
             color: #422006;
             border: 3px solid #713f12;
-            padding: 12px 22px;
-            border-radius: 16px;
-            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 14px;
+            font-size: 16px;
             font-weight: 800;
             cursor: pointer;
             box-shadow: 0 4px 0px #713f12;
-            text-shadow: none;
         }
 
         #papan-kuiz, #keputusan-kuiz { display: none; }
 
         .item-soalan {
             background-color: #ffffff;
-            border: 4px solid #b8aea1;
-            padding: 22px;
-            border-radius: 20px;
-            margin-bottom: 22px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+            border: 3px solid #93c5fd;
+            padding: 20px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
 
         .item-soalan h3 {
-            font-size: 20px !important;
-            color: #2d261e;
-            line-height: 1.5;
+            font-size: 18px;
+            color: #1e293b;
+            line-height: 1.4;
             font-weight: 800;
         }
 
         .pilihan-jawapan label {
             font-weight: 700;
-            background: #fdfbf7;
-            padding: 14px 18px;
-            border: 2px solid #d6ce2;
-            border-radius: 14px;
-            margin-bottom: 12px;
+            background: #f0f9ff;
+            padding: 12px 16px;
+            border: 2px solid #bae6fd;
+            border-radius: 12px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             cursor: pointer;
-            color: #2d261e;
-            font-size: 20px !important;
+            color: #0f172a;
+            font-size: 17px;
         }
 
         .pilihan-jawapan label:hover {
@@ -308,109 +310,83 @@
             border-color: #38bdf8;
         }
 
-        .question-image-container {
-            text-align: center;
-            margin-bottom: 16px;
-            background-color: #f0f9ff;
-            padding: 10px;
-            border: 2px dashed #38bdf8;
-            border-radius: 16px;
-        }
-
-        .question-image, .item-soalan img {
-            width: 100% !important;
-            max-width: 680px !important;
-            height: auto !important;
-            max-height: 500px !important;
-            border-radius: 12px;
-            object-fit: contain !important;
-        }
-
         .link-guru {
             display: block;
             text-align: center;
-            margin-top: 25px;
-            color: #473e35;
+            margin-top: 20px;
+            color: #0284c7;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 800;
-            padding: 10px;
-            background: #e8e2d8;
-            border-radius: 12px;
-            border: 2px solid #b8aea1;
+            padding: 8px;
+            background: #e0f2fe;
+            border-radius: 10px;
+            border: 2px dashed #38bdf8;
         }
 
-        /* BAHAGIAN DASAR LAUT (SAND BED & BANNER) */
+        /* DASAR LAUT & BANNER */
         .ocean-bottom-floor {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 110px;
+            height: 95px;
             background: linear-gradient(180deg, #eab308 0%, #ca8a04 100%);
-            border-top: 6px solid #a16207;
+            border-top: 5px solid #a16207;
             z-index: 5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
-        /* PARCHMENT BANNER DENGAN PENYU */
         .banner-scroll-wrapper {
             position: fixed;
-            bottom: 18px;
+            bottom: 15px;
             z-index: 20;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             width: 90%;
-            max-width: 750px;
+            max-width: 720px;
         }
 
         .parchment-banner {
             background: #fff9db;
             border: 4px solid #854d0e;
-            border-radius: 20px;
-            padding: 12px 25px;
+            border-radius: 18px;
+            padding: 10px 20px;
             text-align: center;
-            font-size: 20px;
+            font-size: 17px;
             font-weight: 900;
             color: #713f12;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.25);
             flex: 1;
         }
 
-        /* ELEMEN HIDUPAN SISIAN (DECORATIONS) */
         .side-creature {
             position: absolute;
             z-index: 8;
             pointer-events: none;
         }
 
-        .coral-left { bottom: 80px; left: 10px; width: 140px; }
-        .coral-right { bottom: 80px; right: 10px; width: 150px; }
-        .crab-left { bottom: 105px; left: 120px; width: 60px; }
-        .seahorse-right { bottom: 120px; right: 130px; width: 50px; }
-        .chest-right { bottom: 30px; right: 25px; width: 100px; z-index: 22; }
+        .coral-left { bottom: 70px; left: 10px; width: 120px; }
+        .coral-right { bottom: 70px; right: 10px; width: 130px; }
+        .chest-right { bottom: 25px; right: 20px; width: 90px; z-index: 22; }
     </style>
 </head>
 <body>
 
-<!-- TAJUK UTAMA ATAS PERSIS GRAFIK UASA DIGITAL -->
+<!-- TAJUK UTAMA "PORTAL YEAR 3 BAHASA INGGERIS" -->
 <div class="header-title-container">
-    <h1 class="main-title">UASA Digital</h1>
-    <div class="sub-title-header">Susah tak guna UASA Digital ni? 🌊</div>
+    <h1 class="main-title">PORTAL YEAR 3 BAHASA INGGERIS</h1>
+    <div class="sub-title-header">Fun & Interactive Learning Quest 🌊</div>
 </div>
 
-<!-- 3 BUIH KACA LANGKAH PEMBELAJARAN (3 GLASS BUBBLES) -->
+<!-- 3 BUIH KACA PEMBELAJARAN ATAS -->
 <div class="bubbles-wrapper">
     <div class="step-bubble">
         <div class="icon">⏰</div>
         <div class="text">1. Belajar 30 minit</div>
     </div>
 
-    <!-- Anak Panah 1 -->
     <svg class="arrow-connect" viewBox="0 0 50 30">
         <path d="M5,15 Q25,0 45,15" stroke="#ffffff" stroke-width="5" fill="none" stroke-linecap="round"/>
         <polyline points="35,18 45,15 38,5" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
@@ -421,7 +397,6 @@
         <div class="text">2. Belajar ikut subjek & topik</div>
     </div>
 
-    <!-- Anak Panah 2 -->
     <svg class="arrow-connect" viewBox="0 0 50 30">
         <path d="M5,15 Q25,0 45,15" stroke="#ffffff" stroke-width="5" fill="none" stroke-linecap="round"/>
         <polyline points="35,18 45,15 38,5" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
@@ -433,7 +408,7 @@
     </div>
 </div>
 
-<!-- IKAN LUMBA-LUMBA ATAS & TEPI -->
+<!-- DOLPHINS -->
 <svg class="dolphin-svg dolphin-top-right" viewBox="0 0 160 90">
     <path d="M10,50 Q50,10 110,25 Q150,35 155,50 Q130,65 90,60 Q40,65 10,50 Z" fill="#60a5fa"/>
     <path d="M75,25 L92,5 L102,27 Z" fill="#2563eb"/>
@@ -448,14 +423,13 @@
     <circle cx="30" cy="42" r="3" fill="#0f172a"/>
 </svg>
 
-<!-- STRUKTUR BATU BATAN UTAMA (STONE FORMATION CONTAINER) -->
+<!-- STRUKTUR BATU BATAN UTAMA -->
 <div class="rock-container">
     <div class="rock-badge">
-        <h2>Subjek dalam UASA Digital</h2>
+        <h2>🌊 BAHASA INGGERIS TAHUN 3 🐬</h2>
     </div>
 
     <div class="inner-stone-panel">
-        <!-- BORANG UTAMA -->
         <div id="borang-mula">
             <div class="form-group">
                 <label for="nama">👤 Student Name:</label>
@@ -496,15 +470,14 @@
                 </select>
             </div>
 
-            <div class="sub-title">⭐ Select Quiz Set ⭐</div>
+            <div class="sub-title-section">⭐ SELECT QUIZ SET TO BEGIN ⭐</div>
             
             <div class="btn-container">
-                <button class="btn-set btn-blue" onclick="mulaKuiz('GET SMART SET')">🎮 GET SMART SET</button>
-                <button class="btn-set btn-green" onclick="mulaKuiz('REMEDIAL SET')">🌟 REMEDIAL SET</button>
+                <button class="btn-set btn-smart" onclick="mulaKuiz('GET SMART SET')">🎮 GET SMART SET</button>
+                <button class="btn-set btn-remedial" onclick="mulaKuiz('REMEDIAL SET')">🌟 REMEDIAL SET</button>
             </div>
 
-            <!-- MODUL PENEROKAAN TAMBAHAN -->
-            <div class="sub-title" style="margin-top: 20px;">🚀 Self-Exploration 🚀</div>
+            <div class="sub-title-section" style="margin-top: 18px;">🚀 SELF-EXPLORATION 🚀</div>
 
             <div class="btn-container">
                 <button class="btn-set btn-purple" onclick="bukaModulLain('reading.html')">📖 READING CORNER</button>
@@ -515,18 +488,16 @@
             <a href="javascript:void(0)" onclick="bukaDashboardGuru()" class="link-guru">🔒 Teacher's Dashboard</a>
         </div>
 
-        <!-- PAPAN SOALAN KUIZ -->
+        <!-- PAPAN KUIZ -->
         <div id="papan-kuiz">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                 <button class="btn-home" onclick="keHalamanUtama()">🏠 HOME</button>
-                <span id="label-modul-papar" style="font-weight: 800; color: #2d261e; font-size: 20px;"></span>
+                <span id="label-modul-papar" style="font-weight: 800; color: #1e3a8a; font-size: 18px;"></span>
             </div>
-
             <div id="bekas-senarai-soalan"></div>
-            
-            <div class="btn-container" style="margin-top: 25px;">
-                <button class="btn-home" onclick="keHalamanUtama()" style="flex: none; padding: 16px 24px;">🏠 HOME</button>
-                <button class="btn-set btn-blue" onclick="hantarKuiz()">🚀 SUBMIT ANSWERS</button>
+            <div class="btn-container" style="margin-top: 20px;">
+                <button class="btn-home" onclick="keHalamanUtama()" style="flex: none;">🏠 HOME</button>
+                <button class="btn-set btn-smart" onclick="hantarKuiz()">🚀 SUBMIT ANSWERS</button>
             </div>
         </div>
 
@@ -535,7 +506,7 @@
     </div>
 </div>
 
-<!-- HIDUPAN LAUT & TERUMBU KARANG KIRI-KANAN -->
+<!-- DEKORASI DASAR LAUT -->
 <svg class="side-creature coral-left" viewBox="0 0 120 120">
     <path d="M10,120 Q0,70 20,50 Q30,40 25,20 Q45,30 40,50 Q60,35 70,60 Q80,120 10,120 Z" fill="#f43f5e"/>
     <path d="M60,120 Q50,80 70,65 Q85,50 80,30 Q95,40 90,65 Q105,50 115,75 Q120,120 60,120 Z" fill="#fb7185"/>
@@ -546,56 +517,34 @@
     <path d="M50,120 Q60,70 80,50 Q95,60 90,30 Q110,45 105,75 Q115,85 110,120 Z" fill="#facc15"/>
 </svg>
 
-<svg class="side-creature crab-left" viewBox="0 0 60 40">
-    <ellipse cx="30" cy="25" rx="18" ry="12" fill="#ef4444"/>
-    <circle cx="22" cy="12" r="3" fill="#000000"/>
-    <circle cx="38" cy="12" r="3" fill="#000000"/>
-    <path d="M10,20 Q0,10 5,2 M50,20 Q60,10 55,2" stroke="#ef4444" stroke-width="4" fill="none"/>
-</svg>
-
-<svg class="side-creature seahorse-right" viewBox="0 0 40 70">
-    <path d="M20,5 Q30,5 30,15 Q25,25 20,28 Q28,35 22,50 Q15,65 25,65" fill="none" stroke="#f97316" stroke-width="8" stroke-linecap="round"/>
-    <circle cx="25" cy="12" r="2" fill="#000000"/>
-</svg>
-
-<!-- PETI HARTA KARAN (TREASURE CHEST) -->
 <svg class="side-creature chest-right" viewBox="0 0 100 80">
     <rect x="10" y="35" width="80" height="40" rx="5" fill="#854d0e" stroke="#451a03" stroke-width="3"/>
     <path d="M10,35 Q50,10 90,35 Z" fill="#a16207" stroke="#451a03" stroke-width="3"/>
     <rect x="42" y="38" width="16" height="20" fill="#facc15" stroke="#713f12" stroke-width="2"/>
-    <circle cx="50" cy="45" r="3" fill="#000000"/>
-    <circle cx="30" cy="32" r="5" fill="#facc15"/>
-    <circle cx="70" cy="30" r="6" fill="#facc15"/>
 </svg>
 
-<!-- DASHBOARD PASIR & BANNER PENYU (OCEAN FLOOR BANNER) -->
+<!-- DASAR PASIR & BANNER PENYU -->
 <div class="ocean-bottom-floor"></div>
 
 <div class="banner-scroll-wrapper">
-    <!-- Penyu Kiri -->
-    <svg width="60" height="45" viewBox="0 0 60 45">
+    <svg width="50" height="38" viewBox="0 0 60 45">
         <ellipse cx="30" cy="22" rx="18" ry="14" fill="#65a30d" stroke="#365314" stroke-width="2"/>
         <circle cx="48" cy="22" r="8" fill="#84cc16"/>
         <circle cx="51" cy="20" r="2" fill="#000000"/>
-        <circle cx="18" cy="10" r="5" fill="#84cc16"/>
-        <circle cx="18" cy="34" r="5" fill="#84cc16"/>
     </svg>
 
     <div class="parchment-banner">
-        Barulah anak dapat belajar dengan mudah. Dapatkan UASA Digital sekarang.
+        Barulah anak dapat belajar dengan mudah. Dapatkan Portal Year 3 sekarang.
     </div>
 
-    <!-- Penyu Kanan -->
-    <svg width="60" height="45" viewBox="0 0 60 45" style="transform: scaleX(-1);">
+    <svg width="50" height="38" viewBox="0 0 60 45" style="transform: scaleX(-1);">
         <ellipse cx="30" cy="22" rx="18" ry="14" fill="#65a30d" stroke="#365314" stroke-width="2"/>
         <circle cx="48" cy="22" r="8" fill="#84cc16"/>
         <circle cx="51" cy="20" r="2" fill="#000000"/>
-        <circle cx="18" cy="10" r="5" fill="#84cc16"/>
-        <circle cx="18" cy="34" r="5" fill="#84cc16"/>
     </svg>
 </div>
 
-<!-- SKRIP MODUL TAHUN 3 -->
+<!-- SCRIPTS JS -->
 <script src="module1.js"></script>
 <script src="module2.js"></script>
 <script src="module3.js"></script>
@@ -617,7 +566,7 @@
         const kelas = document.getElementById('kelas').value;
 
         if (!nama || !kelas) {
-            alert("Sila isi Nama dan pilih Kelas anda terlebih dahulu sebelum menekan butang penerokaan!");
+            alert("Please enter your name and select a class first!");
             return;
         }
 
@@ -627,25 +576,15 @@
 
     function bukaDashboardGuru() {
         const inputLaluan = prompt("🔑 Please enter Teacher's password:");
-
         if (inputLaluan === "guru123" || inputLaluan === "1234") {
-            try {
-                sessionStorage.setItem("guru_authenticated", "true");
-            } catch(e) {
-                console.log("sessionStorage blocked by browser.");
-            }
+            try { sessionStorage.setItem("guru_authenticated", "true"); } catch(e){}
             window.location.href = "dashboard.html";
         } else if (inputLaluan !== null) {
-            alert("❌ Incorrect password! Access denied.");
+            alert("❌ Incorrect password!");
         }
     }
 
     function keHalamanUtama() {
-        if (document.getElementById('papan-kuiz').style.display === 'block') {
-            if (!confirm("Are you sure you want to return to Home? Your current answers will not be saved.")) {
-                return;
-            }
-        }
         document.getElementById('borang-mula').style.display = 'block';
         document.getElementById('papan-kuiz').style.display = 'none';
         document.getElementById('keputusan-kuiz').style.display = 'none';
@@ -662,7 +601,7 @@
         }
 
         if (typeof quizBank === 'undefined' || !quizBank[setTerpilih]) {
-            alert("quizBank data not found! Make sure the module JS files are loaded.");
+            alert("quizBank data not found!");
             return;
         }
 
@@ -672,12 +611,11 @@
 
         const kunciPadan = modulKeys.find(key => {
             const matchKey = key.match(/\d+/);
-            const nomborKey = matchKey ? matchKey[0] : '';
-            return nomborKey === nomborModul;
+            return (matchKey ? matchKey[0] : '') === nomborModul;
         });
 
         if (!kunciPadan) {
-            alert(`Question data for ${modulInput} (${setTerpilih}) not found. Please ensure the module*.js file contains data for this topic.`);
+            alert(`Question data for ${modulInput} not found.`);
             return;
         }
 
@@ -690,7 +628,6 @@
         });
 
         jawapanPengguna = {};
-
         document.getElementById('borang-mula').style.display = 'none';
         document.getElementById('papan-kuiz').style.display = 'block';
         document.getElementById('keputusan-kuiz').style.display = 'none';
@@ -705,7 +642,6 @@
 
         soalanSemasa.forEach((soalan, index) => {
             const nomborSoalan = index + 1;
-
             htmlContent += `<div class="item-soalan">`;
             
             if (soalan.image) {
@@ -713,24 +649,19 @@
                 if (imgStr.startsWith('<')) {
                     htmlContent += imgStr;
                 } else {
-                    htmlContent += `
-                        <div class="question-image-container">
-                            <img src="${imgStr}" alt="Question ${nomborSoalan}" class="question-image" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'color:red;font-size:16px;\\'>[Failed to load image: ${imgStr}]</span>';">
-                        </div>
-                    `;
+                    htmlContent += `<div style="text-align:center; margin-bottom:12px;"><img src="${imgStr}" style="max-width:100%; height:auto; border-radius:10px;"></div>`;
                 }
             }
 
             const teksSoalanBersih = (soalan.q || '').replace(/^\d+[\.\)]\s*/, '');
-
             htmlContent += `<h3 style="white-space: pre-line; margin-top: 5px;">${nomborSoalan}. ${teksSoalanBersih}</h3>`;
             htmlContent += `<div class="pilihan-jawapan">`;
 
             soalan.options.forEach((pilihan) => {
                 htmlContent += `
                     <label>
-                        <input type="radio" name="soalan_${index}" value="${pilihan}" onchange="pilihJawapan(${index}, '${pilihan}')">
-                        <span style="margin-left: 14px;">${pilihan}</span>
+                        <input type="radio" name="soalan_${index}" value="${pilihan}" onchange="jawapanPengguna[${index}]='${pilihan}'">
+                        <span style="margin-left: 12px;">${pilihan}</span>
                     </label>
                 `;
             });
@@ -741,25 +672,19 @@
         bekas.innerHTML = htmlContent;
     }
 
-    function pilihJawapan(index, pilihan) {
-        jawapanPengguna[index] = pilihan;
-    }
-
     function hantarKuiz() {
         const jumlahSoalan = soalanSemasa.length;
         const dijawab = Object.keys(jawapanPengguna).length;
 
         if (dijawab < jumlahSoalan) {
-            if (!confirm(`You have only answered ${dijawab} out of ${jumlahSoalan} questions. Are you sure you want to submit?`)) {
+            if (!confirm(`You have only answered ${dijawab} out of ${jumlahSoalan} questions. Submit anyway?`)) {
                 return;
             }
         }
 
         let markah = 0;
         soalanSemasa.forEach((soalan, idx) => {
-            if (jawapanPengguna[idx] === soalan.ans) {
-                markah++;
-            }
+            if (jawapanPengguna[idx] === soalan.ans) markah++;
         });
 
         const peratus = Math.round((markah / jumlahSoalan) * 100);
@@ -780,15 +705,15 @@
         bekasKeputusan.style.display = 'block';
         
         bekasKeputusan.innerHTML = `
-            <h2 style="color: #2d261e; font-size: 30px;">🎉 Quiz Results</h2>
-            <div style="background: #fffefb; padding: 22px; border-radius: 18px; text-align: left; margin: 20px 0; border: 3px solid #b8aea1; font-size: 20px;">
+            <h2 style="color: #0f172a; font-size: 28px;">🎉 Quiz Results</h2>
+            <div style="background: #ffffff; padding: 20px; border-radius: 16px; text-align: left; margin: 15px 0; border: 2px solid #bae6fd;">
                 <p><strong>👤 Name:</strong> ${maklumatPelajar.nama}</p>
                 <p><strong>🏫 Class:</strong> ${maklumatPelajar.kelas}</p>
                 <p><strong>📚 Topic:</strong> ${maklumatPelajar.modul}</p>
                 <p><strong>🎮 Set:</strong> ${maklumatPelajar.set}</p>
             </div>
-            <h3 style="font-size: 32px; color: #16a34a; margin: 15px 0;">⭐ Score: ${markah} / ${jumlahSoalan} (${peratus}%)</h3>
-            <button class="btn-home" onclick="keHalamanUtama()" style="margin-top: 15px; padding: 14px 28px; font-size: 20px;">🏠 Main Menu (HOME)</button>
+            <h3 style="font-size: 30px; color: #16a34a; margin: 15px 0;">Score: ${markah} / ${jumlahSoalan} (${peratus}%)</h3>
+            <button class="btn-home" onclick="keHalamanUtama()" style="padding: 12px 24px;">🏠 Main Menu (HOME)</button>
         `;
     }
 </script>
