@@ -22,6 +22,7 @@
             align-items: flex-start;
             min-height: 100vh;
             font-size: 20px !important;
+            overflow-x: hidden;
         }
 
         /* MAIN CONTAINER */
@@ -35,6 +36,7 @@
             box-shadow: 0 20px 45px rgba(5, 46, 22, 0.4);
             padding: 25px 20px;
             display: block;
+            position: relative;
         }
 
         .nav-header {
@@ -180,9 +182,10 @@
             box-shadow: 0 2px 0px #ca8a04;
         }
 
+        /* Syntax colors for Mode 3 */
         .word-chip.subject { background: #fef08a; border-color: #eab308; box-shadow: 0 4px 0px #ca8a04; color: #713f12; }
-        .word-chip.verb { background: #fbcfe8; border-color: #f472b6; box-shadow: 0 4px 0px #db2777; color: #831843; }
-        .word-chip.object { background: #bae6fd; border-color: #38bdf8; box-shadow: 0 4px 0px #0284c7; color: #0c4a6e; }
+        .word-chip.verb    { background: #fbcfe8; border-color: #f472b6; box-shadow: 0 4px 0px #db2777; color: #831843; }
+        .word-chip.object  { background: #bae6fd; border-color: #38bdf8; box-shadow: 0 4px 0px #0284c7; color: #0c4a6e; }
 
         /* ACTION BUTTONS */
         .btn-group {
@@ -232,6 +235,29 @@
             color: #065f46;
             margin-top: 10px;
         }
+
+        /* STAR ANIMATION PARTICLES */
+        .star-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 28px;
+            animation: burstAndFade 1.2s ease-out forwards;
+        }
+
+        @keyframes burstAndFade {
+            0% {
+                transform: translate(0, 0) scale(0.4) rotate(0deg);
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(1.4) rotate(360deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -252,21 +278,21 @@
     </div>
 
     <div class="select-group">
-        <select id="module-select" onchange="loadCurrentQuiz()">
+        <select id="module-select" onchange="onModuleChange()">
             <option value="m1">Module 1: Welcome!</option>
             <option value="m2">Module 2: Every day</option>
             <option value="m3">Module 3: Right now</option>
             <option value="m4">Module 4: Year in, year out</option>
-            <option value="m5">Module 5: My new house / Eating right</option>
-            <option value="m6">Module 6: Food, please! / Getting around</option>
-            <option value="m7">Module 7: Out and about / Helping out</option>
+            <option value="m5">Module 5: My new house</option>
+            <option value="m6">Module 6: Food, please!</option>
+            <option value="m7">Module 7: Out and about</option>
             <option value="m8">Module 8: Where were you yesterday?</option>
-            <option value="m9">Module 9: On holiday / Get active!</option>
+            <option value="m9">Module 9: On holiday</option>
             <option value="m10">Module 10: The world around us</option>
         </select>
     </div>
 
-    <div class="score-display" id="q-counter">Question 1 / 8</div>
+    <div class="score-display" id="q-counter">Question 1 / 5</div>
 
     <div class="question-box">
         <p class="q-text" id="prompt-text">Arrange the words to form a correct sentence:</p>
@@ -292,8 +318,109 @@
     let currentModule = 'm1';
     let currentMode = 1;
     let questionIndex = 0;
+    let audioCtx = null;
 
-    // DATASET 10 MODULES x 20 QUESTIONS EACH (Split across 3 Modes)
+    // AUDIO SYNTHESIS FUNCTIONS (WEB AUDIO API)
+    function getAudioContext() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+        return audioCtx;
+    }
+
+    function playClickSound() {
+        try {
+            const ctx = getAudioContext();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(450, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(750, ctx.currentTime + 0.05);
+            gain.gain.setValueAtTime(0.15, ctx.currentTime);
+            gain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.05);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.05);
+        } catch (e) {}
+    }
+
+    function playCorrectSound() {
+        try {
+            const ctx = getAudioContext();
+            const now = ctx.currentTime;
+            const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6 jingle
+            notes.forEach((freq, idx) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, now + idx * 0.09);
+                gain.gain.setValueAtTime(0.25, now + idx * 0.09);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.09 + 0.3);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now + idx * 0.09);
+                osc.stop(now + idx * 0.09 + 0.3);
+            });
+        } catch (e) {}
+    }
+
+    function playWrongSound() {
+        try {
+            const ctx = getAudioContext();
+            const now = ctx.currentTime;
+            const notes = [260, 200];
+            notes.forEach((freq, idx) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(freq, now + idx * 0.12);
+                gain.gain.setValueAtTime(0.15, now + idx * 0.12);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.12 + 0.22);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now + idx * 0.12);
+                osc.stop(now + idx * 0.12 + 0.22);
+            });
+        } catch (e) {}
+    }
+
+    // STAR REWARD BURST ANIMATION
+    function triggerStarReward() {
+        const starSymbols = ['⭐', '🌟', '✨', '🎉', '🏆'];
+        const card = document.getElementById('main-card');
+        const rect = card.getBoundingClientRect();
+        const startX = rect.left + rect.width / 2;
+        const startY = rect.top + rect.height / 2;
+
+        for (let i = 0; i < 28; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'star-particle';
+            particle.innerText = starSymbols[Math.floor(Math.random() * starSymbols.length)];
+            
+            particle.style.left = startX + 'px';
+            particle.style.top = startY + 'px';
+
+            const angle = Math.random() * Math.PI * 2;
+            const dist = 120 + Math.random() * 220;
+            const tx = (Math.cos(angle) * dist) + 'px';
+            const ty = (Math.sin(angle) * dist) + 'px';
+
+            particle.style.setProperty('--tx', tx);
+            particle.style.setProperty('--ty', ty);
+
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 1200);
+        }
+    }
+
+    // DATASET ACROSS 10 CEFR YEAR 3 MODULES
     const dataset = {
         m1: {
             mode1: [
@@ -301,101 +428,232 @@
                 { target: ["Have", "you", "got", "twenty", "marbles?"], dist: ["marbles?", "got", "Have", "twenty", "you"] },
                 { target: ["He", "hasn't", "got", "brown", "eyes."], dist: ["brown", "got", "He", "eyes.", "hasn't"] },
                 { target: ["They", "have", "got", "blonde", "hair."], dist: ["got", "They", "hair.", "blonde", "have"] },
-                { target: ["I", "have", "got", "a", "shell", "collection."], dist: ["collection.", "got", "have", "a", "shell", "I"] },
-                { target: ["Has", "she", "got", "curly", "hair?"], dist: ["curly", "got", "she", "hair?", "Has"] },
-                { target: ["We", "haven't", "got", "purple", "bags."], dist: ["purple", "got", "haven't", "We", "bags."] },
-                { target: ["It", "has", "got", "big", "eyes."], dist: ["big", "has", "eyes.", "It", "got"] }
+                { target: ["I", "have", "got", "a", "shell", "collection."], dist: ["collection.", "got", "have", "a", "shell", "I"] }
             ],
             mode2: [
                 { prompt: "She _____ got long hair.", ans: "has", options: ["has", "have", "is"] },
                 { prompt: "They _____ got fifty shells.", ans: "have", options: ["have", "has", "are"] },
                 { prompt: "_____ you got dark eyes?", ans: "Have", options: ["Have", "Has", "Do"] },
                 { prompt: "He _____ got glasses.", ans: "hasn't", options: ["hasn't", "haven't", "don't"] },
-                { prompt: "_____ she got a brother?", ans: "Has", options: ["Has", "Have", "Is"] },
-                { prompt: "We _____ got English class.", ans: "have", options: ["have", "has", "are"] },
-                { prompt: "I _____ got a big family.", ans: "have", options: ["have", "has", "am"] }
+                { prompt: "_____ she got a brother?", ans: "Has", options: ["Has", "Have", "Is"] }
             ],
             mode3: [
                 { prompt: "Build: Subject + Verb + Object", slots: [
-                    { type: "subject", text: "She", typeCls: "subject" },
-                    { type: "verb", text: "has got", typeCls: "verb" },
-                    { type: "object", text: "blue eyes.", typeCls: "object" }
-                ], options: ["She", "has got", "blue eyes.", "They", "have got", "marbles."] },
-                { prompt: "Build: Subject + Verb + Object", slots: [
-                    { type: "subject", text: "I", typeCls: "subject" },
-                    { type: "verb", text: "have got", typeCls: "verb" },
-                    { type: "object", text: "ten shells.", typeCls: "object" }
-                ], options: ["I", "have got", "ten shells.", "He", "has got", "glasses."] },
-                { prompt: "Build: Negative Sentence", slots: [
-                    { type: "subject", text: "He", typeCls: "subject" },
-                    { type: "verb", text: "hasn't got", typeCls: "verb" },
-                    { type: "object", text: "straight hair.", typeCls: "object" }
-                ], options: ["He", "hasn't got", "straight hair.", "We", "haven't got", "a cat."] },
-                { prompt: "Build: Question", slots: [
-                    { type: "verb", text: "Have", typeCls: "verb" },
-                    { type: "subject", text: "you", typeCls: "subject" },
-                    { type: "object", text: "got a doll?", typeCls: "object" }
-                ], options: ["Have", "you", "got a doll?", "Has", "she", "got a dog?"] },
-                { prompt: "Build: Plural Possession", slots: [
-                    { type: "subject", text: "They", typeCls: "subject" },
-                    { type: "verb", text: "have got", typeCls: "verb" },
-                    { type: "object", text: "cute puppies.", typeCls: "object" }
-                ], options: ["They", "have got", "cute puppies.", "It", "has got", "tail."] }
+                    { type: "subject", text: "She" },
+                    { type: "verb", text: "has got" },
+                    { type: "object", text: "blue eyes." }
+                ], options: [
+                    { text: "She", type: "subject" },
+                    { text: "has got", type: "verb" },
+                    { text: "blue eyes.", type: "object" },
+                    { text: "They", type: "subject" },
+                    { text: "have got", type: "verb" },
+                    { text: "marbles.", type: "object" }
+                ]}
             ]
         },
         m2: {
             mode1: [
                 { target: ["He", "always", "brushes", "his", "teeth."], dist: ["teeth.", "always", "his", "He", "brushes"] },
                 { target: ["I", "sometimes", "play", "chess", "after", "school."], dist: ["after", "play", "chess", "I", "school.", "sometimes"] },
-                { target: ["She", "never", "walks", "to", "school."], dist: ["school.", "never", "walks", "She", "to"] },
-                { target: ["Do", "you", "do", "karate", "on", "Saturdays?"], dist: ["on", "karate", "Do", "Saturdays?", "you", "do"] },
-                { target: ["They", "always", "have", "shower", "at", "night."], dist: ["have", "They", "at", "shower", "always", "night."] },
-                { target: ["What", "time", "do", "you", "wake", "up?"], dist: ["wake", "do", "What", "up?", "time", "you"] },
-                { target: ["My", "father", "drives", "a", "red", "car."], dist: ["car.", "drives", "a", "red", "My", "father"] },
-                { target: ["We", "sometimes", "watch", "TV", "together."], dist: ["together.", "watch", "sometimes", "TV", "We"] }
+                { target: ["She", "never", "walks", "to", "school."], dist: ["school.", "never", "walks", "She", "to"] }
             ],
             mode2: [
                 { prompt: "She always _____ her teeth in the morning.", ans: "brushes", options: ["brushes", "brush", "brushing"] },
                 { prompt: "They sometimes _____ football on Sundays.", ans: "play", options: ["play", "plays", "playing"] },
-                { prompt: "I never _____ late for school.", ans: "am", options: ["am", "is", "are"] },
-                { prompt: "_____ he do gymnastics after school?", ans: "Does", options: ["Does", "Do", "Is"] },
-                { prompt: "What time _____ you wake up?", ans: "do", options: ["do", "does", "are"] },
-                { prompt: "My brother _____ his homework at 8 PM.", ans: "does", options: ["does", "do", "doing"] },
-                { prompt: "We always _____ breakfast together.", ans: "eat", options: ["eat", "eats", "eating"] }
+                { prompt: "_____ he do gymnastics after school?", ans: "Does", options: ["Does", "Do", "Is"] }
             ],
             mode3: [
                 { prompt: "Build: Daily Routine", slots: [
-                    { text: "I", typeCls: "subject" },
-                    { text: "always brush", typeCls: "verb" },
-                    { text: "my teeth.", typeCls: "object" }
-                ], options: ["I", "always brush", "my teeth.", "She", "sometimes plays", "piano."] },
-                { prompt: "Build: Frequency Sentence", slots: [
-                    { text: "He", typeCls: "subject" },
-                    { text: "sometimes rides", typeCls: "verb" },
-                    { text: "his bike.", typeCls: "object" }
-                ], options: ["He", "sometimes rides", "his bike.", "They", "never go", "by bus."] },
-                { prompt: "Build: Negative Routine", slots: [
-                    { text: "She", typeCls: "subject" },
-                    { text: "doesn't do", typeCls: "verb" },
-                    { text: "karate.", typeCls: "object" }
-                ], options: ["She", "doesn't do", "karate.", "We", "don't walk", "home."] },
-                { prompt: "Build: Question Sentence", slots: [
-                    { text: "Do", typeCls: "verb" },
-                    { text: "you play", typeCls: "subject" },
-                    { text: "chess?", typeCls: "object" }
-                ], options: ["Do", "you play", "chess?", "Does", "he watch", "TV?"] },
-                { prompt: "Build: Morning Routine", slots: [
-                    { text: "We", typeCls: "subject" },
-                    { text: "always eat", typeCls: "verb" },
-                    { text: "cereal.", typeCls: "object" }
-                ], options: ["We", "always eat", "cereal.", "He", "never wakes", "early."] }
+                    { type: "subject", text: "I" },
+                    { type: "verb", text: "always brush" },
+                    { type: "object", text: "my teeth." }
+                ], options: [
+                    { text: "I", type: "subject" },
+                    { text: "always brush", type: "verb" },
+                    { text: "my teeth.", type: "object" },
+                    { text: "He", type: "subject" },
+                    { text: "never walks", type: "verb" },
+                    { text: "home.", type: "object" }
+                ]}
+            ]
+        },
+        m3: {
+            mode1: [
+                { target: ["He", "is", "playing", "the", "guitar."], dist: ["playing", "the", "He", "guitar.", "is"] },
+                { target: ["Are", "you", "doing", "your", "homework?"], dist: ["doing", "homework?", "you", "Are", "your"] }
+            ],
+            mode2: [
+                { prompt: "Look! She is _____ a picture.", ans: "drawing", options: ["drawing", "draw", "draws"] },
+                { prompt: "They _____ singing a song right now.", ans: "are", options: ["are", "is", "am"] }
+            ],
+            mode3: [
+                { prompt: "Build: Present Continuous Action", slots: [
+                    { type: "subject", text: "They" },
+                    { type: "verb", text: "are dancing" },
+                    { type: "object", text: "in the hall." }
+                ], options: [
+                    { text: "They", type: "subject" },
+                    { text: "are dancing", type: "verb" },
+                    { text: "in the hall.", type: "object" },
+                    { text: "She", type: "subject" },
+                    { text: "is reading", type: "verb" },
+                    { text: "a book.", type: "object" }
+                ]}
+            ]
+        },
+        m4: {
+            mode1: [
+                { target: ["It", "is", "sunny", "in", "summer."], dist: ["summer.", "sunny", "It", "in", "is"] },
+                { target: ["What", "is", "your", "favourite", "season?"], dist: ["favourite", "What", "season?", "is", "your"] }
+            ],
+            mode2: [
+                { prompt: "In winter, it is cold and _____.", ans: "snowy", options: ["snowy", "hot", "sunny"] },
+                { prompt: "My favourite season _____ spring.", ans: "is", options: ["is", "are", "were"] }
+            ],
+            mode3: [
+                { prompt: "Build: Weather Sentence", slots: [
+                    { type: "subject", text: "Autumn" },
+                    { type: "verb", text: "is" },
+                    { type: "object", text: "cool and windy." }
+                ], options: [
+                    { text: "Autumn", type: "subject" },
+                    { text: "is", type: "verb" },
+                    { text: "cool and windy.", type: "object" }
+                ]}
+            ]
+        },
+        m5: {
+            mode1: [
+                { target: ["There", "is", "a", "mirror", "in", "the", "bedroom."], dist: ["mirror", "the", "in", "is", "There", "bedroom.", "a"] },
+                { target: ["Whose", "slippers", "are", "these?"], dist: ["these?", "slippers", "are", "Whose"] }
+            ],
+            mode2: [
+                { prompt: "_____ are two cushions on the sofa.", ans: "There", options: ["There", "Their", "They"] },
+                { prompt: "These coat hangers are _____.", ans: "hers", options: ["hers", "her", "she"] }
+            ],
+            mode3: [
+                { prompt: "Build: House Object Location", slots: [
+                    { type: "subject", text: "There is" },
+                    { type: "verb", text: "a clock" },
+                    { type: "object", text: "on the wall." }
+                ], options: [
+                    { text: "There is", type: "subject" },
+                    { text: "a clock", type: "verb" },
+                    { text: "on the wall.", type: "object" }
+                ]}
+            ]
+        },
+        m6: {
+            mode1: [
+                { target: ["Can", "I", "have", "some", "water,", "please?"], dist: ["water,", "I", "have", "some", "Can", "please?"] },
+                { target: ["There", "is", "some", "cheese", "in", "the", "fridge."], dist: ["some", "is", "fridge.", "There", "cheese", "in", "the"] }
+            ],
+            mode2: [
+                { prompt: "Have we got _____ milk left?", ans: "any", options: ["any", "some", "a"] },
+                { prompt: "I would like _____ apple, please.", ans: "an", options: ["an", "a", "some"] }
+            ],
+            mode3: [
+                { prompt: "Build: Polite Request", slots: [
+                    { type: "verb", text: "Can I have" },
+                    { type: "subject", text: "some orange juice," },
+                    { type: "object", text: "please?" }
+                ], options: [
+                    { text: "Can I have", type: "verb" },
+                    { text: "some orange juice,", type: "subject" },
+                    { text: "please?", type: "object" }
+                ]}
+            ]
+        },
+        m7: {
+            mode1: [
+                { target: ["You", "must", "listen", "to", "the", "teacher."], dist: ["listen", "must", "You", "teacher.", "to", "the"] },
+                { target: ["We", "mustn't", "litter", "in", "the", "park."], dist: ["litter", "mustn't", "in", "park.", "We", "the"] }
+            ],
+            mode2: [
+                { prompt: "You _____ turn off your mobile phone in the cinema.", ans: "must", options: ["must", "mustn't", "don't"] },
+                { prompt: "We mustn't _____ in the library.", ans: "shout", options: ["shout", "shouting", "shouted"] }
+            ],
+            mode3: [
+                { prompt: "Build: Rule Statement", slots: [
+                    { type: "subject", text: "Students" },
+                    { type: "verb", text: "must cross" },
+                    { type: "object", text: "at the zebra crossing." }
+                ], options: [
+                    { text: "Students", type: "subject" },
+                    { text: "must cross", type: "verb" },
+                    { text: "at the zebra crossing.", type: "object" }
+                ]}
+            ]
+        },
+        m8: {
+            mode1: [
+                { target: ["Where", "were", "you", "yesterday", "afternoon?"], dist: ["you", "Where", "afternoon?", "were", "yesterday"] },
+                { target: ["I", "was", "at", "the", "shopping", "centre."], dist: ["shopping", "was", "at", "I", "centre.", "the"] }
+            ],
+            mode2: [
+                { prompt: "He _____ at the cinema yesterday evening.", ans: "was", options: ["was", "were", "is"] },
+                { prompt: "They _____ at school on Sunday.", ans: "weren't", options: ["weren't", "wasn't", "aren't"] }
+            ],
+            mode3: [
+                { prompt: "Build: Past Location", slots: [
+                    { type: "subject", text: "We" },
+                    { type: "verb", text: "were at" },
+                    { type: "object", text: "the zoo yesterday." }
+                ], options: [
+                    { text: "We", type: "subject" },
+                    { text: "were at", type: "verb" },
+                    { text: "the zoo yesterday.", type: "object" }
+                ]}
+            ]
+        },
+        m9: {
+            mode1: [
+                { target: ["We", "went", "to", "the", "beach", "on", "holiday."], dist: ["beach", "went", "on", "We", "to", "holiday.", "the"] },
+                { target: ["Did", "you", "see", "any", "dolphins?"], dist: ["see", "you", "dolphins?", "Did", "any"] }
+            ],
+            mode2: [
+                { prompt: "She _____ a big fish last weekend.", ans: "caught", options: ["caught", "catch", "catches"] },
+                { prompt: "They _____ play volleyball on the beach.", ans: "didn't", options: ["didn't", "don't", "wasn't"] }
+            ],
+            mode3: [
+                { prompt: "Build: Holiday Activity", slots: [
+                    { type: "subject", text: "I" },
+                    { type: "verb", text: "swam" },
+                    { type: "object", text: "in the sea." }
+                ], options: [
+                    { text: "I", type: "subject" },
+                    { text: "swam", type: "verb" },
+                    { text: "in the sea.", type: "object" }
+                ]}
+            ]
+        },
+        m10: {
+            mode1: [
+                { target: ["A", "cheetah", "is", "faster", "than", "a", "tiger."], dist: ["is", "cheetah", "than", "A", "faster", "tiger.", "a"] },
+                { target: ["The", "blue", "whale", "is", "the", "biggest", "animal."], dist: ["biggest", "blue", "whale", "animal.", "is", "The", "the"] }
+            ],
+            mode2: [
+                { prompt: "Giraffes are _____ than horses.", ans: "taller", options: ["taller", "tallest", "tall"] },
+                { prompt: "Mount Everest is the _____ mountain in the world.", ans: "highest", options: ["highest", "higher", "high"] }
+            ],
+            mode3: [
+                { prompt: "Build: Comparison Sentence", slots: [
+                    { type: "subject", text: "Sharks" },
+                    { type: "verb", text: "are scarier than" },
+                    { type: "object", text: "dolphins." }
+                ], options: [
+                    { text: "Sharks", type: "subject" },
+                    { text: "are scarier than", type: "verb" },
+                    { text: "dolphins.", type: "object" }
+                ]}
             ]
         }
     };
 
-    // Duplicate structure template for m3 to m10 dynamically if missing to prevent error
-    for(let i=3; i<=10; i++) {
-        dataset[`m${i}`] = dataset.m1; 
+    function onModuleChange() {
+        questionIndex = 0;
+        loadCurrentQuiz();
     }
 
     function changeMode(mode) {
@@ -408,16 +666,23 @@
     }
 
     function loadCurrentQuiz() {
-        const mod = document.getElementById('module-select').value;
-        const modData = dataset[mod];
+        const modKey = document.getElementById('module-select').value;
+        const modData = dataset[modKey] || dataset['m1'];
+        
         let qList = [];
-
-        if(currentMode === 1) qList = modData.mode1;
-        else if(currentMode === 2) qList = modData.mode2;
+        if (currentMode === 1) qList = modData.mode1;
+        else if (currentMode === 2) qList = modData.mode2;
         else qList = modData.mode3;
 
-        if(questionIndex >= qList.length) questionIndex = qList.length - 1;
-        if(questionIndex < 0) questionIndex = 0;
+        if (!qList || qList.length === 0) {
+            document.getElementById('prompt-text').innerText = "No questions available for this mode.";
+            document.getElementById('drop-zone').innerHTML = '';
+            document.getElementById('word-bank').innerHTML = '';
+            return;
+        }
+
+        if (questionIndex >= qList.length) questionIndex = qList.length - 1;
+        if (questionIndex < 0) questionIndex = 0;
 
         document.getElementById('q-counter').innerText = `Question ${questionIndex + 1} / ${qList.length}`;
         document.getElementById('feedback').style.display = 'none';
@@ -430,21 +695,25 @@
         dropZone.innerHTML = '';
         wordBank.innerHTML = '';
 
-        if(currentMode === 1) {
+        if (currentMode === 1) {
             promptText.innerText = "Arrange the words to form a correct sentence:";
             let shuffled = [...q.dist];
             shuffled.forEach((w, idx) => {
                 wordBank.appendChild(createChip(w, `w_${idx}`));
             });
-        } else if(currentMode === 2) {
+        } else if (currentMode === 2) {
             promptText.innerText = q.prompt;
             q.options.forEach((opt, idx) => {
                 wordBank.appendChild(createChip(opt, `opt_${idx}`));
             });
         } else {
             promptText.innerText = q.prompt;
-            q.options.forEach((opt, idx) => {
-                wordBank.appendChild(createChip(opt, `s_${idx}`));
+            q.options.forEach((optObj, idx) => {
+                const chip = createChip(optObj.text, `s_${idx}`);
+                if (optObj.type) {
+                    chip.classList.add(optObj.type);
+                }
+                wordBank.appendChild(chip);
             });
         }
     }
@@ -461,10 +730,11 @@
         };
 
         chip.onclick = () => {
+            playClickSound();
             const dropZone = document.getElementById('drop-zone');
             const wordBank = document.getElementById('word-bank');
 
-            if(chip.parentElement === wordBank) {
+            if (chip.parentElement === wordBank) {
                 dropZone.appendChild(chip);
             } else {
                 wordBank.appendChild(chip);
@@ -482,27 +752,28 @@
         e.preventDefault();
         const id = e.dataTransfer.getData('text/plain');
         const draggedEl = document.getElementById(id);
-        if(draggedEl) {
+        if (draggedEl) {
+            playClickSound();
             e.currentTarget.appendChild(draggedEl);
         }
     }
 
     function checkAnswer() {
-        const mod = document.getElementById('module-select').value;
-        const modData = dataset[mod];
+        const modKey = document.getElementById('module-select').value;
+        const modData = dataset[modKey] || dataset['m1'];
         const feedback = document.getElementById('feedback');
         feedback.style.display = 'block';
 
         const dropZone = document.getElementById('drop-zone');
-        const userChips = Array.from(dropZone.children).map(c => c.innerText);
+        const userChips = Array.from(dropZone.children).map(c => c.innerText.trim());
 
         let isCorrect = false;
 
-        if(currentMode === 1) {
+        if (currentMode === 1) {
             const target = modData.mode1[questionIndex].target.join(" ");
             const userAns = userChips.join(" ");
             isCorrect = (target === userAns);
-        } else if(currentMode === 2) {
+        } else if (currentMode === 2) {
             const ans = modData.mode2[questionIndex].ans;
             isCorrect = (userChips.length === 1 && userChips[0] === ans);
         } else {
@@ -511,10 +782,13 @@
             isCorrect = (targetSlots === userAns);
         }
 
-        if(isCorrect) {
+        if (isCorrect) {
+            playCorrectSound();
+            triggerStarReward();
             feedback.className = "feedback-card feedback-correct";
             feedback.innerText = "🎉 Excellent! That's correct!";
         } else {
+            playWrongSound();
             feedback.className = "feedback-card feedback-wrong";
             feedback.innerText = "❌ Oops! Try again or reset.";
         }
@@ -525,13 +799,28 @@
     }
 
     function nextQuestion() {
-        questionIndex++;
-        loadCurrentQuiz();
+        const modKey = document.getElementById('module-select').value;
+        const modData = dataset[modKey] || dataset['m1'];
+        let maxLen = currentMode === 1 ? modData.mode1.length : (currentMode === 2 ? modData.mode2.length : modData.mode3.length);
+
+        if (questionIndex < maxLen - 1) {
+            questionIndex++;
+            loadCurrentQuiz();
+        } else {
+            playCorrectSound();
+            triggerStarReward();
+            const feedback = document.getElementById('feedback');
+            feedback.style.display = 'block';
+            feedback.className = "feedback-card feedback-correct";
+            feedback.innerText = "🌟 Great job! You reached the end of this exercise!";
+        }
     }
 
     function prevQuestion() {
-        questionIndex--;
-        loadCurrentQuiz();
+        if (questionIndex > 0) {
+            questionIndex--;
+            loadCurrentQuiz();
+        }
     }
 
     window.onload = function() {
