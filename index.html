@@ -458,21 +458,21 @@
 
             </div>
 
-            <!-- EXPLORATION -->
+           <!-- EXPLORATION -->
             <div class="section-divider">
                 <i class="fa-solid fa-compass" style="color: #6c5ce7;"></i> Exploration
             </div>
 
             <div class="button-grid">
-                <button class="btn-module btn-exp-read" onclick="bukaAktiviti('reading.html')">
+                <button class="btn-module btn-exp-read" onclick="bukaAktiviti('reading.html', 'EXPLORATION', 'Reading Comprehension')">
                     <i class="fa-solid fa-book-open"></i>
                     <span>Reading<br><small>Comprehension</small></span>
                 </button>
-                <button class="btn-module btn-exp-gram" onclick="bukaAktiviti('grammar.html')">
+                <button class="btn-module btn-exp-gram" onclick="bukaAktiviti('grammar.html', 'EXPLORATION', 'Grammar Language Rules')">
                     <i class="fa-solid fa-pen-ruler"></i>
                     <span>Grammar<br><small>Language Rules</small></span>
                 </button>
-                <button class="btn-module btn-exp-sent" onclick="bukaAktiviti('sentence.html')">
+                <button class="btn-module btn-exp-sent" onclick="bukaAktiviti('sentence.html', 'EXPLORATION', 'Sentences Structure')">
                     <i class="fa-solid fa-align-left"></i>
                     <span>Sentences<br><small>Structure</small></span>
                 </button>
@@ -484,15 +484,15 @@
             </div>
 
             <div class="button-grid">
-                <button class="btn-module btn-per-word" onclick="bukaAktiviti('wordpower.html')">
+                <button class="btn-module btn-per-word" onclick="bukaAktiviti('wordpower.html', 'PERMATA ACTIVITIES', 'Word Power Vocabulary')">
                     <i class="fa-solid fa-spell-check"></i>
                     <span>Word Power<br><small>Vocabulary</small></span>
                 </button>
-                <button class="btn-module btn-per-repeat" onclick="bukaAktiviti('readrepeat.html')">
+                <button class="btn-module btn-per-repeat" onclick="bukaAktiviti('readrepeat.html', 'PERMATA ACTIVITIES', 'Read and Repeat Pronunciation')">
                     <i class="fa-solid fa-microphone"></i>
                     <span>Read and Repeat<br><small>Pronunciation</small></span>
                 </button>
-                <button class="btn-module btn-per-build" onclick="bukaAktiviti('buildsentence.html')">
+                <button class="btn-module btn-per-build" onclick="bukaAktiviti('buildsentence.html', 'PERMATA ACTIVITIES', 'Build Sentence Interactive Game')">
                     <i class="fa-solid fa-cubes"></i>
                     <span>Build Sentence<br><small>Interactive Game</small></span>
                 </button>
@@ -842,23 +842,23 @@
         }
 
         // FUNGSI DIKEMASKINI: Menyokong rekod Google Sheet sebelum pautan luar dibuka
-        function bukaAktiviti(url, categoryName, moduleName) {
-            if (typeof semakMaklumatMurid === 'function') {
-                const info = semakMaklumatMurid();
-                if (!info) return;
-            }
+       function bukaAktiviti(url, kategori, modul) {
+    const info = semakMaklumatMurid();
+    if (!info) return;
 
-            if (categoryName && moduleName && typeof hantarRekodKeGoogleSheet === 'function') {
-                hantarRekodKeGoogleSheet({
-                    category: categoryName,
-                    module: moduleName,
-                    score: "Selesai",
-                    percent: "100%"
-                });
-            }
+    // Hantar rekod akses aktiviti ke Google Sheet
+    hantarRekodKeGoogleSheet({
+        nama: info.nama,
+        kelas: info.kelas,
+        kategori: kategori || 'EXPLORATION',
+        modul: modul || 'Aktiviti Interaktif',
+        markah: 1,
+        jumlahSoalan: 1,
+        peratus: '100%'
+    });
 
-            setTimeout(function() {
-                window.location.href = url;
-            }, 400);
-        }
-    </script>
+    // Beri masa 0.5 saat untuk hantar data sebelum berpindah ke pautan luar
+    setTimeout(function() {
+        window.location.href = url;
+    }, 500);
+}
