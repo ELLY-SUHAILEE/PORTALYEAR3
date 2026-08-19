@@ -820,29 +820,50 @@
             const statusEl = document.getElementById('syncStatus');
             if (statusEl) statusEl.innerHTML = '🔄 Menghantar keputusan ke rekod guru...';
 
-            // Menyusun dan memetakan data supaya Lajur CATEGORY tidak lagi kosong
             const dataPenuh = {
-                name: payload.nama || payload.name || localStorage.getItem('studentName') || 'Murid',
-                class: payload.kelas || payload.class || localStorage.getItem('studentClass') || '-',
-                category: payload.kategori || payload.category || (typeof currentCategory !== 'undefined' ? currentCategory : '') || 'MODULE EXPLORATION',
-                module: payload.modul || payload.module || 'Modul',
-                score: payload.jumlahSoalan ? `${payload.markah}/${payload.jumlahSoalan}` : (payload.markah || payload.score || '0'),
-                percent: payload.peratus || payload.percent || '0%'
+                name: (payload && payload.nama) || (payload && payload.name) || localStorage.getItem('studentName') || 'Murid',
+                class: (payload && payload.kelas) || (payload && payload.class) || localStorage.getItem('studentClass') || '-',
+                category: (payload && payload.kategori) || (payload && payload.category) || (typeof currentCategory !== 'undefined' ? currentCategory : '') || 'MODULE EXPLORATION',
+                module: (payload && payload.modul) || (payload && payload.module) || 'Modul',
+                score: (payload && payload.jumlahSoalan) ? `${payload.markah}/${payload.jumlahSoalan}` : ((payload && payload.markah) || (payload && payload.score) || '0'),
+                percent: (payload && payload.peratus) || (payload && payload.percent) || '0%'
             };
 
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(dataPenuh)
-            })
-            .then(() => {
-                if (statusEl) statusEl.innerHTML = '✅ Rekod keputusan berjaya disimpan!';
-            })
-            .catch(error => {
-                console.error('Ralat penghantaran:', error);
-                if (statusEl) statusEl.innerHTML = '⚠️ Keputusan ditunjukkan tetapi gagal disimpan ke server.';
-            });
+            if (typeof SCRIPT_URL !== 'undefined' && SCRIPT_URL) {
+                fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dataPenuh)
+                })
+                .then(() => {
+                    if (statusEl) statusEl.innerHTML = '✅ Rekod keputusan berjaya disimpan!';
+                })
+                .catch(error => {
+                    if (statusEl) statusEl.innerHTML = '⚠️ Keputusan ditunjukkan tetapi gagal disimpan ke server.';
+                });
+            }
         }
+
+        function kembaliKeMenu() {
+            const quiz = document.getElementById('quizSection');
+            const menu = document.getElementById('menuSection');
+            const gs = document.getElementById('getSmartSelect');
+            const rem = document.getElementById('remedialSelect');
+
+            if (quiz) quiz.style.display = 'none';
+            if (menu) menu.style.display = 'block';
+            if (gs) gs.value = "";
+            if (rem) rem.value = "";
+        }
+
+        function bukaAktiviti(url) {
+            if (typeof semakMaklumatMurid === 'function') {
+                const info = semakMaklumatMurid();
+                if (!info) return;
+            }
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>
