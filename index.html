@@ -41,33 +41,32 @@
             margin-bottom: 30px;
         }
 
-        /* 1. TAJUK UTAMA (Portal Bahasa Inggeris Tahun 3 / Portal Year 3 English) */
-        h1, .header-title, .portal-title {
-            font-family: 'Fredoka', cursive, 'Poppins', sans-serif !important;
+        /* 💥 PEMAKSA GLOBAL: SEMUA TAJUK, TEKS & PAUTAN MENJADI PUTIH + BOLD */
+        h1, h2, h3, h4, h5, h6, 
+        .header-title, .portal-title, .section-title, .section-label, 
+        .guru-title, .btn-dashboard, .guru-link, a, p, span, label, div {
             color: #ffffff !important;
-            font-size: 2.8rem !important;  /* Saiz dibesarkan */
-            font-weight: 700 !important;   /* Tebalkan (Bold) */
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.95) !important; /* Bayang tebal */
+            font-weight: 700 !important;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.95) !important;
+        }
+
+        /* SAIZ TAJUK UTAMA */
+        h1, .header-title, .portal-title {
+            font-size: 2.8rem !important;
             margin-bottom: 10px !important;
         }
 
-        /* 2. TEKS SUB-TAJUK (Please enter your details...) */
-        .header-subtitle, .portal-subtitle, p {
-            color: #ffffff !important;
-            font-size: 1.1rem !important;
-            font-weight: 600 !important;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9) !important;
-            margin-bottom: 25px;
-        }
-
-        /* 3. TAJUK BAHAGIAN: Exploration, Permata Activities, Dashboard / Rekod Guru */
-        h2, h3, h4, .section-title, .section-label, .guru-title, .btn-dashboard, .guru-link {
-            color: #ffffff !important;
-            font-size: 1.8rem !important;  /* Saiz dibesarkan */
-            font-weight: 700 !important;   /* Tebalkan (Bold) */
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.95) !important;
+        /* SAIZ TAJUK BAHAGIAN (Exploration, Permata Activities, Dashboard / Rekod Guru) */
+        h2, h3, h4, .section-title, .section-label, .guru-title {
+            font-size: 1.8rem !important;
             margin-top: 30px !important;
             margin-bottom: 15px !important;
+        }
+
+        /* SAIZ SUB-TAJUK */
+        .header-subtitle, .portal-subtitle, p {
+            font-size: 1.1rem !important;
+            font-weight: 600 !important;
         }
     </style>
     
