@@ -52,7 +52,7 @@
         .header-subtitle {
             color: #576574;
             font-size: 1rem;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-weight: 600;
         }
 
@@ -100,6 +100,56 @@
             box-shadow: 0 0 8px rgba(255, 159, 243, 0.4);
         }
 
+        /* 🎛️ BUTANG PILIHAN TAB (GET SMART VS REMEDIAL) */
+        .tab-box {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 14px 28px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            font-family: 'Fredoka', cursive;
+            border: 3px solid #ff9f43;
+            border-radius: 50px;
+            background: #ffffff;
+            color: #d35400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #ff9f43 0%, #ee5253 100%);
+            color: #ffffff;
+            border-color: #ee5253;
+            box-shadow: 0 6px 18px rgba(238, 82, 83, 0.4);
+        }
+
+        .tab-btn-remedial {
+            border-color: #ee5253;
+            color: #c0392b;
+        }
+
+        .tab-btn-remedial.active {
+            background: linear-gradient(135deg, #ee5253 0%, #b22222 100%);
+            color: #ffffff;
+            border-color: #b22222;
+            box-shadow: 0 6px 18px rgba(178, 34, 34, 0.4);
+        }
+
         /* Tajuk Pembahagi Modul */
         .section-divider {
             font-family: 'Fredoka', cursive;
@@ -114,7 +164,21 @@
             padding-bottom: 6px;
         }
 
-        /* Grid Butang Modul */
+        /* Grid & Kumpulan Tab Pane */
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-pane.active {
+            display: grid;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .button-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -221,6 +285,10 @@
             .header-title {
                 font-size: 1.7rem;
             }
+            .tab-btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -256,12 +324,18 @@
             </div>
         </div>
 
-        <!-- SEKSYEN 1: GET SMART MODULES (1 - 10) -->
-        <div class="section-divider">
-            <i class="fa-solid fa-book-bookmark" style="color: #ff9f43;"></i> Get Smart Modules (1 - 10)
+        <!-- 🎛️ BUTANG PILIHAN MODUL: GET SMART vs REMEDIAL SET -->
+        <div class="tab-box">
+            <button class="tab-btn active" id="btn-tab-getsmart" onclick="tukarTab('getsmart')">
+                <i class="fa-solid fa-book-open-reader"></i> Get Smart Modules (1 - 10)
+            </button>
+            <button class="tab-btn tab-btn-remedial" id="btn-tab-remedial" onclick="tukarTab('remedial')">
+                <i class="fa-solid fa-life-ring"></i> Remedial Set (1 - 10)
+            </button>
         </div>
-        
-        <div class="button-grid">
+
+        <!-- TAB CONTENT 1: GET SMART MODULES (1 - 10) -->
+        <div id="pane-getsmart" class="tab-pane button-grid active">
             <button class="btn-module btn-m1" onclick="mulaModul('Module 1 - Welcome!', 'module1.js')">
                 <i class="fa-solid fa-hand-wave"></i>
                 <span>Module 1<br><small>Welcome!</small></span>
@@ -304,12 +378,8 @@
             </button>
         </div>
 
-        <!-- SEKSYEN 2: REMEDIAL SET (1 - 10) -->
-        <div class="section-divider">
-            <i class="fa-solid fa-life-ring" style="color: #ee5253;"></i> Remedial Set (1 - 10)
-        </div>
-
-        <div class="button-grid">
+        <!-- TAB CONTENT 2: REMEDIAL SET (1 - 10) -->
+        <div id="pane-remedial" class="tab-pane button-grid">
             <button class="btn-module btn-r1" onclick="mulaModul('Remedial 1 - Welcome!', 'remedial1.js')">
                 <i class="fa-solid fa-heart-pulse"></i>
                 <span>Remedial 1<br><small>Welcome!</small></span>
@@ -401,8 +471,28 @@
         </div>
     </div>
 
-    <!-- JavaScript Kawalan Ketat Profil Murid -->
+    <!-- JavaScript Kawalan Ketat & Logik Tab Switcher -->
     <script>
+        // 🎛️ Fungsi Penukaran Tab (Get Smart vs Remedial)
+        function tukarTab(tabName) {
+            const btnGetSmart = document.getElementById('btn-tab-getsmart');
+            const btnRemedial = document.getElementById('btn-tab-remedial');
+            const paneGetSmart = document.getElementById('pane-getsmart');
+            const paneRemedial = document.getElementById('pane-remedial');
+
+            if (tabName === 'getsmart') {
+                btnGetSmart.classList.add('active');
+                btnRemedial.classList.remove('active');
+                paneGetSmart.classList.add('active');
+                paneRemedial.classList.remove('active');
+            } else if (tabName === 'remedial') {
+                btnRemedial.classList.add('active');
+                btnGetSmart.classList.remove('active');
+                paneRemedial.classList.add('active');
+                paneGetSmart.classList.remove('active');
+            }
+        }
+
         // Semakan Wajib bagi Nama dan Kelas
         function semakMaklumatMurid() {
             const elNama = document.getElementById('namaMurid');
