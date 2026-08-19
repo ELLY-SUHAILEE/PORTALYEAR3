@@ -58,6 +58,12 @@
             cursor: pointer;
             text-decoration: none;
             box-shadow: 0 4px 0px #16a34a;
+            transition: transform 0.1s ease;
+        }
+
+        .btn-home:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px #16a34a;
         }
 
         h1 {
@@ -205,6 +211,10 @@
             color: #064e3b;
         }
 
+        select:focus, input[type="text"]:focus {
+            border-color: #059669;
+        }
+
         .btn-action {
             padding: 10px 18px;
             font-size: 14px;
@@ -213,6 +223,11 @@
             border-radius: 12px;
             cursor: pointer;
             color: white;
+            transition: transform 0.1s ease;
+        }
+
+        .btn-action:active {
+            transform: translateY(2px);
         }
 
         .btn-export {
@@ -436,6 +451,18 @@
     const webAppUrl = "https://script.google.com/macros/s/AKfycbw7kBkxXYQ7YkANp6QuxcEzBIeGbvySJ2_enh2zB21zOuGDk9hULjWc_n8xJq4SV2sE/exec";
 
     let studentData = [];
+    let currentFilteredData = []; // Menyimpan data yang sedia ditapis untuk eksport CSV
+
+    // FUNGSI PENCEGAHAN XSS
+    function escapeHtml(str) {
+        if (str === null || str === undefined) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
 
     // FUNGSI MEMBERSIHKAN DAN MEMBAIKI FORMAT PERATUS (CONTOH: 0.8 / 0.8% -> 80%)
     function parsePercent(val) {
@@ -472,20 +499,24 @@
             const response = await fetch(webAppUrl);
             const rawData = await response.json();
             
+            if (!Array.isArray(rawData)) {
+                throw new Error("Format data yang diterima dari Google Sheet tidak sah.");
+            }
+
             studentData = rawData.map(item => ({
-                timestamp: item.timestamp,
+                timestamp: item.timestamp || '',
                 name: item.name || '',
                 class: item.class || '',
-                category: item.categoryRaw || '', 
-                module: item.moduleRaw || '',     
+                category: item.categoryRaw || item.category || '', 
+                module: item.moduleRaw || item.module || '',     
                 score: item.score || '0',
-                percent: parsePercent(item.percentRaw)
+                percent: parsePercent(item.percentRaw !== undefined ? item.percentRaw : item.percent)
             }));
 
             updateDashboard();
         } catch (error) {
             console.error("Ralat mengambil data:", error);
-            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#b91c1c; padding: 20px;">❌ Gagal memuatkan data dari Google Sheet. Semak sambungan atau URL Web App.</td></tr>';
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#b91c1c; padding: 20px;">❌ Gagal memuatkan data dari Google Sheet. Semak sambungan atau URL Web App.<br><small>Detail: ${escapeHtml(error.message)}</small></td></tr>`;
         }
     }
 
@@ -544,6 +575,9 @@
             return matchName && matchClass && matchModule && matchCategory && matchStatus;
         });
 
+        // Simpan data terkini yang ditapis untuk dieksport
+        currentFilteredData = filteredData;
+
         const tbody = document.getElementById('table-body');
         tbody.innerHTML = '';
 
@@ -570,12 +604,18 @@
 
             let statusBadge = `<span class="status-badge status-intervensi">🔴 Perlu Intervensi</span>`;
             
+            const safeName = escapeHtml(item.name);
+            const safeClass = escapeHtml(item.class);
+            const safeCategory = escapeHtml(item.category);
+            const safeModule = escapeHtml(item.module);
+            const safeScore = escapeHtml(item.score);
+
             if (item.percent >= 90) {
                 statusBadge = `<span class="status-badge status-cemerlang">🟢 Cemerlang</span>`;
                 countCemerlang++;
                 listCemerlangHTML += `
                     <div class="summary-item">
-                        <span><strong>${item.name}</strong> (${item.class})</span>
+                        <span><strong>${safeName}</strong> (${safeClass})</span>
                         <span style="color:#16a34a; font-weight:700;">${item.percent}%</span>
                     </div>`;
             } else if (item.percent > 50) {
@@ -584,24 +624,24 @@
                 countIntervensi++;
                 listIntervensiHTML += `
                     <div class="summary-item">
-                        <span><strong>${item.name}</strong> (${item.class}) - <em>${item.module}</em></span>
+                        <span><strong>${safeName}</strong> (${safeClass}) - <em>${safeModule}</em></span>
                         <span style="color:#dc2626; font-weight:700;">${item.percent}%</span>
                     </div>`;
             }
 
-            const interventionText = getInterventionRecommendation(item.category, item.percent);
+            const interventionText = escapeHtml(getInterventionRecommendation(item.category, item.percent));
 
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td><strong>${item.name}</strong></td>
-                <td>${item.class}</td>
-                <td><span class="cat-badge">${item.category}</span></td>
-                <td>${item.module}</td>
+                <td><strong>${safeName}</strong></td>
+                <td>${safeClass}</td>
+                <td><span class="cat-badge">${safeCategory}</span></td>
+                <td>${safeModule}</td>
                 <td>
                     <div class="progress-bar-bg">
-                        <div class="progress-bar-fill" style="width: ${item.percent}%;"></div>
+                        <div class="progress-bar-fill" style="width: ${Math.min(100, Math.max(0, item.percent))}%;"></div>
                     </div> 
-                    ${item.score} (${item.percent}%)
+                    ${safeScore} (${item.percent}%)
                 </td>
                 <td>${statusBadge}</td>
                 <td><span class="intervention-text">${interventionText}</span></td>
@@ -631,21 +671,35 @@
     }
 
     function exportCSV() {
-        if (studentData.length === 0) {
+        const dataToExport = currentFilteredData.length > 0 ? currentFilteredData : studentData;
+        
+        if (dataToExport.length === 0) {
             alert("Tiada data untuk dieksport!");
             return;
         }
-        let csvContent = "data:text/csv;charset=utf-8,Nama,Kelas,Bidang Set,Modul,Skor,Peratus\n";
-        studentData.forEach(row => {
-            csvContent += `"${row.name}","${row.class}","${row.category}","${row.module}","${row.score}","${row.percent}%"\n`;
+
+        // Tambah \uFEFF (UTF-8 BOM) supaya Microsoft Excel membuka fail dengan aksara yang betul
+        let csvContent = "\uFEFFNama,Kelas,Bidang Set,Modul,Skor,Peratus\n";
+        
+        dataToExport.forEach(row => {
+            const name = `"${(row.name || '').replace(/"/g, '""')}"`;
+            const cls = `"${(row.class || '').replace(/"/g, '""')}"`;
+            const cat = `"${(row.category || '').replace(/"/g, '""')}"`;
+            const mod = `"${(row.module || '').replace(/"/g, '""')}"`;
+            const score = `"${(row.score || '').replace(/"/g, '""')}"`;
+            const percent = `"${row.percent}%"`;
+            csvContent += `${name},${cls},${cat},${mod},${score},${percent}\n`;
         });
-        const encodedUri = encodeURI(csvContent);
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
+        link.setAttribute("href", url);
         link.setAttribute("download", "Analisis_Murid_Year3.csv");
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+        URL.revokeObjectURL(url);
     }
 
     // JALANKAN INISIALISASI CARTA DAN MEMUATKAN DATA SEBAIK SAHAJA HALAMAN SELESAI DIMUATKAN
