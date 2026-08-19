@@ -166,8 +166,8 @@
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 500px;
-            height: 320px;
+            max-width: 850px;
+            height: 380px;
         }
 
         .chart-title {
@@ -395,11 +395,11 @@
         </div>
     </div>
 
-    <!-- CARTA TABURAN MODUL -->
+    <!-- CARTA TABURAN MODUL (PALANG MELINTANG %) -->
     <div class="chart-section">
-        <div class="chart-title">📈 Taburan Penyertaan Mengikut Modul</div>
+        <div class="chart-title">📊 Taburan Penyertaan Mengikut Modul (%)</div>
         <div class="chart-container">
-            <canvas id="modulePieChart"></canvas>
+            <canvas id="moduleBarChart"></canvas>
         </div>
     </div>
 
@@ -522,7 +522,7 @@
                 sessionStorage.setItem('guruAuthenticated', 'true');
             } else {
                 alert("❌ Kata laluan salah atau dibatalkan! Akses ditolak.");
-                window.location.href = "index.html"; // Tendang kembali ke modul murid
+                window.location.href = "index.html";
             }
         }
     }
@@ -533,11 +533,10 @@
         window.location.href = "index.html";
     }
 
-    // Jalankan semakan keselamatan serta-merta sebelum komponen lain dimuatkan
     checkAuth();
 
     // ==========================================
-    // LOGIK DATA & DASHBOARD (ASAL & KEKAL)
+    // LOGIK DATA & DASHBOARD
     // ==========================================
     const defaultUrl = "https://script.google.com/macros/s/AKfycbw7kBkxXYQ7YkANp6QuxcEzBIeGbvySJ2_enh2zB21zOuGDk9hULjWc_n8xJq4SV2sE/exec";
 
@@ -647,28 +646,54 @@
 
     let moduleChart;
     function initChart() {
-        const ctx = document.getElementById('modulePieChart').getContext('2d');
+        const ctx = document.getElementById('moduleBarChart').getContext('2d');
         moduleChart = new Chart(ctx, {
-            type: 'pie',
+            type: 'bar',
             data: {
                 labels: [],
                 datasets: [{
+                    label: 'Peratus Penyertaan (%)',
                     data: [],
                     backgroundColor: [
                         '#10b981', '#3b82f6', '#f59e0b', '#ec4899', 
-                        '#8b5cf6', '#06b6d4', '#f97316', '#14b8a6', '#6366f1'
+                        '#8b5cf6', '#06b6d4', '#f97316', '#14b8a6', '#6366f1', '#84cc16'
                     ],
-                    borderWidth: 2,
-                    borderColor: '#ffffff'
+                    borderRadius: 6,
+                    borderWidth: 0
                 }]
             },
             options: {
+                indexAxis: 'y', // Menjadikan palang melintang
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        position: 'right',
-                        labels: { font: { family: 'Fredoka', size: 11, weight: '600' }, padding: 8 }
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ` Penyertaan: ${context.raw}%`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: { family: 'Fredoka', size: 11, weight: '600' }
+                        },
+                        grid: { color: '#e2e8f0' }
+                    },
+                    y: {
+                        ticks: {
+                            font: { family: 'Fredoka', size: 11, weight: '600' },
+                            color: '#064e3b'
+                        },
+                        grid: { display: false }
                     }
                 }
             }
@@ -705,8 +730,6 @@
             filteredData.sort((a, b) => a.percent - b.percent);
         } else if (sortVal === 'name-az') {
             filteredData.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
-        } else if (sortVal === 'latest') {
-            // Default mengikut giliran Google Sheets
         }
 
         currentFilteredData = filteredData;
@@ -790,12 +813,25 @@
         const avgScore = filteredData.length > 0 ? (totalPercent / filteredData.length).toFixed(1) : 0;
         document.getElementById('stat-avg-score').innerText = `${avgScore}%`;
 
+        // KEMAS KINI CARTA PALANG (%)
         if (moduleChart) {
             const modLabels = Object.keys(moduleCounts);
-            const modData = Object.values(moduleCounts);
+            const totalRecords = filteredData.length;
+
+            const modPercentages = modLabels.map(key => {
+                const count = moduleCounts[key];
+                return totalRecords > 0 ? parseFloat(((count / totalRecords) * 100).toFixed(1)) : 0;
+            });
+
+            const palette = [
+                '#10b981', '#3b82f6', '#f59e0b', '#ec4899', 
+                '#8b5cf6', '#06b6d4', '#f97316', '#14b8a6', '#6366f1', '#84cc16'
+            ];
 
             moduleChart.data.labels = modLabels.length > 0 ? modLabels : ['Tiada Data'];
-            moduleChart.data.datasets[0].data = modData.length > 0 ? modData : [0];
+            moduleChart.data.datasets[0].data = modPercentages.length > 0 ? modPercentages : [0];
+            moduleChart.data.datasets[0].backgroundColor = modLabels.map((_, i) => palette[i % palette.length]);
+            
             moduleChart.update();
         }
     }
