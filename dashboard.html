@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Guru - Analisis Pembelajaran 🌲</title>
+    <title>Dashboard Guru - Analisis Pembelajaran Year 3 🌲</title>
     
     <!-- Google Fonts & Chart.js -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
             background: rgba(245, 253, 248, 0.98);
             backdrop-filter: blur(12px);
             width: 100%;
-            max-width: 1150px;
+            max-width: 1250px;
             border-radius: 28px;
             border: 4px solid #fed7aa;
             box-shadow: 0 20px 45px rgba(5, 46, 22, 0.4);
@@ -64,14 +64,14 @@
         h1 {
             color: #065f46;
             margin: 0;
-            font-size: 28px;
+            font-size: 26px;
             text-shadow: 1px 1px 0px #a7f3d0;
         }
 
         /* KAD STATISTIK */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
             margin-bottom: 25px;
         }
@@ -86,17 +86,20 @@
         }
 
         .stat-card .number {
-            font-size: 30px;
+            font-size: 28px;
             font-weight: 700;
             color: #047857;
             margin-top: 5px;
         }
 
         .stat-card .label {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             color: #475569;
         }
+
+        .stat-card.cemerlang .number { color: #16a34a; }
+        .stat-card.intervensi .number { color: #dc2626; }
 
         /* BAHAGIAN CARTA PAI & LEGENDA */
         .chart-section {
@@ -114,12 +117,12 @@
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 360px;
-            height: 360px;
+            max-width: 420px;
+            height: 320px;
         }
 
         .chart-title {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             color: #065f46;
             margin-bottom: 15px;
@@ -152,7 +155,7 @@
             padding: 10px 14px;
             border: 2px solid #a7f3d0;
             border-radius: 12px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             outline: none;
             background: #ffffff;
@@ -161,7 +164,7 @@
 
         .btn-action {
             padding: 10px 18px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             border: none;
             border-radius: 12px;
@@ -173,10 +176,6 @@
         .btn-export {
             background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
             box-shadow: 0 4px 0px #075985;
-        }
-
-        .btn-action:active {
-            transform: translateY(2px);
         }
 
         /* JADUAL DATA */
@@ -195,7 +194,7 @@
         }
 
         th, td {
-            padding: 14px 18px;
+            padding: 12px 16px;
             border-bottom: 1px solid #f1f5f9;
         }
 
@@ -203,11 +202,11 @@
             background: #f0fdf4;
             color: #047857;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         td {
-            font-size: 15px;
+            font-size: 14px;
             color: #334155;
             font-weight: 600;
         }
@@ -216,32 +215,55 @@
             background: #f8fafc;
         }
 
-        /* BADGE KATEGORI WARNA */
+        /* BADGE KATEGORI WARNA (8 BIDANG) */
         .cat-badge {
-            padding: 6px 12px;
-            border-radius: 10px;
+            padding: 5px 10px;
+            border-radius: 8px;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 12px;
             display: inline-block;
             color: white;
         }
         
-        .cat-getsmart { background-color: #10b981; }
-        .cat-remedial { background-color: #f97316; }
-        .cat-reading  { background-color: #0284c7; }
-        .cat-grammar  { background-color: #8b5cf6; }
-        .cat-sentences{ background-color: #ec4899; }
+        .cat-getsmart      { background-color: #10b981; }
+        .cat-remedial      { background-color: #f97316; }
+        .cat-reading       { background-color: #0284c7; }
+        .cat-grammar       { background-color: #8b5cf6; }
+        .cat-sentence      { background-color: #ec4899; }
+        .cat-wordpower     { background-color: #eab308; color: #422006; }
+        .cat-wordrepeat    { background-color: #6366f1; }
+        .cat-buildsentence { background-color: #14b8a6; }
+
+        /* BADGE STATUS & INTERVENSI */
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .status-cemerlang { background-color: #dcfce7; color: #15803d; }
+        .status-sederhana { background-color: #fef9c3; color: #a16207; }
+        .status-intervensi { background-color: #fee2e2; color: #b91c1c; }
+
+        .intervention-text {
+            font-size: 12px;
+            color: #0f766e;
+            background: #ccfbf1;
+            padding: 6px 10px;
+            border-radius: 8px;
+            display: inline-block;
+        }
 
         /* BAR KEMAJUAN */
         .progress-bar-bg {
             background: #e2e8f0;
             border-radius: 10px;
-            height: 12px;
-            width: 90px;
+            height: 10px;
+            width: 70px;
             display: inline-block;
             overflow: hidden;
             vertical-align: middle;
-            margin-right: 8px;
+            margin-right: 6px;
         }
 
         .progress-bar-fill {
@@ -257,7 +279,7 @@
     <!-- HEADER -->
     <div class="nav-header">
         <a href="index.html" class="btn-home">🏠 Modul Murid</a>
-        <h1>📊 Dashboard Pengurusan & Analisis Guru</h1>
+        <h1>📊 Dashboard Analisis & Intervensi Year 3</h1>
     </div>
 
     <!-- KAD STATISTIK RINGKAS -->
@@ -266,23 +288,23 @@
             <div class="label">Jumlah Rekod Murid</div>
             <div class="number" id="stat-total-records">0</div>
         </div>
+        <div class="stat-card cemerlang">
+            <div class="label">🟢 Murid Cemerlang (≥80%)</div>
+            <div class="number" id="stat-cemerlang">0</div>
+        </div>
+        <div class="stat-card intervensi">
+            <div class="label">🔴 Perlu Intervensi (&lt;60%)</div>
+            <div class="number" id="stat-intervensi">0</div>
+        </div>
         <div class="stat-card">
             <div class="label">Purata Penguasaan</div>
             <div class="number" id="stat-avg-score">0%</div>
         </div>
-        <div class="stat-card">
-            <div class="label">Kategori Aktif</div>
-            <div class="number" id="stat-active-cat">5 Kategori</div>
-        </div>
-        <div class="stat-card">
-            <div class="label">Kadar Penyelesaian</div>
-            <div class="number" id="stat-completion">100%</div>
-        </div>
     </div>
 
-    <!-- CARTA PAI ANALISIS KATEGORI -->
+    <!-- CARTA PAI ANALISIS 8 BIDANG -->
     <div class="chart-section">
-        <div class="chart-title">📈 Taburan Penyertaan Mengikut Kategori Fokus</div>
+        <div class="chart-title">📈 Taburan Penyertaan Mengikut 8 Bidang Utama</div>
         <div class="chart-container">
             <canvas id="categoryPieChart"></canvas>
         </div>
@@ -304,27 +326,34 @@
 
             <!-- Penapis Modul Get Smart Plus 3 -->
             <select id="filter-module" onchange="updateDashboard()">
-                <option value="all">📚 Semua Modul (Get Smart)</option>
+                <option value="all">📚 Semua Modul</option>
                 <option value="Module 1">Module 1: Welcome!</option>
                 <option value="Module 2">Module 2: Every day</option>
                 <option value="Module 3">Module 3: Right now</option>
                 <option value="Module 4">Module 4: Year in, year out</option>
-                <option value="Module 5">Module 5: My new house / Eating right</option>
-                <option value="Module 6">Module 6: Food, please! / Getting around</option>
-                <option value="Module 7">Module 7: Out and about / Helping out</option>
-                <option value="Module 8">Module 8: Where were you yesterday?</option>
-                <option value="Module 9">Module 9: On holiday / Get active!</option>
-                <option value="Module 10">Module 10: The world around us</option>
+                <option value="Module 5">Module 5: My new house</option>
+                <option value="Module 6">Module 6: Food, please!</option>
             </select>
 
-            <!-- Penapis Kategori / Butang Paparan Utama -->
+            <!-- Penapis 8 Bidang Utama -->
             <select id="filter-category" onchange="updateDashboard()">
-                <option value="all">🎯 Semua Kategori Fokus</option>
+                <option value="all">🎯 Semua 8 Bidang</option>
                 <option value="Get Smart">Get Smart</option>
-                <option value="Remedial Set">Remedial Set</option>
-                <option value="Reading">Reading</option>
+                <option value="Word Power">Word Power</option>
+                <option value="Word Repeat">Word Repeat</option>
                 <option value="Grammar">Grammar</option>
-                <option value="Sentences">Sentences</option>
+                <option value="Sentence">Sentence</option>
+                <option value="Build Sentence">Build Sentence</option>
+                <option value="Reading">Reading</option>
+                <option value="Remedial Set">Remedial Set</option>
+            </select>
+
+            <!-- Penapis Status Intervensi -->
+            <select id="filter-status" onchange="updateDashboard()">
+                <option value="all">🚦 Semua Status</option>
+                <option value="Cemerlang">🟢 Cemerlang (≥80%)</option>
+                <option value="Sederhana">🟡 Sederhana (60%-79%)</option>
+                <option value="Intervensi">🔴 Perlu Intervensi (&lt;60%)</option>
             </select>
         </div>
 
@@ -340,54 +369,80 @@
                 <tr>
                     <th>Nama Murid</th>
                     <th>Kelas</th>
-                    <th>Modul (Get Smart)</th>
-                    <th>Kategori Fokus</th>
-                    <th>Skor</th>
-                    <th>Peratus Penguasaan</th>
+                    <th>Modul</th>
+                    <th>Bidang Fokus</th>
+                    <th>Skor & %</th>
+                    <th>Status</th>
+                    <th>💡 Cadangan Intervensi Automatik</th>
                 </tr>
             </thead>
             <tbody id="table-body">
-                <!-- Data akan disuntik secara dinamik oleh JavaScript -->
+                <!-- Data disuntik secara dinamik oleh JS -->
             </tbody>
         </table>
     </div>
 </div>
 
 <script>
-    // DATA DUMMY MURID MENGIKUT ELEMEN GET SMART PLUS 3
+    // DATA DUMMY MURID MENGERANGKUMI 8 BIDANG
     const studentData = [
         { name: "Ahmad Rayyan", class: "3 Cerdik", module: "Module 1", category: "Get Smart", score: "8/8", percent: 100 },
         { name: "Nur Aishah", class: "3 Cerdik", module: "Module 1", category: "Reading", score: "7/8", percent: 87.5 },
-        { name: "Muhammad Danial", class: "3 Usaha", module: "Module 2", category: "Remedial Set", score: "5/8", percent: 62.5 },
-        { name: "Siti Sarah", class: "3 Usaha", module: "Module 2", category: "Grammar", score: "6/8", percent: 75 },
-        { name: "Vikram A/L Raj", class: "3 Cerdik", module: "Module 3", category: "Sentences", score: "8/8", percent: 100 },
-        { name: "Mei Ling", class: "3 Cerdik", module: "Module 1", category: "Get Smart", score: "8/8", percent: 100 },
-        { name: "Adam Harith", class: "3 Mawar", module: "Module 4", category: "Remedial Set", score: "4/8", percent: 50 },
-        { name: "Nurul Huda", class: "3 Mawar", module: "Module 3", category: "Grammar", score: "7/8", percent: 87.5 },
-        { name: "Chong Wei", class: "3 Usaha", module: "Module 2", category: "Sentences", score: "8/8", percent: 100 },
+        { name: "Muhammad Danial", class: "3 Usaha", module: "Module 2", category: "Remedial Set", score: "3/8", percent: 37.5 },
+        { name: "Siti Sarah", class: "3 Usaha", module: "Module 2", category: "Grammar", score: "4/8", percent: 50 },
+        { name: "Vikram A/L Raj", class: "3 Cerdik", module: "Module 3", category: "Sentence", score: "8/8", percent: 100 },
+        { name: "Mei Ling", class: "3 Cerdik", module: "Module 1", category: "Word Power", score: "7/8", percent: 87.5 },
+        { name: "Adam Harith", class: "3 Mawar", module: "Module 4", category: "Word Repeat", score: "3/8", percent: 37.5 },
+        { name: "Nurul Huda", class: "3 Mawar", module: "Module 3", category: "Build Sentence", score: "4/8", percent: 50 },
+        { name: "Chong Wei", class: "3 Usaha", module: "Module 2", category: "Build Sentence", score: "8/8", percent: 100 },
         { name: "Divya", class: "3 Cerdik", module: "Module 5", category: "Reading", score: "6/8", percent: 75 },
-        { name: "Umar Ziyad", class: "3 Mawar", module: "Module 1", category: "Get Smart", score: "7/8", percent: 87.5 },
-        { name: "Hannah Tan", class: "3 Usaha", module: "Module 6", category: "Reading", score: "8/8", percent: 100 }
+        { name: "Umar Ziyad", class: "3 Mawar", module: "Module 1", category: "Word Power", score: "3/8", percent: 37.5 },
+        { name: "Hannah Tan", class: "3 Usaha", module: "Module 6", category: "Grammar", score: "8/8", percent: 100 }
     ];
 
-    // PEMETAAN WARNA KATEGORI (Mewakili Butang Utama)
+    // PEMETAAN WARNA KATEGORI (8 BIDANG)
     const categoryColors = {
-        "Get Smart": "#10b981",    // Emerald Green
-        "Remedial Set": "#f97316", // Warm Orange
-        "Reading": "#0284c7",      // Royal Blue
-        "Grammar": "#8b5cf6",      // Purple
-        "Sentences": "#ec4899"     // Pink / Rose
+        "Get Smart": "#10b981",
+        "Word Power": "#eab308",
+        "Word Repeat": "#6366f1",
+        "Grammar": "#8b5cf6",
+        "Sentence": "#ec4899",
+        "Build Sentence": "#14b8a6",
+        "Reading": "#0284c7",
+        "Remedial Set": "#f97316"
     };
 
     const categoryClasses = {
         "Get Smart": "cat-getsmart",
-        "Remedial Set": "cat-remedial",
-        "Reading": "cat-reading",
+        "Word Power": "cat-wordpower",
+        "Word Repeat": "cat-wordrepeat",
         "Grammar": "cat-grammar",
-        "Sentences": "cat-sentences"
+        "Sentence": "cat-sentence",
+        "Build Sentence": "cat-buildsentence",
+        "Reading": "cat-reading",
+        "Remedial Set": "cat-remedial"
     };
 
     let pieChart;
+
+    // LOGIK AUTOGENERATE CADANGAN INTERVENSI
+    function getInterventionRecommendation(category, percent) {
+        if (percent >= 80) return "🌟 Pengayaan: Latihan aras tinggi / Peer tutor";
+        if (percent >= 60) return "👍 Pengukuhan: Latih tubi bertulis mudah";
+
+        // Cadangan spesifik jika markah < 60% (Perlu Intervensi)
+        switch(category) {
+            case "Get Smart": return "🛠️ Assign Starter Kit & Quiz Visual";
+            case "Word Power": return "🛠️ Visual Flashcards & Padanan Kata";
+            case "Word Repeat": return "🛠️ Audio-Spelling Drill (Ulang 3x)";
+            case "Grammar": return "🛠️ Micro-Lesson: Nota Infografik Asas";
+            case "Sentence": return "🛠️ Latihan Unscramble Sentences (Subjek-Verb)";
+            case "Build Sentence": return "🛠️ Panduan Sentence Frames & Substitution Table";
+            case "Reading": return "🛠️ Read-Along Audio & Petikan Pendek";
+            case "Remedial Set": return "🛠️ Back-to-Basics: Phonics & CVC Words";
+            default: return "🛠️ Bimbingan Individu";
+        }
+    }
 
     // INISIALISASI CARTA PAI (CHART.JS)
     function initChart() {
@@ -395,16 +450,10 @@
         pieChart = new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Get Smart', 'Remedial Set', 'Reading', 'Grammar', 'Sentences'],
+                labels: ['Get Smart', 'Word Power', 'Word Repeat', 'Grammar', 'Sentence', 'Build Sentence', 'Reading', 'Remedial Set'],
                 datasets: [{
-                    data: [0, 0, 0, 0, 0],
-                    backgroundColor: [
-                        categoryColors["Get Smart"],
-                        categoryColors["Remedial Set"],
-                        categoryColors["Reading"],
-                        categoryColors["Grammar"],
-                        categoryColors["Sentences"]
-                    ],
+                    data: [0, 0, 0, 0, 0, 0, 0, 0],
+                    backgroundColor: Object.values(categoryColors),
                     borderWidth: 2,
                     borderColor: '#ffffff'
                 }]
@@ -414,10 +463,10 @@
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        position: 'bottom',
+                        position: 'right',
                         labels: {
-                            font: { family: 'Fredoka', size: 13, weight: '600' },
-                            padding: 15
+                            font: { family: 'Fredoka', size: 12, weight: '600' },
+                            padding: 10
                         }
                     }
                 }
@@ -431,6 +480,7 @@
         const classVal = document.getElementById('filter-class').value;
         const moduleVal = document.getElementById('filter-module').value;
         const categoryVal = document.getElementById('filter-category').value;
+        const statusVal = document.getElementById('filter-status').value;
 
         // Tapis data mengikut pilihan input
         const filteredData = studentData.filter(item => {
@@ -438,7 +488,14 @@
             const matchClass = (classVal === 'all' || item.class === classVal);
             const matchModule = (moduleVal === 'all' || item.module === moduleVal);
             const matchCategory = (categoryVal === 'all' || item.category === categoryVal);
-            return matchName && matchClass && matchModule && matchCategory;
+            
+            let itemStatus = "Intervensi";
+            if (item.percent >= 80) itemStatus = "Cemerlang";
+            else if (item.percent >= 60) itemStatus = "Sederhana";
+
+            const matchStatus = (statusVal === 'all' || statusVal === itemStatus);
+
+            return matchName && matchClass && matchModule && matchCategory && matchStatus;
         });
 
         // 1. Kemaskini Jadual Data
@@ -446,7 +503,13 @@
         tbody.innerHTML = '';
 
         let totalPercent = 0;
-        const catCounts = { "Get Smart": 0, "Remedial Set": 0, "Reading": 0, "Grammar": 0, "Sentences": 0 };
+        let countCemerlang = 0;
+        let countIntervensi = 0;
+
+        const catCounts = {
+            "Get Smart": 0, "Word Power": 0, "Word Repeat": 0, "Grammar": 0,
+            "Sentence": 0, "Build Sentence": 0, "Reading": 0, "Remedial Set": 0
+        };
 
         filteredData.forEach(item => {
             totalPercent += item.percent;
@@ -454,45 +517,54 @@
                 catCounts[item.category]++;
             }
 
+            // Tentukan Status & Class
+            let statusBadge = `<span class="status-badge status-intervensi">🔴 Perlu Intervensi</span>`;
+            if (item.percent >= 80) {
+                statusBadge = `<span class="status-badge status-cemerlang">🟢 Cemerlang</span>`;
+                countCemerlang++;
+            } else if (item.percent >= 60) {
+                statusBadge = `<span class="status-badge status-sederhana">🟡 Sederhana</span>`;
+            } else {
+                countIntervensi++;
+            }
+
+            const interventionText = getInterventionRecommendation(item.category, item.percent);
+
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${item.name}</td>
                 <td>${item.class}</td>
                 <td>${item.module}</td>
                 <td><span class="cat-badge ${categoryClasses[item.category]}">${item.category}</span></td>
-                <td>${item.score}</td>
                 <td>
                     <div class="progress-bar-bg">
                         <div class="progress-bar-fill" style="width: ${item.percent}%;"></div>
                     </div> 
                     ${item.percent}%
                 </td>
+                <td>${statusBadge}</td>
+                <td><span class="intervention-text">${interventionText}</span></td>
             `;
             tbody.appendChild(tr);
         });
 
-        // 2. Kemaskini Statistik Kad
+        // 2. Kemaskini Kad Statistik
         document.getElementById('stat-total-records').innerText = filteredData.length;
+        document.getElementById('stat-cemerlang').innerText = countCemerlang;
+        document.getElementById('stat-intervensi').innerText = countIntervensi;
+        
         const avgScore = filteredData.length > 0 ? (totalPercent / filteredData.length).toFixed(1) : 0;
         document.getElementById('stat-avg-score').innerText = `${avgScore}%`;
 
         // 3. Kemaskini Carta Pai
-        pieChart.data.datasets[0].data = [
-            catCounts["Get Smart"],
-            catCounts["Remedial Set"],
-            catCounts["Reading"],
-            catCounts["Grammar"],
-            catCounts["Sentences"]
-        ];
+        pieChart.data.datasets[0].data = Object.values(catCounts);
         pieChart.update();
     }
 
-    // EXPORT DATA KEPADA CSV
     function exportCSV() {
-        alert("Fail CSV prestasi murid berjaya dijana dan dimuat turun!");
+        alert("Fail CSV analisis murid dan cadangan intervensi berjaya dieksport!");
     }
 
-    // MUAT KOD BILA HALAMAN Selesai DILOAD
     window.onload = function() {
         initChart();
         updateDashboard();
