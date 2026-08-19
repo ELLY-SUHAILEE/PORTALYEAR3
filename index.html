@@ -830,35 +830,52 @@
         }
 
         function kembaliKeMenu() {
-            const quiz = document.getElementById('quizSection');
-            const menu = document.getElementById('menuSection');
-            const gs = document.getElementById('getSmartSelect');
-            const rem = document.getElementById('remedialSelect');
-
-            if (quiz) quiz.style.display = 'none';
-            if (menu) menu.style.display = 'block';
-            if (gs) gs.value = "";
-            if (rem) rem.value = "";
+            document.getElementById('quizSection').style.display = 'none';
+            document.getElementById('menuSection').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // FUNGSI DIKEMASKINI: Menyokong rekod Google Sheet sebelum pautan luar dibuka
-       function bukaAktiviti(url, kategori, modul) {
-    const info = semakMaklumatMurid();
-    if (!info) return;
+        function bukaAktiviti(url, kategori, modul) {
+            const info = semakMaklumatMurid();
+            if (!info) return;
 
-    // Hantar rekod akses aktiviti ke Google Sheet
-    hantarRekodKeGoogleSheet({
-        nama: info.nama,
-        kelas: info.kelas,
-        kategori: kategori || 'EXPLORATION',
-        modul: modul || 'Aktiviti Interaktif',
-        markah: 1,
-        jumlahSoalan: 1,
-        peratus: '100%'
-    });
+            // Hantar rekod akses aktiviti ke Google Sheet
+            hantarRekodKeGoogleSheet({
+                nama: info.nama,
+                kelas: info.kelas,
+                kategori: kategori,
+                modul: modul,
+                markah: 1,
+                jumlahSoalan: 1,
+                peratus: '100%'
+            });
 
-    // Beri masa 0.5 saat untuk hantar data sebelum berpindah ke pautan luar
-    setTimeout(function() {
-        window.location.href = url;
-    }, 500);
-}
+            // Beri penangguhan 0.5 saat supaya data sempat dihantar sebelum berpindah halaman
+            setTimeout(function() {
+                window.location.href = url;
+            }, 500);
+        }
+
+        function hantarRekodKeGoogleSheet(payload) {
+            const statusEl = document.getElementById('syncStatus');
+            if (statusEl) statusEl.innerHTML = '🔄 Menghantar keputusan ke rekod guru...';
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                if (statusEl) statusEl.innerHTML = '✅ Berjaya dikemas kini ke rekod guru!';
+            })
+            .catch(err => {
+                console.error("Ralat penghantaran:", err);
+                if (statusEl) statusEl.innerHTML = '⚠️ Gagal menghantar data. Sila semak sambungan internet.';
+            });
+        }
+    </script>
+</body>
+</html>
