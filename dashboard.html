@@ -411,7 +411,7 @@
         </div>
     </div>
 
-    <!-- JADUAL ANALISIS MURID (DIPERMAS) -->
+    <!-- JADUAL ANALISIS MURID -->
     <div class="table-container">
         <table>
             <thead>
@@ -433,7 +433,7 @@
 </div>
 
 <script>
-   const webAppUrl = "https://script.google.com/macros/s/AKfycbw7kBkxXYQ7YkANp6QuxcEzBIeGbvySJ2_enh2zB21zOuGDk9hULjWc_n8xJq4SV2sE/exec";
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbw7kBkxXYQ7YkANp6QuxcEzBIeGbvySJ2_enh2zB21zOuGDk9hULjWc_n8xJq4SV2sE/exec";
 
     let studentData = [];
 
@@ -455,9 +455,10 @@
         if (percent >= 90) return "🌟 Pengayaan: Latihan aras tinggi / Peer tutor";
         if (percent > 50) return "👍 Pengukuhan: Latih tubi bertulis mudah";
 
-        if (category.toUpperCase().includes("GET SMART")) {
+        const catUpper = (category || "").toUpperCase();
+        if (catUpper.includes("GET SMART")) {
             return "🛠️ Assign Starter Kit & Quiz Visual";
-        } else if (category.toUpperCase().includes("REMEDIAL")) {
+        } else if (catUpper.includes("REMEDIAL")) {
             return "🛠️ Back-to-Basics: Phonics & Latih Tubi Asas";
         }
         return "🛠️ Bimbingan Individu";
@@ -473,11 +474,11 @@
             
             studentData = rawData.map(item => ({
                 timestamp: item.timestamp,
-                name: item.name,
-                class: item.class,
-                category: item.categoryRaw, 
-                module: item.moduleRaw,     
-                score: item.score,
+                name: item.name || '',
+                class: item.class || '',
+                category: item.categoryRaw || '', 
+                module: item.moduleRaw || '',     
+                score: item.score || '0',
                 percent: parsePercent(item.percentRaw)
             }));
 
@@ -526,13 +527,13 @@
         const statusVal = document.getElementById('filter-status').value;
 
         const filteredData = studentData.filter(item => {
-            const matchName = item.name.toLowerCase().includes(nameVal);
+            const matchName = (item.name || "").toLowerCase().includes(nameVal);
             
-            const cleanedItemClass = item.class.toLowerCase().replace(/\s+/g, '');
+            const cleanedItemClass = (item.class || "").toLowerCase().replace(/\s+/g, '');
             const matchClass = (classVal === 'all' || cleanedItemClass === classVal);
             
-            const matchModule = (moduleVal === 'all' || item.module.toLowerCase().includes(moduleVal));
-            const matchCategory = (categoryVal === 'all' || item.category.toLowerCase().includes(categoryVal));
+            const matchModule = (moduleVal === 'all' || (item.module || "").toLowerCase().includes(moduleVal));
+            const matchCategory = (categoryVal === 'all' || (item.category || "").toLowerCase().includes(categoryVal));
             
             let itemStatus = "Intervensi";
             if (item.percent >= 90) itemStatus = "Cemerlang";
@@ -619,31 +620,39 @@
         document.getElementById('stat-avg-score').innerText = `${avgScore}%`;
 
         // KEMASKINI CARTA MODUL SECARA DINAMIK
-        const modLabels = Object.keys(moduleCounts);
-        const modData = Object.values(moduleCounts);
+        if (moduleChart) {
+            const modLabels = Object.keys(moduleCounts);
+            const modData = Object.values(moduleCounts);
 
-        moduleChart.data.labels = modLabels.length > 0 ? modLabels : ['Tiada Data'];
-        moduleChart.data.datasets[0].data = modData.length > 0 ? modData : [0];
-        moduleChart.update();
+            moduleChart.data.labels = modLabels.length > 0 ? modLabels : ['Tiada Data'];
+            moduleChart.data.datasets[0].data = modData.length > 0 ? modData : [0];
+            moduleChart.update();
+        }
     }
 
     function exportCSV() {
-    if (studentData.length === 0) {
-        alert("Tiada data untuk dieksport!");
-        return;
+        if (studentData.length === 0) {
+            alert("Tiada data untuk dieksport!");
+            return;
+        }
+        let csvContent = "data:text/csv;charset=utf-8,Nama,Kelas,Bidang Set,Modul,Skor,Peratus\n";
+        studentData.forEach(row => {
+            csvContent += `"${row.name}","${row.class}","${row.category}","${row.module}","${row.score}","${row.percent}%"\n`;
+        });
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "Analisis_Murid_Year3.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
-    let csvContent = "data:text/csv;charset=utf-8,Nama,Kelas,Bidang Set,Modul,Skor,Peratus\n";
-    studentData.forEach(row => {
-        csvContent += `"${row.name}","${row.class}","${row.category}","${row.module}","${row.score}","${row.percent}%"\n`;
+
+    // JALANKAN INISIALISASI CARTA DAN MEMUATKAN DATA SEBAIK SAHAJA HALAMAN SELESAI DIMUATKAN
+    window.addEventListener('DOMContentLoaded', () => {
+        initChart();
+        fetchSheetData();
     });
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "Analisis_Murid_Year3.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
 </script>
 
 </body>
