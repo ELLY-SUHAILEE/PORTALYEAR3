@@ -361,6 +361,13 @@
             display: none;
             font-family: 'Fredoka', cursive;
         }
+
+        .status-sync {
+            font-size: 0.85rem;
+            margin-top: 8px;
+            opacity: 0.9;
+            font-weight: normal;
+        }
     </style>
 </head>
 <body>
@@ -510,6 +517,7 @@
             <div class="score-banner" id="scoreBanner">
                 <h2 id="scoreText">Your Score: 0</h2>
                 <p id="feedbackText">Well done!</p>
+                <div class="status-sync" id="syncStatus">🔄 Menghantar keputusan ke rekod guru...</div>
             </div>
 
             <div id="questionsContainer"></div>
@@ -523,6 +531,9 @@
 
     <!-- JavaScript Kawalan Utama -->
     <script>
+        // Web App URL Google Apps Script
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwv5vbjD2_l9637wX4QGOtbIxEQM8CL4N4dL3a8_fNtr8OKoLEq2ETL0puKAm8qB_3c/exec";
+
         let activeQuestions = [];
         let userAnswers = {};
 
@@ -793,6 +804,37 @@
             scoreBanner.style.display = 'block';
             document.getElementById('submitBtn').style.display = 'none';
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Hantar data markah ke Google Sheets
+            hantarRekodKeGoogleSheet({
+                nama: localStorage.getItem('studentName') || 'Murid',
+                kelas: localStorage.getItem('studentClass') || '-',
+                modul: document.getElementById('displayModuleName').textContent || 'Modul',
+                markah: markah,
+                jumlahSoalan: totalQuestions,
+                peratus: Math.round(peratus) + '%'
+            });
+        }
+
+        function hantarRekodKeGoogleSheet(payload) {
+            const statusEl = document.getElementById('syncStatus');
+            if (statusEl) statusEl.innerHTML = '🔄 Menghantar keputusan ke rekod guru...';
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                if (statusEl) statusEl.innerHTML = '✅ Rekod keputusan berjaya disimpan!';
+            })
+            .catch(error => {
+                console.error('Ralat penghantaran:', error);
+                if (statusEl) statusEl.innerHTML = '⚠️ Keputusan ditunjukkan tetapi gagal disimpan ke server.';
+            });
         }
 
         function kembaliKeMenu() {
