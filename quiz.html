@@ -81,8 +81,8 @@
         }
 
         .question-box {
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 600;
             color: #2c3e50;
             margin-bottom: 20px;
             padding: 20px;
@@ -90,9 +90,7 @@
             border-radius: 16px;
             border: 2px solid #e0e0e0;
             min-height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-align: left;
         }
 
         .options-grid {
@@ -171,7 +169,6 @@
         <div class="feedback-box" id="feedbackText"></div>
     </div>
 
-    <!-- Skrip Pengendali Kuiz Pintar -->
     <script>
         const studentName = localStorage.getItem('studentName') || 'Student';
         const studentClass = localStorage.getItem('studentClass') || '';
@@ -190,46 +187,18 @@
             scriptTag.src = moduleScript;
 
             scriptTag.onload = () => {
-                // 1. Semak jika ada fungsi khas
-                if (typeof initQuiz === 'function') {
-                    initQuiz();
-                    return;
-                }
+                // Cari soalan di dalam quizBank
+                activeQuestions = findQuestionsInQuizBank();
 
-                // 2. Semak nama pembolehubah biasa
-                const possibleVarNames = ['questions', 'quizQuestions', 'moduleQuestions', 'dataQuestions', 'quizData', 'questionsData'];
-                for (let varName of possibleVarNames) {
-                    if (window[varName] && Array.isArray(window[varName]) && window[varName].length > 0) {
-                        activeQuestions = window[varName];
-                        break;
-                    }
-                }
-
-                // 3. AUTO-DETECTOR: Imbas seluruh Window Object untuk sebarang Senarai Soalan
-                if (activeQuestions.length === 0) {
-                    for (let key in window) {
-                        try {
-                            if (Array.isArray(window[key]) && window[key].length > 0) {
-                                let item = window[key][0];
-                                if (item && typeof item === 'object' && (item.question || item.soalan || item.text || item.q || item.options || item.pilihan)) {
-                                    activeQuestions = window[key];
-                                    break;
-                                }
-                            }
-                        } catch(e) {}
-                    }
-                }
-
-                // 4. Jika jumpa, paparkan soalan
-                if (activeQuestions.length > 0) {
+                if (activeQuestions && activeQuestions.length > 0) {
                     paparSoalan();
                 } else {
-                    document.getElementById('questionText').innerHTML = "⚠️ Data soalan tidak dijumpai dalam <code>" + moduleScript + "</code>.<br><small style='font-weight:normal; font-size:0.85rem; color:#666;'>Sila pastikan fail mengandungi senarai soalan (cth: <code>const questions = [...]</code>).</small>";
+                    document.getElementById('questionText').innerHTML = "⚠️ Soalan tidak dijumpai dalam <code>" + moduleScript + "</code>.";
                 }
             };
 
             scriptTag.onerror = () => {
-                document.getElementById('questionText').innerHTML = "⚠️ Gagal memuatkan fail: <code>" + moduleScript + "</code>. Pastikan fail wujud di GitHub.";
+                document.getElementById('questionText').innerHTML = "⚠️ Gagal memuatkan <code>" + moduleScript + "</code>. Pastikan nama fail betul di GitHub.";
             };
 
             document.body.appendChild(scriptTag);
@@ -237,7 +206,41 @@
             document.getElementById('questionText').textContent = "⚠️ Tiada modul dipilih. Sila kembali ke Laman Utama.";
         }
 
-        // Papar Soalan
+        // Pengesan Automatik untuk quizBank & Objek Lain
+        function findQuestionsInQuizBank() {
+            // 1. Geledah window.quizBank
+            if (window.quizBank) {
+                let res = searchBank(window.quizBank);
+                if (res) return res;
+            }
+
+            // 2. Semak pembolehubah biasa
+            const standardVars = ['questions', 'quizQuestions', 'moduleQuestions'];
+            for (let v of standardVars) {
+                if (window[v] && Array.isArray(window[v]) && window[v].length > 0) return window[v];
+            }
+
+            return null;
+        }
+
+        // Rekursif Geledah Objek QuizBank
+        function searchBank(obj) {
+            if (!obj) return null;
+            if (Array.isArray(obj) && obj.length > 0) {
+                let item = obj[0];
+                if (item && typeof item === 'object' && (item.question || item.soalan || item.text || item.q || item.options || item.pilihan)) {
+                    return obj;
+                }
+            } else if (typeof obj === 'object') {
+                for (let key in obj) {
+                    let found = searchBank(obj[key]);
+                    if (found) return found;
+                }
+            }
+            return null;
+        }
+
+        // Memaparkan Soalan (Menyokong Gambar)
         function paparSoalan() {
             if (currentQuestionIndex >= activeQuestions.length) {
                 tamatKuiz();
@@ -245,7 +248,10 @@
             }
 
             const q = activeQuestions[currentQuestionIndex];
-            document.getElementById('questionText').textContent = `${currentQuestionIndex + 1}. ${q.question || q.soalan || q.text || q.q}`;
+            let qText = q.question || q.soalan || q.text || q.q || "";
+
+            // Guna innerHTML untuk sokong gambar wrapCenterImage
+            document.getElementById('questionText').innerHTML = `<div style="font-size:0.9rem; color:#888; margin-bottom:5px;">Question ${currentQuestionIndex + 1} of ${activeQuestions.length}</div>` + qText;
             document.getElementById('feedbackText').textContent = "";
 
             const container = document.getElementById('optionsContainer');
@@ -255,13 +261,13 @@
             opts.forEach((opt, idx) => {
                 const btn = document.createElement('button');
                 btn.className = 'btn-option';
-                btn.textContent = opt;
+                btn.innerHTML = opt;
                 btn.onclick = () => semakJawapan(idx, q, btn);
                 container.appendChild(btn);
             });
         }
 
-        // Semak Jawapan & Maklum Balas
+        // Semakan Jawapan
         function semakJawapan(selectedIdx, qObj, btnEl) {
             const buttons = document.querySelectorAll('.btn-option');
             buttons.forEach(b => b.disabled = true);
@@ -288,11 +294,12 @@
             setTimeout(() => {
                 currentQuestionIndex++;
                 paparSoalan();
-            }, 1500);
+            }, 1800);
         }
 
         // Tamat Kuiz
         function tamatKuiz() {
+            document.getElementById('questionText').style.textAlign = 'center';
             document.getElementById('questionText').innerHTML = `🏆 Quiz Completed!`;
             document.getElementById('optionsContainer').innerHTML = `
                 <div class="score-box">
