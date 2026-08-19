@@ -18,19 +18,18 @@
         }
 
         body {
-            /* Latar belakang poster.png */
             background: url('poster.png') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             padding: 20px;
         }
 
         /* Container Kad Utama Lutsinar (Glassmorphism) */
         .main-card {
-            background: rgba(255, 255, 255, 0.93);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
             border-radius: 24px;
             padding: 30px;
@@ -39,6 +38,8 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
             border: 2px solid rgba(255, 255, 255, 0.6);
             text-align: center;
+            margin-top: 10px;
+            margin-bottom: 30px;
         }
 
         .header-title {
@@ -248,21 +249,14 @@
             box-shadow: 0 10px 18px rgba(0,0,0,0.2);
         }
 
-        .btn-module:active {
-            transform: translateY(0);
-        }
-
-        /* Warna Khas Exploration */
         .btn-exp-read { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
         .btn-exp-gram { background: linear-gradient(135deg, #fdcb6e, #e17055); }
         .btn-exp-sent { background: linear-gradient(135deg, #e84393, #d63031); }
 
-        /* Warna Khas Permata Activities */
         .btn-per-word { background: linear-gradient(135deg, #00cec9, #00b894); }
         .btn-per-repeat { background: linear-gradient(135deg, #0984e3, #74b9ff); }
         .btn-per-build { background: linear-gradient(135deg, #6c5ce7, #8e44ad); }
 
-        /* Pautan Footer / Rekod Guru */
         .footer-nav {
             margin-top: 25px;
             padding-top: 15px;
@@ -288,7 +282,159 @@
             text-decoration: underline;
         }
 
-        /* Responsif */
+        /* --- GAYA PAPARAN SOALAN KUIZ (SERENTAK) --- */
+        #quizSection {
+            display: none;
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed #c8d6e5;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .student-tag {
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: #e17055;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .module-title-tag {
+            font-family: 'Fredoka', cursive;
+            font-size: 1.3rem;
+            color: #6c5ce7;
+            font-weight: 700;
+        }
+
+        .btn-home {
+            background: #74b9ff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: background 0.2s ease;
+        }
+
+        .btn-home:hover {
+            background: #0984e3;
+        }
+
+        .question-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 2px solid #e0e0e0;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .question-number {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #6c5ce7;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .question-text img, .question-card img {
+            display: block;
+            margin: 15px auto;
+            max-width: 100%;
+            max-height: 250px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .btn-option {
+            background: #f8f9fa;
+            border: 2px solid #c8d6e5;
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+
+        .btn-option:hover {
+            border-color: #6c5ce7;
+            background-color: #f0edff;
+        }
+
+        .btn-option.selected {
+            background-color: #6c5ce7 !important;
+            color: #ffffff !important;
+            border-color: #5b4bc4 !important;
+        }
+
+        .btn-option.correct {
+            background-color: #2ecc71 !important;
+            color: white !important;
+            border-color: #27ae60 !important;
+        }
+
+        .btn-option.wrong {
+            background-color: #e74c3c !important;
+            color: white !important;
+            border-color: #c0392b !important;
+        }
+
+        .submit-btn {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+        }
+
+        .score-banner {
+            background: #6c5ce7;
+            color: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            display: none;
+            font-family: 'Fredoka', cursive;
+        }
+
         @media (max-width: 600px) {
             .button-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -302,141 +448,177 @@
 <body>
 
     <div class="main-card">
-        <!-- Tajuk Utama -->
-        <h1 class="header-title">🎈 PORTAL YEAR 3 ENGLISH 🎈</h1>
-        <p class="header-subtitle">Please enter your details and select a topic below:</p>
+        
+        <!-- ================= SEKSYEN 1: MENU UTAMA ================= -->
+        <div id="menuSection">
+            <!-- Tajuk Utama -->
+            <h1 class="header-title">🎈 PORTAL YEAR 3 ENGLISH 🎈</h1>
+            <p class="header-subtitle">Please enter your details and select a topic below:</p>
 
-        <!-- Borang Name & Class Murid -->
-        <div class="student-info-box" id="infoBox">
-            <div class="input-group">
-                <i class="fa-solid fa-user"></i>
-                <input type="text" id="namaMurid" placeholder="Name" required>
-            </div>
-            <div class="input-group">
-                <i class="fa-solid fa-graduation-cap"></i>
-                <select id="kelasMurid" required>
-                    <option value="">-- Class --</option>
-                    <option value="3 ARIF">3 ARIF</option>
-                    <option value="3 BESTARI">3 BESTARI</option>
-                    <option value="3 CERDIK">3 CERDIK</option>
-                    <option value="3 DEDIKASI">3 DEDIKASI</option>
-                    <option value="3 ELIT">3 ELIT</option>
-                    <option value="3 FIRDAUS">3 FIRDAUS</option>
-                    <option value="3 GIGIH">3 GIGIH</option>
-                    <option value="3 HARMONI">3 HARMONI</option>
-                    <option value="3 INOVATIF">3 INOVATIF</option>
-                    <option value="3 JUARA">3 JUARA</option>
-                    <option value="3 KREATIF">3 KREATIF</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- SEKSYEN KAD DROPDOWN (GET SMART & REMEDIAL SET) -->
-        <div class="dropdown-section">
-            
-            <!-- Kad Dropdown 1: Get Smart Modules -->
-            <div class="dropdown-card card-getsmart">
-                <div class="card-title">
-                    <i class="fa-solid fa-book-open-reader"></i> Get Smart Modules (1 - 10)
+            <!-- Borang Name & Class Murid -->
+            <div class="student-info-box" id="infoBox">
+                <div class="input-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="namaMurid" placeholder="Name" required>
                 </div>
-                <div class="select-wrapper">
-                    <select id="getSmartSelect">
-                        <option value="">-- Select Get Smart Module --</option>
-                        <option value="Module 1 - Welcome!|module1.js">Module 1: Welcome!</option>
-                        <option value="Module 2 - Every Day|module2.js">Module 2: Every Day</option>
-                        <option value="Module 3 - Right Now|module3.js">Module 3: Right Now</option>
-                        <option value="Module 4 - Year In, Year Out|module4.js">Module 4: Year In, Year Out</option>
-                        <option value="Module 5 - My New House|module5.js">Module 5: My New House</option>
-                        <option value="Module 6 - Food, Food!|module6.js">Module 6: Food, Food!</option>
-                        <option value="Module 7 - Out and About|module7.js">Module 7: Out and About</option>
-                        <option value="Module 8 - Where Were You Yesterday?|module8.js">Module 8: Where Were You Yesterday?</option>
-                        <option value="Module 9 - On Holiday|module9.js">Module 9: On Holiday</option>
-                        <option value="Module 10 - The World Around Us|module10.js">Module 10: The World Around Us</option>
+                <div class="input-group">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <select id="kelasMurid" required>
+                        <option value="">-- Class --</option>
+                        <option value="3 ARIF">3 ARIF</option>
+                        <option value="3 BESTARI">3 BESTARI</option>
+                        <option value="3 CERDIK">3 CERDIK</option>
+                        <option value="3 DEDIKASI">3 DEDIKASI</option>
+                        <option value="3 ELIT">3 ELIT</option>
+                        <option value="3 FIRDAUS">3 FIRDAUS</option>
+                        <option value="3 GIGIH">3 GIGIH</option>
+                        <option value="3 HARMONI">3 HARMONI</option>
+                        <option value="3 INOVATIF">3 INOVATIF</option>
+                        <option value="3 JUARA">3 JUARA</option>
+                        <option value="3 KREATIF">3 KREATIF</option>
                     </select>
                 </div>
-                <button class="btn-start btn-start-getsmart" onclick="mulaDropdownModule('getSmartSelect')">
-                    Start Module <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <!-- SEKSYEN KAD DROPDOWN (GET SMART & REMEDIAL SET) -->
+            <div class="dropdown-section">
+                
+                <!-- Kad Dropdown 1: Get Smart Modules -->
+                <div class="dropdown-card card-getsmart">
+                    <div class="card-title">
+                        <i class="fa-solid fa-book-open-reader"></i> Get Smart Modules (1 - 10)
+                    </div>
+                    <div class="select-wrapper">
+                        <select id="getSmartSelect">
+                            <option value="">-- Select Get Smart Module --</option>
+                            <option value="Module 1 - Welcome!|module1.js">Module 1: Welcome!</option>
+                            <option value="Module 2 - Every Day|module2.js">Module 2: Every Day</option>
+                            <option value="Module 3 - Right Now|module3.js">Module 3: Right Now</option>
+                            <option value="Module 4 - Year In, Year Out|module4.js">Module 4: Year In, Year Out</option>
+                            <option value="Module 5 - My New House|module5.js">Module 5: My New House</option>
+                            <option value="Module 6 - Food, Food!|module6.js">Module 6: Food, Food!</option>
+                            <option value="Module 7 - Out and About|module7.js">Module 7: Out and About</option>
+                            <option value="Module 8 - Where Were You Yesterday?|module8.js">Module 8: Where Were You Yesterday?</option>
+                            <option value="Module 9 - On Holiday|module9.js">Module 9: On Holiday</option>
+                            <option value="Module 10 - The World Around Us|module10.js">Module 10: The World Around Us</option>
+                        </select>
+                    </div>
+                    <button class="btn-start btn-start-getsmart" onclick="mulaDropdownModule('getSmartSelect')">
+                        Start Module <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Kad Dropdown 2: Remedial Set -->
+                <div class="dropdown-card card-remedial">
+                    <div class="card-title">
+                        <i class="fa-solid fa-life-ring"></i> Remedial Set (1 - 10)
+                    </div>
+                    <div class="select-wrapper">
+                        <select id="remedialSelect">
+                            <option value="">-- Select Remedial Set --</option>
+                            <option value="Remedial 1 - Welcome!|remedial1.js">Remedial 1: Welcome!</option>
+                            <option value="Remedial 2 - Every Day|remedial2.js">Remedial 2: Every Day</option>
+                            <option value="Remedial 3 - Right Now|remedial3.js">Remedial 3: Right Now</option>
+                            <option value="Remedial 4 - Year In, Year Out|remedial4.js">Remedial 4: Year In, Year Out</option>
+                            <option value="Remedial 5 - My New House|remedial5.js">Remedial 5: My New House</option>
+                            <option value="Remedial 6 - Food, Food!|remedial6.js">Remedial 6: Food, Food!</option>
+                            <option value="Remedial 7 - Out and About|remedial7.js">Remedial 7: Out and About</option>
+                            <option value="Remedial 8 - Where Were You Yesterday?|remedial8.js">Remedial 8: Where Were You Yesterday?</option>
+                            <option value="Remedial 9 - On Holiday|remedial9.js">Remedial 9: On Holiday</option>
+                            <option value="Remedial 10 - The World Around Us|remedial10.js">Remedial 10: The World Around Us</option>
+                        </select>
+                    </div>
+                    <button class="btn-start btn-start-remedial" onclick="mulaDropdownModule('remedialSelect')">
+                        Start Remedial <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- SEKSYEN 3: EXPLORATION -->
+            <div class="section-divider">
+                <i class="fa-solid fa-compass" style="color: #6c5ce7;"></i> Exploration
+            </div>
+
+            <div class="button-grid">
+                <button class="btn-module btn-exp-read" onclick="bukaAktiviti('Reading Activity', 'reading.html')">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Reading<br><small>Comprehension</small></span>
+                </button>
+                <button class="btn-module btn-exp-gram" onclick="bukaAktiviti('Grammar Practice', 'grammar.html')">
+                    <i class="fa-solid fa-pen-ruler"></i>
+                    <span>Grammar<br><small>Language Rules</small></span>
+                </button>
+                <button class="btn-module btn-exp-sent" onclick="bukaAktiviti('Sentence Practice', 'sentence.html')">
+                    <i class="fa-solid fa-align-left"></i>
+                    <span>Sentences<br><small>Structure</small></span>
                 </button>
             </div>
 
-            <!-- Kad Dropdown 2: Remedial Set -->
-            <div class="dropdown-card card-remedial">
-                <div class="card-title">
-                    <i class="fa-solid fa-life-ring"></i> Remedial Set (1 - 10)
-                </div>
-                <div class="select-wrapper">
-                    <select id="remedialSelect">
-                        <option value="">-- Select Remedial Set --</option>
-                        <option value="Remedial 1 - Welcome!|remedial1.js">Remedial 1: Welcome!</option>
-                        <option value="Remedial 2 - Every Day|remedial2.js">Remedial 2: Every Day</option>
-                        <option value="Remedial 3 - Right Now|remedial3.js">Remedial 3: Right Now</option>
-                        <option value="Remedial 4 - Year In, Year Out|remedial4.js">Remedial 4: Year In, Year Out</option>
-                        <option value="Remedial 5 - My New House|remedial5.js">Remedial 5: My New House</option>
-                        <option value="Remedial 6 - Food, Food!|remedial6.js">Remedial 6: Food, Food!</option>
-                        <option value="Remedial 7 - Out and About|remedial7.js">Remedial 7: Out and About</option>
-                        <option value="Remedial 8 - Where Were You Yesterday?|remedial8.js">Remedial 8: Where Were You Yesterday?</option>
-                        <option value="Remedial 9 - On Holiday|remedial9.js">Remedial 9: On Holiday</option>
-                        <option value="Remedial 10 - The World Around Us|remedial10.js">Remedial 10: The World Around Us</option>
-                    </select>
-                </div>
-                <button class="btn-start btn-start-remedial" onclick="mulaDropdownModule('remedialSelect')">
-                    Start Remedial <i class="fa-solid fa-arrow-right"></i>
+            <!-- SEKSYEN 4: PERMATA ACTIVITIES -->
+            <div class="section-divider">
+                <i class="fa-solid fa-gem" style="color: #00b894;"></i> Permata Activities
+            </div>
+
+            <div class="button-grid">
+                <button class="btn-module btn-per-word" onclick="bukaAktiviti('Word Power', 'wordpower.html')">
+                    <i class="fa-solid fa-spell-check"></i>
+                    <span>Word Power<br><small>Vocabulary</small></span>
+                </button>
+                <button class="btn-module btn-per-repeat" onclick="bukaAktiviti('Read & Repeat', 'readrepeat.html')">
+                    <i class="fa-solid fa-microphone"></i>
+                    <span>Read and Repeat<br><small>Pronunciation</small></span>
+                </button>
+                <button class="btn-module btn-per-build" onclick="bukaAktiviti('Build Sentence', 'buildsentence.html')">
+                    <i class="fa-solid fa-cubes"></i>
+                    <span>Build Sentence<br><small>Interactive Game</small></span>
                 </button>
             </div>
 
+            <!-- Footer / Pautan Rekod Guru -->
+            <div class="footer-nav">
+                <span style="font-size: 0.85rem; color: #8395a7;">© Portal Bahasa Inggeris Tahun 3</span>
+                <a href="dashboard.html" class="teacher-link">
+                    <i class="fa-solid fa-lock"></i> Dashboard / Rekod Guru
+                </a>
+            </div>
         </div>
 
-        <!-- SEKSYEN 3: EXPLORATION -->
-        <div class="section-divider">
-            <i class="fa-solid fa-compass" style="color: #6c5ce7;"></i> Exploration
-        </div>
+        <!-- ================= SEKSYEN 2: PAPARAN KUIZ SERENTAK ================= -->
+        <div id="quizSection">
+            <div class="header-bar">
+                <button class="btn-home" onclick="kembaliKeMenu()"><i class="fa-solid fa-house"></i> Home</button>
+                <span class="module-title-tag" id="displayModuleName">Module</span>
+                <span class="student-tag" id="displayStudentInfo">Student</span>
+            </div>
 
-        <div class="button-grid">
-            <button class="btn-module btn-exp-read" onclick="bukaAktiviti('Reading Activity', 'reading.html')">
-                <i class="fa-solid fa-book-open"></i>
-                <span>Reading<br><small>Comprehension</small></span>
-            </button>
-            <button class="btn-module btn-exp-gram" onclick="bukaAktiviti('Grammar Practice', 'grammar.html')">
-                <i class="fa-solid fa-pen-ruler"></i>
-                <span>Grammar<br><small>Language Rules</small></span>
-            </button>
-            <button class="btn-module btn-exp-sent" onclick="bukaAktiviti('Sentence Practice', 'sentence.html')">
-                <i class="fa-solid fa-align-left"></i>
-                <span>Sentences<br><small>Structure</small></span>
-            </button>
-        </div>
+            <div class="score-banner" id="scoreBanner">
+                <h2 id="scoreText">Your Score: 0 / 0</h2>
+                <p id="feedbackText">Well done!</p>
+            </div>
 
-        <!-- SEKSYEN 4: PERMATA ACTIVITIES -->
-        <div class="section-divider">
-            <i class="fa-solid fa-gem" style="color: #00b894;"></i> Permata Activities
-        </div>
+            <div id="questionsContainer"></div>
 
-        <div class="button-grid">
-            <button class="btn-module btn-per-word" onclick="bukaAktiviti('Word Power', 'wordpower.html')">
-                <i class="fa-solid fa-spell-check"></i>
-                <span>Word Power<br><small>Vocabulary</small></span>
-            </button>
-            <button class="btn-module btn-per-repeat" onclick="bukaAktiviti('Read & Repeat', 'readrepeat.html')">
-                <i class="fa-solid fa-microphone"></i>
-                <span>Read and Repeat<br><small>Pronunciation</small></span>
-            </button>
-            <button class="btn-module btn-per-build" onclick="bukaAktiviti('Build Sentence', 'buildsentence.html')">
-                <i class="fa-solid fa-cubes"></i>
-                <span>Build Sentence<br><small>Interactive Game</small></span>
+            <button class="submit-btn" id="submitBtn" onclick="hantarJawapan()">
+                <i class="fa-solid fa-paper-plane"></i> Hantar Jawapan
             </button>
         </div>
 
-        <!-- Footer / Pautan Rekod Guru -->
-        <div class="footer-nav">
-            <span style="font-size: 0.85rem; color: #8395a7;">© Portal Bahasa Inggeris Tahun 3</span>
-            <a href="dashboard.html" class="teacher-link">
-                <i class="fa-solid fa-lock"></i> Dashboard / Rekod Guru
-            </a>
-        </div>
     </div>
 
-    <!-- JavaScript Kawalan Ketat & Logik Pengalihan Laman (TELAH DIBETULKAN) -->
+    <!-- JavaScript Kawalan Utama (Single Page Application) -->
     <script>
+        // Pembantu Gambar Global
+        window.wrapCenterImage = function(imagePath) {
+            if (!imagePath) return "";
+            return `<div style="text-align: center; margin: 15px 0;">
+                        <img src="${imagePath}" onerror="this.style.display='none'">
+                    </div>`;
+        };
+
+        let activeQuestions = [];
+        let userAnswers = {};
+
         // Semakan Wajib bagi Name dan Class
         function semakMaklumatMurid() {
             const elNama = document.getElementById('namaMurid');
@@ -445,11 +627,9 @@
             const nama = elNama.value.trim();
             const kelas = elKelas.value;
 
-            // Reset warna garisan asal
             elNama.style.borderColor = "#c8d6e5";
             elKelas.style.borderColor = "#c8d6e5";
 
-            // 1. Semakan Name Wajib
             if (!nama) {
                 alert("⚠️ PLEASE ENTER YOUR NAME FIRST!");
                 elNama.style.borderColor = "#ff4d4d";
@@ -457,7 +637,6 @@
                 return false;
             }
 
-            // 2. Semakan Class Wajib
             if (!kelas) {
                 alert("⚠️ PLEASE SELECT YOUR CLASS FIRST!");
                 elKelas.style.borderColor = "#ff4d4d";
@@ -465,13 +644,12 @@
                 return false;
             }
 
-            // Simpan Profil Murid dalam LocalStorage
             localStorage.setItem('studentName', nama);
             localStorage.setItem('studentClass', kelas);
             return { nama, kelas };
         }
 
-        // Jalankan Modul Pilihan daripada Dropdown Select
+        // Mula Kuiz Melalui Dropdown Topik
         function mulaDropdownModule(selectId) {
             const info = semakMaklumatMurid();
             if (!info) return;
@@ -485,26 +663,195 @@
                 return;
             }
 
-            // Asingkan Nama Modul dan Fail Skrip JS
             const parts = val.split('|');
             const namaModul = parts[0];
             const skripModul = parts[1];
 
-            localStorage.setItem('selectedModule', namaModul);
-            localStorage.setItem('moduleScript', skripModul);
+            // Kemaskini Tag Profil & Modul
+            document.getElementById('displayStudentInfo').textContent = `${info.nama} (${info.kelas})`;
+            document.getElementById('displayModuleName').textContent = namaModul;
 
-            // Buka Laman Kuiz (quiz.html)
-            window.location.href = "quiz.html";
+            // Reset Ruang Soalan
+            document.getElementById('questionsContainer').innerHTML = `
+                <div style="padding: 30px; color: #666;">
+                    <i class="fa-solid fa-spinner fa-spin fa-2x"></i><br><br>
+                    Sila tunggu, soalan sedang dimuatkan...
+                </div>`;
+            document.getElementById('scoreBanner').style.display = 'none';
+            document.getElementById('submitBtn').style.display = 'none';
+
+            // Tukar Paparan
+            document.getElementById('menuSection').style.display = 'none';
+            document.getElementById('quizSection').style.display = 'block';
+
+            // Buang skrip lama jika ada
+            const oldScript = document.getElementById('dynamicModuleScript');
+            if (oldScript) oldScript.remove();
+
+            // Muat fail JS modul secara dinamik
+            const scriptTag = document.createElement('script');
+            scriptTag.id = 'dynamicModuleScript';
+            scriptTag.src = skripModul;
+
+            scriptTag.onload = () => {
+                activeQuestions = findQuestionsInQuizBank();
+                if (activeQuestions && activeQuestions.length > 0) {
+                    paparSemuaSoalan();
+                } else {
+                    document.getElementById('questionsContainer').innerHTML = `
+                        <div style="color:red; padding:20px;">
+                            ⚠️ Soalan tidak dijumpai dalam fail <code>${skripModul}</code>.
+                        </div>`;
+                }
+            };
+
+            scriptTag.onerror = () => {
+                document.getElementById('questionsContainer').innerHTML = `
+                    <div style="color:red; padding:20px;">
+                        ⚠️ Gagal memuatkan fail <code>${skripModul}</code>. Pastikan fail wujud di server GitHub.
+                    </div>`;
+            };
+
+            document.body.appendChild(scriptTag);
         }
 
-        // Jalankan Aktiviti Exploration & Permata Activities
+        // Pengesan Data Soalan dalam quizBank
+        function findQuestionsInQuizBank() {
+            if (window.quizBank) {
+                let res = searchBank(window.quizBank);
+                if (res) return res;
+            }
+            const standardVars = ['questions', 'quizQuestions', 'moduleQuestions'];
+            for (let v of standardVars) {
+                if (window[v] && Array.isArray(window[v]) && window[v].length > 0) return window[v];
+            }
+            return null;
+        }
+
+        function searchBank(obj) {
+            if (!obj) return null;
+            if (Array.isArray(obj) && obj.length > 0) {
+                let item = obj[0];
+                if (item && typeof item === 'object' && (item.question || item.soalan || item.text || item.q || item.options || item.pilihan)) {
+                    return obj;
+                }
+            } else if (typeof obj === 'object') {
+                for (let key in obj) {
+                    let found = searchBank(obj[key]);
+                    if (found) return found;
+                }
+            }
+            return null;
+        }
+
+        // Paparkan Kesemua Soalan Serentak
+        function paparSemuaSoalan() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = "";
+            userAnswers = {};
+
+            activeQuestions.forEach((q, qIdx) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+
+                let qText = q.question || q.soalan || q.text || q.q || "";
+                let imageHtml = q.image ? `<div style="text-align:center;"><img src="${q.image}" onerror="this.style.display='none'"></div>` : "";
+
+                card.innerHTML = `
+                    <div class="question-number">Soalan ${qIdx + 1} dari ${activeQuestions.length}</div>
+                    <div class="question-text">${qText}</div>
+                    ${imageHtml}
+                    <div class="options-grid" id="optionsGroup_${qIdx}"></div>
+                `;
+
+                container.appendChild(card);
+
+                const optionsGroup = card.querySelector(`#optionsGroup_${qIdx}`);
+                const opts = q.options || q.pilihan || q.answers || q.choices || [];
+
+                opts.forEach((opt, optIdx) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn-option';
+                    btn.innerHTML = opt;
+                    btn.onclick = () => pilihJawapan(qIdx, optIdx);
+                    optionsGroup.appendChild(btn);
+                });
+            });
+
+            document.getElementById('submitBtn').style.display = 'inline-block';
+        }
+
+        // Pilih Jawapan
+        function pilihJawapan(qIdx, optIdx) {
+            userAnswers[qIdx] = optIdx;
+            const group = document.getElementById(`optionsGroup_${qIdx}`);
+            const buttons = group.querySelectorAll('.btn-option');
+
+            buttons.forEach((btn, idx) => {
+                if (idx === optIdx) btn.classList.add('selected');
+                else btn.classList.remove('selected');
+            });
+        }
+
+        // Semak Markah & Tanda Warna Jawapan
+        function hantarJawapan() {
+            let totalQuestions = activeQuestions.length;
+            let answeredCount = Object.keys(userAnswers).length;
+
+            if (answeredCount < totalQuestions) {
+                if (!confirm(`Anda baru menjawab ${answeredCount} daripada ${totalQuestions} soalan. Adakah anda pasti mahu menghantar?`)) return;
+            }
+
+            let markah = 0;
+
+            activeQuestions.forEach((q, qIdx) => {
+                let correctIdx = q.answer !== undefined ? q.answer : (q.jawapan !== undefined ? q.jawapan : q.correct);
+                if (typeof correctIdx === 'string') {
+                    const opts = q.options || q.pilihan || q.answers || q.choices || [];
+                    correctIdx = opts.indexOf(correctIdx);
+                }
+
+                const group = document.getElementById(`optionsGroup_${qIdx}`);
+                const buttons = group.querySelectorAll('.btn-option');
+                const userChoice = userAnswers[qIdx];
+
+                buttons.forEach((btn, optIdx) => {
+                    btn.disabled = true; // Kunci pilihan selepas hantar
+                    btn.classList.remove('selected');
+
+                    if (optIdx === correctIdx) btn.classList.add('correct'); // Hijau untuk jawapan betul
+                    if (userChoice === optIdx && userChoice !== correctIdx) btn.classList.add('wrong'); // Merah untuk jawapan salah
+                });
+
+                if (userChoice === correctIdx) markah++;
+            });
+
+            const scoreBanner = document.getElementById('scoreBanner');
+            document.getElementById('scoreText').textContent = `Markah Anda: ${markah} / ${totalQuestions}`;
+            
+            let peratus = (markah / totalQuestions) * 100;
+            if (peratus >= 80) document.getElementById('feedbackText').textContent = "🎉 Syabas! Keputusan yang cemerlang!";
+            else if (peratus >= 50) document.getElementById('feedbackText').textContent = "👍 Bagus! Teruskan usaha anda!";
+            else document.getElementById('feedbackText').textContent = "💪 Jangan putus asa, cuba lagi!";
+
+            scoreBanner.style.display = 'block';
+            document.getElementById('submitBtn').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Kembali ke Menu Utama
+        function kembaliKeMenu() {
+            document.getElementById('quizSection').style.display = 'none';
+            document.getElementById('menuSection').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Jalankan Aktiviti Exploration & Permata
         function bukaAktiviti(namaAktiviti, targetHtml) {
             const info = semakMaklumatMurid();
             if (!info) return;
 
             localStorage.setItem('selectedActivity', namaAktiviti);
-
-            // Buka fail HTML aktiviti khas
             window.location.href = targetHtml;
         }
     </script>
