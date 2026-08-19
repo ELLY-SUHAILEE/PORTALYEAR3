@@ -606,7 +606,7 @@
 
     </div>
 
-    <!-- JavaScript Kawalan Utama (Single Page Application) -->
+    <!-- JavaScript Kawalan Utama -->
     <script>
         // Pembantu Gambar Global
         window.wrapCenterImage = function(imagePath) {
@@ -688,15 +688,19 @@
             const oldScript = document.getElementById('dynamicModuleScript');
             if (oldScript) oldScript.remove();
 
+            // Bersihkan sebarang pembolehubah soalan sedia ada dalam window
+            delete window.questions;
+            delete window.quizQuestions;
+            delete window.moduleQuestions;
+
             // Muat fail JS modul secara dinamik
             const scriptTag = document.createElement('script');
             scriptTag.id = 'dynamicModuleScript';
             scriptTag.src = skripModul;
 
             scriptTag.onload = () => {
-                let loaded = findQuestionsInQuizBank();
+                let loaded = findQuestionsInQuizBank(skripModul);
                 if (loaded && loaded.length > 0) {
-                    // PEMBETULAN: Ambil tepat 10 soalan sahaja dari senarai
                     activeQuestions = loaded.slice(0, 10);
                     paparSemuaSoalan();
                 } else {
@@ -710,23 +714,48 @@
             scriptTag.onerror = () => {
                 document.getElementById('questionsContainer').innerHTML = `
                     <div style="color:red; padding:20px;">
-                        ⚠️ Gagal memuatkan fail <code>${skripModul}</code>. Pastikan fail wujud di server GitHub.
+                        ⚠️ Gagal memuatkan fail <code>${skripModul}</code>. Pastikan fail wujud di lokasi yang betul.
                     </div>`;
             };
 
             document.body.appendChild(scriptTag);
         }
 
-        // Pengesan Data Soalan dalam quizBank
-        function findQuestionsInQuizBank() {
+        // Pengesan Data Soalan Pintar dalam quizBank / Pembolehubah Global
+        function findQuestionsInQuizBank(skripModul) {
+            // 1. Semak jika ada window.quizBank
             if (window.quizBank) {
                 let res = searchBank(window.quizBank);
                 if (res) return res;
             }
-            const standardVars = ['questions', 'quizQuestions', 'moduleQuestions'];
+
+            // 2. Semak senarai nama pembolehubah lazim & berasaskan nama fail
+            const baseName = skripModul ? skripModul.replace('.js', '').replace(/[^a-zA-Z0-9]/g, '') : '';
+            const standardVars = [
+                baseName,
+                baseName + 'Questions',
+                'questions', 'quizQuestions', 'moduleQuestions',
+                'remedialQuestions', 'quizData', 'data'
+            ];
+
             for (let v of standardVars) {
-                if (window[v] && Array.isArray(window[v]) && window[v].length > 0) return window[v];
+                if (v && window[v] && Array.isArray(window[v]) && window[v].length > 0) {
+                    return window[v];
+                }
             }
+
+            // 3. Cari secara automatik sebarang array dalam window yang mengandungi soalan
+            for (let key in window) {
+                try {
+                    if (Array.isArray(window[key]) && window[key].length > 0) {
+                        let item = window[key][0];
+                        if (item && typeof item === 'object' && (item.question || item.soalan || item.text || item.q)) {
+                            return window[key];
+                        }
+                    }
+                } catch(e) {}
+            }
+
             return null;
         }
 
@@ -845,26 +874,16 @@
         function kembaliKeMenu() {
             document.getElementById('quizSection').style.display = 'none';
             document.getElementById('menuSection').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('getSmartSelect').value = "";
+            document.getElementById('remedialSelect').value = "";
         }
 
-        // Jalankan Aktiviti Exploration & Permata
-        function bukaAktiviti(namaAktiviti, urlAktiviti) {
+        // Buka Aktiviti Exploration / Permata
+        function bukaAktiviti(namaAktiviti, url) {
             const info = semakMaklumatMurid();
             if (!info) return;
-
-            // Navigasi ke halaman aktiviti bersama parameter maklumat murid
-            window.location.href = `${urlAktiviti}?name=${encodeURIComponent(info.nama)}&class=${encodeURIComponent(info.kelas)}`;
+            window.location.href = url;
         }
-
-        // Auto-isi maklumat murid dari LocalStorage jika wujud
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedName = localStorage.getItem('studentName');
-            const savedClass = localStorage.getItem('studentClass');
-
-            if (savedName) document.getElementById('namaMurid').value = savedName;
-            if (savedClass) document.getElementById('kelasMurid').value = savedClass;
-        });
     </script>
 </body>
 </html>
