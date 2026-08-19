@@ -196,21 +196,35 @@
                     return;
                 }
 
-                // 2. Baca pembolehubah soalan biasa dari fail JS modul
-                if (typeof questions !== 'undefined' && Array.isArray(questions)) {
-                    activeQuestions = questions;
-                } else if (typeof quizQuestions !== 'undefined' && Array.isArray(quizQuestions)) {
-                    activeQuestions = quizQuestions;
-                } else if (typeof moduleQuestions !== 'undefined' && Array.isArray(moduleQuestions)) {
-                    activeQuestions = moduleQuestions;
-                } else if (window.questions && Array.isArray(window.questions)) {
-                    activeQuestions = window.questions;
+                // 2. Semak nama pembolehubah biasa
+                const possibleVarNames = ['questions', 'quizQuestions', 'moduleQuestions', 'dataQuestions', 'quizData', 'questionsData'];
+                for (let varName of possibleVarNames) {
+                    if (window[varName] && Array.isArray(window[varName]) && window[varName].length > 0) {
+                        activeQuestions = window[varName];
+                        break;
+                    }
                 }
 
+                // 3. AUTO-DETECTOR: Imbas seluruh Window Object untuk sebarang Senarai Soalan
+                if (activeQuestions.length === 0) {
+                    for (let key in window) {
+                        try {
+                            if (Array.isArray(window[key]) && window[key].length > 0) {
+                                let item = window[key][0];
+                                if (item && typeof item === 'object' && (item.question || item.soalan || item.text || item.q || item.options || item.pilihan)) {
+                                    activeQuestions = window[key];
+                                    break;
+                                }
+                            }
+                        } catch(e) {}
+                    }
+                }
+
+                // 4. Jika jumpa, paparkan soalan
                 if (activeQuestions.length > 0) {
                     paparSoalan();
                 } else {
-                    document.getElementById('questionText').innerHTML = "⚠️ Data soalan tidak dijumpai dalam <code>" + moduleScript + "</code>.";
+                    document.getElementById('questionText').innerHTML = "⚠️ Data soalan tidak dijumpai dalam <code>" + moduleScript + "</code>.<br><small style='font-weight:normal; font-size:0.85rem; color:#666;'>Sila pastikan fail mengandungi senarai soalan (cth: <code>const questions = [...]</code>).</small>";
                 }
             };
 
@@ -223,7 +237,7 @@
             document.getElementById('questionText').textContent = "⚠️ Tiada modul dipilih. Sila kembali ke Laman Utama.";
         }
 
-        // Fungsi Memaparkan Soalan
+        // Papar Soalan
         function paparSoalan() {
             if (currentQuestionIndex >= activeQuestions.length) {
                 tamatKuiz();
@@ -231,13 +245,13 @@
             }
 
             const q = activeQuestions[currentQuestionIndex];
-            document.getElementById('questionText').textContent = `${currentQuestionIndex + 1}. ${q.question || q.soalan || q.text}`;
+            document.getElementById('questionText').textContent = `${currentQuestionIndex + 1}. ${q.question || q.soalan || q.text || q.q}`;
             document.getElementById('feedbackText').textContent = "";
 
             const container = document.getElementById('optionsContainer');
             container.innerHTML = "";
 
-            const opts = q.options || q.pilihan || q.answers || [];
+            const opts = q.options || q.pilihan || q.answers || q.choices || [];
             opts.forEach((opt, idx) => {
                 const btn = document.createElement('button');
                 btn.className = 'btn-option';
@@ -247,15 +261,15 @@
             });
         }
 
-        // Semakan Jawapan & Maklum Balas
+        // Semak Jawapan & Maklum Balas
         function semakJawapan(selectedIdx, qObj, btnEl) {
             const buttons = document.querySelectorAll('.btn-option');
             buttons.forEach(b => b.disabled = true);
 
-            let correctIdx = qObj.answer !== undefined ? qObj.answer : qObj.jawapan;
+            let correctIdx = qObj.answer !== undefined ? qObj.answer : (qObj.jawapan !== undefined ? qObj.jawapan : qObj.correct);
             
             if (typeof correctIdx === 'string') {
-                const opts = qObj.options || qObj.pilihan || qObj.answers || [];
+                const opts = qObj.options || qObj.pilihan || qObj.answers || qObj.choices || [];
                 correctIdx = opts.indexOf(correctIdx);
             }
 
@@ -277,7 +291,7 @@
             }, 1500);
         }
 
-        // Paparan Keputusan Akhir
+        // Tamat Kuiz
         function tamatKuiz() {
             document.getElementById('questionText').innerHTML = `🏆 Quiz Completed!`;
             document.getElementById('optionsContainer').innerHTML = `
