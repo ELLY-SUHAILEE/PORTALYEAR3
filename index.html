@@ -820,13 +820,23 @@
             const statusEl = document.getElementById('syncStatus');
             if (statusEl) statusEl.innerHTML = '🔄 Menghantar keputusan ke rekod guru...';
 
+            // Menyusun dan memetakan data supaya Lajur CATEGORY tidak lagi kosong
+            const dataPenuh = {
+                name: payload.nama || payload.name || localStorage.getItem('studentName') || 'Murid',
+                class: payload.kelas || payload.class || localStorage.getItem('studentClass') || '-',
+                category: payload.kategori || payload.category || (typeof currentCategory !== 'undefined' ? currentCategory : '') || 'MODULE EXPLORATION',
+                module: payload.modul || payload.module || 'Modul',
+                score: payload.jumlahSoalan ? `${payload.markah}/${payload.jumlahSoalan}` : (payload.markah || payload.score || '0'),
+                percent: payload.peratus || payload.percent || '0%'
+            };
+
             fetch(SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(payload)
+                body: JSON.stringify(dataPenuh)
             })
             .then(() => {
                 if (statusEl) statusEl.innerHTML = '✅ Rekod keputusan berjaya disimpan!';
@@ -836,19 +846,3 @@
                 if (statusEl) statusEl.innerHTML = '⚠️ Keputusan ditunjukkan tetapi gagal disimpan ke server.';
             });
         }
-
-        function kembaliKeMenu() {
-            document.getElementById('quizSection').style.display = 'none';
-            document.getElementById('menuSection').style.display = 'block';
-            document.getElementById('getSmartSelect').value = "";
-            document.getElementById('remedialSelect').value = "";
-        }
-
-        function bukaAktiviti(url) {
-            const info = semakMaklumatMurid();
-            if (!info) return;
-            window.location.href = url;
-        }
-    </script>
-</body>
-</html>
