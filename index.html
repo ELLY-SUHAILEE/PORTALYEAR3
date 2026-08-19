@@ -597,17 +597,18 @@
             document.getElementById('menuSection').style.display = 'none';
             document.getElementById('quizSection').style.display = 'block';
 
-            let existingQuestions = cariSoalanDalamWindow(skripModul, mode);
+            // Cari soalan menggunakan namaModul, bukan URL
+            let existingQuestions = cariSoalanDalamWindow(namaModul, mode);
             if (existingQuestions && existingQuestions.length > 0) {
                 activeQuestions = existingQuestions;
                 paparSemuaSoalan();
                 return;
             }
 
-            muatSkripModul(skripModul, mode);
+            muatSkripModul(skripModul, mode, namaModul);
         }
 
-        function muatSkripModul(skripModul, mode) {
+        function muatSkripModul(skripModul, mode, namaModul) {
             const oldScript = document.getElementById('dynamicModuleScript');
             if (oldScript) oldScript.remove();
 
@@ -616,15 +617,15 @@
             scriptTag.src = skripModul + '?v=' + new Date().getTime();
 
             scriptTag.onload = () => {
-                let loaded = cariSoalanDalamWindow(skripModul, mode);
+                let loaded = cariSoalanDalamWindow(namaModul, mode);
                 if (loaded && loaded.length > 0) {
                     activeQuestions = loaded;
                     paparSemuaSoalan();
                 } else {
                     document.getElementById('questionsContainer').innerHTML = `
                         <div style="color:#d63031; padding:20px; text-align:center;">
-                            ⚠️ <b>Soalan tidak ditemui dalam fail:</b> <code>${skripModul}</code><br><br>
-                            Pastikan data dalam window.quizBank diisi dengan tepat.
+                            ⚠️ <b>Soalan tidak ditemui dalam fail.</b><br><br>
+                            Sila pastikan data format soalan diisi dengan betul.
                         </div>`;
                 }
             };
@@ -632,16 +633,17 @@
             scriptTag.onerror = () => {
                 document.getElementById('questionsContainer').innerHTML = `
                     <div style="color:#d63031; padding:20px; text-align:center;">
-                        ⚠️ <b>Gagal memuatkan fail:</b> <code>${skripModul}</code><br><br>
-                        Pastikan fail JS berada dalam folder yang sama dengan <code>index.html</code>.
+                        ⚠️ <b>Gagal memuatkan fail soalan.</b><br><br>
+                        Pastikan pautan berfungsi.
                     </div>`;
             };
 
             document.body.appendChild(scriptTag);
         }
 
-        function cariSoalanDalamWindow(skripModul, mode) {
-            const modNum = skripModul ? skripModul.replace(/[^0-9]/g, '') : "1";
+        function cariSoalanDalamWindow(namaModul, mode) {
+            // Ekstrak nombor terus dari Nama Modul (Contoh: "Module 2" akan jadi "2")
+            const modNum = namaModul ? namaModul.replace(/[^0-9]/g, '') : "1";
             const targetCategoryGroup = (mode === 'remedial') ? "REMEDIAL SET" : "GET SMART SET";
 
             if (window.quizBank && window.quizBank[targetCategoryGroup]) {
@@ -651,10 +653,6 @@
                     let numInKey = match ? match[1] : k.replace(/[^0-9]/g, '');
                     return numInKey === modNum;
                 });
-
-                if (!moduleKey && Object.keys(groupObj).length > 0) {
-                    moduleKey = Object.keys(groupObj)[0];
-                }
 
                 if (moduleKey && groupObj[moduleKey]) {
                     const categories = groupObj[moduleKey];
@@ -684,7 +682,6 @@
 
             return null;
         }
-
         function paparSemuaSoalan() {
             const container = document.getElementById('questionsContainer');
             container.innerHTML = "";
