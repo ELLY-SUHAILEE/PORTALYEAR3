@@ -27,7 +27,6 @@
             padding: 20px;
         }
 
-        /* Container Kad Utama Lutsinar (Glassmorphism) */
         .main-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
@@ -57,7 +56,6 @@
             font-weight: 600;
         }
 
-        /* Seksyen Maklumat Murid (Name & Class) */
         .student-info-box {
             background: #ffffff;
             padding: 20px;
@@ -100,7 +98,6 @@
             box-shadow: 0 0 8px rgba(255, 159, 243, 0.4);
         }
 
-        /* SEKSYEN KAD DROPDOWN (GET SMART & REMEDIAL) */
         .dropdown-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -135,13 +132,8 @@
             gap: 10px;
         }
 
-        .card-getsmart .card-title {
-            color: #d35400;
-        }
-
-        .card-remedial .card-title {
-            color: #c0392b;
-        }
+        .card-getsmart .card-title { color: #d35400; }
+        .card-remedial .card-title { color: #c0392b; }
 
         .select-wrapper select {
             width: 100%;
@@ -200,7 +192,6 @@
             transform: scale(1.02);
         }
 
-        /* Tajuk Pembahagi Modul */
         .section-divider {
             font-family: 'Fredoka', cursive;
             font-size: 1.3rem;
@@ -214,7 +205,6 @@
             padding-bottom: 6px;
         }
 
-        /* Grid Butang (Exploration & Permata Activities) */
         .button-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -240,10 +230,7 @@
             text-decoration: none;
         }
 
-        .btn-module i {
-            font-size: 1.8rem;
-        }
-
+        .btn-module i { font-size: 1.8rem; }
         .btn-module:hover {
             transform: translateY(-5px) scale(1.03);
             box-shadow: 0 10px 18px rgba(0,0,0,0.2);
@@ -278,14 +265,7 @@
             gap: 6px;
         }
 
-        .teacher-link:hover {
-            text-decoration: underline;
-        }
-
-        /* --- GAYA PAPARAN SOALAN KUIZ (SERENTAK) --- */
-        #quizSection {
-            display: none;
-        }
+        #quizSection { display: none; }
 
         .header-bar {
             display: flex;
@@ -324,9 +304,7 @@
             transition: background 0.2s ease;
         }
 
-        .btn-home:hover {
-            background: #0984e3;
-        }
+        .btn-home:hover { background: #0984e3; }
 
         .question-card {
             background: #ffffff;
@@ -436,12 +414,8 @@
         }
 
         @media (max-width: 600px) {
-            .button-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .header-title {
-                font-size: 1.7rem;
-            }
+            .button-grid { grid-template-columns: repeat(2, 1fr); }
+            .header-title { font-size: 1.7rem; }
         }
     </style>
 </head>
@@ -449,13 +423,11 @@
 
     <div class="main-card">
         
-        <!-- ================= SEKSYEN 1: MENU UTAMA ================= -->
+        <!-- ================= MENU UTAMA ================= -->
         <div id="menuSection">
-            <!-- Tajuk Utama -->
             <h1 class="header-title">🎈 PORTAL YEAR 3 ENGLISH 🎈</h1>
             <p class="header-subtitle">Please enter your details and select a topic below:</p>
 
-            <!-- Borang Name & Class Murid -->
             <div class="student-info-box" id="infoBox">
                 <div class="input-group">
                     <i class="fa-solid fa-user"></i>
@@ -480,27 +452,27 @@
                 </div>
             </div>
 
-            <!-- SEKSYEN KAD DROPDOWN (GET SMART & REMEDIAL SET) -->
+            <!-- DROPDOWN GET SMART & REMEDIAL -->
             <div class="dropdown-section">
                 
-                <!-- Kad Dropdown 1: Get Smart Modules -->
+                <!-- Get Smart Modules -->
                 <div class="dropdown-card card-getsmart">
                     <div class="card-title">
-                        <i class="fa-solid fa-book-open-reader"></i> Get Smart Modules (10 Soalan)
+                        <i class="fa-solid fa-book-open-reader"></i> Get Smart Modules (30 Soalan)
                     </div>
                     <div class="select-wrapper">
                         <select id="getSmartSelect">
                             <option value="">-- Select Get Smart Module --</option>
-                            <option value="Module 1 - Welcome!|module1.js">Module 1: Welcome! (10 Soalan)</option>
-                            <option value="Module 2 - Every Day|module2.js">Module 2: Every Day (10 Soalan)</option>
-                            <option value="Module 3 - Right Now|module3.js">Module 3: Right Now (10 Soalan)</option>
-                            <option value="Module 4 - Year In, Year Out|module4.js">Module 4: Year In, Year Out (10 Soalan)</option>
-                            <option value="Module 5 - My New House|module5.js">Module 5: My New House (10 Soalan)</option>
-                            <option value="Module 6 - Food, Food!|module6.js">Module 6: Food, Food! (10 Soalan)</option>
-                            <option value="Module 7 - Out and About|module7.js">Module 7: Out and About (10 Soalan)</option>
-                            <option value="Module 8 - Where Were You Yesterday?|module8.js">Module 8: Where Were You Yesterday? (10 Soalan)</option>
-                            <option value="Module 9 - On Holiday|module9.js">Module 9: On Holiday (10 Soalan)</option>
-                            <option value="Module 10 - The World Around Us|module10.js">Module 10: The World Around Us (10 Soalan)</option>
+                            <option value="Module 1 - Welcome!|module1.js">Module 1: Welcome! (30 Soalan)</option>
+                            <option value="Module 2 - Every Day|module2.js">Module 2: Every Day (30 Soalan)</option>
+                            <option value="Module 3 - Right Now|module3.js">Module 3: Right Now (30 Soalan)</option>
+                            <option value="Module 4 - Year In, Year Out|module4.js">Module 4: Year In, Year Out (30 Soalan)</option>
+                            <option value="Module 5 - My New House|module5.js">Module 5: My New House (30 Soalan)</option>
+                            <option value="Module 6 - Food, Food!|module6.js">Module 6: Food, Food! (30 Soalan)</option>
+                            <option value="Module 7 - Out and About|module7.js">Module 7: Out and About (30 Soalan)</option>
+                            <option value="Module 8 - Where Were You Yesterday?|module8.js">Module 8: Where Were You Yesterday? (30 Soalan)</option>
+                            <option value="Module 9 - On Holiday|module9.js">Module 9: On Holiday (30 Soalan)</option>
+                            <option value="Module 10 - The World Around Us|module10.js">Module 10: The World Around Us (30 Soalan)</option>
                         </select>
                     </div>
                     <button class="btn-start btn-start-getsmart" onclick="mulaDropdownModule('getSmartSelect')">
@@ -508,24 +480,24 @@
                     </button>
                 </div>
 
-                <!-- Kad Dropdown 2: Remedial Set -->
+                <!-- Remedial Set -->
                 <div class="dropdown-card card-remedial">
                     <div class="card-title">
-                        <i class="fa-solid fa-life-ring"></i> Remedial Set (10 Soalan)
+                        <i class="fa-solid fa-life-ring"></i> Remedial Set (30 Soalan)
                     </div>
                     <div class="select-wrapper">
                         <select id="remedialSelect">
                             <option value="">-- Select Remedial Set --</option>
-                            <option value="Remedial 1 - Welcome!|remedial1.js">Remedial 1: Welcome! (10 Soalan)</option>
-                            <option value="Remedial 2 - Every Day|remedial2.js">Remedial 2: Every Day (10 Soalan)</option>
-                            <option value="Remedial 3 - Right Now|remedial3.js">Remedial 3: Right Now (10 Soalan)</option>
-                            <option value="Remedial 4 - Year In, Year Out|remedial4.js">Remedial 4: Year In, Year Out (10 Soalan)</option>
-                            <option value="Remedial 5 - My New House|remedial5.js">Remedial 5: My New House (10 Soalan)</option>
-                            <option value="Remedial 6 - Food, Food!|remedial6.js">Remedial 6: Food, Food! (10 Soalan)</option>
-                            <option value="Remedial 7 - Out and About|remedial7.js">Remedial 7: Out and About (10 Soalan)</option>
-                            <option value="Remedial 8 - Where Were You Yesterday?|remedial8.js">Remedial 8: Where Were You Yesterday? (10 Soalan)</option>
-                            <option value="Remedial 9 - On Holiday|remedial9.js">Remedial 9: On Holiday (10 Soalan)</option>
-                            <option value="Remedial 10 - The World Around Us|remedial10.js">Remedial 10: The World Around Us (10 Soalan)</option>
+                            <option value="Remedial 1 - Welcome!|remedial1.js,remedial_1.js">Remedial 1: Welcome! (30 Soalan)</option>
+                            <option value="Remedial 2 - Every Day|remedial2.js,remedial_2.js">Remedial 2: Every Day (30 Soalan)</option>
+                            <option value="Remedial 3 - Right Now|remedial3.js,remedial_3.js">Remedial 3: Right Now (30 Soalan)</option>
+                            <option value="Remedial 4 - Year In, Year Out|remedial4.js,remedial_4.js">Remedial 4: Year In, Year Out (30 Soalan)</option>
+                            <option value="Remedial 5 - My New House|remedial5.js,remedial_5.js">Remedial 5: My New House (30 Soalan)</option>
+                            <option value="Remedial 6 - Food, Food!|remedial6.js,remedial_6.js">Remedial 6: Food, Food! (30 Soalan)</option>
+                            <option value="Remedial 7 - Out and About|remedial7.js,remedial_7.js">Remedial 7: Out and About (30 Soalan)</option>
+                            <option value="Remedial 8 - Where Were You Yesterday?|remedial8.js,remedial_8.js">Remedial 8: Where Were You Yesterday? (30 Soalan)</option>
+                            <option value="Remedial 9 - On Holiday|remedial9.js,remedial_9.js">Remedial 9: On Holiday (30 Soalan)</option>
+                            <option value="Remedial 10 - The World Around Us|remedial10.js,remedial_10.js">Remedial 10: The World Around Us (30 Soalan)</option>
                         </select>
                     </div>
                     <button class="btn-start btn-start-remedial" onclick="mulaDropdownModule('remedialSelect')">
@@ -535,7 +507,7 @@
 
             </div>
 
-            <!-- SEKSYEN 3: EXPLORATION -->
+            <!-- EXPLORATION -->
             <div class="section-divider">
                 <i class="fa-solid fa-compass" style="color: #6c5ce7;"></i> Exploration
             </div>
@@ -555,7 +527,7 @@
                 </button>
             </div>
 
-            <!-- SEKSYEN 4: PERMATA ACTIVITIES -->
+            <!-- PERMATA ACTIVITIES -->
             <div class="section-divider">
                 <i class="fa-solid fa-gem" style="color: #00b894;"></i> Permata Activities
             </div>
@@ -575,7 +547,6 @@
                 </button>
             </div>
 
-            <!-- Footer / Pautan Rekod Guru -->
             <div class="footer-nav">
                 <span style="font-size: 0.85rem; color: #8395a7;">© Portal Bahasa Inggeris Tahun 3</span>
                 <a href="dashboard.html" class="teacher-link">
@@ -584,7 +555,7 @@
             </div>
         </div>
 
-        <!-- ================= SEKSYEN 2: PAPARAN KUIZ SERENTAK ================= -->
+        <!-- ================= PAPARAN KUIZ ================= -->
         <div id="quizSection">
             <div class="header-bar">
                 <button class="btn-home" onclick="kembaliKeMenu()"><i class="fa-solid fa-house"></i> Home</button>
@@ -593,7 +564,7 @@
             </div>
 
             <div class="score-banner" id="scoreBanner">
-                <h2 id="scoreText">Your Score: 0 / 10</h2>
+                <h2 id="scoreText">Your Score: 0 / 30</h2>
                 <p id="feedbackText">Well done!</p>
             </div>
 
@@ -608,7 +579,6 @@
 
     <!-- JavaScript Kawalan Utama -->
     <script>
-        // Pembantu Gambar Global
         window.wrapCenterImage = function(imagePath) {
             if (!imagePath) return "";
             return `<div style="text-align: center; margin: 15px 0;">
@@ -619,7 +589,6 @@
         let activeQuestions = [];
         let userAnswers = {};
 
-        // Semakan Wajib bagi Name dan Class
         function semakMaklumatMurid() {
             const elNama = document.getElementById('namaMurid');
             const elKelas = document.getElementById('kelasMurid');
@@ -649,7 +618,6 @@
             return { nama, kelas };
         }
 
-        // Mula Kuiz Melalui Dropdown Topik
         function mulaDropdownModule(selectId) {
             const info = semakMaklumatMurid();
             if (!info) return;
@@ -665,35 +633,48 @@
 
             const parts = val.split('|');
             const namaModul = parts[0];
-            const skripModul = parts[1];
+            const listSkrip = parts[1].split(',');
 
-            // Kemaskini Tag Profil & Modul
             document.getElementById('displayStudentInfo').textContent = `${info.nama} (${info.kelas})`;
             document.getElementById('displayModuleName').textContent = namaModul;
 
-            // Reset Ruang Soalan
             document.getElementById('questionsContainer').innerHTML = `
                 <div style="padding: 30px; color: #666;">
                     <i class="fa-solid fa-spinner fa-spin fa-2x"></i><br><br>
-                    Sila tunggu, soalan sedang dimuatkan...
+                    Sila tunggu, memuatkan semua soalan...
                 </div>`;
             document.getElementById('scoreBanner').style.display = 'none';
             document.getElementById('submitBtn').style.display = 'none';
 
-            // Tukar Paparan
             document.getElementById('menuSection').style.display = 'none';
             document.getElementById('quizSection').style.display = 'block';
 
-            // Buang skrip lama jika ada
+            // Semak dahulu sekiranya data soalan sudah wujud secara global dalam tetingkap (window)
+            let existingQuestions = findQuestionsInQuizBank(listSkrip[0]);
+            if (existingQuestions && existingQuestions.length > 0) {
+                activeQuestions = existingQuestions; // MEMAPARKAN SEMUA SOALAN (30 SOALAN)
+                paparSemuaSoalan();
+                return;
+            }
+
+            // Pemuatan Skrip Bertingkat (Try Load JS)
+            cubaMuatSkrip(listSkrip, 0);
+        }
+
+        function cubaMuatSkrip(listSkrip, index) {
+            if (index >= listSkrip.length) {
+                document.getElementById('questionsContainer').innerHTML = `
+                    <div style="color:#d63031; padding:20px; text-align:center;">
+                        ⚠️ <b>Fail tidak dijumpai:</b> <code>${listSkrip[0]}</code><br><br>
+                        Sila pastikan fail `.js` dinamakan dengan betul dan berada dalam satu folder bersama `index.html`.
+                    </div>`;
+                return;
+            }
+
+            const skripModul = listSkrip[index].trim();
             const oldScript = document.getElementById('dynamicModuleScript');
             if (oldScript) oldScript.remove();
 
-            // Bersihkan sebarang pembolehubah soalan sedia ada dalam window
-            delete window.questions;
-            delete window.quizQuestions;
-            delete window.moduleQuestions;
-
-            // Muat fail JS modul secara dinamik
             const scriptTag = document.createElement('script');
             scriptTag.id = 'dynamicModuleScript';
             scriptTag.src = skripModul;
@@ -701,39 +682,32 @@
             scriptTag.onload = () => {
                 let loaded = findQuestionsInQuizBank(skripModul);
                 if (loaded && loaded.length > 0) {
-                    activeQuestions = loaded.slice(0, 10);
+                    activeQuestions = loaded; // MEMAPARKAN SEMUA SOALAN (30 SOALAN)
                     paparSemuaSoalan();
                 } else {
-                    document.getElementById('questionsContainer').innerHTML = `
-                        <div style="color:red; padding:20px;">
-                            ⚠️ Soalan tidak dijumpai dalam fail <code>${skripModul}</code>.
-                        </div>`;
+                    cubaMuatSkrip(listSkrip, index + 1);
                 }
             };
 
             scriptTag.onerror = () => {
-                document.getElementById('questionsContainer').innerHTML = `
-                    <div style="color:red; padding:20px;">
-                        ⚠️ Gagal memuatkan fail <code>${skripModul}</code>. Pastikan fail wujud di lokasi yang betul.
-                    </div>`;
+                cubaMuatSkrip(listSkrip, index + 1);
             };
 
             document.body.appendChild(scriptTag);
         }
 
-        // Pengesan Data Soalan Pintar dalam quizBank / Pembolehubah Global
         function findQuestionsInQuizBank(skripModul) {
-            // 1. Semak jika ada window.quizBank
             if (window.quizBank) {
                 let res = searchBank(window.quizBank);
                 if (res) return res;
             }
 
-            // 2. Semak senarai nama pembolehubah lazim & berasaskan nama fail
             const baseName = skripModul ? skripModul.replace('.js', '').replace(/[^a-zA-Z0-9]/g, '') : '';
             const standardVars = [
                 baseName,
                 baseName + 'Questions',
+                'remedial1', 'remedial2', 'remedial3', 'remedial4', 'remedial5',
+                'remedial6', 'remedial7', 'remedial8', 'remedial9', 'remedial10',
                 'questions', 'quizQuestions', 'moduleQuestions',
                 'remedialQuestions', 'quizData', 'data'
             ];
@@ -744,7 +718,6 @@
                 }
             }
 
-            // 3. Cari secara automatik sebarang array dalam window yang mengandungi soalan
             for (let key in window) {
                 try {
                     if (Array.isArray(window[key]) && window[key].length > 0) {
@@ -775,7 +748,6 @@
             return null;
         }
 
-        // Paparkan Kesemua Soalan Serentak (Tepat 10 Soalan)
         function paparSemuaSoalan() {
             const container = document.getElementById('questionsContainer');
             container.innerHTML = "";
@@ -812,7 +784,6 @@
             document.getElementById('submitBtn').style.display = 'inline-block';
         }
 
-        // Pilih Jawapan
         function pilihJawapan(qIdx, optIdx) {
             userAnswers[qIdx] = optIdx;
             const group = document.getElementById(`optionsGroup_${qIdx}`);
@@ -824,7 +795,6 @@
             });
         }
 
-        // Semak Markah & Tanda Warna Jawapan
         function hantarJawapan() {
             let totalQuestions = activeQuestions.length;
             let answeredCount = Object.keys(userAnswers).length;
@@ -847,11 +817,11 @@
                 const userChoice = userAnswers[qIdx];
 
                 buttons.forEach((btn, optIdx) => {
-                    btn.disabled = true; // Kunci pilihan selepas hantar
+                    btn.disabled = true;
                     btn.classList.remove('selected');
 
-                    if (optIdx === correctIdx) btn.classList.add('correct'); // Hijau untuk jawapan betul
-                    if (userChoice === optIdx && userChoice !== correctIdx) btn.classList.add('wrong'); // Merah untuk jawapan salah
+                    if (optIdx === correctIdx) btn.classList.add('correct');
+                    if (userChoice === optIdx && userChoice !== correctIdx) btn.classList.add('wrong');
                 });
 
                 if (userChoice === correctIdx) markah++;
@@ -870,7 +840,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Kembali ke Menu Utama
         function kembaliKeMenu() {
             document.getElementById('quizSection').style.display = 'none';
             document.getElementById('menuSection').style.display = 'block';
@@ -878,7 +847,6 @@
             document.getElementById('remedialSelect').value = "";
         }
 
-        // Buka Aktiviti Exploration / Permata
         function bukaAktiviti(namaAktiviti, url) {
             const info = semakMaklumatMurid();
             if (!info) return;
