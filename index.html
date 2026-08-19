@@ -847,13 +847,22 @@
         }
 
         // Jalankan Aktiviti Exploration & Permata
-        function bukaAktiviti(namaAktiviti, targetHtml) {
+        function bukaAktiviti(namaAktiviti, urlAktiviti) {
             const info = semakMaklumatMurid();
             if (!info) return;
 
-            localStorage.setItem('selectedActivity', namaAktiviti);
-            window.location.href = targetHtml;
+            // Navigasi ke halaman aktiviti bersama parameter maklumat murid
+            window.location.href = `${urlAktiviti}?name=${encodeURIComponent(info.nama)}&class=${encodeURIComponent(info.kelas)}`;
         }
+
+        // Auto-isi maklumat murid dari LocalStorage jika wujud
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedName = localStorage.getItem('studentName');
+            const savedClass = localStorage.getItem('studentClass');
+
+            if (savedName) document.getElementById('namaMurid').value = savedName;
+            if (savedClass) document.getElementById('kelasMurid').value = savedClass;
+        });
     </script>
 </body>
 </html>
