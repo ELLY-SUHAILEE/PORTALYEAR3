@@ -100,7 +100,7 @@
         .stat-card.cemerlang .number { color: #16a34a; }
         .stat-card.intervensi .number { color: #dc2626; }
 
-        /* CARTA PAI */
+        /* CARTA MODUL */
         .chart-section {
             background: #ffffff;
             border: 2px solid #a7f3d0;
@@ -116,8 +116,8 @@
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 420px;
-            height: 300px;
+            max-width: 500px;
+            height: 320px;
         }
 
         .chart-title {
@@ -253,7 +253,6 @@
             font-weight: 600;
         }
 
-        /* BADGE KATEGORI WARNA */
         .cat-badge {
             padding: 4px 8px;
             border-radius: 8px;
@@ -261,16 +260,8 @@
             font-size: 11px;
             display: inline-block;
             color: white;
+            background-color: #047857;
         }
-        
-        .cat-getsmart      { background-color: #10b981; }
-        .cat-remedial      { background-color: #f97316; }
-        .cat-reading       { background-color: #0284c7; }
-        .cat-grammar       { background-color: #8b5cf6; }
-        .cat-sentence      { background-color: #ec4899; }
-        .cat-wordpower     { background-color: #eab308; color: #422006; }
-        .cat-wordrepeat    { background-color: #6366f1; }
-        .cat-buildsentence { background-color: #14b8a6; }
 
         .status-badge {
             padding: 4px 10px;
@@ -337,17 +328,16 @@
         </div>
     </div>
 
-    <!-- CARTA PAI -->
+    <!-- CARTA TABURAN MODUL -->
     <div class="chart-section">
-        <div class="chart-title">📈 Taburan Penyertaan Mengikut 8 Bidang Utama</div>
+        <div class="chart-title">📈 Taburan Penyertaan Mengikut Modul</div>
         <div class="chart-container">
-            <canvas id="categoryPieChart"></canvas>
+            <canvas id="modulePieChart"></canvas>
         </div>
     </div>
 
     <!-- RINGKASAN SENARAI NAMA & KELAS MURID -->
     <div class="summary-lists-grid">
-        <!-- SENARAI MURID CEMERLANG (>=90%) -->
         <div class="summary-box excel">
             <h3>🌟 Murid Cemerlang (≥90%)</h3>
             <div id="list-cemerlang">
@@ -355,7 +345,6 @@
             </div>
         </div>
 
-        <!-- SENARAI MURID PERLU INTERVENSI (<=50%) -->
         <div class="summary-box remedial">
             <h3>⚠️ Perlu Intervensi (≤50%) & Topik</h3>
             <div id="list-intervensi">
@@ -367,26 +356,27 @@
     <!-- PANEL PENAPIS -->
     <div class="controls-section">
         <div class="filter-group">
-            <!-- 🕒 Carian Berdasarkan Masa / Tarikh Rekod -->
-            <input type="text" id="search-time" placeholder="🕒 Cari Masa / Tarikh..." oninput="updateDashboard()">
+            <!-- 🔍 Carian Nama Murid -->
+            <input type="text" id="search-name" placeholder="🔍 Cari Nama Murid..." oninput="updateDashboard()">
 
-            <!-- 🏫 Penapis 11 Kelas Baru -->
+            <!-- 🏫 Penapis Kelas -->
             <select id="filter-class" onchange="updateDashboard()">
                 <option value="all">🏫 Semua Kelas</option>
-                <option value="3 Arif">3 Arif</option>
-                <option value="3 Bestari">3 Bestari</option>
-                <option value="3 Cerdik">3 Cerdik</option>
-                <option value="3 Dedikasi">3 Dedikasi</option>
-                <option value="3 Elit">3 Elit</option>
-                <option value="3 Firdaus">3 Firdaus</option>
-                <option value="3 Gigih">3 Gigih</option>
-                <option value="3 Harmoni">3 Harmoni</option>
-                <option value="3 Inovatif">3 Inovatif</option>
-                <option value="3 Jujur">3 Jujur</option>
-                <option value="3 Kreatif">3 Kreatif</option>
+                <option value="3 arif">3 Arif</option>
+                <option value="3 bestari">3 Bestari</option>
+                <option value="3 cerdik">3 Cerdik</option>
+                <option value="3 dedikasi">3 Dedikasi</option>
+                <option value="3 elit">3 Elit</option>
+                <option value="3 firdaus">3 Firdaus</option>
+                <option value="3 gigih">3 Gigih</option>
+                <option value="3 harmoni">3 Harmoni</option>
+                <option value="3 inovatif">3 Inovatif</option>
+                <option value="3 jujur">3 Jujur</option>
+                <option value="3 kreatif">3 Kreatif</option>
+                <option value="3ukm">3 UKM</option>
             </select>
 
-            <!-- 📚 Penapis Modul -->
+            <!-- 📚 Penapis Modul / Topik -->
             <select id="filter-module" onchange="updateDashboard()">
                 <option value="all">📚 Semua Modul</option>
                 <option value="Module 1">Module 1: Welcome!</option>
@@ -394,20 +384,17 @@
                 <option value="Module 3">Module 3: Right now</option>
                 <option value="Module 4">Module 4: Year in, year out</option>
                 <option value="Module 5">Module 5: My new house</option>
-                <option value="Module 6">Module 6: Food, please!</option>
+                <option value="Module 6">Module 6: Food, food!</option>
+                <option value="Module 7">Module 7: Out and about</option>
+                <option value="Module 8">Module 8: Where were you yesterday?</option>
+                <option value="Module 9">Module 9: On holiday</option>
             </select>
 
-            <!-- 🎯 Penapis 8 Bidang -->
+            <!-- 🎯 Penapis Bidang Set -->
             <select id="filter-category" onchange="updateDashboard()">
-                <option value="all">🎯 Semua 8 Bidang</option>
-                <option value="Get Smart">Get Smart</option>
-                <option value="Word Power">Word Power</option>
-                <option value="Word Repeat">Word Repeat</option>
-                <option value="Grammar">Grammar</option>
-                <option value="Sentence">Sentence</option>
-                <option value="Build Sentence">Build Sentence</option>
-                <option value="Reading">Reading</option>
-                <option value="Remedial Set">Remedial Set</option>
+                <option value="all">🎯 Semua Bidang Set</option>
+                <option value="GET SMART SET">GET SMART SET</option>
+                <option value="REMEDIAL SET">REMEDIAL SET</option>
             </select>
 
             <!-- 🚦 Penapis Status -->
@@ -424,16 +411,15 @@
         </div>
     </div>
 
-    <!-- JADUAL ANALISIS MURID -->
+    <!-- JADUAL ANALISIS MURID (DIPERMAS) -->
     <div class="table-container">
         <table>
             <thead>
                 <tr>
-                    <th>Masa Rekod</th>
                     <th>Nama Murid</th>
                     <th>Kelas</th>
-                    <th>Modul</th>
-                    <th>Bidang Fokus</th>
+                    <th>Bidang Set</th>
+                    <th>Modul / Topik</th>
                     <th>Skor & %</th>
                     <th>Status</th>
                     <th>💡 Cadangan Intervensi Automatik</th>
@@ -451,70 +437,70 @@
 
     let studentData = [];
 
-    const categoryColors = {
-        "Get Smart": "#10b981",
-        "Word Power": "#eab308",
-        "Word Repeat": "#6366f1",
-        "Grammar": "#8b5cf6",
-        "Sentence": "#ec4899",
-        "Build Sentence": "#14b8a6",
-        "Reading": "#0284c7",
-        "Remedial Set": "#f97316"
-    };
+    // FUNGSI MEMBERSIHKAN DAN MEMBAIKI FORMAT PERATUS (CONTOH: 0.8 / 0.8% -> 80%)
+    function parsePercent(val) {
+        if (val === null || val === undefined || val === "") return 0;
+        let str = val.toString().trim();
+        let num = parseFloat(str.replace('%', ''));
+        if (isNaN(num)) return 0;
 
-    const categoryClasses = {
-        "Get Smart": "cat-getsmart",
-        "Word Power": "cat-wordpower",
-        "Word Repeat": "cat-wordrepeat",
-        "Grammar": "cat-grammar",
-        "Sentence": "cat-sentence",
-        "Build Sentence": "cat-buildsentence",
-        "Reading": "cat-reading",
-        "Remedial Set": "cat-remedial"
-    };
-
-    let pieChart;
+        // Jika nilai masuk sebagai perpuluhan seperti 0.8, 0.83, 1.0 -> tukar ke 80, 83, 100
+        if (num > 0 && num <= 1) {
+            return Math.round(num * 100);
+        }
+        return Math.round(num);
+    }
 
     function getInterventionRecommendation(category, percent) {
         if (percent >= 90) return "🌟 Pengayaan: Latihan aras tinggi / Peer tutor";
         if (percent > 50) return "👍 Pengukuhan: Latih tubi bertulis mudah";
 
-        switch(category) {
-            case "Get Smart": return "🛠️ Assign Starter Kit & Quiz Visual";
-            case "Word Power": return "🛠️ Visual Flashcards & Padanan Kata";
-            case "Word Repeat": return "🛠️ Audio-Spelling Drill (Ulang 3x)";
-            case "Grammar": return "🛠️ Micro-Lesson: Nota Infografik Asas";
-            case "Sentence": return "🛠️ Latihan Unscramble Sentences";
-            case "Build Sentence": return "🛠️ Panduan Sentence Frames";
-            case "Reading": return "🛠️ Read-Along Audio & Petikan Pendek";
-            case "Remedial Set": return "🛠️ Back-to-Basics: Phonics & CVC";
-            default: return "🛠️ Bimbingan Individu";
+        if (category.toUpperCase().includes("GET SMART")) {
+            return "🛠️ Assign Starter Kit & Quiz Visual";
+        } else if (category.toUpperCase().includes("REMEDIAL")) {
+            return "🛠️ Back-to-Basics: Phonics & Latih Tubi Asas";
         }
+        return "🛠️ Bimbingan Individu";
     }
 
     async function fetchSheetData() {
         const tbody = document.getElementById('table-body');
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding: 20px;">⏳ Memuatkan data terkini dari Google Sheet...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 20px;">⏳ Memuatkan data terkini dari Google Sheet...</td></tr>';
 
         try {
             const response = await fetch(webAppUrl);
-            studentData = await response.json();
+            const rawData = await response.json();
+            
+            studentData = rawData.map(item => ({
+                timestamp: item.timestamp,
+                name: item.name,
+                class: item.class,
+                category: item.categoryRaw, 
+                module: item.moduleRaw,     
+                score: item.score,
+                percent: parsePercent(item.percentRaw)
+            }));
+
             updateDashboard();
         } catch (error) {
             console.error("Ralat mengambil data:", error);
-            tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; color:#b91c1c; padding: 20px;">❌ Gagal memuatkan data dari Google Sheet. Semak URL Web App atau sambungan.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#b91c1c; padding: 20px;">❌ Gagal memuatkan data dari Google Sheet. Semak sambungan atau URL Web App.</td></tr>';
         }
     }
 
+    let moduleChart;
     function initChart() {
-        const ctx = document.getElementById('categoryPieChart').getContext('2d');
-        pieChart = new Chart(ctx, {
+        const ctx = document.getElementById('modulePieChart').getContext('2d');
+        moduleChart = new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Get Smart', 'Word Power', 'Word Repeat', 'Grammar', 'Sentence', 'Build Sentence', 'Reading', 'Remedial Set'],
+                labels: [],
                 datasets: [{
-                    data: [0, 0, 0, 0, 0, 0, 0, 0],
-                    backgroundColor: Object.values(categoryColors),
+                    data: [],
+                    backgroundColor: [
+                        '#10b981', '#3b82f6', '#f59e0b', '#ec4899', 
+                        '#8b5cf6', '#06b6d4', '#f97316', '#14b8a6', '#6366f1'
+                    ],
                     borderWidth: 2,
                     borderColor: '#ffffff'
                 }]
@@ -533,17 +519,20 @@
     }
 
     function updateDashboard() {
-        const timeVal = document.getElementById('search-time').value.toLowerCase();
-        const classVal = document.getElementById('filter-class').value;
-        const moduleVal = document.getElementById('filter-module').value;
-        const categoryVal = document.getElementById('filter-category').value;
+        const nameVal = document.getElementById('search-name').value.toLowerCase().trim();
+        const classVal = document.getElementById('filter-class').value.toLowerCase().replace(/\s+/g, '');
+        const moduleVal = document.getElementById('filter-module').value.toLowerCase();
+        const categoryVal = document.getElementById('filter-category').value.toLowerCase();
         const statusVal = document.getElementById('filter-status').value;
 
         const filteredData = studentData.filter(item => {
-            const matchTime = item.timestamp.toLowerCase().includes(timeVal);
-            const matchClass = (classVal === 'all' || item.class === classVal);
-            const matchModule = (moduleVal === 'all' || item.module === moduleVal);
-            const matchCategory = (categoryVal === 'all' || item.category === categoryVal);
+            const matchName = item.name.toLowerCase().includes(nameVal);
+            
+            const cleanedItemClass = item.class.toLowerCase().replace(/\s+/g, '');
+            const matchClass = (classVal === 'all' || cleanedItemClass === classVal);
+            
+            const matchModule = (moduleVal === 'all' || item.module.toLowerCase().includes(moduleVal));
+            const matchCategory = (categoryVal === 'all' || item.category.toLowerCase().includes(categoryVal));
             
             let itemStatus = "Intervensi";
             if (item.percent >= 90) itemStatus = "Cemerlang";
@@ -551,14 +540,14 @@
 
             const matchStatus = (statusVal === 'all' || statusVal === itemStatus);
 
-            return matchTime && matchClass && matchModule && matchCategory && matchStatus;
+            return matchName && matchClass && matchModule && matchCategory && matchStatus;
         });
 
         const tbody = document.getElementById('table-body');
         tbody.innerHTML = '';
 
         if (filteredData.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding: 20px;">Tiada rekod ditemui.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 20px;">Tiada rekod ditemui.</td></tr>';
         }
 
         let totalPercent = 0;
@@ -568,20 +557,18 @@
         let listCemerlangHTML = "";
         let listIntervensiHTML = "";
 
-        const catCounts = {
-            "Get Smart": 0, "Word Power": 0, "Word Repeat": 0, "Grammar": 0,
-            "Sentence": 0, "Build Sentence": 0, "Reading": 0, "Remedial Set": 0
-        };
+        // PEMBACAAN DINAMIK UNTUK CARTA TABURAN MODUL
+        const moduleCounts = {};
 
         filteredData.forEach(item => {
             totalPercent += item.percent;
-            if (catCounts.hasOwnProperty(item.category)) {
-                catCounts[item.category]++;
-            }
+
+            // Pengiraan mengikut Modul
+            let modKey = item.module ? item.module.trim() : "Lain-lain";
+            moduleCounts[modKey] = (moduleCounts[modKey] || 0) + 1;
 
             let statusBadge = `<span class="status-badge status-intervensi">🔴 Perlu Intervensi</span>`;
             
-            // Logik Penilaian Baharu (>= 90% Cemerlang, <= 50% Intervensi)
             if (item.percent >= 90) {
                 statusBadge = `<span class="status-badge status-cemerlang">🟢 Cemerlang</span>`;
                 countCemerlang++;
@@ -596,7 +583,7 @@
                 countIntervensi++;
                 listIntervensiHTML += `
                     <div class="summary-item">
-                        <span><strong>${item.name}</strong> (${item.class}) - <em>${item.category}</em></span>
+                        <span><strong>${item.name}</strong> (${item.class}) - <em>${item.module}</em></span>
                         <span style="color:#dc2626; font-weight:700;">${item.percent}%</span>
                     </div>`;
             }
@@ -605,16 +592,15 @@
 
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td style="font-size:11px; color:#64748b;">${item.timestamp}</td>
                 <td><strong>${item.name}</strong></td>
                 <td>${item.class}</td>
+                <td><span class="cat-badge">${item.category}</span></td>
                 <td>${item.module}</td>
-                <td><span class="cat-badge ${categoryClasses[item.category] || 'cat-getsmart'}">${item.category}</span></td>
                 <td>
                     <div class="progress-bar-bg">
                         <div class="progress-bar-fill" style="width: ${item.percent}%;"></div>
                     </div> 
-                    ${item.percent}%
+                    ${item.score} (${item.percent}%)
                 </td>
                 <td>${statusBadge}</td>
                 <td><span class="intervention-text">${interventionText}</span></td>
@@ -622,7 +608,6 @@
             tbody.appendChild(tr);
         });
 
-        // Kemaskini Kad Ringkasan
         document.getElementById('list-cemerlang').innerHTML = listCemerlangHTML || '<p style="font-size:12px; color:#64748b;">Tiada murid cemerlang (≥90%).</p>';
         document.getElementById('list-intervensi').innerHTML = listIntervensiHTML || '<p style="font-size:12px; color:#64748b;">Tiada murid perlu intervensi (≤50%).</p>';
 
@@ -633,8 +618,13 @@
         const avgScore = filteredData.length > 0 ? (totalPercent / filteredData.length).toFixed(1) : 0;
         document.getElementById('stat-avg-score').innerText = `${avgScore}%`;
 
-        pieChart.data.datasets[0].data = Object.values(catCounts);
-        pieChart.update();
+        // KEMASKINI CARTA MODUL SECARA DINAMIK
+        const modLabels = Object.keys(moduleCounts);
+        const modData = Object.values(moduleCounts);
+
+        moduleChart.data.labels = modLabels.length > 0 ? modLabels : ['Tiada Data'];
+        moduleChart.data.datasets[0].data = modData.length > 0 ? modData : [0];
+        moduleChart.update();
     }
 
     function exportCSV() {
