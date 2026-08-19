@@ -305,15 +305,6 @@
             line-height: 1.5;
         }
 
-        .question-text img, .question-card img {
-            display: block;
-            margin: 15px auto;
-            max-width: 100%;
-            max-height: 250px;
-            border-radius: 12px;
-            border: 1px solid #ddd;
-        }
-
         .options-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -433,7 +424,7 @@
                     </button>
                 </div>
 
-                <!-- Remedial Set (Membaca fail module1.js hingga module10.js) -->
+                <!-- Remedial Set -->
                 <div class="dropdown-card card-remedial">
                     <div class="card-title">
                         <i class="fa-solid fa-life-ring"></i> Remedial Set (30 Soalan)
@@ -532,13 +523,6 @@
 
     <!-- JavaScript Kawalan Utama -->
     <script>
-        window.wrapCenterImage = function(imagePath) {
-            if (!imagePath) return "";
-            return `<div style="text-align: center; margin: 15px 0;">
-                        <img src="${imagePath}" onerror="this.style.display='none'">
-                    </div>`;
-        };
-
         let activeQuestions = [];
         let userAnswers = {};
 
@@ -603,7 +587,7 @@
             document.getElementById('menuSection').style.display = 'none';
             document.getElementById('quizSection').style.display = 'block';
 
-            // Semak jika data sudah sedia ada dalam window
+            // Semak jika data sudah ada dalam window.quizBank
             let existingQuestions = cariSoalanDalamWindow(skripModul, mode);
             if (existingQuestions && existingQuestions.length > 0) {
                 activeQuestions = existingQuestions;
@@ -631,7 +615,7 @@
                     document.getElementById('questionsContainer').innerHTML = `
                         <div style="color:#d63031; padding:20px; text-align:center;">
                             ⚠️ <b>Soalan tidak ditemui dalam fail:</b> <code>${skripModul}</code><br><br>
-                            Pastikan fail JS mengandungi pemboleh ubah soalan yang sah.
+                            Pastikan data dalam window.quizBank diisi dengan tepat.
                         </div>`;
                 }
             };
@@ -649,87 +633,50 @@
 
         function cariSoalanDalamWindow(skripModul, mode) {
             const modNum = skripModul ? skripModul.replace(/[^0-9]/g, '') : "1";
+            const targetCategoryGroup = (mode === 'remedial') ? "REMEDIAL SET" : "GET SMART SET";
 
-            if (mode === 'remedial') {
-                // 1. Cari pemboleh ubah khusus remedial (contoh: remedial1, remedialQuestions, remedial_1)
-                const senaraiRemedial = [
-                    'remedial' + modNum,
-                    'remedial_' + modNum,
-                    'remedialQuestions' + modNum,
-                    'remedialQuestions',
-                    'remedial'
-                ];
-                for (let v of senaraiRemedial) {
-                    if (window[v] && Array.isArray(window[v]) && window[v].length > 0) {
-                        return window[v];
-                    }
+            // 1. Ekstrak dari window.quizBank jika wujud
+            if (window.quizBank && window.quizBank[targetCategoryGroup]) {
+                const groupObj = window.quizBank[targetCategoryGroup];
+                
+                // Cari key module yang mengandungi nombor modul (contoh: "Module 1: Welcome!")
+                let moduleKey = Object.keys(groupObj).find(k => {
+                    let numInKey = k.replace(/[^0-9]/g, '');
+                    return numInKey === modNum;
+                });
+
+                if (!moduleKey && Object.keys(groupObj).length > 0) {
+                    moduleKey = Object.keys(groupObj)[0];
                 }
 
-                // 2. Semak jika remedial disimpan dalam object module (contoh: module1.remedial)
-                let modObj = window['module' + modNum] || window['module' + modNum + 'Questions'] || window.quizBank || window.questions;
-                if (modObj) {
-                    if (!Array.isArray(modObj) && typeof modObj === 'object') {
-                        if (Array.isArray(modObj.remedial)) return modObj.remedial;
-                        if (Array.isArray(modObj.remedialQuestions)) return modObj.remedialQuestions;
-                        if (Array.isArray(modObj.pemulihan)) return modObj.pemulihan;
-                    }
-                    if (Array.isArray(modObj)) {
-                        // Jika dalam array yang sama, tapis mengikut flag/type
-                        let filtered = modObj.filter(item => 
-                            item.type === 'remedial' || 
-                            item.category === 'remedial' || 
-                            item.isRemedial === true
-                        );
-                        if (filtered.length > 0) return filtered;
+                if (moduleKey && groupObj[moduleKey]) {
+                    const categories = groupObj[moduleKey];
+                    let allQuestions = [];
 
-                        // Jika gabung 60 soalan dalam 1 array, ambil soalan 31 hingga 60
-                        if (modObj.length > 30) {
-                            return modObj.slice(30);
+                    if (Array.isArray(categories)) {
+                        allQuestions = categories;
+                    } else if (typeof categories === 'object') {
+                        // Gabungkan semua soalan dari setiap kemahiran (Reading, Vocabulary, Grammar, dll.)
+                        for (let cat in categories) {
+                            if (Array.isArray(categories[cat])) {
+                                allQuestions = allQuestions.concat(categories[cat]);
+                            }
                         }
-                        return modObj;
                     }
-                }
-            } else {
-                // Mode Get Smart
-                const senaraiGetSmart = [
-                    'module' + modNum,
-                    'module' + modNum + 'Questions',
-                    'getSmart' + modNum,
-                    'questions',
-                    'quizQuestions'
-                ];
-                for (let v of senaraiGetSmart) {
-                    if (window[v]) {
-                        let target = window[v];
-                        if (Array.isArray(target)) {
-                            let filtered = target.filter(item => 
-                                item.type === 'getsmart' || 
-                                item.category === 'getsmart' || 
-                                item.isRemedial === false
-                            );
-                            if (filtered.length > 0) return filtered;
 
-                            // Jika gabung 60 soalan, ambil 30 soalan pertama
-                            if (target.length >= 60) return target.slice(0, 30);
-                            return target;
-                        } else if (typeof target === 'object') {
-                            if (Array.isArray(target.getSmart)) return target.getSmart;
-                            if (Array.isArray(target.questions)) return target.questions;
-                        }
+                    if (allQuestions.length > 0) {
+                        return allQuestions;
                     }
                 }
             }
 
-            // Geledah am jika belum dijumpai
-            for (let key in window) {
-                try {
-                    if (Array.isArray(window[key]) && window[key].length > 0) {
-                        let item = window[key][0];
-                        if (item && typeof item === 'object' && (item.question || item.soalan || item.text || item.q)) {
-                            return window[key];
-                        }
-                    }
-                } catch(e) {}
+            // 2. Sokongan alternatif sekiranya diisytiharkan dalam pemboleh ubah berasingan
+            if (mode === 'remedial') {
+                if (window['module' + modNum + '_remedial']) return window['module' + modNum + '_remedial'];
+                if (window['remedial' + modNum]) return window['remedial' + modNum];
+            } else {
+                if (window['module' + modNum + '_getsmart']) return window['module' + modNum + '_getsmart'];
+                if (window['module' + modNum]) return window['module' + modNum];
             }
 
             return null;
@@ -744,8 +691,20 @@
                 const card = document.createElement('div');
                 card.className = 'question-card';
 
-                let qText = q.question || q.soalan || q.text || q.q || "";
-                let imageHtml = q.image ? `<div style="text-align:center;"><img src="${q.image}" onerror="this.style.display='none'"></div>` : "";
+                // Teks soalan
+                let qText = q.q || q.question || q.soalan || q.text || "";
+
+                // Gambar soalan (Menyokong string HTML wrapCenterImage atau URL terus)
+                let imageHtml = "";
+                if (q.image) {
+                    if (typeof q.image === 'string' && q.image.trim().startsWith('<')) {
+                        imageHtml = q.image; // HTML terhasil dari wrapCenterImage
+                    } else {
+                        imageHtml = `<div style="text-align:center; margin:15px 0;">
+                                        <img src="${q.image}" style="max-width:100%; max-height:250px; border-radius:10px; border:1px solid #ddd;" onerror="this.style.display='none'">
+                                     </div>`;
+                    }
+                }
 
                 card.innerHTML = `
                     <div class="question-number">Soalan ${qIdx + 1} dari ${activeQuestions.length}</div>
@@ -757,7 +716,7 @@
                 container.appendChild(card);
 
                 const optionsGroup = card.querySelector(`#optionsGroup_${qIdx}`);
-                const opts = q.options || q.pilihan || q.answers || q.choices || [];
+                const opts = q.options || q.pilihan || q.answers || [];
 
                 opts.forEach((opt, optIdx) => {
                     const btn = document.createElement('button');
@@ -793,10 +752,18 @@
             let markah = 0;
 
             activeQuestions.forEach((q, qIdx) => {
-                let correctIdx = q.answer !== undefined ? q.answer : (q.jawapan !== undefined ? q.jawapan : q.correct);
-                if (typeof correctIdx === 'string') {
-                    const opts = q.options || q.pilihan || q.answers || q.choices || [];
-                    correctIdx = opts.indexOf(correctIdx);
+                let ansRaw = q.ans !== undefined ? q.ans : (q.answer !== undefined ? q.answer : q.jawapan);
+                const opts = q.options || q.pilihan || q.answers || [];
+                let correctIdx = -1;
+
+                if (typeof ansRaw === 'number') {
+                    correctIdx = ansRaw;
+                } else if (typeof ansRaw === 'string') {
+                    // Cari indeks pilihan jawapan yang sepadan
+                    correctIdx = opts.indexOf(ansRaw);
+                    if (correctIdx === -1) {
+                        correctIdx = opts.findIndex(o => o.trim().toLowerCase() === ansRaw.trim().toLowerCase());
+                    }
                 }
 
                 const group = document.getElementById(`optionsGroup_${qIdx}`);
