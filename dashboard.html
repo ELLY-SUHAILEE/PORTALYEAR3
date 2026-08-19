@@ -384,21 +384,10 @@
 </div>
 
 <script>
-    // DATA DUMMY MURID MENGERANGKUMI 8 BIDANG
-    const studentData = [
-        { name: "Ahmad Rayyan", class: "3 Cerdik", module: "Module 1", category: "Get Smart", score: "8/8", percent: 100 },
-        { name: "Nur Aishah", class: "3 Cerdik", module: "Module 1", category: "Reading", score: "7/8", percent: 87.5 },
-        { name: "Muhammad Danial", class: "3 Usaha", module: "Module 2", category: "Remedial Set", score: "3/8", percent: 37.5 },
-        { name: "Siti Sarah", class: "3 Usaha", module: "Module 2", category: "Grammar", score: "4/8", percent: 50 },
-        { name: "Vikram A/L Raj", class: "3 Cerdik", module: "Module 3", category: "Sentence", score: "8/8", percent: 100 },
-        { name: "Mei Ling", class: "3 Cerdik", module: "Module 1", category: "Word Power", score: "7/8", percent: 87.5 },
-        { name: "Adam Harith", class: "3 Mawar", module: "Module 4", category: "Word Repeat", score: "3/8", percent: 37.5 },
-        { name: "Nurul Huda", class: "3 Mawar", module: "Module 3", category: "Build Sentence", score: "4/8", percent: 50 },
-        { name: "Chong Wei", class: "3 Usaha", module: "Module 2", category: "Build Sentence", score: "8/8", percent: 100 },
-        { name: "Divya", class: "3 Cerdik", module: "Module 5", category: "Reading", score: "6/8", percent: 75 },
-        { name: "Umar Ziyad", class: "3 Mawar", module: "Module 1", category: "Word Power", score: "3/8", percent: 37.5 },
-        { name: "Hannah Tan", class: "3 Usaha", module: "Module 6", category: "Grammar", score: "8/8", percent: 100 }
-    ];
+    // 🔗 URL WEB APP GOOGLE APPS SCRIPT
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbw7kBkxXYQ7YkANp6QuxcEzBIeGbvySJ2_enh2zB21zOuGDk9hULjWc_n8xJq4SV2sE/exec";
+
+    let studentData = [];
 
     // PEMETAAN WARNA KATEGORI (8 BIDANG)
     const categoryColors = {
@@ -425,26 +414,40 @@
 
     let pieChart;
 
-    // LOGIK AUTOGENERATE CADANGAN INTERVENSI
+    // CADANGAN INTERVENSI AUTOMATIK
     function getInterventionRecommendation(category, percent) {
         if (percent >= 80) return "🌟 Pengayaan: Latihan aras tinggi / Peer tutor";
         if (percent >= 60) return "👍 Pengukuhan: Latih tubi bertulis mudah";
 
-        // Cadangan spesifik jika markah < 60% (Perlu Intervensi)
         switch(category) {
             case "Get Smart": return "🛠️ Assign Starter Kit & Quiz Visual";
             case "Word Power": return "🛠️ Visual Flashcards & Padanan Kata";
             case "Word Repeat": return "🛠️ Audio-Spelling Drill (Ulang 3x)";
             case "Grammar": return "🛠️ Micro-Lesson: Nota Infografik Asas";
-            case "Sentence": return "🛠️ Latihan Unscramble Sentences (Subjek-Verb)";
-            case "Build Sentence": return "🛠️ Panduan Sentence Frames & Substitution Table";
+            case "Sentence": return "🛠️ Latihan Unscramble Sentences";
+            case "Build Sentence": return "🛠️ Panduan Sentence Frames";
             case "Reading": return "🛠️ Read-Along Audio & Petikan Pendek";
-            case "Remedial Set": return "🛠️ Back-to-Basics: Phonics & CVC Words";
+            case "Remedial Set": return "🛠️ Back-to-Basics: Phonics & CVC";
             default: return "🛠️ Bimbingan Individu";
         }
     }
 
-    // INISIALISASI CARTA PAI (CHART.JS)
+    // FUNGSI MEMANGGIL DATA DARI GOOGLE SHEET
+    async function fetchSheetData() {
+        const tbody = document.getElementById('table-body');
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 20px;">⏳ Memuatkan data terkini dari Google Sheet...</td></tr>';
+
+        try {
+            const response = await fetch(webAppUrl);
+            studentData = await response.json();
+            updateDashboard();
+        } catch (error) {
+            console.error("Ralat mengambil data:", error);
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#b91c1c; padding: 20px;">❌ Gagal memuatkan data dari Google Sheet. Sila semak sambungan internet atau tetapan akses Web App.</td></tr>';
+        }
+    }
+
+    // INISIALISASI CARTA PAI
     function initChart() {
         const ctx = document.getElementById('categoryPieChart').getContext('2d');
         pieChart = new Chart(ctx, {
@@ -464,17 +467,14 @@
                 plugins: {
                     legend: {
                         position: 'right',
-                        labels: {
-                            font: { family: 'Fredoka', size: 12, weight: '600' },
-                            padding: 10
-                        }
+                        labels: { font: { family: 'Fredoka', size: 12, weight: '600' }, padding: 10 }
                     }
                 }
             }
         });
     }
 
-    // KEMASKINI DASHBOARD & PENAPISAN DATA
+    // KEMASKINI PAPARAN DASHBOARD
     function updateDashboard() {
         const searchVal = document.getElementById('search-name').value.toLowerCase();
         const classVal = document.getElementById('filter-class').value;
@@ -482,7 +482,6 @@
         const categoryVal = document.getElementById('filter-category').value;
         const statusVal = document.getElementById('filter-status').value;
 
-        // Tapis data mengikut pilihan input
         const filteredData = studentData.filter(item => {
             const matchName = item.name.toLowerCase().includes(searchVal);
             const matchClass = (classVal === 'all' || item.class === classVal);
@@ -498,9 +497,12 @@
             return matchName && matchClass && matchModule && matchCategory && matchStatus;
         });
 
-        // 1. Kemaskini Jadual Data
         const tbody = document.getElementById('table-body');
         tbody.innerHTML = '';
+
+        if (filteredData.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 20px;">Tiada rekod ditemui.</td></tr>';
+        }
 
         let totalPercent = 0;
         let countCemerlang = 0;
@@ -517,7 +519,6 @@
                 catCounts[item.category]++;
             }
 
-            // Tentukan Status & Class
             let statusBadge = `<span class="status-badge status-intervensi">🔴 Perlu Intervensi</span>`;
             if (item.percent >= 80) {
                 statusBadge = `<span class="status-badge status-cemerlang">🟢 Cemerlang</span>`;
@@ -535,7 +536,7 @@
                 <td>${item.name}</td>
                 <td>${item.class}</td>
                 <td>${item.module}</td>
-                <td><span class="cat-badge ${categoryClasses[item.category]}">${item.category}</span></td>
+                <td><span class="cat-badge ${categoryClasses[item.category] || 'cat-getsmart'}">${item.category}</span></td>
                 <td>
                     <div class="progress-bar-bg">
                         <div class="progress-bar-fill" style="width: ${item.percent}%;"></div>
@@ -548,7 +549,6 @@
             tbody.appendChild(tr);
         });
 
-        // 2. Kemaskini Kad Statistik
         document.getElementById('stat-total-records').innerText = filteredData.length;
         document.getElementById('stat-cemerlang').innerText = countCemerlang;
         document.getElementById('stat-intervensi').innerText = countIntervensi;
@@ -556,18 +556,17 @@
         const avgScore = filteredData.length > 0 ? (totalPercent / filteredData.length).toFixed(1) : 0;
         document.getElementById('stat-avg-score').innerText = `${avgScore}%`;
 
-        // 3. Kemaskini Carta Pai
         pieChart.data.datasets[0].data = Object.values(catCounts);
         pieChart.update();
     }
 
     function exportCSV() {
-        alert("Fail CSV analisis murid dan cadangan intervensi berjaya dieksport!");
+        alert("Fail CSV berjaya dieksport!");
     }
 
     window.onload = function() {
         initChart();
-        updateDashboard();
+        fetchSheetData();
     };
 </script>
 
