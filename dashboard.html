@@ -277,6 +277,7 @@
         .btn-export { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); box-shadow: 0 4px 0px #075985; }
         .btn-print { background: linear-gradient(135deg, #d97706 0%, #b45309 100%); box-shadow: 0 4px 0px #78350f; }
         .btn-refresh { background: linear-gradient(135deg, #059669 0%, #047857 100%); box-shadow: 0 4px 0px #064e3b; }
+        .btn-lock { background: linear-gradient(135deg, #475569 0%, #334155 100%); box-shadow: 0 4px 0px #1e293b; }
 
         /* JADUAL DATA */
         .table-container {
@@ -361,6 +362,7 @@
             <button class="btn-action btn-refresh" onclick="fetchSheetData()"><i class="fa-solid fa-rotate" id="refresh-icon"></i> Kemaskini Data</button>
             <button class="btn-action btn-print" onclick="window.print()"><i class="fa-solid fa-print"></i> Cetak Laporan</button>
             <button class="btn-action btn-export" onclick="exportCSV()"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+            <button class="btn-action btn-lock" onclick="logoutGuru()"><i class="fa-solid fa-lock"></i> Kunci</button>
         </div>
     </div>
 
@@ -507,13 +509,41 @@
 </div>
 
 <script>
-    // URL Asal Web App (Fall-back)
+    // ==========================================
+    // 🔒 SISTEM KESELAMATAN & KATA LALUAN GURU
+    // ==========================================
+    const DASHBOARD_PASSWORD = "guru123";
+
+    function checkAuth() {
+        if (sessionStorage.getItem('guruAuthenticated') !== 'true') {
+            const inputPass = prompt("🔒 Sila masukkan kata laluan Guru untuk mengakses Dashboard:");
+            
+            if (inputPass === DASHBOARD_PASSWORD) {
+                sessionStorage.setItem('guruAuthenticated', 'true');
+            } else {
+                alert("❌ Kata laluan salah atau dibatalkan! Akses ditolak.");
+                window.location.href = "index.html"; // Tendang kembali ke modul murid
+            }
+        }
+    }
+
+    function logoutGuru() {
+        sessionStorage.removeItem('guruAuthenticated');
+        alert("🔒 Dashboard telah dikunci.");
+        window.location.href = "index.html";
+    }
+
+    // Jalankan semakan keselamatan serta-merta sebelum komponen lain dimuatkan
+    checkAuth();
+
+    // ==========================================
+    // LOGIK DATA & DASHBOARD (ASAL & KEKAL)
+    // ==========================================
     const defaultUrl = "https://script.google.com/macros/s/AKfycbw7kBkxXYQ7YkANp6QuxcEzBIeGbvySJ2_enh2zB21zOuGDk9hULjWc_n8xJq4SV2sE/exec";
 
     let studentData = [];
     let currentFilteredData = [];
 
-    // Mengendalikan Simpanan URL Apps Script dalam LocalStorage
     function simpanScriptUrl() {
         const inputUrl = document.getElementById('customScriptUrl').value.trim();
         if (inputUrl) {
@@ -527,7 +557,6 @@
         return localStorage.getItem('year3DashboardUrl') || defaultUrl;
     }
 
-    // PENCEGAHAN XSS
     function escapeHtml(str) {
         if (str === null || str === undefined) return '';
         return String(str)
@@ -538,7 +567,6 @@
             .replace(/'/g, '&#039;');
     }
 
-    // FORMAT PERATUS (Membaiki nilai 0.8 -> 80%)
     function parsePercent(val) {
         if (val === null || val === undefined || val === "") return 0;
         let str = val.toString().trim();
@@ -551,7 +579,6 @@
         return Math.round(num);
     }
 
-    // INTERVENSI KHUSUS UNTUK 8 SET
     function getInterventionRecommendation(category, percent) {
         if (percent >= 90) return "🌟 Pengayaan: Latihan aras tinggi / Peer tutor";
         if (percent > 50) return "👍 Pengukuhan: Latih tubi bertulis mudah";
@@ -672,7 +699,6 @@
             return matchName && matchClass && matchModule && matchCategory && matchStatus;
         });
 
-        // LOGIK SUSUNAN DATA (SORTING)
         if (sortVal === 'score-high') {
             filteredData.sort((a, b) => b.percent - a.percent);
         } else if (sortVal === 'score-low') {
