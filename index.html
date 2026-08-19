@@ -68,6 +68,7 @@
             gap: 15px;
             justify-content: center;
             align-items: center;
+            transition: all 0.3s ease;
         }
 
         .input-group {
@@ -96,6 +97,19 @@
         .input-group input:focus, .input-group select:focus {
             border-color: #ff9ff3;
             box-shadow: 0 0 8px rgba(255, 159, 243, 0.4);
+        }
+
+        /* Animasi Amaran Jika Maklumat Belum Diisi */
+        .input-error {
+            border-color: #ff4d4d !important;
+            background-color: #fff0f0 !important;
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
         }
 
         .dropdown-section {
@@ -596,19 +610,19 @@
             const nama = elNama.value.trim();
             const kelas = elKelas.value;
 
-            elNama.style.borderColor = "#c8d6e5";
-            elKelas.style.borderColor = "#c8d6e5";
+            elNama.classList.remove('input-error');
+            elKelas.classList.remove('input-error');
 
             if (!nama) {
                 alert("⚠️ PLEASE ENTER YOUR NAME FIRST!");
-                elNama.style.borderColor = "#ff4d4d";
+                elNama.classList.add('input-error');
                 elNama.focus();
                 return false;
             }
 
             if (!kelas) {
                 alert("⚠️ PLEASE SELECT YOUR CLASS FIRST!");
-                elKelas.style.borderColor = "#ff4d4d";
+                elKelas.classList.add('input-error');
                 elKelas.focus();
                 return false;
             }
@@ -649,15 +663,14 @@
             document.getElementById('menuSection').style.display = 'none';
             document.getElementById('quizSection').style.display = 'block';
 
-            // Semak dahulu sekiranya data soalan sudah wujud secara global dalam tetingkap (window)
+            // Semak dahulu sekiranya data soalan sudah wujud secara global
             let existingQuestions = findQuestionsInQuizBank(listSkrip[0]);
             if (existingQuestions && existingQuestions.length > 0) {
-                activeQuestions = existingQuestions; // MEMAPARKAN SEMUA SOALAN (30 SOALAN)
+                activeQuestions = existingQuestions;
                 paparSemuaSoalan();
                 return;
             }
 
-            // Pemuatan Skrip Bertingkat (Try Load JS)
             cubaMuatSkrip(listSkrip, 0);
         }
 
@@ -682,7 +695,7 @@
             scriptTag.onload = () => {
                 let loaded = findQuestionsInQuizBank(skripModul);
                 if (loaded && loaded.length > 0) {
-                    activeQuestions = loaded; // MEMAPARKAN SEMUA SOALAN (30 SOALAN)
+                    activeQuestions = loaded;
                     paparSemuaSoalan();
                 } else {
                     cubaMuatSkrip(listSkrip, index + 1);
