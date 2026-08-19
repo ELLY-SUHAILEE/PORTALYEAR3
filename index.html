@@ -604,7 +604,8 @@
 
             const scriptTag = document.createElement('script');
             scriptTag.id = 'dynamicModuleScript';
-            scriptTag.src = skripModul;
+            // Tambah timestamp supaya fail terkemaskini dimuat semula tanpa isu cache
+            scriptTag.src = skripModul + '?v=' + new Date().getTime();
 
             scriptTag.onload = () => {
                 let loaded = cariSoalanDalamWindow(skripModul, mode);
@@ -635,13 +636,14 @@
             const modNum = skripModul ? skripModul.replace(/[^0-9]/g, '') : "1";
             const targetCategoryGroup = (mode === 'remedial') ? "REMEDIAL SET" : "GET SMART SET";
 
-            // 1. Ekstrak dari window.quizBank jika wujud
+            // 1. Ekstrak dari window.quizBank
             if (window.quizBank && window.quizBank[targetCategoryGroup]) {
                 const groupObj = window.quizBank[targetCategoryGroup];
                 
-                // Cari key module yang mengandungi nombor modul (contoh: "Module 1: Welcome!")
+                // Cari key module berpandukan nombor modul secara tepat (misalnya Module 1)
                 let moduleKey = Object.keys(groupObj).find(k => {
-                    let numInKey = k.replace(/[^0-9]/g, '');
+                    let match = k.match(/module\s*(\d+)/i);
+                    let numInKey = match ? match[1] : k.replace(/[^0-9]/g, '');
                     return numInKey === modNum;
                 });
 
@@ -656,7 +658,7 @@
                     if (Array.isArray(categories)) {
                         allQuestions = categories;
                     } else if (typeof categories === 'object') {
-                        // Gabungkan semua soalan dari setiap kemahiran (Reading, Vocabulary, Grammar, dll.)
+                        // Gabungkan soalan dari setiap kemahiran (Reading, Vocabulary, Grammar, dll.)
                         for (let cat in categories) {
                             if (Array.isArray(categories[cat])) {
                                 allQuestions = allQuestions.concat(categories[cat]);
@@ -670,7 +672,7 @@
                 }
             }
 
-            // 2. Sokongan alternatif sekiranya diisytiharkan dalam pemboleh ubah berasingan
+            // 2. Sokongan alternatif jika pembolehubah berasingan digunakan
             if (mode === 'remedial') {
                 if (window['module' + modNum + '_remedial']) return window['module' + modNum + '_remedial'];
                 if (window['remedial' + modNum]) return window['remedial' + modNum];
@@ -694,11 +696,11 @@
                 // Teks soalan
                 let qText = q.q || q.question || q.soalan || q.text || "";
 
-                // Gambar soalan (Menyokong string HTML wrapCenterImage atau URL terus)
+                // Gambar soalan
                 let imageHtml = "";
                 if (q.image) {
                     if (typeof q.image === 'string' && q.image.trim().startsWith('<')) {
-                        imageHtml = q.image; // HTML terhasil dari wrapCenterImage
+                        imageHtml = q.image;
                     } else {
                         imageHtml = `<div style="text-align:center; margin:15px 0;">
                                         <img src="${q.image}" style="max-width:100%; max-height:250px; border-radius:10px; border:1px solid #ddd;" onerror="this.style.display='none'">
@@ -759,7 +761,6 @@
                 if (typeof ansRaw === 'number') {
                     correctIdx = ansRaw;
                 } else if (typeof ansRaw === 'string') {
-                    // Cari indeks pilihan jawapan yang sepadan
                     correctIdx = opts.indexOf(ansRaw);
                     if (correctIdx === -1) {
                         correctIdx = opts.findIndex(o => o.trim().toLowerCase() === ansRaw.trim().toLowerCase());
