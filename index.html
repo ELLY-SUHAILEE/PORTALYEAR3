@@ -3,502 +3,440 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORTAL YEAR 3 BAHASA INGGERIS 🌊</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700;800&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
-    
+    <title>Portal Kuiz Tahun 3</title>
     <style>
         * {
             box-sizing: border-box;
-            font-family: 'Fredoka', 'Nunito', sans-serif;
             margin: 0;
             padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* POSTER SEBAGAI LATAR BELAKANG UTAMA PORTAL */
         body {
-            background: #0284c7 url('poster.png') no-repeat center top fixed;
-            background-size: cover;
-            min-height: 100vh;
+            background-color: #f0f9ff;
+            color: #1e293b;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            padding: 20px 12px 50px 12px;
-            font-size: 20px;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        /* CONTAINER UTAMA */
-        .main-portal-container {
+        .container {
+            background: #ffffff;
             width: 100%;
-            max-width: 720px;
-            margin: 0 auto;
+            max-width: 800px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 2px solid #e2e8f0;
         }
 
-        /* KOTAK PUTIH KANDUNGAN */
-        .inner-panel {
-            background: rgba(255, 255, 255, 0.95);
-            border: 4px solid #0284c7;
-            border-radius: 24px;
-            padding: 28px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(4px);
+        h1, h2 {
+            text-align: center;
+            color: #0f172a;
+            margin-bottom: 20px;
         }
 
-        /* BORANG INPUT (NAME, CLASS, TOPIC) */
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 800;
-            margin-bottom: 6px;
-            color: #1e3a8a;
-            font-size: 20px;
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #334155;
         }
 
         input[type="text"], select {
             width: 100%;
             padding: 12px 16px;
-            border: 3px solid #93c5fd;
-            border-radius: 14px;
-            font-size: 20px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
             outline: none;
-            background-color: #ffffff;
-            color: #1e293b;
-            font-weight: 700;
-            transition: all 0.2s ease;
+            transition: border-color 0.2s;
         }
 
         input[type="text"]:focus, select:focus {
             border-color: #0284c7;
-            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3);
         }
 
-        /* TAJUK SEKSYEN */
-        .sub-title-section {
-            text-align: center;
-            font-weight: 800;
-            margin-top: 22px;
-            margin-bottom: 14px;
-            color: #0284c7;
-            font-size: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* SUSUNAN GRID BUTANG RESPONSIF */
-        .btn-grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 12px;
-        }
-
-        .btn-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-        }
-
-        /* BUTANG-BUTANG PORTAL */
-        .btn-set {
-            width: 100%;
-            padding: 14px 16px;
-            border: 3px solid #1e293b;
-            border-radius: 16px;
-            font-size: 20px;
-            font-weight: 800;
-            color: #ffffff;
-            cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 0 5px 0px #1e293b;
-            transition: all 0.15s ease;
+        .btn-group {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            text-align: center;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
 
-        .btn-set:active {
-            transform: translateY(3px);
-            box-shadow: 0 2px 0px #1e293b;
+        button {
+            flex: 1;
+            min-width: 140px;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.2s;
         }
 
-        .btn-smart { background: linear-gradient(180deg, #10b981 0%, #059669 100%); }
-        .btn-remedial { background: linear-gradient(180deg, #f97316 0%, #ea580c 100%); }
-        .btn-purple { background: linear-gradient(180deg, #a855f7 0%, #7e22ce 100%); }
-        .btn-pink { background: linear-gradient(180deg, #ec4899 0%, #be185d 100%); }
-        .btn-teal { background: linear-gradient(180deg, #14b8a6 0%, #0f766e 100%); }
+        button:active {
+            transform: scale(0.98);
+        }
 
-        /* WARNA KHAS BOOSTER ZONE */
-        .btn-booster-1 { background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%); }
-        .btn-booster-2 { background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%); }
-        .btn-booster-3 { background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%); }
+        .btn-primary {
+            background-color: #0284c7;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0369a1;
+        }
+
+        .btn-secondary {
+            background-color: #64748b;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #475569;
+        }
+
+        .btn-teacher {
+            background-color: #8b5cf6;
+            color: white;
+        }
+
+        .btn-teacher:hover {
+            background-color: #7c3aed;
+        }
+
+        .btn-submit {
+            background-color: #16a34a;
+            color: white;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            background-color: #15803d;
+        }
+
+        .btn-submit:disabled {
+            background-color: #94a3b8;
+            cursor: not-allowed;
+        }
 
         .btn-home {
-            background: linear-gradient(180deg, #facc15 0%, #ca8a04 100%);
-            color: #422006;
-            border: 3px solid #713f12;
-            padding: 10px 20px;
-            border-radius: 14px;
-            font-size: 20px;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 4px 0px #713f12;
+            background-color: #0284c7;
+            color: white;
+            margin-top: 15px;
         }
-
-        .link-guru {
-            display: block;
-            text-align: center;
-            margin-top: 22px;
-            color: #0284c7;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 800;
-            padding: 12px;
-            background: #e0f2fe;
-            border-radius: 14px;
-            border: 2px dashed #38bdf8;
-        }
-
-        /* SOALAN DAN PILIHAN */
-        #papan-kuiz, #keputusan-kuiz { display: none; }
 
         .item-soalan {
-            background-color: #ffffff;
-            border: 3px solid #93c5fd;
-            padding: 18px;
-            border-radius: 16px;
-            margin-bottom: 18px;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
-        }
-
-        .item-soalan h3 {
-            font-size: 20px;
-            color: #1e293b;
-            line-height: 1.4;
-            font-weight: 800;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
 
         .pilihan-jawapan label {
-            font-weight: 700;
-            background: #f0f9ff;
-            padding: 12px 16px;
-            border: 2px solid #bae6fd;
-            border-radius: 12px;
-            margin-bottom: 10px;
             display: flex;
             align-items: center;
+            background: white;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            margin-bottom: 8px;
             cursor: pointer;
-            color: #0f172a;
-            font-size: 20px;
+            font-weight: normal;
         }
 
         .pilihan-jawapan label:hover {
-            background-color: #e0f2fe;
-            border-color: #38bdf8;
+            background: #f1f5f9;
         }
 
-        @media (max-width: 480px) {
-            .inner-panel {
-                padding: 18px;
-            }
-            .btn-grid-2, .btn-grid-3 {
-                grid-template-columns: 1fr;
-            }
+        .pilihan-jawapan input[type="radio"] {
+            width: 18px;
+            height: 18px;
+        }
+
+        #papan-kuiz, #keputusan-kuiz {
+            display: none;
         }
     </style>
 </head>
 <body>
 
-<div class="main-portal-container">
-    <div class="inner-panel">
+    <div class="container">
+        <!-- BORANG MULA -->
         <div id="borang-mula">
-            <div class="form-group">
-                <label for="nama">👤 Student Name:</label>
-                <input type="text" id="nama" placeholder="Enter your full name">
-            </div>
+            <h1>📚 Portal Kuiz Tahun 3</h1>
             
             <div class="form-group">
-                <label for="kelas">🏫 Class:</label>
+                <label for="nama">👤 Nama Pelajar:</label>
+                <input type="text" id="nama" placeholder="Masukkan nama penuh anda...">
+            </div>
+
+            <div class="form-group">
+                <label for="kelas">🏫 Kelas:</label>
                 <select id="kelas">
-                    <option value="">-- Select Class --</option>
-                    <option value="3 ARIF">3 ARIF</option>
-                    <option value="3 BESTARI">3 BESTARI</option>
-                    <option value="3 CERDIK">3 CERDIK</option>
-                    <option value="3 DEDIKASI">3 DEDIKASI</option>
-                    <option value="3 ELIT">3 ELIT</option>
-                    <option value="3 FIRDAUS">3 FIRDAUS</option>
-                    <option value="3 GIGIH">3 GIGIH</option>
-                    <option value="3 HARMONI">3 HARMONI</option>
-                    <option value="3 INOVATIF">3 INOVATIF</option>
-                    <option value="3 JUARA">3 JUARA</option>
-                    <option value="3 KREATIF">3 KREATIF</option>
+                    <option value="">-- Pilih Kelas --</option>
+                    <option value="3 Cemerlang">3 Cemerlang</option>
+                    <option value="3 Gemilang">3 Gemilang</option>
+                    <option value="3 Terbilang">3 Terbilang</option>
                 </select>
             </div>
-            
+
             <div class="form-group">
-                <label for="modul">📚 Select Learning Topic:</label>
+                <label for="modul">📚 Modul / Topik:</label>
                 <select id="modul">
-                    <option value="Topic 1">Topic 1: Welcome!</option>
-                    <option value="Topic 2">Topic 2: Every day</option>
-                    <option value="Topic 3">Topic 3: Right now</option>
-                    <option value="Topic 4">Topic 4: Year in, year out</option>
-                    <option value="Topic 5">Topic 5: My new house / Eating right</option>
-                    <option value="Topic 6">Topic 6: Food, please! / Getting around</option>
-                    <option value="Topic 7">Topic 7: Out and about / Helping out</option>
-                    <option value="Topic 8">Topic 8: Where were you yesterday? / Amazing animals</option>
-                    <option value="Topic 9">Topic 9: On holiday / Get active!</option>
-                    <option value="Topic 10">Topic 10: The world around us</option>
+                    <option value="">-- Pilih Modul --</option>
+                    <option value="Modul 1">Modul 1</option>
+                    <option value="Modul 2">Modul 2</option>
+                    <option value="Modul 3">Modul 3</option>
+                    <option value="Modul 4">Modul 4</option>
+                    <option value="Modul 5">Modul 5</option>
+                    <option value="Modul 6">Modul 6</option>
+                    <option value="Modul 7">Modul 7</option>
+                    <option value="Modul 8">Modul 8</option>
+                    <option value="Modul 9">Modul 9</option>
+                    <option value="Modul 10">Modul 10</option>
                 </select>
             </div>
 
-            <div class="sub-title-section">⭐ SELECT QUIZ SET TO BEGIN ⭐</div>
-            
-            <div class="btn-grid-2">
-                <button class="btn-set btn-smart" onclick="mulaKuiz('GET SMART SET')">🎮 GET SMART SET</button>
-                <button class="btn-set btn-remedial" onclick="mulaKuiz('REMEDIAL SET')">🌟 REMEDIAL SET</button>
+            <div class="btn-group">
+                <button class="btn-primary" onclick="mulaKuiz('Set A')">🎮 Mula Set A</button>
+                <button class="btn-secondary" onclick="mulaKuiz('Set B')">🎮 Mula Set B</button>
+                <button class="btn-teacher" onclick="bukaDashboardGuru()">🔑 Dashboard Guru</button>
             </div>
-
-            <div class="sub-title-section">🚀 SELF-EXPLORATION 🚀</div>
-
-            <div class="btn-grid-3">
-                <button class="btn-set btn-purple" onclick="bukaModulLain('reading.html')">📖 READING</button>
-                <button class="btn-set btn-pink" onclick="bukaModulLain('grammar.html')">✏️ GRAMMAR</button>
-                <button class="btn-set btn-teal" onclick="bukaModulLain('sentence.html')">🧩 SENTENCE</button>
-            </div>
-
-            <!-- BAHAGIAN BAHARU BOOSTER ZONE -->
-            <div class="sub-title-section" style="color: #ea580c;">🛠️ BOOSTER ZONE 🛠️</div>
-            <div class="btn-grid-3">
-                <button class="btn-set btn-booster-1" onclick="bukaModulLain('wordpower.html')">📖 WORD POWER</button>
-                <button class="btn-set btn-booster-2" onclick="bukaModulLain('readrepeat.html')">🗣️ READ REPEAT</button>
-                <button class="btn-set btn-booster-3" onclick="bukaModulLain('buildsentence.html')">🏗️ BUILD SENTENCES</button>
-            </div>
-
-            <a href="javascript:void(0)" onclick="bukaDashboardGuru()" class="link-guru">🔒 Teacher's Dashboard</a>
         </div>
 
         <!-- PAPAN KUIZ -->
         <div id="papan-kuiz">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 8px;">
-                <button class="btn-home" onclick="keHalamanUtama()">🏠 HOME</button>
-                <span id="label-modul-papar" style="font-weight: 800; color: #1e3a8a; font-size: 20px; text-align: right;"></span>
-            </div>
+            <h2>📝 Kuiz: <span id="label-modul-papar"></span></h2>
             <div id="bekas-senarai-soalan"></div>
-            <div class="btn-grid-2" style="margin-top: 18px;">
-                <button class="btn-home" onclick="keHalamanUtama()">🏠 HOME</button>
-                <button class="btn-set btn-smart" id="btn-submit" onclick="hantarKuiz()">🚀 SUBMIT</button>
-            </div>
+            <button id="btn-submit" class="btn-submit" onclick="hantarKuiz()">🚀 SUBMIT</button>
         </div>
 
         <!-- KEPUTUSAN KUIZ -->
-        <div id="keputusan-kuiz" style="text-align: center;"></div>
+        <div id="keputusan-kuiz"></div>
     </div>
-</div>
 
-<!-- SCRIPTS JS -->
-<script src="module1.js"></script>
-<script src="module2.js"></script>
-<script src="module3.js"></script>
-<script src="module4.js"></script>
-<script src="module5.js"></script>
-<script src="module6.js"></script>
-<script src="module7.js"></script>
-<script src="module8.js"></script>
-<script src="module9.js"></script>
-<script src="module10.js"></script>
+    <!-- SCRIPTS JS -->
+    <script src="module1.js"></script>
+    <script src="module2.js"></script>
+    <script src="module3.js"></script>
+    <script src="module4.js"></script>
+    <script src="module5.js"></script>
+    <script src="module6.js"></script>
+    <script src="module7.js"></script>
+    <script src="module8.js"></script>
+    <script src="module9.js"></script>
+    <script src="module10.js"></script>
 
-<script>
-    // PAUTAN WEB APP GOOGLE APPS SCRIPT ANDA
-    const webAppUrl = "https://script.google.com/macros/s/AKfycbw7kBkxXYQ7YkANp6QuxcEzBIeGbvySJ2_enh2zB21zOuGDk9hULjWc_n8xJq4SV2sE/exec";
+    <script>
+        // PAUTAN WEB APP GOOGLE APPS SCRIPT ANDA
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbw7kBkxXYQ7YkANp6QuxcEzBIeGbvySJ2_enh2zB21zOuGDk9hULjWc_n8xJq4SV2sE/exec";
 
-    let soalanSemasa = [];
-    let jawapanPengguna = {};
-    let maklumatPelajar = {};
+        let soalanSemasa = [];
+        let jawapanPengguna = {};
+        let maklumatPelajar = {};
 
-    function bukaModulLain(url) {
-        const nama = document.getElementById('nama').value.trim();
-        const kelas = document.getElementById('kelas').value;
+        function bukaModulLain(url) {
+            const nama = document.getElementById('nama').value.trim();
+            const kelas = document.getElementById('kelas').value;
 
-        if (!nama || !kelas) {
-            alert("Please enter your name and select a class first!");
-            return;
+            if (!nama || !kelas) {
+                alert("Please enter your name and select a class first!");
+                return;
+            }
+
+            localStorage.setItem('pelajar_aktif', JSON.stringify({ nama, kelas }));
+            window.location.href = url;
         }
 
-        localStorage.setItem('pelajar_aktif', JSON.stringify({ nama, kelas }));
-        window.location.href = url;
-    }
-
-    function bukaDashboardGuru() {
-        const inputLaluan = prompt("🔑 Please enter Teacher's password:");
-        if (inputLaluan === "guru123" || inputLaluan === "1234") {
-            try { sessionStorage.setItem("guru_authenticated", "true"); } catch(e){}
-            window.location.href = "dashboard.html";
-        } else if (inputLaluan !== null) {
-            alert("❌ Incorrect password!");
-        }
-    }
-
-    function keHalamanUtama() {
-        document.getElementById('borang-mula').style.display = 'block';
-        document.getElementById('papan-kuiz').style.display = 'none';
-        document.getElementById('keputusan-kuiz').style.display = 'none';
-    }
-
-    function mulaKuiz(setTerpilih) {
-        const nama = document.getElementById('nama').value.trim();
-        const kelas = document.getElementById('kelas').value;
-        const modulInput = document.getElementById('modul').value;
-
-        if (!nama || !kelas || !modulInput) {
-            alert("Please enter your name, select a class, and select a topic first!");
-            return;
+        function bukaDashboardGuru() {
+            const inputLaluan = prompt("🔑 Please enter Teacher's password:");
+            if (inputLaluan === "guru123" || inputLaluan === "1234") {
+                try { sessionStorage.setItem("guru_authenticated", "true"); } catch(e){}
+                window.location.href = "dashboard.html";
+            } else if (inputLaluan !== null) {
+                alert("❌ Incorrect password!");
+            }
         }
 
-        if (typeof quizBank === 'undefined' || !quizBank[setTerpilih]) {
-            alert("quizBank data not found!");
-            return;
+        function keHalamanUtama() {
+            document.getElementById('borang-mula').style.display = 'block';
+            document.getElementById('papan-kuiz').style.display = 'none';
+            document.getElementById('keputusan-kuiz').style.display = 'none';
         }
 
-        const modulKeys = Object.keys(quizBank[setTerpilih]);
-        const matchNombor = modulInput.match(/\d+/);
-        const nomborModul = matchNombor ? matchNombor[0] : '';
+        function mulaKuiz(setTerpilih) {
+            const nama = document.getElementById('nama').value.trim();
+            const kelas = document.getElementById('kelas').value;
+            const modulInput = document.getElementById('modul').value;
 
-        const kunciPadan = modulKeys.find(key => {
-            const matchKey = key.match(/\d+/);
-            return (matchKey ? matchKey[0] : '') === nomborModul;
-        });
+            if (!nama || !kelas || !modulInput) {
+                alert("Please enter your name, select a class, and select a topic first!");
+                return;
+            }
 
-        if (!kunciPadan) {
-            alert(`Question data for ${modulInput} not found.`);
-            return;
+            if (typeof quizBank === 'undefined' || !quizBank[setTerpilih]) {
+                alert("quizBank data not found!");
+                return;
+            }
+
+            const modulKeys = Object.keys(quizBank[setTerpilih]);
+            const matchNombor = modulInput.match(/\d+/);
+            const nomborModul = matchNombor ? matchNombor[0] : '';
+
+            const kunciPadan = modulKeys.find(key => {
+                const matchKey = key.match(/\d+/);
+                return (matchKey ? matchKey[0] : '') === nomborModul;
+            });
+
+            if (!kunciPadan) {
+                alert(`Question data for ${modulInput} not found.`);
+                return;
+            }
+
+            const dataModul = quizBank[setTerpilih][kunciPadan];
+            maklumatPelajar = { nama, kelas, modul: kunciPadan, set: setTerpilih };
+            soalanSemasa = [];
+
+            Object.keys(dataModul).forEach(kategori => {
+                soalanSemasa = soalanSemasa.concat(dataModul[kategori]);
+            });
+
+            jawapanPengguna = {};
+            document.getElementById('borang-mula').style.display = 'none';
+            document.getElementById('papan-kuiz').style.display = 'block';
+            document.getElementById('keputusan-kuiz').style.display = 'none';
+
+            paparSemuaSoalan();
         }
 
-        const dataModul = quizBank[setTerpilih][kunciPadan];
-        maklumatPelajar = { nama, kelas, modul: kunciPadan, set: setTerpilih };
-        soalanSemasa = [];
+        function paparSemuaSoalan() {
+            document.getElementById('label-modul-papar').innerText = `${maklumatPelajar.modul} (${maklumatPelajar.set})`;
+            const bekas = document.getElementById('bekas-senarai-soalan');
+            let htmlContent = '';
 
-        Object.keys(dataModul).forEach(kategori => {
-            soalanSemasa = soalanSemasa.concat(dataModul[kategori]);
-        });
+            soalanSemasa.forEach((soalan, index) => {
+                const nomborSoalan = index + 1;
+                htmlContent += `<div class="item-soalan">`;
+                
+                if (soalan.image) {
+                    const imgStr = String(soalan.image).trim();
+                    if (imgStr.startsWith('<')) {
+                        htmlContent += imgStr;
+                    } else {
+                        htmlContent += `<div style="text-align:center; margin-bottom:12px;"><img src="${imgStr}" style="max-width:100%; height:auto; border-radius:10px;"></div>`;
+                    }
+                }
 
-        jawapanPengguna = {};
-        document.getElementById('borang-mula').style.display = 'none';
-        document.getElementById('papan-kuiz').style.display = 'block';
-        document.getElementById('keputusan-kuiz').style.display = 'none';
+                const teksSoalanBersih = (soalan.q || '').replace(/^\d+[\.\)]\s*/, '');
+                htmlContent += `<h3 style="white-space: pre-line; margin-top: 5px;">${nomborSoalan}. ${teksSoalanBersih}</h3>`;
+                htmlContent += `<div class="pilihan-jawapan" style="margin-top: 10px;">`;
 
-        paparSemuaSoalan();
-    }
+                soalan.options.forEach((pilihan) => {
+                    htmlContent += `
+                        <label>
+                            <input type="radio" name="soalan_${index}" value="${pilihan}" onchange="jawapanPengguna[${index}]='${pilihan}'">
+                            <span style="margin-left: 10px;">${pilihan}</span>
+                        </label>
+                    `;
+                });
 
-    function paparSemuaSoalan() {
-        document.getElementById('label-modul-papar').innerText = `${maklumatPelajar.modul} (${maklumatPelajar.set})`;
-        const bekas = document.getElementById('bekas-senarai-soalan');
-        let htmlContent = '';
+                htmlContent += `</div></div>`;
+            });
 
-        soalanSemasa.forEach((soalan, index) => {
-            const nomborSoalan = index + 1;
-            htmlContent += `<div class="item-soalan">`;
-            
-            if (soalan.image) {
-                const imgStr = String(soalan.image).trim();
-                if (imgStr.startsWith('<')) {
-                    htmlContent += imgStr;
-                } else {
-                    htmlContent += `<div style="text-align:center; margin-bottom:12px;"><img src="${imgStr}" style="max-width:100%; height:auto; border-radius:10px;"></div>`;
+            bekas.innerHTML = htmlContent;
+        }
+
+        async function hantarKuiz() {
+            const jumlahSoalan = soalanSemasa.length;
+            const dijawab = Object.keys(jawapanPengguna).length;
+
+            if (dijawab < jumlahSoalan) {
+                if (!confirm(`You have only answered ${dijawab} out of ${jumlahSoalan} questions. Submit anyway?`)) {
+                    return;
                 }
             }
 
-            const teksSoalanBersih = (soalan.q || '').replace(/^\d+[\.\)]\s*/, '');
-            htmlContent += `<h3 style="white-space: pre-line; margin-top: 5px;">${nomborSoalan}. ${teksSoalanBersih}</h3>`;
-            htmlContent += `<div class="pilihan-jawapan" style="margin-top: 10px;">`;
+            // Kunci butang submit untuk elak double-click
+            const btnSubmit = document.getElementById('btn-submit');
+            if (btnSubmit) {
+                btnSubmit.disabled = true;
+                btnSubmit.innerText = "⏳ SUBMITTING...";
+            }
 
-            soalan.options.forEach((pilihan) => {
-                htmlContent += `
-                    <label>
-                        <input type="radio" name="soalan_${index}" value="${pilihan}" onchange="jawapanPengguna[${index}]='${pilihan}'">
-                        <span style="margin-left: 10px;">${pilihan}</span>
-                    </label>
-                `;
+            let markah = 0;
+            soalanSemasa.forEach((soalan, idx) => {
+                if (jawapanPengguna[idx] === soalan.ans) markah++;
             });
 
-            htmlContent += `</div></div>`;
-        });
+            const peratus = Math.round((markah / jumlahSoalan) * 100);
 
-        bekas.innerHTML = htmlContent;
-    }
+            // 1. Simpan rekod tempatan (localStorage)
+            let senaraiRekod = JSON.parse(localStorage.getItem('rekod_portal_year3') || '[]');
+            senaraiRekod.push({
+                nama: maklumatPelajar.nama,
+                kelas: maklumatPelajar.kelas,
+                modul: maklumatPelajar.modul,
+                set: maklumatPelajar.set,
+                markah: peratus,
+                tarikh: new Date().toLocaleDateString('en-GB')
+            });
+            localStorage.setItem('rekod_portal_year3', JSON.stringify(senaraiRekod));
 
-    function hantarKuiz() {
-        const jumlahSoalan = soalanSemasa.length;
-        const dijawab = Object.keys(jawapanPengguna).length;
+            // 2. HANTAR DATA KE GOOGLE SHEET VIA GOOGLE APPS SCRIPT (FORMAT DIBAIKI)
+            const payload = {
+                name: maklumatPelajar.nama,
+                class: maklumatPelajar.kelas,
+                category: maklumatPelajar.set,
+                module: maklumatPelajar.modul,
+                score: `${markah}/${jumlahSoalan}`,
+                percent: `${peratus}%`
+            };
 
-        if (dijawab < jumlahSoalan) {
-            if (!confirm(`You have only answered ${dijawab} out of ${jumlahSoalan} questions. Submit anyway?`)) {
-                return;
+            try {
+                await fetch(webAppUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "text/plain;charset=utf-8" }, // ✅ Dibaiki: Mengelakkan CORS Preflight Error
+                    body: JSON.stringify(payload)
+                });
+                console.log("Data berjaya dihantar ke Google Sheet!");
+            } catch (err) {
+                console.error("Ralat penghantaran data:", err);
+            }
+
+            // 3. Paparkan Keputusan Kuiz kepada Murid
+            document.getElementById('papan-kuiz').style.display = 'none';
+            const bekasKeputusan = document.getElementById('keputusan-kuiz');
+            bekasKeputusan.style.display = 'block';
+            
+            bekasKeputusan.innerHTML = `
+                <h2 style="color: #0f172a; font-size: 26px;">🎉 Quiz Results</h2>
+                <div style="background: #ffffff; padding: 18px; border-radius: 14px; text-align: left; margin: 16px 0; border: 3px solid #bae6fd; font-size: 20px;">
+                    <p style="margin-bottom: 8px;"><strong>👤 Name:</strong> ${maklumatPelajar.nama}</p>
+                    <p style="margin-bottom: 8px;"><strong>🏫 Class:</strong> ${maklumatPelajar.kelas}</p>
+                    <p style="margin-bottom: 8px;"><strong>📚 Topic:</strong> ${maklumatPelajar.modul}</p>
+                    <p><strong>🎮 Set:</strong> ${maklumatPelajar.set}</p>
+                </div>
+                <h3 style="font-size: 28px; color: #16a34a; margin: 16px 0;">Score: ${markah} / ${jumlahSoalan} (${peratus}%)</h3>
+                <button class="btn-home" onclick="keHalamanUtama()" style="padding: 12px 24px;">🏠 Main Menu (HOME)</button>
+            `;
+
+            // Reset butang
+            if (btnSubmit) {
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = "🚀 SUBMIT";
             }
         }
-
-        let markah = 0;
-        soalanSemasa.forEach((soalan, idx) => {
-            if (jawapanPengguna[idx] === soalan.ans) markah++;
-        });
-
-        const peratus = Math.round((markah / jumlahSoalan) * 100);
-
-        // 1. Simpan rekod tempatan (localStorage)
-        let senaraiRekod = JSON.parse(localStorage.getItem('rekod_portal_year3') || '[]');
-        senaraiRekod.push({
-            nama: maklumatPelajar.nama,
-            kelas: maklumatPelajar.kelas,
-            modul: maklumatPelajar.modul,
-            set: maklumatPelajar.set,
-            markah: peratus,
-            tarikh: new Date().toLocaleDateString('en-GB')
-        });
-        localStorage.setItem('rekod_portal_year3', JSON.stringify(senaraiRekod));
-
-        // 2. HANTAR DATA KE GOOGLE SHEET VIA GOOGLE APPS SCRIPT
-        const payload = {
-            name: maklumatPelajar.nama,
-            class: maklumatPelajar.kelas,
-            category: maklumatPelajar.set,
-            module: maklumatPelajar.modul,
-            score: `${markah}/${jumlahSoalan}`,
-            percent: `${peratus}%`
-        };
-
-        fetch(webAppUrl, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        }).then(() => {
-            console.log("Data berjaya dihantar ke Google Sheet!");
-        }).catch(err => {
-            console.error("Ralat penghantaran data:", err);
-        });
-
-        // 3. Paparkan Keputusan Kuiz kepada Murid
-        document.getElementById('papan-kuiz').style.display = 'none';
-        const bekasKeputusan = document.getElementById('keputusan-kuiz');
-        bekasKeputusan.style.display = 'block';
-        
-        bekasKeputusan.innerHTML = `
-            <h2 style="color: #0f172a; font-size: 26px;">🎉 Quiz Results</h2>
-            <div style="background: #ffffff; padding: 18px; border-radius: 14px; text-align: left; margin: 16px 0; border: 3px solid #bae6fd; font-size: 20px;">
-                <p style="margin-bottom: 8px;"><strong>👤 Name:</strong> ${maklumatPelajar.nama}</p>
-                <p style="margin-bottom: 8px;"><strong>🏫 Class:</strong> ${maklumatPelajar.kelas}</p>
-                <p style="margin-bottom: 8px;"><strong>📚 Topic:</strong> ${maklumatPelajar.modul}</p>
-                <p><strong>🎮 Set:</strong> ${maklumatPelajar.set}</p>
-            </div>
-            <h3 style="font-size: 28px; color: #16a34a; margin: 16px 0;">Score: ${markah} / ${jumlahSoalan} (${peratus}%)</h3>
-            <button class="btn-home" onclick="keHalamanUtama()" style="padding: 12px 24px;">🏠 Main Menu (HOME)</button>
-        `;
-    }
-</script>
-
+    </script>
 </body>
 </html>
