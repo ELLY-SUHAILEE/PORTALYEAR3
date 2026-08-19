@@ -18,7 +18,7 @@
         }
 
         body {
-            /* Latar belakang menggunakan poster.png */
+            /* Latar belakang poster.png */
             background: url('poster.png') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
@@ -99,7 +99,7 @@
             box-shadow: 0 0 8px rgba(255, 159, 243, 0.4);
         }
 
-        /* 🔻 SEKSYEN KAD DROPDOWN (GET SMART & REMEDIAL) */
+        /* SEKSYEN KAD DROPDOWN (GET SMART & REMEDIAL) */
         .dropdown-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -331,7 +331,7 @@
             </div>
         </div>
 
-        <!-- 🔻 SEKSYEN KAD DROPDOWN (GET SMART & REMEDIAL SET) -->
+        <!-- SEKSYEN KAD DROPDOWN (GET SMART & REMEDIAL SET) -->
         <div class="dropdown-section">
             
             <!-- Kad Dropdown 1: Get Smart Modules -->
@@ -435,7 +435,7 @@
         </div>
     </div>
 
-    <!-- JavaScript Kawalan Ketat Profil & Dropdown Switcher -->
+    <!-- JavaScript Kawalan Ketat & Logik Pengalihan Laman (TELAH DIBETULKAN) -->
     <script>
         // Semakan Wajib bagi Name dan Class
         function semakMaklumatMurid() {
@@ -480,21 +480,21 @@
             const val = selectEl.value;
 
             if (!val) {
-                alert("⚠️ SILA PILIH TAJUK TERLEBIH DAHULU!");
+                alert("⚠️ PLEASE SELECT A TOPIC FIRST!");
                 selectEl.focus();
                 return;
             }
 
             // Asingkan Nama Modul dan Fail Skrip JS
-            const [namaModul, skripModul] = val.split('|');
+            const parts = val.split('|');
+            const namaModul = parts[0];
+            const skripModul = parts[1];
 
             localStorage.setItem('selectedModule', namaModul);
             localStorage.setItem('moduleScript', skripModul);
 
-            alert(`Welcome, ${info.nama} (${info.kelas})!\nRedirecting to: ${namaModul}`);
-            
-            // Buka laman kuiz
-            // window.location.href = "quiz.html";
+            // Buka Laman Kuiz (quiz.html)
+            window.location.href = "quiz.html";
         }
 
         // Jalankan Aktiviti Exploration & Permata Activities
