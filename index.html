@@ -291,7 +291,7 @@
             <div id="bekas-senarai-soalan"></div>
             <div class="btn-grid-2" style="margin-top: 18px;">
                 <button class="btn-home" onclick="keHalamanUtama()">🏠 HOME</button>
-                <button class="btn-set btn-smart" onclick="hantarKuiz()">🚀 SUBMIT</button>
+                <button class="btn-set btn-smart" id="btn-submit" onclick="hantarKuiz()">🚀 SUBMIT</button>
             </div>
         </div>
 
@@ -313,6 +313,9 @@
 <script src="module10.js"></script>
 
 <script>
+    // PAUTAN WEB APP GOOGLE APPS SCRIPT ANDA
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbw7kBkxXYQ7YkANp6QuxcEzBIeGbvySJ2_enh2zB21zOuGDk9hULjWc_n8xJq4SV2sE/exec";
+
     let soalanSemasa = [];
     let jawapanPengguna = {};
     let maklumatPelajar = {};
@@ -445,6 +448,7 @@
 
         const peratus = Math.round((markah / jumlahSoalan) * 100);
 
+        // 1. Simpan rekod tempatan (localStorage)
         let senaraiRekod = JSON.parse(localStorage.getItem('rekod_portal_year3') || '[]');
         senaraiRekod.push({
             nama: maklumatPelajar.nama,
@@ -456,6 +460,28 @@
         });
         localStorage.setItem('rekod_portal_year3', JSON.stringify(senaraiRekod));
 
+        // 2. HANTAR DATA KE GOOGLE SHEET VIA GOOGLE APPS SCRIPT
+        const payload = {
+            name: maklumatPelajar.nama,
+            class: maklumatPelajar.kelas,
+            category: maklumatPelajar.set,
+            module: maklumatPelajar.modul,
+            score: `${markah}/${jumlahSoalan}`,
+            percent: `${peratus}%`
+        };
+
+        fetch(webAppUrl, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        }).then(() => {
+            console.log("Data berjaya dihantar ke Google Sheet!");
+        }).catch(err => {
+            console.error("Ralat penghantaran data:", err);
+        });
+
+        // 3. Paparkan Keputusan Kuiz kepada Murid
         document.getElementById('papan-kuiz').style.display = 'none';
         const bekasKeputusan = document.getElementById('keputusan-kuiz');
         bekasKeputusan.style.display = 'block';
