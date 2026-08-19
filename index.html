@@ -529,10 +529,10 @@
 
     </div>
 
-    <!-- JavaScript Kawalan Utama -->
+   <!-- JavaScript Kawalan Utama -->
     <script>
         // Web App URL Google Apps Script
-       const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLl1p92dgM9gkris5PhYuEZEeo7MiWlGxZ3-V_HiT0O0SJEJmAHBeSkBZxsgQJcUBr/exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLl1p92dgM9gkris5PhYuEZEeo7MiWlGxZ3-V_HiT0O0SJEJmAHBeSkBZxsgQJcUBr/exec";
         let activeQuestions = [];
         let userAnswers = {};
 
@@ -581,7 +581,7 @@
             const parts = val.split('|');
             const namaModul = parts[0];
             const skripModul = parts[1];
-            const mode = parts[2] || "getsmart"; // 'getsmart' atau 'remedial'
+            const mode = parts[2] || "getsmart";
 
             document.getElementById('displayStudentInfo').textContent = `${info.nama} (${info.kelas})`;
             document.getElementById('displayModuleName').textContent = namaModul;
@@ -597,7 +597,6 @@
             document.getElementById('menuSection').style.display = 'none';
             document.getElementById('quizSection').style.display = 'block';
 
-            // Semak jika data sudah ada dalam window.quizBank
             let existingQuestions = cariSoalanDalamWindow(skripModul, mode);
             if (existingQuestions && existingQuestions.length > 0) {
                 activeQuestions = existingQuestions;
@@ -614,7 +613,6 @@
 
             const scriptTag = document.createElement('script');
             scriptTag.id = 'dynamicModuleScript';
-            // Tambah timestamp supaya fail terkemaskini dimuat semula tanpa isu cache
             scriptTag.src = skripModul + '?v=' + new Date().getTime();
 
             scriptTag.onload = () => {
@@ -646,11 +644,8 @@
             const modNum = skripModul ? skripModul.replace(/[^0-9]/g, '') : "1";
             const targetCategoryGroup = (mode === 'remedial') ? "REMEDIAL SET" : "GET SMART SET";
 
-            // 1. Ekstrak dari window.quizBank
             if (window.quizBank && window.quizBank[targetCategoryGroup]) {
                 const groupObj = window.quizBank[targetCategoryGroup];
-                
-                // Cari key module berpandukan nombor modul secara tepat (misalnya Module 1)
                 let moduleKey = Object.keys(groupObj).find(k => {
                     let match = k.match(/module\s*(\d+)/i);
                     let numInKey = match ? match[1] : k.replace(/[^0-9]/g, '');
@@ -668,7 +663,6 @@
                     if (Array.isArray(categories)) {
                         allQuestions = categories;
                     } else if (typeof categories === 'object') {
-                        // Gabungkan soalan dari setiap kemahiran (Reading, Vocabulary, Grammar, dll.)
                         for (let cat in categories) {
                             if (Array.isArray(categories[cat])) {
                                 allQuestions = allQuestions.concat(categories[cat]);
@@ -676,13 +670,10 @@
                         }
                     }
 
-                    if (allQuestions.length > 0) {
-                        return allQuestions;
-                    }
+                    if (allQuestions.length > 0) return allQuestions;
                 }
             }
 
-            // 2. Sokongan alternatif jika pembolehubah berasingan digunakan
             if (mode === 'remedial') {
                 if (window['module' + modNum + '_remedial']) return window['module' + modNum + '_remedial'];
                 if (window['remedial' + modNum]) return window['remedial' + modNum];
@@ -703,10 +694,7 @@
                 const card = document.createElement('div');
                 card.className = 'question-card';
 
-                // Teks soalan
                 let qText = q.q || q.question || q.soalan || q.text || "";
-
-                // Gambar soalan
                 let imageHtml = "";
                 if (q.image) {
                     if (typeof q.image === 'string' && q.image.trim().startsWith('<')) {
@@ -856,13 +844,24 @@
             if (rem) rem.value = "";
         }
 
-        function bukaAktiviti(url) {
+        // FUNGSI DIKEMASKINI: Menyokong rekod Google Sheet sebelum pautan luar dibuka
+        function bukaAktiviti(url, categoryName, moduleName) {
             if (typeof semakMaklumatMurid === 'function') {
                 const info = semakMaklumatMurid();
                 if (!info) return;
             }
-            window.location.href = url;
+
+            if (categoryName && moduleName && typeof hantarRekodKeGoogleSheet === 'function') {
+                hantarRekodKeGoogleSheet({
+                    category: categoryName,
+                    module: moduleName,
+                    score: "Selesai",
+                    percent: "100%"
+                });
+            }
+
+            setTimeout(function() {
+                window.location.href = url;
+            }, 400);
         }
     </script>
-</body>
-</html>
