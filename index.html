@@ -37,13 +37,24 @@
             margin-bottom: 30px;
         }
 
-        /* TAJUK PORTAL */
+        /* TAJUK PORTAL (GAYA KARTUN 3D DENGAN OUTLINE BIRU TUA) */
         .header-title {
             font-family: 'Fredoka', cursive;
-            font-size: 2.8rem !important;
+            font-size: 3.2rem !important;
+            font-weight: 700 !important;
             color: #ffffff !important;
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8) !important;
-            margin-bottom: 4px;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+            text-shadow: 
+                -3px -3px 0 #0d3868,  
+                 3px -3px 0 #0d3868,
+                -3px  3px 0 #0d3868,
+                 3px  3px 0 #0d3868,
+                -3px  0px 0 #0d3868,
+                 3px  0px 0 #0d3868,
+                 0px -3px 0 #0d3868,
+                 0px  4px 0 #0d3868,
+                 2px  6px 12px rgba(0, 15, 50, 0.6);
         }
 
         .header-subtitle {
@@ -242,7 +253,7 @@
             transform: scale(1.02);
         }
 
-        /* 3. SUB MODULES (WARNA SAMA SEPERTI GAMBAR) */
+        /* 3. SUB MODULES */
         .sub-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -566,6 +577,9 @@
 
         /* RESPONSIVE LAYOUT MOBILE */
         @media (max-width: 768px) {
+            .header-title {
+                font-size: 2.2rem !important;
+            }
             .info-bar, .main-modules-grid, .sub-grid {
                 grid-template-columns: 1fr;
             }
@@ -777,7 +791,7 @@
 
     <!-- JAVASCRIPT LOGIK KAWALAN -->
     <script>
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLl1p92dgM9gkris5PhYuEZEeo7MiWlGxZ3-V_HiT0O0SJEJmAHBeSkBZxsgQJcUBr/exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLl1p92dgM9gkrisPhYuEZEeo7MiWlGxZ3-V_HiT0O0SJEJmAHBeSkBZxsgQJcUBr/exec";
         let activeQuestions = [];
         let userAnswers = {};
         let activeMode = "getsmart";
