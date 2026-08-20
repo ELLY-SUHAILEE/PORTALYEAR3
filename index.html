@@ -1040,16 +1040,49 @@ function pilihJawapan(qIdx, optIdx) {
     }
 }
 
-// FUNGSI PEMBANTU UNTUK MENGESAN JAWAPAN BETUL (SAMADA INDEKS ATAU TEKS ANS)
+// FUNGSI PEMBANTU UNTUK MENGESAN JAWAPAN BETUL (PEMBERSIHAN TINGGI & PADANAN HURUF)
 function dapatkanIndeksJawapanBetul(q) {
-    if (q.answer !== undefined) return parseInt(q.answer);
-    if (q.ans !== undefined) {
-        if (typeof q.ans === 'number') return q.ans;
-        if (q.options && Array.isArray(q.options)) {
-            const idx = q.options.findIndex(opt => opt.trim() === String(q.ans).trim());
-            if (idx !== -1) return idx;
-        }
+    if (!q) return 0;
+
+    // 1. Ambil nilai jawapan daripada medan 'answer' atau 'ans'
+    let val = (q.answer !== undefined) ? q.answer : q.ans;
+    if (val === undefined || val === null) return 0;
+
+    // Jika jawapan berbentuk nombor indeks (0, 1, 2)
+    if (typeof val === 'number') return val;
+
+    // Membuang ruang tersembunyi (\u00A0), huruf besar/kecil & jarak berlebihan
+    const bersihkan = (s) => String(s || '').replace(/[\u00A0\s]+/g, ' ').trim().toLowerCase();
+    const valStr = bersihkan(val);
+
+    // Jika jawapan berbentuk string nombor ("0", "1", "2")
+    if (/^\d+$/.test(valStr)) {
+        return parseInt(valStr, 10);
     }
+
+    if (q.options && Array.isArray(q.options)) {
+        // 2. Padanan tepat teks selepas dibersihkan
+        let idx = q.options.findIndex(opt => bersihkan(opt) === valStr);
+        if (idx !== -1) return idx;
+
+        // 3. Padanan mengikut awalan huruf (A/a -> 0, B/b -> 1, C/c -> 2, D/d -> 3)
+        let padananHuruf = valStr.match(/^([a-d])[\)\.\s]?/);
+        if (padananHuruf) {
+            let huruf = padananHuruf[1];
+            let idxHuruf = huruf.charCodeAt(0) - 97;
+            if (idxHuruf >= 0 && idxHuruf < q.options.length) {
+                return idxHuruf;
+            }
+        }
+
+        // 4. Padanan sebahagian teks (Contains)
+        idx = q.options.findIndex(opt => {
+            let optStr = bersihkan(opt);
+            return optStr.includes(valStr) || valStr.includes(optStr);
+        });
+        if (idx !== -1) return idx;
+    }
+
     return 0;
 }
 
@@ -1073,15 +1106,16 @@ function hantarJawapan() {
                 btn.disabled = true;
                 btn.classList.remove('selected');
 
-                if (optIdx === correctIdx) {
+                if (optIdx == correctIdx) {
                     btn.classList.add('correct');
-                } else if (chosen === optIdx && chosen !== correctIdx) {
+                } else if (chosen !== undefined && chosen == optIdx && chosen != correctIdx) {
                     btn.classList.add('wrong');
                 }
             });
         }
 
-        if (chosen === correctIdx) {
+        // Pengiraan markah dengan pertukaran jenis data yang selamat
+        if (chosen !== undefined && Number(chosen) === Number(correctIdx)) {
             score++;
         }
     });
