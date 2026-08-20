@@ -1042,88 +1042,95 @@
             });
         }
 
-        function hantarJawapan() {
-            let totalQuestions = activeQuestions.length;
-            let answeredCount = Object.keys(userAnswers).length;
+        // --- GANTIKAN FUNGSI HANTARJAWAPAN LAMA DENGAN YANG INI ---
+function hantarJawapan() {
+    let totalQuestions = activeQuestions.length;
+    let answeredCount = Object.keys(userAnswers).length;
 
-            if (answeredCount < totalQuestions) {
-                if (!confirm(`Anda baru menjawab ${answeredCount} daripada ${totalQuestions} soalan. Pasti mahu menghantar?`)) return;
-            }
+    if (answeredCount < totalQuestions) {
+        if (!confirm(`Anda baru menjawab ${answeredCount} daripada ${totalQuestions} soalan. Pasti mahu menghantar?`)) return;
+    }
 
-            let score = 0;
-            activeQuestions.forEach((q, idx) => {
-                let correctOpt = (q.answer !== undefined) ? q.answer : ((q.jawapan !== undefined) ? q.jawapan : q.correct);
-                let userOpt = userAnswers[idx];
+    let score = 0;
+    activeQuestions.forEach((q, idx) => {
+        // --- LOGIK PEMBETULAN DI SINI ---
+        
+        // 1. Dapatkan nilai jawapan betul daripada fail soalan.
+        // Kita tambah q.ans kerana kod soalan anda menggunakan kunci 'ans'.
+        let rawCorrectAnswer = q.ans || q.answer || q.correct || q.jawapan;
+        let correctOptIndex;
 
-                const group = document.getElementById(`optionsGroup_${idx}`);
-                if (group) {
-                    const buttons = group.querySelectorAll('.btn-option');
-                    buttons.forEach((btn, optIdx) => {
-                        btn.disabled = true;
-                        if (optIdx === correctOpt) {
-                            btn.classList.add('correct');
-                        } else if (optIdx === userOpt && userOpt !== correctOpt) {
-                            btn.classList.add('wrong');
-                        }
-                    });
+        // 2. Tentukan sama ada jawapan dalam kod itu teks penuh atau indeks nombor.
+        if (typeof rawCorrectAnswer === 'string') {
+            // Jika ia teks ("A) For a..."), cari indeksnya (0, 1, atau 2) dalam senarai pilihan.
+            correctOptIndex = q.options.indexOf(rawCorrectAnswer);
+        } else {
+            // Jika ia sudah sedia ada nombor (contoh: 0), gunakan nombor itu.
+            correctOptIndex = rawCorrectAnswer;
+        }
+
+        // Nilai pilihan murid (sentiasa nombor: 0, 1, atau 2).
+        let userOpt = userAnswers[idx];
+
+        // ---------------------------------
+
+        const group = document.getElementById(`optionsGroup_${idx}`);
+        if (group) {
+            const buttons = group.querySelectorAll('.btn-option');
+            buttons.forEach((btn, optIdx) => {
+                btn.disabled = true;
+                // Bandingkan indeks butang dengan indeks jawapan betul (correctOptIndex).
+                if (optIdx === correctOptIndex) {
+                    btn.classList.add('correct'); // Hijau
+                } else if (optIdx === userOpt && userOpt !== correctOptIndex) {
+                    btn.classList.add('wrong'); // Merah
                 }
-
-                if (userOpt === correctOpt) {
-                    score++;
-                }
-            });
-
-            const scoreBanner = document.getElementById('scoreBanner');
-            const scoreText = document.getElementById('scoreText');
-            const feedbackText = document.getElementById('feedbackText');
-            const syncStatus = document.getElementById('syncStatus');
-
-            scoreBanner.style.display = 'block';
-            scoreText.textContent = `Your Score: ${score} / ${totalQuestions}`;
-
-            let percentage = (score / totalQuestions) * 100;
-            if (percentage >= 80) feedbackText.textContent = "Excellent work! 🎉";
-            else if (percentage >= 50) feedbackText.textContent = "Good job! Keep practicing! 👍";
-            else feedbackText.textContent = "Don't give up! Try again! 💪";
-
-            document.getElementById('submitBtn').style.display = 'none';
-
-            const nama = localStorage.getItem('studentName') || "";
-            const kelas = localStorage.getItem('studentClass') || "";
-            const modul = document.getElementById('displayModuleName').textContent;
-
-            syncStatus.textContent = "🔄 Menghantar keputusan ke rekod guru...";
-
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    nama: nama,
-                    kelas: kelas,
-                    modul: modul,
-                    skor: `${score}/${totalQuestions}`,
-                    peratus: percentage.toFixed(1) + "%",
-                    tarikh: new Date().toLocaleString('ms-MY')
-                })
-            }).then(() => {
-                syncStatus.textContent = "✅ Keputusan berjaya dihantar ke rekod guru!";
-            }).catch(err => {
-                syncStatus.textContent = "⚠️ Gagal menghantar keputusan. Sila periksa sambungan internet.";
             });
         }
 
-        function bukaAktiviti(fail, kategori, tajuk) {
-            const info = semakMaklumatMurid();
-            if (!info) return;
-            window.location.href = `${fail}?nama=${encodeURIComponent(info.nama)}&kelas=${encodeURIComponent(info.kelas)}&cat=${encodeURIComponent(kategori)}&title=${encodeURIComponent(tajuk)}`;
+        // Bandingkan indeks pilihan murid dengan indeks jawapan betul.
+        if (userOpt === correctOptIndex) {
+            score++;
         }
+    });
 
-        function kembaliKeMenu() {
-            document.getElementById('quizSection').style.display = 'none';
-            document.getElementById('menuSection').style.display = 'block';
-            document.getElementById('scoreBanner').style.display = 'none';
-        }
-    </script>
-</body>
-</html>
+    const scoreBanner = document.getElementById('scoreBanner');
+    const scoreText = document.getElementById('scoreText');
+    const feedbackText = document.getElementById('feedbackText');
+    const syncStatus = document.getElementById('syncStatus');
+
+    scoreBanner.style.display = 'block';
+    scoreText.textContent = `Your Score: ${score} / ${totalQuestions}`;
+
+    let percentage = (score / totalQuestions) * 100;
+    if (percentage >= 80) feedbackText.textContent = "Excellent work! 🎉";
+    else if (percentage >= 50) feedbackText.textContent = "Good job! Keep practicing! 👍";
+    else feedbackText.textContent = "Don't give up! Try again! 💪";
+
+    document.getElementById('submitBtn').style.display = 'none';
+
+    const nama = localStorage.getItem('studentName') || "";
+    const kelas = localStorage.getItem('studentClass') || "";
+    const modul = document.getElementById('displayModuleName').textContent;
+
+    syncStatus.textContent = "🔄 Menghantar keputusan ke rekod guru...";
+
+    fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            nama: nama,
+            kelas: kelas,
+            modul: modul,
+            skor: `${score}/${totalQuestions}`,
+            peratus: percentage.toFixed(1) + "%",
+            tarikh: new Date().toLocaleString('ms-MY')
+        })
+    }).then(() => {
+        syncStatus.textContent = "✅ Keputusan berjaya dihantar ke rekod guru!";
+    }).catch(err => {
+        syncStatus.textContent = "⚠️ Gagal menghantar keputusan. Sila periksa sambungan internet.";
+    });
+}
+// --------------------------------------------------------
