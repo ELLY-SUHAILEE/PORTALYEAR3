@@ -903,7 +903,7 @@ function prosesMulaKuiz(val) {
     document.getElementById('displayModuleName').textContent = currentModuleName;
 
     document.getElementById('questionsContainer').innerHTML = `
-        <div style="padding: 30px; color: #ffffff;">
+        <div style="padding: 30px; color: #ffffff; text-align: center;">
             <i class="fa-solid fa-spinner fa-spin fa-2x"></i><br><br>
             Sila tunggu, memuatkan soalan...
         </div>`;
@@ -911,54 +911,60 @@ function prosesMulaKuiz(val) {
     document.getElementById('submitBtn').style.display = 'none';
 
     userAnswers = {};
-
-    // 1. RESET MEMORI LAMA SUPAYA SOALAN TIDAK BERCAMPUR
-    try { delete window.quizBank; } catch(e) { window.quizBank = undefined; }
-    try { delete window.quizQuestions; } catch(e) { window.quizQuestions = undefined; }
     activeQuestions = [];
+
+    // 1. KOSONGKAN DATA MEMORI LAMA (ELAK ROJAK/PERTINDIHAN MODUL)
+    window.quizBank = window.quizBank || {};
+    window.quizBank["GET SMART SET"] = {};
+    window.quizBank["REMEDIAL SET"] = {};
+    window.quizQuestions = null;
 
     // 2. BUANG SKRIP LAMA JIKA WUJUD
     const oldScript = document.getElementById('dynamicQuizScript');
     if (oldScript) oldScript.remove();
 
-    // 3. MUAT SKRIP MODUL (DENGAN TIMESTAMP UNTUK ELAK CACHE)
+    // 3. MUAT SKRIP MODUL DENGAN TIMESTAMP (MENGAWAL CACHE)
     const script = document.createElement('script');
     script.id = 'dynamicQuizScript';
     script.src = skripModul + "?v=" + new Date().getTime();
 
     script.onload = () => {
-        // FUNGSI IMBAJAN AUTOMATIK (MENGESAN ARRAY SOALAN DI MANA-MANA SAHAJA)
-        function ekstrakSoalan(obj) {
-            if (!obj) return null;
-            if (Array.isArray(obj) && obj.length > 0) {
-                if (obj[0].question || obj[0].options) return obj;
-            }
-            if (typeof obj === 'object') {
-                for (let k in obj) {
-                    let res = ekstrakSoalan(obj[k]);
-                    if (res) return res;
-                }
-            }
-            return null;
-        }
+        const categoryKey = (mode === 'remedial') ? "REMEDIAL SET" : "GET SMART SET";
+        let rawData = null;
 
-        // Semak window.quizQuestions
         if (Array.isArray(window.quizQuestions) && window.quizQuestions.length > 0) {
             activeQuestions = window.quizQuestions;
-        } 
-        // Ekstrak soalan secara mendalam daripada quizBank
-        else if (typeof quizBank !== 'undefined') {
-            let soalanJumpa = ekstrakSoalan(quizBank);
-            if (soalanJumpa) activeQuestions = soalanJumpa;
+        } else if (window.quizBank && window.quizBank[categoryKey]) {
+            const cat = window.quizBank[categoryKey];
+            if (cat[currentModuleName]) {
+                rawData = cat[currentModuleName];
+            } else {
+                const keys = Object.keys(cat);
+                if (keys.length > 0) rawData = cat[keys[0]];
+            }
         }
 
-        // Papar soalan jika wujud
+        // 4. GABUNGKAN KESEMUA BAHAGIAN (Reading, Vocabulary, Grammar, Writing, Speaking, Mixed Skills)
+        if (rawData) {
+            if (Array.isArray(rawData)) {
+                activeQuestions = rawData;
+            } else if (typeof rawData === 'object') {
+                activeQuestions = [];
+                for (let key in rawData) {
+                    if (Array.isArray(rawData[key])) {
+                        activeQuestions = activeQuestions.concat(rawData[key]);
+                    }
+                }
+            }
+        }
+
+        // 5. PAPAR SOALAN
         if (activeQuestions && activeQuestions.length > 0) {
             paparSoalan();
             document.getElementById('submitBtn').style.display = 'inline-block';
         } else {
             document.getElementById('questionsContainer').innerHTML = `
-                <div style="padding: 20px; color: #ffffff;">
+                <div style="padding: 20px; color: #ffffff; text-align: center;">
                     ⚠️ Soalan tidak dijumpai dalam fail ${skripModul}.
                 </div>`;
         }
@@ -966,131 +972,168 @@ function prosesMulaKuiz(val) {
 
     script.onerror = () => {
         document.getElementById('questionsContainer').innerHTML = `
-            <div style="padding: 20px; color: #ffffff;">
+            <div style="padding: 20px; color: #ffffff; text-align: center;">
                 ⚠️ Gagal memuatkan fail ${skripModul}. Pastikan fail wujud di GitHub.
             </div>`;
     };
 
     document.head.appendChild(script);
 }
-        function paparSoalan() {
-            const container = document.getElementById('questionsContainer');
-            container.innerHTML = '';
 
-            activeQuestions.forEach((q, idx) => {
-                const qCard = document.createElement('div');
-                qCard.className = 'question-card';
+function paparSoalan() {
+    const container = document.getElementById('questionsContainer');
+    container.innerHTML = '';
 
-                let optionsHTML = '';
-                q.options.forEach((opt, optIdx) => {
-                    optionsHTML += `
-                        <button class="btn-option" id="opt_${idx}_${optIdx}" onclick="pilihJawapan(${idx}, ${optIdx})">
-                            ${opt}
-                        </button>`;
-                });
+    activeQuestions.forEach((qObj, idx) => {
+        const qCard = document.createElement('div');
+        qCard.className = 'question-card';
 
-                qCard.innerHTML = `
-                    <div class="question-number">Question ${idx + 1} / ${activeQuestions.length}</div>
-                    <div class="question-text">${q.question}</div>
-                    <div class="options-grid">${optionsHTML}</div>
-                `;
-                container.appendChild(qCard);
+        // Teks soalan daripada medan 'q' atau 'question'
+        const textSoalan = qObj.q || qObj.question || `Soalan ${idx + 1}`;
+
+        // Paparan Gambar (Menyokong wrapCenterImage & URL biasa)
+        let imageHTML = '';
+        const imgVal = qObj.image || qObj.img;
+        if (imgVal) {
+            if (typeof imgVal === 'string' && imgVal.includes('<img')) {
+                imageHTML = imgVal;
+            } else {
+                imageHTML = `<div style="text-align: center; margin: 15px 0;"><img src="${imgVal}" style="max-width: 100%; max-height: 250px; border-radius: 10px; border: 1px solid #ddd;" onerror="this.style.display='none'"></div>`;
+            }
+        }
+
+        let optionsHTML = '';
+        if (qObj.options && Array.isArray(qObj.options)) {
+            qObj.options.forEach((opt, optIdx) => {
+                optionsHTML += `
+                    <button class="btn-option" id="opt_${idx}_${optIdx}" onclick="pilihJawapan(${idx}, ${optIdx})">
+                        ${opt}
+                    </button>`;
             });
         }
 
-        function pilihJawapan(qIdx, optIdx) {
-            userAnswers[qIdx] = optIdx;
-            
-            const q = activeQuestions[qIdx];
-            q.options.forEach((_, i) => {
-                const btn = document.getElementById(`opt_${qIdx}_${i}`);
-                if (btn) {
-                    if (i === optIdx) {
-                        btn.classList.add('selected');
-                    } else {
-                        btn.classList.remove('selected');
-                    }
-                }
-            });
-        }
+        qCard.innerHTML = `
+            <div class="question-number">Question ${idx + 1} / ${activeQuestions.length}</div>
+            <div class="question-text">${textSoalan}</div>
+            ${imageHTML}
+            <div class="options-grid">${optionsHTML}</div>
+        `;
+        container.appendChild(qCard);
+    });
+}
 
-        function hantarJawapan() {
-            if (Object.keys(userAnswers).length < activeQuestions.length) {
-                if (!confirm("Anda belum menjawab semua soalan. Adakah anda pasti mahu menghantar?")) {
-                    return;
+function pilihJawapan(qIdx, optIdx) {
+    userAnswers[qIdx] = optIdx;
+    
+    const q = activeQuestions[qIdx];
+    if (q && q.options) {
+        q.options.forEach((_, i) => {
+            const btn = document.getElementById(`opt_${qIdx}_${i}`);
+            if (btn) {
+                if (i === optIdx) {
+                    btn.classList.add('selected');
+                } else {
+                    btn.classList.remove('selected');
                 }
             }
+        });
+    }
+}
 
-            let score = 0;
-            activeQuestions.forEach((q, idx) => {
-                const chosen = userAnswers[idx];
-                q.options.forEach((_, optIdx) => {
-                    const btn = document.getElementById(`opt_${idx}_${optIdx}`);
-                    if (!btn) return;
+// FUNGSI PEMBANTU UNTUK MENGESAN JAWAPAN BETUL (SAMADA INDEKS ATAU TEKS ANS)
+function dapatkanIndeksJawapanBetul(q) {
+    if (q.answer !== undefined) return parseInt(q.answer);
+    if (q.ans !== undefined) {
+        if (typeof q.ans === 'number') return q.ans;
+        if (q.options && Array.isArray(q.options)) {
+            const idx = q.options.findIndex(opt => opt.trim() === String(q.ans).trim());
+            if (idx !== -1) return idx;
+        }
+    }
+    return 0;
+}
 
-                    btn.disabled = true;
-                    btn.classList.remove('selected');
+function hantarJawapan() {
+    if (Object.keys(userAnswers).length < activeQuestions.length) {
+        if (!confirm("Anda belum menjawab semua soalan. Adakah anda pasti mahu menghantar?")) {
+            return;
+        }
+    }
 
-                    if (optIdx === q.answer) {
-                        btn.classList.add('correct');
-                    } else if (chosen === optIdx && chosen !== q.answer) {
-                        btn.classList.add('wrong');
-                    }
-                });
+    let score = 0;
+    activeQuestions.forEach((q, idx) => {
+        const chosen = userAnswers[idx];
+        const correctIdx = dapatkanIndeksJawapanBetul(q);
 
-                if (chosen === q.answer) {
-                    score++;
+        if (q.options && Array.isArray(q.options)) {
+            q.options.forEach((_, optIdx) => {
+                const btn = document.getElementById(`opt_${idx}_${optIdx}`);
+                if (!btn) return;
+
+                btn.disabled = true;
+                btn.classList.remove('selected');
+
+                if (optIdx === correctIdx) {
+                    btn.classList.add('correct');
+                } else if (chosen === optIdx && chosen !== correctIdx) {
+                    btn.classList.add('wrong');
                 }
             });
-
-            const percent = Math.round((score / activeQuestions.length) * 100);
-            document.getElementById('scoreText').textContent = `Your Score: ${score} / ${activeQuestions.length} (${percent}%)`;
-            
-            let feedback = "Good effort! Keep practicing.";
-            if (percent >= 80) feedback = "Excellent job! Outstanding performance!";
-            else if (percent >= 50) feedback = "Well done! You're getting better!";
-            
-            document.getElementById('feedbackText').textContent = feedback;
-            document.getElementById('scoreBanner').style.display = 'block';
-            document.getElementById('submitBtn').style.display = 'none';
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            hantarKeGoogleSheet(score, activeQuestions.length, percent);
         }
 
-        function hantarKeGoogleSheet(score, total, percent) {
-            const nama = localStorage.getItem('studentName') || "Murid";
-            const kelas = localStorage.getItem('studentClass') || "Tiga";
-            const syncStatus = document.getElementById('syncStatus');
-
-            const payload = {
-                nama: nama,
-                kelas: kelas,
-                modul: currentModuleName,
-                markah: `${score}/${total}`,
-                peratus: `${percent}%`
-            };
-
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            })
-            .then(() => {
-                syncStatus.textContent = "✅ Keputusan berjaya disimpan ke rekod guru!";
-            })
-            .catch(err => {
-                syncStatus.textContent = "⚠️ Ralat semasa menyimpan rekod. Sila beritahu guru anda.";
-                console.error(err);
-            });
+        if (chosen === correctIdx) {
+            score++;
         }
+    });
 
-        function kembaliKeMenu() {
-            document.getElementById('quizSection').style.display = 'none';
-            document.getElementById('menuSection').style.display = 'block';
-        }
-    </script>
+    const percent = Math.round((score / activeQuestions.length) * 100);
+    document.getElementById('scoreText').textContent = `Your Score: ${score} / ${activeQuestions.length} (${percent}%)`;
+    
+    let feedback = "Good effort! Keep practicing.";
+    if (percent >= 80) feedback = "Excellent job! Outstanding performance!";
+    else if (percent >= 50) feedback = "Well done! You're getting better!";
+    
+    document.getElementById('feedbackText').textContent = feedback;
+    document.getElementById('scoreBanner').style.display = 'block';
+    document.getElementById('submitBtn').style.display = 'none';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    hantarKeGoogleSheet(score, activeQuestions.length, percent);
+}
+
+function hantarKeGoogleSheet(score, total, percent) {
+    const nama = localStorage.getItem('studentName') || "Murid";
+    const kelas = localStorage.getItem('studentClass') || "Tiga";
+    const syncStatus = document.getElementById('syncStatus');
+
+    const payload = {
+        nama: nama,
+        kelas: kelas,
+        modul: currentModuleName,
+        markah: `${score}/${total}`,
+        peratus: `${percent}%`
+    };
+
+    fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(() => {
+        syncStatus.textContent = "✅ Keputusan berjaya disimpan ke rekod guru!";
+    })
+    .catch(err => {
+        syncStatus.textContent = "⚠️ Ralat semasa menyimpan rekod. Sila beritahu guru anda.";
+        console.error(err);
+    });
+}
+
+function kembaliKeMenu() {
+    document.getElementById('quizSection').style.display = 'none';
+    document.getElementById('menuSection').style.display = 'block';
+}
+</script>
 </body>
 </html>
