@@ -887,7 +887,7 @@
             }
         }
 
-       function prosesMulaKuiz(val) {
+function prosesMulaKuiz(val) {
     const info = semakMaklumatMurid();
     if (!info) return;
 
@@ -911,24 +911,49 @@
     document.getElementById('submitBtn').style.display = 'none';
 
     userAnswers = {};
-    window.quizQuestions = null; // Reset data soalan lama
 
-    // Muat skrip soalan secara dinamik
+    // 1. RESET MEMORI LAMA SUPAYA SOALAN TIDAK BERCAMPUR
+    try { delete window.quizBank; } catch(e) { window.quizBank = undefined; }
+    try { delete window.quizQuestions; } catch(e) { window.quizQuestions = undefined; }
+    activeQuestions = [];
+
+    // 2. BUANG SKRIP LAMA JIKA WUJUD
     const oldScript = document.getElementById('dynamicQuizScript');
     if (oldScript) oldScript.remove();
 
+    // 3. MUAT SKRIP MODUL (DENGAN TIMESTAMP UNTUK ELAK CACHE)
     const script = document.createElement('script');
     script.id = 'dynamicQuizScript';
-    script.src = skripModul;
+    script.src = skripModul + "?v=" + new Date().getTime();
+
     script.onload = () => {
-        // PERUBAHAN UTAMA: Membaca soalan daripada quizBank
-        const categoryKey = (mode === 'remedial') ? "REMEDIAL SET" : "GET SMART SET";
-        if (typeof quizBank !== 'undefined' && quizBank[categoryKey] && quizBank[categoryKey][currentModuleName]) {
-            window.quizQuestions = quizBank[categoryKey][currentModuleName];
+        // FUNGSI IMBAJAN AUTOMATIK (MENGESAN ARRAY SOALAN DI MANA-MANA SAHAJA)
+        function ekstrakSoalan(obj) {
+            if (!obj) return null;
+            if (Array.isArray(obj) && obj.length > 0) {
+                if (obj[0].question || obj[0].options) return obj;
+            }
+            if (typeof obj === 'object') {
+                for (let k in obj) {
+                    let res = ekstrakSoalan(obj[k]);
+                    if (res) return res;
+                }
+            }
+            return null;
         }
 
-        if (window.quizQuestions && window.quizQuestions.length > 0) {
+        // Semak window.quizQuestions
+        if (Array.isArray(window.quizQuestions) && window.quizQuestions.length > 0) {
             activeQuestions = window.quizQuestions;
+        } 
+        // Ekstrak soalan secara mendalam daripada quizBank
+        else if (typeof quizBank !== 'undefined') {
+            let soalanJumpa = ekstrakSoalan(quizBank);
+            if (soalanJumpa) activeQuestions = soalanJumpa;
+        }
+
+        // Papar soalan jika wujud
+        if (activeQuestions && activeQuestions.length > 0) {
             paparSoalan();
             document.getElementById('submitBtn').style.display = 'inline-block';
         } else {
@@ -938,15 +963,16 @@
                 </div>`;
         }
     };
+
     script.onerror = () => {
         document.getElementById('questionsContainer').innerHTML = `
             <div style="padding: 20px; color: #ffffff;">
-                ⚠️ Gagal memuatkan fail soalan (${skripModul}).
+                ⚠️ Gagal memuatkan fail ${skripModul}. Pastikan fail wujud di GitHub.
             </div>`;
     };
+
     document.head.appendChild(script);
 }
-
         function paparSoalan() {
             const container = document.getElementById('questionsContainer');
             container.innerHTML = '';
