@@ -887,58 +887,65 @@
             }
         }
 
-        function prosesMulaKuiz(val) {
-            const info = semakMaklumatMurid();
-            if (!info) return;
+       function prosesMulaKuiz(val) {
+    const info = semakMaklumatMurid();
+    if (!info) return;
 
-            const parts = val.split('|');
-            currentModuleName = parts[0];
-            const skripModul = parts[1];
-            const mode = parts[2] || "getsmart";
+    const parts = val.split('|');
+    currentModuleName = parts[0];
+    const skripModul = parts[1];
+    const mode = parts[2] || "getsmart";
 
-            document.getElementById('menuSection').style.display = 'none';
-            document.getElementById('quizSection').style.display = 'block';
+    document.getElementById('menuSection').style.display = 'none';
+    document.getElementById('quizSection').style.display = 'block';
 
-            document.getElementById('displayStudentInfo').textContent = `${info.nama} (${info.kelas})`;
-            document.getElementById('displayModuleName').textContent = currentModuleName;
+    document.getElementById('displayStudentInfo').textContent = `${info.nama} (${info.kelas})`;
+    document.getElementById('displayModuleName').textContent = currentModuleName;
 
-            document.getElementById('questionsContainer').innerHTML = `
-                <div style="padding: 30px; color: #ffffff;">
-                    <i class="fa-solid fa-spinner fa-spin fa-2x"></i><br><br>
-                    Sila tunggu, memuatkan soalan...
-                </div>`;
-            document.getElementById('scoreBanner').style.display = 'none';
-            document.getElementById('submitBtn').style.display = 'none';
+    document.getElementById('questionsContainer').innerHTML = `
+        <div style="padding: 30px; color: #ffffff;">
+            <i class="fa-solid fa-spinner fa-spin fa-2x"></i><br><br>
+            Sila tunggu, memuatkan soalan...
+        </div>`;
+    document.getElementById('scoreBanner').style.display = 'none';
+    document.getElementById('submitBtn').style.display = 'none';
 
-            userAnswers = {};
+    userAnswers = {};
+    window.quizQuestions = null; // Reset data soalan lama
 
-            // Muat skrip soalan secara dinamik
-            const oldScript = document.getElementById('dynamicQuizScript');
-            if (oldScript) oldScript.remove();
+    // Muat skrip soalan secara dinamik
+    const oldScript = document.getElementById('dynamicQuizScript');
+    if (oldScript) oldScript.remove();
 
-            const script = document.createElement('script');
-            script.id = 'dynamicQuizScript';
-            script.src = skripModul;
-            script.onload = () => {
-                if (window.quizQuestions && window.quizQuestions.length > 0) {
-                    activeQuestions = window.quizQuestions;
-                    paparSoalan();
-                    document.getElementById('submitBtn').style.display = 'inline-block';
-                } else {
-                    document.getElementById('questionsContainer').innerHTML = `
-                        <div style="padding: 20px; color: #ffffff;">
-                            ⚠️ Soalan tidak dijumpai dalam fail ${skripModul}.
-                        </div>`;
-                }
-            };
-            script.onerror = () => {
-                document.getElementById('questionsContainer').innerHTML = `
-                    <div style="padding: 20px; color: #ffffff;">
-                        ⚠️ Gagal memuatkan fail soalan (${skripModul}).
-                    </div>`;
-            };
-            document.head.appendChild(script);
+    const script = document.createElement('script');
+    script.id = 'dynamicQuizScript';
+    script.src = skripModul;
+    script.onload = () => {
+        // PERUBAHAN UTAMA: Membaca soalan daripada quizBank
+        const categoryKey = (mode === 'remedial') ? "REMEDIAL SET" : "GET SMART SET";
+        if (typeof quizBank !== 'undefined' && quizBank[categoryKey] && quizBank[categoryKey][currentModuleName]) {
+            window.quizQuestions = quizBank[categoryKey][currentModuleName];
         }
+
+        if (window.quizQuestions && window.quizQuestions.length > 0) {
+            activeQuestions = window.quizQuestions;
+            paparSoalan();
+            document.getElementById('submitBtn').style.display = 'inline-block';
+        } else {
+            document.getElementById('questionsContainer').innerHTML = `
+                <div style="padding: 20px; color: #ffffff;">
+                    ⚠️ Soalan tidak dijumpai dalam fail ${skripModul}.
+                </div>`;
+        }
+    };
+    script.onerror = () => {
+        document.getElementById('questionsContainer').innerHTML = `
+            <div style="padding: 20px; color: #ffffff;">
+                ⚠️ Gagal memuatkan fail soalan (${skripModul}).
+            </div>`;
+    };
+    document.head.appendChild(script);
+}
 
         function paparSoalan() {
             const container = document.getElementById('questionsContainer');
