@@ -52,11 +52,12 @@
 
         /* SAIZ TAJUK UTAMA */
         h1, .header-title, .portal-title {
+            font-family: 'Fredoka', cursive;
             font-size: 2.8rem !important;
-            margin-bottom: 10px !important;
+            margin-bottom: 8px !important;
         }
 
-        /* SAIZ TAJUK BAHAGIAN (Exploration, Permata Activities, Dashboard / Rekod Guru) */
+        /* SAIZ TAJUK BAHAGIAN */
         h2, h3, h4, .section-title, .section-label, .guru-title {
             font-size: 1.8rem !important;
             margin-top: 30px !important;
@@ -65,77 +66,10 @@
 
         /* SAIZ SUB-TAJUK */
         .header-subtitle, .portal-subtitle, p {
+            color: #f1f5f9 !important;
             font-size: 1.1rem !important;
             font-weight: 600 !important;
-        }
-    </style>
-    
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background: url('poster.png') no-repeat center center fixed;
-            background-size: cover;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 20px;
-        }
-
-        .main-card {
-            background: transparent;
-            backdrop-filter: none;
-            border-radius: 24px;
-            padding: 30px;
-            width: 100%;
-            max-width: 950px;
-            box-shadow: none;
-            border: none;
-            text-align: center;
-            margin-top: 10px;
-            margin-bottom: 30px;
-        }
-
-        .header-title {
-            font-family: 'Fredoka', cursive;
-            color: #ffffff;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85);
-            font-size: 2.2rem;
-            margin-bottom: 5px;
-        }
-
-        .header-title {
-            font-family: 'Fredoka', cursive;
-            color: #ffffff !important;
-            font-weight: 700 !important;
-            font-size: 2.8rem !important;
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9) !important;
-            margin-bottom: 8px;
-        }
-
-        .header-subtitle {
-            color: #f1f5f9;
-            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.85);
-            font-size: 1.1rem;
             margin-bottom: 25px;
-            font-weight: 600;
-        }
-
-        /* Tetapan khusus untuk Tajuk Exploration & Permata Activities */
-        .section-title, .section-label {
-            color: #ffffff;
-            font-size: 1.5rem;   /* Besarkan saiz tulisan */
-            font-weight: 700;     /* Tebalkan tulisan (Bold) */
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9); /* Bayang tebal supaya jelas dibaca */
-            margin-top: 30px;
-            margin-bottom: 15px;
-            text-align: left;
         }
 
         .student-info-box {
@@ -173,6 +107,9 @@
             font-size: 0.95rem;
             outline: none;
             transition: all 0.3s ease;
+            color: #2c3e50 !important;
+            text-shadow: none !important;
+            font-weight: 600 !important;
         }
 
         .input-error {
@@ -215,8 +152,8 @@
             gap: 10px;
         }
 
-        .card-getsmart .card-title { color: #d35400; }
-        .card-remedial .card-title { color: #c0392b; }
+        .card-getsmart .card-title { color: #d35400 !important; text-shadow: none !important; }
+        .card-remedial .card-title { color: #c0392b !important; text-shadow: none !important; }
 
         .select-wrapper select {
             width: 100%;
@@ -224,8 +161,9 @@
             border: 2px solid #c8d6e5;
             border-radius: 12px;
             font-size: 0.95rem;
-            font-weight: 600;
-            color: #2c3e50;
+            font-weight: 600 !important;
+            color: #2c3e50 !important;
+            text-shadow: none !important;
             background-color: #f8f9fa;
             outline: none;
             cursor: pointer;
@@ -235,10 +173,10 @@
             border: none;
             border-radius: 12px;
             padding: 13px;
-            color: #ffffff;
+            color: #ffffff !important;
             font-family: 'Fredoka', cursive;
             font-size: 1.05rem;
-            font-weight: 600;
+            font-weight: 600 !important;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -265,13 +203,13 @@
         .section-divider {
             font-family: 'Fredoka', cursive;
             font-size: 1.3rem;
-            color: #2c3e50;
+            color: #ffffff;
             text-align: left;
             margin: 25px 0 12px 5px;
             display: flex;
             align-items: center;
             gap: 10px;
-            border-bottom: 2px dashed #c8d6e5;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.5);
             padding-bottom: 6px;
         }
 
@@ -286,9 +224,9 @@
             border: none;
             border-radius: 18px;
             padding: 16px 10px;
-            color: #ffffff;
+            color: #ffffff !important;
             font-size: 0.9rem;
-            font-weight: 700;
+            font-weight: 700 !important;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -311,7 +249,7 @@
         .footer-nav {
             margin-top: 25px;
             padding-top: 15px;
-            border-top: 1px solid #c8d6e5;
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -320,9 +258,9 @@
         }
 
         .teacher-link {
-            color: #2e86de;
+            color: #ffffff !important;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 600 !important;
             font-size: 0.9rem;
         }
 
@@ -332,35 +270,37 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px dashed #c8d6e5;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.5);
             padding-bottom: 15px;
             margin-bottom: 25px;
         }
 
         .student-tag {
             font-size: 0.9rem;
-            font-weight: 600;
+            font-weight: 600 !important;
             background: #e17055;
-            color: white;
+            color: white !important;
             padding: 6px 14px;
             border-radius: 20px;
+            text-shadow: none !important;
         }
 
         .module-title-tag {
             font-family: 'Fredoka', cursive;
             font-size: 1.3rem;
-            color: #6c5ce7;
-            font-weight: 700;
+            color: #ffffff !important;
+            font-weight: 700 !important;
         }
 
         .btn-home {
             background: #74b9ff;
-            color: white;
+            color: white !important;
             border: none;
             padding: 8px 16px;
             border-radius: 12px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 600 !important;
+            text-shadow: none !important;
         }
 
         .question-card {
@@ -374,16 +314,18 @@
 
         .question-number {
             font-size: 0.85rem;
-            font-weight: 700;
-            color: #6c5ce7;
+            font-weight: 700 !important;
+            color: #6c5ce7 !important;
+            text-shadow: none !important;
             text-transform: uppercase;
             margin-bottom: 5px;
         }
 
         .question-text {
             font-size: 1.1rem;
-            font-weight: 700;
-            color: #2c3e50;
+            font-weight: 700 !important;
+            color: #2c3e50 !important;
+            text-shadow: none !important;
             margin-bottom: 15px;
             line-height: 1.5;
         }
@@ -400,8 +342,9 @@
             border-radius: 12px;
             padding: 12px 18px;
             font-size: 0.95rem;
-            font-weight: 600;
-            color: #2c3e50;
+            font-weight: 600 !important;
+            color: #2c3e50 !important;
+            text-shadow: none !important;
             cursor: pointer;
             text-align: left;
             transition: all 0.2s ease;
@@ -425,14 +368,15 @@
 
         .submit-btn {
             background: #2ecc71;
-            color: white;
+            color: white !important;
             border: none;
             padding: 14px 40px;
             border-radius: 16px;
             font-size: 1.1rem;
-            font-weight: 700;
+            font-weight: 700 !important;
             cursor: pointer;
             margin-top: 10px;
+            text-shadow: none !important;
         }
 
         .score-banner {
@@ -449,7 +393,7 @@
             font-size: 0.85rem;
             margin-top: 8px;
             opacity: 0.9;
-            font-weight: normal;
+            font-weight: normal !important;
         }
     </style>
 </head>
@@ -541,9 +485,9 @@
 
             </div>
 
-           <!-- EXPLORATION -->
+            <!-- EXPLORATION -->
             <div class="section-divider">
-                <i class="fa-solid fa-compass" style="color: #6c5ce7;"></i> Exploration
+                <i class="fa-solid fa-compass" style="color: #ffffff;"></i> Exploration
             </div>
 
             <div class="button-grid">
@@ -563,7 +507,7 @@
 
             <!-- PERMATA ACTIVITIES -->
             <div class="section-divider">
-                <i class="fa-solid fa-gem" style="color: #00b894;"></i> Permata Activities
+                <i class="fa-solid fa-gem" style="color: #ffffff;"></i> Permata Activities
             </div>
 
             <div class="button-grid">
@@ -582,7 +526,7 @@
             </div>
 
             <div class="footer-nav">
-                <span style="font-size: 0.85rem; color: #8395a7;">© Portal Bahasa Inggeris Tahun 3</span>
+                <span style="font-size: 0.85rem; color: #ffffff;">© Portal Bahasa Inggeris Tahun 3</span>
                 <a href="dashboard.html" class="teacher-link">
                     <i class="fa-solid fa-lock"></i> Dashboard / Rekod Guru
                 </a>
@@ -612,9 +556,8 @@
 
     </div>
 
-   <!-- JavaScript Kawalan Utama -->
+    <!-- JavaScript Kawalan Utama -->
     <script>
-        // Web App URL Google Apps Script
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLl1p92dgM9gkris5PhYuEZEeo7MiWlGxZ3-V_HiT0O0SJEJmAHBeSkBZxsgQJcUBr/exec";
         let activeQuestions = [];
         let userAnswers = {};
@@ -670,7 +613,7 @@
             document.getElementById('displayModuleName').textContent = namaModul;
 
             document.getElementById('questionsContainer').innerHTML = `
-                <div style="padding: 30px; color: #666;">
+                <div style="padding: 30px; color: #ffffff;">
                     <i class="fa-solid fa-spinner fa-spin fa-2x"></i><br><br>
                     Sila tunggu, memuatkan soalan...
                 </div>`;
@@ -680,7 +623,6 @@
             document.getElementById('menuSection').style.display = 'none';
             document.getElementById('quizSection').style.display = 'block';
 
-            // Cari soalan menggunakan namaModul, bukan URL
             let existingQuestions = cariSoalanDalamWindow(namaModul, mode);
             if (existingQuestions && existingQuestions.length > 0) {
                 activeQuestions = existingQuestions;
@@ -706,7 +648,7 @@
                     paparSemuaSoalan();
                 } else {
                     document.getElementById('questionsContainer').innerHTML = `
-                        <div style="color:#d63031; padding:20px; text-align:center;">
+                        <div style="color:#ff6b6b; padding:20px; text-align:center;">
                             ⚠️ <b>Soalan tidak ditemui dalam fail.</b><br><br>
                             Sila pastikan data format soalan diisi dengan betul.
                         </div>`;
@@ -715,9 +657,9 @@
 
             scriptTag.onerror = () => {
                 document.getElementById('questionsContainer').innerHTML = `
-                    <div style="color:#d63031; padding:20px; text-align:center;">
+                    <div style="color:#ff6b6b; padding:20px; text-align:center;">
                         ⚠️ <b>Gagal memuatkan fail soalan.</b><br><br>
-                        Pastikan pautan berfungsi.
+                        Pastikan pautan atau fail JavaScript wujud.
                     </div>`;
             };
 
@@ -725,7 +667,6 @@
         }
 
         function cariSoalanDalamWindow(namaModul, mode) {
-            // Ekstrak nombor terus dari Nama Modul (Contoh: "Module 2" akan jadi "2")
             const modNum = namaModul ? namaModul.replace(/[^0-9]/g, '') : "1";
             const targetCategoryGroup = (mode === 'remedial') ? "REMEDIAL SET" : "GET SMART SET";
 
@@ -765,6 +706,7 @@
 
             return null;
         }
+
         function paparSemuaSoalan() {
             const container = document.getElementById('questionsContainer');
             container.innerHTML = "";
@@ -829,135 +771,79 @@
                 if (!confirm(`Anda baru menjawab ${answeredCount} daripada ${totalQuestions} soalan. Pasti mahu menghantar?`)) return;
             }
 
-            let markah = 0;
+            let score = 0;
+            activeQuestions.forEach((q, idx) => {
+                let correctOpt = (q.answer !== undefined) ? q.answer : ((q.jawapan !== undefined) ? q.jawapan : q.correct);
+                let userOpt = userAnswers[idx];
 
-            activeQuestions.forEach((q, qIdx) => {
-                let ansRaw = q.ans !== undefined ? q.ans : (q.answer !== undefined ? q.answer : q.jawapan);
-                const opts = q.options || q.pilihan || q.answers || [];
-                let correctIdx = -1;
-
-                if (typeof ansRaw === 'number') {
-                    correctIdx = ansRaw;
-                } else if (typeof ansRaw === 'string') {
-                    correctIdx = opts.indexOf(ansRaw);
-                    if (correctIdx === -1) {
-                        correctIdx = opts.findIndex(o => o.trim().toLowerCase() === ansRaw.trim().toLowerCase());
-                    }
+                const group = document.getElementById(`optionsGroup_${idx}`);
+                if (group) {
+                    const buttons = group.querySelectorAll('.btn-option');
+                    buttons.forEach((btn, optIdx) => {
+                        btn.disabled = true;
+                        if (optIdx === correctOpt) {
+                            btn.classList.add('correct');
+                        } else if (optIdx === userOpt && userOpt !== correctOpt) {
+                            btn.classList.add('wrong');
+                        }
+                    });
                 }
 
-                const group = document.getElementById(`optionsGroup_${qIdx}`);
-                const buttons = group.querySelectorAll('.btn-option');
-                const userChoice = userAnswers[qIdx];
-
-                buttons.forEach((btn, optIdx) => {
-                    btn.disabled = true;
-                    btn.classList.remove('selected');
-
-                    if (optIdx === correctIdx) btn.classList.add('correct');
-                    if (userChoice === optIdx && userChoice !== correctIdx) btn.classList.add('wrong');
-                });
-
-                if (userChoice === correctIdx) markah++;
+                if (userOpt === correctOpt) {
+                    score++;
+                }
             });
 
             const scoreBanner = document.getElementById('scoreBanner');
-            document.getElementById('scoreText').textContent = `Markah Anda: ${markah} / ${totalQuestions}`;
-            
-            let peratus = (markah / totalQuestions) * 100;
-            if (peratus >= 80) document.getElementById('feedbackText').textContent = "🎉 Syabas! Keputusan yang cemerlang!";
-            else if (peratus >= 50) document.getElementById('feedbackText').textContent = "👍 Bagus! Teruskan usaha anda!";
-            else document.getElementById('feedbackText').textContent = "💪 Jangan putus asa, cuba lagi!";
+            const scoreText = document.getElementById('scoreText');
+            const feedbackText = document.getElementById('feedbackText');
+            const syncStatus = document.getElementById('syncStatus');
 
             scoreBanner.style.display = 'block';
-            document.getElementById('submitBtn').style.display = 'none';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            scoreText.textContent = `Your Score: ${score} / ${totalQuestions}`;
 
-            // Hantar data markah ke Google Sheets
-            hantarRekodKeGoogleSheet({
-                nama: localStorage.getItem('studentName') || 'Murid',
-                kelas: localStorage.getItem('studentClass') || '-',
-                modul: document.getElementById('displayModuleName').textContent || 'Modul',
-                markah: markah,
-                jumlahSoalan: totalQuestions,
-                peratus: Math.round(peratus) + '%'
+            let percentage = (score / totalQuestions) * 100;
+            if (percentage >= 80) feedbackText.textContent = "Excellent work! 🎉";
+            else if (percentage >= 50) feedbackText.textContent = "Good job! Keep practicing! 👍";
+            else feedbackText.textContent = "Don't give up! Try again! 💪";
+
+            document.getElementById('submitBtn').style.display = 'none';
+
+            const nama = localStorage.getItem('studentName') || "";
+            const kelas = localStorage.getItem('studentClass') || "";
+            const modul = document.getElementById('displayModuleName').textContent;
+
+            syncStatus.textContent = "🔄 Menghantar keputusan ke rekod guru...";
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nama: nama,
+                    kelas: kelas,
+                    modul: modul,
+                    skor: `${score}/${totalQuestions}`,
+                    peratus: percentage.toFixed(1) + "%",
+                    tarikh: new Date().toLocaleString('ms-MY')
+                })
+            }).then(() => {
+                syncStatus.textContent = "✅ Keputusan berjaya dihantar ke rekod guru!";
+            }).catch(err => {
+                syncStatus.textContent = "⚠️ Gagal menghantar keputusan. Sila periksa sambungan internet.";
             });
         }
 
-        function hantarRekodKeGoogleSheet(payload) {
-            const statusEl = document.getElementById('syncStatus');
-            if (statusEl) statusEl.innerHTML = '🔄 Menghantar keputusan ke rekod guru...';
-
-            const dataPenuh = {
-                name: (payload && payload.nama) || (payload && payload.name) || localStorage.getItem('studentName') || 'Murid',
-                class: (payload && payload.kelas) || (payload && payload.class) || localStorage.getItem('studentClass') || '-',
-                category: (payload && payload.kategori) || (payload && payload.category) || (typeof currentCategory !== 'undefined' ? currentCategory : '') || 'MODULE EXPLORATION',
-                module: (payload && payload.modul) || (payload && payload.module) || 'Modul',
-                score: (payload && payload.jumlahSoalan) ? `${payload.markah}/${payload.jumlahSoalan}` : ((payload && payload.markah) || (payload && payload.score) || '0'),
-                percent: (payload && payload.peratus) || (payload && payload.percent) || '0%'
-            };
-
-            if (typeof SCRIPT_URL !== 'undefined' && SCRIPT_URL) {
-                fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(dataPenuh)
-                })
-                .then(() => {
-                    if (statusEl) statusEl.innerHTML = '✅ Rekod keputusan berjaya disimpan!';
-                })
-                .catch(error => {
-                    if (statusEl) statusEl.innerHTML = '⚠️ Keputusan ditunjukkan tetapi gagal disimpan ke server.';
-                });
-            }
+        function bukaAktiviti(fail, kategori, tajuk) {
+            const info = semakMaklumatMurid();
+            if (!info) return;
+            window.location.href = `${fail}?nama=${encodeURIComponent(info.nama)}&kelas=${encodeURIComponent(info.kelas)}&cat=${encodeURIComponent(kategori)}&title=${encodeURIComponent(tajuk)}`;
         }
 
         function kembaliKeMenu() {
             document.getElementById('quizSection').style.display = 'none';
             document.getElementById('menuSection').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function bukaAktiviti(url, kategori, modul) {
-            const info = semakMaklumatMurid();
-            if (!info) return;
-
-            // Hantar rekod akses aktiviti ke Google Sheet
-            hantarRekodKeGoogleSheet({
-                nama: info.nama,
-                kelas: info.kelas,
-                kategori: kategori,
-                modul: modul,
-                markah: 1,
-                jumlahSoalan: 1,
-                peratus: '100%'
-            });
-
-            // Beri penangguhan 0.5 saat supaya data sempat dihantar sebelum berpindah halaman
-            setTimeout(function() {
-                window.location.href = url;
-            }, 500);
-        }
-
-        function hantarRekodKeGoogleSheet(payload) {
-            const statusEl = document.getElementById('syncStatus');
-            if (statusEl) statusEl.innerHTML = '🔄 Menghantar keputusan ke rekod guru...';
-
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(() => {
-                if (statusEl) statusEl.innerHTML = '✅ Berjaya dikemas kini ke rekod guru!';
-            })
-            .catch(err => {
-                console.error("Ralat penghantaran:", err);
-                if (statusEl) statusEl.innerHTML = '⚠️ Gagal menghantar data. Sila semak sambungan internet.';
-            });
+            document.getElementById('scoreBanner').style.display = 'none';
         }
     </script>
 </body>
