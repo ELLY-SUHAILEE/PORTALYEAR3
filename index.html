@@ -670,7 +670,7 @@
             </div>
 
             <div class="sub-grid">
-                <div class="sub-card bg-exp-reading" onclick="bukaAktiviti('reading.html', 'EXPLORATION', 'Reading Comprehension')">
+                <div class="sub-card bg-exp-reading" onclick="bukaAktiviti('reading.html')">
                     <div class="sub-card-left">
                         <div class="sub-card-icon"><i class="fa-solid fa-book-open"></i></div>
                         <div class="sub-card-info">
@@ -681,7 +681,7 @@
                     <div class="sub-card-arrow"><i class="fa-solid fa-chevron-right"></i></div>
                 </div>
 
-                <div class="sub-card bg-exp-grammar" onclick="bukaAktiviti('grammar.html', 'EXPLORATION', 'Grammar Language Rules')">
+                <div class="sub-card bg-exp-grammar" onclick="bukaAktiviti('grammar.html')">
                     <div class="sub-card-left">
                         <div class="sub-card-icon"><i class="fa-solid fa-pen-ruler"></i></div>
                         <div class="sub-card-info">
@@ -692,7 +692,7 @@
                     <div class="sub-card-arrow"><i class="fa-solid fa-chevron-right"></i></div>
                 </div>
 
-                <div class="sub-card bg-exp-sentence" onclick="bukaAktiviti('sentence.html', 'EXPLORATION', 'Sentences Structure')">
+                <div class="sub-card bg-exp-sentence" onclick="bukaAktiviti('sentence.html')">
                     <div class="sub-card-left">
                         <div class="sub-card-icon"><i class="fa-solid fa-align-left"></i></div>
                         <div class="sub-card-info">
@@ -710,7 +710,7 @@
             </div>
 
             <div class="sub-grid">
-                <div class="sub-card bg-per-word" onclick="bukaAktiviti('wordpower.html', 'PERMATA ACTIVITIES', 'Word Power Vocabulary')">
+                <div class="sub-card bg-per-word" onclick="bukaAktiviti('wordpower.html')">
                     <div class="sub-card-left">
                         <div class="sub-card-icon"><i class="fa-solid fa-font"></i></div>
                         <div class="sub-card-info">
@@ -721,7 +721,7 @@
                     <div class="sub-card-arrow"><i class="fa-solid fa-chevron-right"></i></div>
                 </div>
 
-                <div class="sub-card bg-per-repeat" onclick="bukaAktiviti('readrepeat.html', 'PERMATA ACTIVITIES', 'Read and Repeat Pronunciation')">
+                <div class="sub-card bg-per-repeat" onclick="bukaAktiviti('readrepeat.html')">
                     <div class="sub-card-left">
                         <div class="sub-card-icon"><i class="fa-solid fa-microphone"></i></div>
                         <div class="sub-card-info">
@@ -732,7 +732,7 @@
                     <div class="sub-card-arrow"><i class="fa-solid fa-chevron-right"></i></div>
                 </div>
 
-                <div class="sub-card bg-per-build" onclick="bukaAktiviti('buildsentence.html', 'PERMATA ACTIVITIES', 'Build Sentence Interactive Game')">
+                <div class="sub-card bg-per-build" onclick="bukaAktiviti('buildsentence.html')">
                     <div class="sub-card-left">
                         <div class="sub-card-icon"><i class="fa-solid fa-cubes"></i></div>
                         <div class="sub-card-info">
@@ -795,6 +795,7 @@
         let activeQuestions = [];
         let userAnswers = {};
         let activeMode = "getsmart";
+        let currentModuleName = "";
 
         const getSmartTopics = [
             { name: "Module 1: Welcome! (30 Soalan)", val: "Module 1 - Welcome!|module1.js|getsmart" },
@@ -846,6 +847,11 @@
             return { nama, kelas };
         }
 
+        function bukaAktiviti(url) {
+            if (!semakMaklumatMurid()) return;
+            window.location.href = url;
+        }
+
         function bukaModalTopik(mode) {
             if (!semakMaklumatMurid()) return;
 
@@ -886,12 +892,15 @@
             if (!info) return;
 
             const parts = val.split('|');
-            const namaModul = parts[0];
+            currentModuleName = parts[0];
             const skripModul = parts[1];
             const mode = parts[2] || "getsmart";
 
+            document.getElementById('menuSection').style.display = 'none';
+            document.getElementById('quizSection').style.display = 'block';
+
             document.getElementById('displayStudentInfo').textContent = `${info.nama} (${info.kelas})`;
-            document.getElementById('displayModuleName').textContent = namaModul;
+            document.getElementById('displayModuleName').textContent = currentModuleName;
 
             document.getElementById('questionsContainer').innerHTML = `
                 <div style="padding: 30px; color: #ffffff;">
@@ -901,236 +910,154 @@
             document.getElementById('scoreBanner').style.display = 'none';
             document.getElementById('submitBtn').style.display = 'none';
 
-            document.getElementById('menuSection').style.display = 'none';
-            document.getElementById('quizSection').style.display = 'block';
+            userAnswers = {};
 
-            let existingQuestions = cariSoalanDalamWindow(namaModul, mode);
-            if (existingQuestions && existingQuestions.length > 0) {
-                activeQuestions = existingQuestions;
-                paparSemuaSoalan();
-                return;
-            }
-
-            muatSkripModul(skripModul, mode, namaModul);
-        }
-
-        function muatSkripModul(skripModul, mode, namaModul) {
-            const oldScript = document.getElementById('dynamicModuleScript');
+            // Muat skrip soalan secara dinamik
+            const oldScript = document.getElementById('dynamicQuizScript');
             if (oldScript) oldScript.remove();
 
-            const scriptTag = document.createElement('script');
-            scriptTag.id = 'dynamicModuleScript';
-            scriptTag.src = skripModul + '?v=' + new Date().getTime();
-
-            scriptTag.onload = () => {
-                let loaded = cariSoalanDalamWindow(namaModul, mode);
-                if (loaded && loaded.length > 0) {
-                    activeQuestions = loaded;
-                    paparSemuaSoalan();
+            const script = document.createElement('script');
+            script.id = 'dynamicQuizScript';
+            script.src = skripModul;
+            script.onload = () => {
+                if (window.quizQuestions && window.quizQuestions.length > 0) {
+                    activeQuestions = window.quizQuestions;
+                    paparSoalan();
+                    document.getElementById('submitBtn').style.display = 'inline-block';
                 } else {
                     document.getElementById('questionsContainer').innerHTML = `
-                        <div style="color:#ff6b6b; padding:20px; text-align:center;">
-                            ⚠️ <b>Soalan tidak ditemui dalam fail.</b>
+                        <div style="padding: 20px; color: #ffffff;">
+                            ⚠️ Soalan tidak dijumpai dalam fail ${skripModul}.
                         </div>`;
                 }
             };
-
-            scriptTag.onerror = () => {
+            script.onerror = () => {
                 document.getElementById('questionsContainer').innerHTML = `
-                    <div style="color:#ff6b6b; padding:20px; text-align:center;">
-                        ⚠️ <b>Gagal memuatkan fail soalan.</b>
+                    <div style="padding: 20px; color: #ffffff;">
+                        ⚠️ Gagal memuatkan fail soalan (${skripModul}).
                     </div>`;
             };
-
-            document.body.appendChild(scriptTag);
+            document.head.appendChild(script);
         }
 
-        function cariSoalanDalamWindow(namaModul, mode) {
-            const modNum = namaModul ? namaModul.replace(/[^0-9]/g, '') : "1";
-            const targetCategoryGroup = (mode === 'remedial') ? "REMEDIAL SET" : "GET SMART SET";
-
-            if (window.quizBank && window.quizBank[targetCategoryGroup]) {
-                const groupObj = window.quizBank[targetCategoryGroup];
-                let moduleKey = Object.keys(groupObj).find(k => {
-                    let match = k.match(/module\s*(\d+)/i);
-                    let numInKey = match ? match[1] : k.replace(/[^0-9]/g, '');
-                    return numInKey === modNum;
-                });
-
-                if (moduleKey && groupObj[moduleKey]) {
-                    const categories = groupObj[moduleKey];
-                    let allQuestions = [];
-
-                    if (Array.isArray(categories)) {
-                        allQuestions = categories;
-                    } else if (typeof categories === 'object') {
-                        for (let cat in categories) {
-                            if (Array.isArray(categories[cat])) {
-                                allQuestions = allQuestions.concat(categories[cat]);
-                            }
-                        }
-                    }
-
-                    if (allQuestions.length > 0) return allQuestions;
-                }
-            }
-
-            if (mode === 'remedial') {
-                if (window['module' + modNum + '_remedial']) return window['module' + modNum + '_remedial'];
-                if (window['remedial' + modNum]) return window['remedial' + modNum];
-            } else {
-                if (window['module' + modNum + '_getsmart']) return window['module' + modNum + '_getsmart'];
-                if (window['module' + modNum]) return window['module' + modNum];
-            }
-
-            return null;
-        }
-
-        function paparSemuaSoalan() {
+        function paparSoalan() {
             const container = document.getElementById('questionsContainer');
-            container.innerHTML = "";
-            userAnswers = {};
+            container.innerHTML = '';
 
-            activeQuestions.forEach((q, qIdx) => {
-                const card = document.createElement('div');
-                card.className = 'question-card';
+            activeQuestions.forEach((q, idx) => {
+                const qCard = document.createElement('div');
+                qCard.className = 'question-card';
 
-                let qText = q.q || q.question || q.soalan || q.text || "";
-                let imageHtml = "";
-                if (q.image) {
-                    if (typeof q.image === 'string' && q.image.trim().startsWith('<')) {
-                        imageHtml = q.image;
-                    } else {
-                        imageHtml = `<div style="text-align:center; margin:15px 0;">
-                                        <img src="${q.image}" style="max-width:100%; max-height:250px; border-radius:10px; border:1px solid #ddd;" onerror="this.style.display='none'">
-                                     </div>`;
-                    }
-                }
-
-                card.innerHTML = `
-                    <div class="question-number">Soalan ${qIdx + 1} dari ${activeQuestions.length}</div>
-                    <div class="question-text">${qText}</div>
-                    ${imageHtml}
-                    <div class="options-grid" id="optionsGroup_${qIdx}"></div>
-                `;
-
-                container.appendChild(card);
-
-                const optionsGroup = card.querySelector(`#optionsGroup_${qIdx}`);
-                const opts = q.options || q.pilihan || q.answers || [];
-
-                opts.forEach((opt, optIdx) => {
-                    const btn = document.createElement('button');
-                    btn.className = 'btn-option';
-                    btn.innerHTML = opt;
-                    btn.onclick = () => pilihJawapan(qIdx, optIdx);
-                    optionsGroup.appendChild(btn);
+                let optionsHTML = '';
+                q.options.forEach((opt, optIdx) => {
+                    optionsHTML += `
+                        <button class="btn-option" id="opt_${idx}_${optIdx}" onclick="pilihJawapan(${idx}, ${optIdx})">
+                            ${opt}
+                        </button>`;
                 });
-            });
 
-            document.getElementById('submitBtn').style.display = 'inline-block';
+                qCard.innerHTML = `
+                    <div class="question-number">Question ${idx + 1} / ${activeQuestions.length}</div>
+                    <div class="question-text">${q.question}</div>
+                    <div class="options-grid">${optionsHTML}</div>
+                `;
+                container.appendChild(qCard);
+            });
         }
 
         function pilihJawapan(qIdx, optIdx) {
             userAnswers[qIdx] = optIdx;
-            const group = document.getElementById(`optionsGroup_${qIdx}`);
-            const buttons = group.querySelectorAll('.btn-option');
-
-            buttons.forEach((btn, idx) => {
-                if (idx === optIdx) btn.classList.add('selected');
-                else btn.classList.remove('selected');
-            });
-        }
-
-        // --- GANTIKAN FUNGSI HANTARJAWAPAN LAMA DENGAN YANG INI ---
-function hantarJawapan() {
-    let totalQuestions = activeQuestions.length;
-    let answeredCount = Object.keys(userAnswers).length;
-
-    if (answeredCount < totalQuestions) {
-        if (!confirm(`Anda baru menjawab ${answeredCount} daripada ${totalQuestions} soalan. Pasti mahu menghantar?`)) return;
-    }
-
-    let score = 0;
-    activeQuestions.forEach((q, idx) => {
-        // --- LOGIK PEMBETULAN DI SINI ---
-        
-        // 1. Dapatkan nilai jawapan betul daripada fail soalan.
-        // Kita tambah q.ans kerana kod soalan anda menggunakan kunci 'ans'.
-        let rawCorrectAnswer = q.ans || q.answer || q.correct || q.jawapan;
-        let correctOptIndex;
-
-        // 2. Tentukan sama ada jawapan dalam kod itu teks penuh atau indeks nombor.
-        if (typeof rawCorrectAnswer === 'string') {
-            // Jika ia teks ("A) For a..."), cari indeksnya (0, 1, atau 2) dalam senarai pilihan.
-            correctOptIndex = q.options.indexOf(rawCorrectAnswer);
-        } else {
-            // Jika ia sudah sedia ada nombor (contoh: 0), gunakan nombor itu.
-            correctOptIndex = rawCorrectAnswer;
-        }
-
-        // Nilai pilihan murid (sentiasa nombor: 0, 1, atau 2).
-        let userOpt = userAnswers[idx];
-
-        // ---------------------------------
-
-        const group = document.getElementById(`optionsGroup_${idx}`);
-        if (group) {
-            const buttons = group.querySelectorAll('.btn-option');
-            buttons.forEach((btn, optIdx) => {
-                btn.disabled = true;
-                // Bandingkan indeks butang dengan indeks jawapan betul (correctOptIndex).
-                if (optIdx === correctOptIndex) {
-                    btn.classList.add('correct'); // Hijau
-                } else if (optIdx === userOpt && userOpt !== correctOptIndex) {
-                    btn.classList.add('wrong'); // Merah
+            
+            const q = activeQuestions[qIdx];
+            q.options.forEach((_, i) => {
+                const btn = document.getElementById(`opt_${qIdx}_${i}`);
+                if (btn) {
+                    if (i === optIdx) {
+                        btn.classList.add('selected');
+                    } else {
+                        btn.classList.remove('selected');
+                    }
                 }
             });
         }
 
-        // Bandingkan indeks pilihan murid dengan indeks jawapan betul.
-        if (userOpt === correctOptIndex) {
-            score++;
+        function hantarJawapan() {
+            if (Object.keys(userAnswers).length < activeQuestions.length) {
+                if (!confirm("Anda belum menjawab semua soalan. Adakah anda pasti mahu menghantar?")) {
+                    return;
+                }
+            }
+
+            let score = 0;
+            activeQuestions.forEach((q, idx) => {
+                const chosen = userAnswers[idx];
+                q.options.forEach((_, optIdx) => {
+                    const btn = document.getElementById(`opt_${idx}_${optIdx}`);
+                    if (!btn) return;
+
+                    btn.disabled = true;
+                    btn.classList.remove('selected');
+
+                    if (optIdx === q.answer) {
+                        btn.classList.add('correct');
+                    } else if (chosen === optIdx && chosen !== q.answer) {
+                        btn.classList.add('wrong');
+                    }
+                });
+
+                if (chosen === q.answer) {
+                    score++;
+                }
+            });
+
+            const percent = Math.round((score / activeQuestions.length) * 100);
+            document.getElementById('scoreText').textContent = `Your Score: ${score} / ${activeQuestions.length} (${percent}%)`;
+            
+            let feedback = "Good effort! Keep practicing.";
+            if (percent >= 80) feedback = "Excellent job! Outstanding performance!";
+            else if (percent >= 50) feedback = "Well done! You're getting better!";
+            
+            document.getElementById('feedbackText').textContent = feedback;
+            document.getElementById('scoreBanner').style.display = 'block';
+            document.getElementById('submitBtn').style.display = 'none';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            hantarKeGoogleSheet(score, activeQuestions.length, percent);
         }
-    });
 
-    const scoreBanner = document.getElementById('scoreBanner');
-    const scoreText = document.getElementById('scoreText');
-    const feedbackText = document.getElementById('feedbackText');
-    const syncStatus = document.getElementById('syncStatus');
+        function hantarKeGoogleSheet(score, total, percent) {
+            const nama = localStorage.getItem('studentName') || "Murid";
+            const kelas = localStorage.getItem('studentClass') || "Tiga";
+            const syncStatus = document.getElementById('syncStatus');
 
-    scoreBanner.style.display = 'block';
-    scoreText.textContent = `Your Score: ${score} / ${totalQuestions}`;
+            const payload = {
+                nama: nama,
+                kelas: kelas,
+                modul: currentModuleName,
+                markah: `${score}/${total}`,
+                peratus: `${percent}%`
+            };
 
-    let percentage = (score / totalQuestions) * 100;
-    if (percentage >= 80) feedbackText.textContent = "Excellent work! 🎉";
-    else if (percentage >= 50) feedbackText.textContent = "Good job! Keep practicing! 👍";
-    else feedbackText.textContent = "Don't give up! Try again! 💪";
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                syncStatus.textContent = "✅ Keputusan berjaya disimpan ke rekod guru!";
+            })
+            .catch(err => {
+                syncStatus.textContent = "⚠️ Ralat semasa menyimpan rekod. Sila beritahu guru anda.";
+                console.error(err);
+            });
+        }
 
-    document.getElementById('submitBtn').style.display = 'none';
-
-    const nama = localStorage.getItem('studentName') || "";
-    const kelas = localStorage.getItem('studentClass') || "";
-    const modul = document.getElementById('displayModuleName').textContent;
-
-    syncStatus.textContent = "🔄 Menghantar keputusan ke rekod guru...";
-
-    fetch(SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            nama: nama,
-            kelas: kelas,
-            modul: modul,
-            skor: `${score}/${totalQuestions}`,
-            peratus: percentage.toFixed(1) + "%",
-            tarikh: new Date().toLocaleString('ms-MY')
-        })
-    }).then(() => {
-        syncStatus.textContent = "✅ Keputusan berjaya dihantar ke rekod guru!";
-    }).catch(err => {
-        syncStatus.textContent = "⚠️ Gagal menghantar keputusan. Sila periksa sambungan internet.";
-    });
-}
-// --------------------------------------------------------
+        function kembaliKeMenu() {
+            document.getElementById('quizSection').style.display = 'none';
+            document.getElementById('menuSection').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
