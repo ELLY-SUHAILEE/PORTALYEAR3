@@ -31,7 +31,7 @@
             background: transparent !important;
             backdrop-filter: none !important;
             border-radius: 24px;
-            padding: 30px;
+            padding: 20px;
             width: 100%;
             max-width: 950px;
             box-shadow: none !important;
@@ -41,7 +41,7 @@
             margin-bottom: 30px;
         }
 
-        /* 💥 PEMAKSA GLOBAL: SEMUA TAJUK, TEKS & PAUTAN MENJADI PUTIH + BOLD */
+        /* PEMAKSA GLOBAL TAJUK & TEKS */
         h1, h2, h3, h4, h5, h6, 
         .header-title, .portal-title, .section-title, .section-label, 
         .guru-title, .btn-dashboard, .guru-link, a, p, span, label, div {
@@ -50,21 +50,12 @@
             text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.95) !important;
         }
 
-        /* SAIZ TAJUK UTAMA */
         h1, .header-title, .portal-title {
             font-family: 'Fredoka', cursive;
             font-size: 2.8rem !important;
             margin-bottom: 8px !important;
         }
 
-        /* SAIZ TAJUK BAHAGIAN */
-        h2, h3, h4, .section-title, .section-label, .guru-title {
-            font-size: 1.8rem !important;
-            margin-top: 30px !important;
-            margin-bottom: 15px !important;
-        }
-
-        /* SAIZ SUB-TAJUK */
         .header-subtitle, .portal-subtitle, p {
             color: #f1f5f9 !important;
             font-size: 1.1rem !important;
@@ -72,140 +63,12 @@
             margin-bottom: 25px;
         }
 
-        .student-info-box {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 16px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 2px solid #e0e0e0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .input-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-            min-width: 240px;
-        }
-
-        .input-group i {
-            color: #48dbfb;
-            font-size: 1.2rem;
-        }
-
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #c8d6e5;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.3s ease;
-            color: #2c3e50 !important;
-            text-shadow: none !important;
-            font-weight: 600 !important;
-        }
-
-        .input-error {
-            border-color: #ff4d4d !important;
-            background-color: #fff0f0 !important;
-            animation: shake 0.4s ease-in-out;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-6px); }
-            40%, 80% { transform: translateX(6px); }
-        }
-
-        .dropdown-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .dropdown-card {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 22px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            border: 2px solid #e0e0e0;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .card-title {
-            font-family: 'Fredoka', cursive;
-            font-size: 1.25rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .card-getsmart .card-title { color: #d35400 !important; text-shadow: none !important; }
-        .card-remedial .card-title { color: #c0392b !important; text-shadow: none !important; }
-
-        .select-wrapper select {
-            width: 100%;
-            padding: 14px 15px;
-            border: 2px solid #c8d6e5;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            font-weight: 600 !important;
-            color: #2c3e50 !important;
-            text-shadow: none !important;
-            background-color: #f8f9fa;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .btn-start {
-            border: none;
-            border-radius: 12px;
-            padding: 13px;
-            color: #ffffff !important;
-            font-family: 'Fredoka', cursive;
-            font-size: 1.05rem;
-            font-weight: 600 !important;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-start-getsmart {
-            background: linear-gradient(135deg, #ff9f43, #ee5253);
-            box-shadow: 0 4px 12px rgba(255, 159, 67, 0.3);
-        }
-
-        .btn-start-remedial {
-            background: linear-gradient(135deg, #ee5253, #b22222);
-            box-shadow: 0 4px 12px rgba(238, 82, 83, 0.3);
-        }
-
-        .btn-start:hover {
-            transform: scale(1.02);
-            opacity: 0.95;
-        }
-
         .section-divider {
             font-family: 'Fredoka', cursive;
             font-size: 1.3rem;
             color: #ffffff;
             text-align: left;
-            margin: 25px 0 12px 5px;
+            margin: 25px 0 15px 5px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -213,38 +76,169 @@
             padding-bottom: 6px;
         }
 
+        /* REKA BENTUK GRID KOTAK UNIFORM */
         .button-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
             margin-bottom: 20px;
         }
 
-        .btn-module {
+        .card-box {
             border: none;
-            border-radius: 18px;
-            padding: 16px 10px;
+            border-radius: 20px;
+            padding: 20px 15px;
             color: #ffffff !important;
-            font-size: 0.9rem;
-            font-weight: 700 !important;
-            cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.12);
-            transition: transform 0.2s ease;
+            justify-content: space-between;
+            gap: 12px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             text-decoration: none;
+            min-height: 160px;
         }
 
-        .btn-module i { font-size: 1.8rem; }
+        .card-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 22px rgba(0,0,0,0.35);
+        }
+
+        .card-box i {
+            font-size: 2.2rem;
+        }
+
+        .card-box span {
+            font-size: 1rem;
+            line-height: 1.2;
+        }
+
+        .card-box input, .card-box select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #ffffff;
+            outline: none;
+            font-size: 0.95rem;
+            font-weight: 600 !important;
+            color: #2c3e50 !important;
+            text-shadow: none !important;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        /* WARNA KUMPULAN KOTAK */
+        .box-info-name { background: linear-gradient(135deg, #00b894, #00cec9); }
+        .box-info-class { background: linear-gradient(135deg, #0984e3, #74b9ff); }
+        .box-getsmart { background: linear-gradient(135deg, #ff9f43, #ee5253); }
+        .box-remedial { background: linear-gradient(135deg, #ee5253, #b22222); }
+
         .btn-exp-read { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
         .btn-exp-gram { background: linear-gradient(135deg, #fdcb6e, #e17055); }
         .btn-exp-sent { background: linear-gradient(135deg, #e84393, #d63031); }
+
         .btn-per-word { background: linear-gradient(135deg, #00cec9, #00b894); }
         .btn-per-repeat { background: linear-gradient(135deg, #0984e3, #74b9ff); }
         .btn-per-build { background: linear-gradient(135deg, #6c5ce7, #8e44ad); }
+
+        .btn-card-action {
+            width: 100%;
+            background: #ffffff;
+            color: #2c3e50 !important;
+            border: none;
+            padding: 10px 12px;
+            border-radius: 12px;
+            font-weight: 700 !important;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-shadow: none !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-card-action:hover {
+            background: #f1f2f6;
+            transform: scale(1.03);
+        }
+
+        /* MODAL POPUP UNTUK PILIHAN TOPIK */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 25px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .modal-card h3 {
+            color: #2c3e50 !important;
+            text-shadow: none !important;
+            font-size: 1.4rem !important;
+            margin-bottom: 15px !important;
+        }
+
+        .modal-card select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 2px solid #c8d6e5;
+            font-size: 0.95rem;
+            color: #2c3e50 !important;
+            text-shadow: none !important;
+            font-weight: 600 !important;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-modal-confirm {
+            flex: 1;
+            background: #2ecc71;
+            color: white !important;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 700 !important;
+            cursor: pointer;
+            text-shadow: none !important;
+        }
+
+        .btn-modal-cancel {
+            flex: 1;
+            background: #e74c3c;
+            color: white !important;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 700 !important;
+            cursor: pointer;
+            text-shadow: none !important;
+        }
 
         .footer-nav {
             margin-top: 25px;
@@ -404,15 +398,22 @@
         <!-- MENU UTAMA -->
         <div id="menuSection">
             <h1 class="header-title">🎈 PORTAL YEAR 3 ENGLISH 🎈</h1>
-            <p class="header-subtitle">Please enter your details and select a topic below:</p>
+            <p class="header-subtitle">Enter your details and select a box below to begin:</p>
 
-            <div class="student-info-box">
-                <div class="input-group">
+            <!-- BAHAGIAN MAKLUMAT MURID & MODUL UTAMA (KOTAK UNIFORM) -->
+            <div class="button-grid">
+                
+                <!-- Kotak Name -->
+                <div class="card-box box-info-name">
                     <i class="fa-solid fa-user"></i>
-                    <input type="text" id="namaMurid" placeholder="Name" required>
+                    <span>Student Name</span>
+                    <input type="text" id="namaMurid" placeholder="Enter Name" required>
                 </div>
-                <div class="input-group">
+
+                <!-- Kotak Class -->
+                <div class="card-box box-info-class">
                     <i class="fa-solid fa-graduation-cap"></i>
+                    <span>Class</span>
                     <select id="kelasMurid" required>
                         <option value="">-- Class --</option>
                         <option value="3 ARIF">3 ARIF</option>
@@ -428,58 +429,22 @@
                         <option value="3 KREATIF">3 KREATIF</option>
                     </select>
                 </div>
-            </div>
 
-            <!-- DROPDOWN GET SMART & REMEDIAL -->
-            <div class="dropdown-section">
-                
-                <!-- Get Smart Modules -->
-                <div class="dropdown-card card-getsmart">
-                    <div class="card-title">
-                        <i class="fa-solid fa-book-open-reader"></i> Get Smart Modules (30 Soalan)
-                    </div>
-                    <div class="select-wrapper">
-                        <select id="getSmartSelect">
-                            <option value="">-- Select Get Smart Module --</option>
-                            <option value="Module 1 - Welcome!|module1.js|getsmart">Module 1: Welcome! (30 Soalan)</option>
-                            <option value="Module 2 - Every Day|module2.js|getsmart">Module 2: Every Day (30 Soalan)</option>
-                            <option value="Module 3 - Right Now|module3.js|getsmart">Module 3: Right Now (30 Soalan)</option>
-                            <option value="Module 4 - Year In, Year Out|module4.js|getsmart">Module 4: Year In, Year Out (30 Soalan)</option>
-                            <option value="Module 5 - My New House|module5.js|getsmart">Module 5: My New House (30 Soalan)</option>
-                            <option value="Module 6 - Food, Food!|module6.js|getsmart">Module 6: Food, Food! (30 Soalan)</option>
-                            <option value="Module 7 - Out and About|module7.js|getsmart">Module 7: Out and About (30 Soalan)</option>
-                            <option value="Module 8 - Where Were You Yesterday?|module8.js|getsmart">Module 8: Where Were You Yesterday? (30 Soalan)</option>
-                            <option value="Module 9 - On Holiday|module9.js|getsmart">Module 9: On Holiday (30 Soalan)</option>
-                            <option value="Module 10 - The World Around Us|module10.js|getsmart">Module 10: The World Around Us (30 Soalan)</option>
-                        </select>
-                    </div>
-                    <button type="button" class="btn-start btn-start-getsmart" onclick="mulaDropdownModule('getSmartSelect')">
-                        Start Module <i class="fa-solid fa-arrow-right"></i>
+                <!-- Kotak Get Smart -->
+                <div class="card-box box-getsmart">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                    <span>Get Smart<br><small>30 Questions</small></span>
+                    <button class="btn-card-action" onclick="bukaModalTopik('getsmart')">
+                        START MODULE <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
 
-                <!-- Remedial Set -->
-                <div class="dropdown-card card-remedial">
-                    <div class="card-title">
-                        <i class="fa-solid fa-life-ring"></i> Remedial Set (30 Soalan)
-                    </div>
-                    <div class="select-wrapper">
-                        <select id="remedialSelect">
-                            <option value="">-- Select Remedial Set --</option>
-                            <option value="Remedial 1 - Welcome!|module1.js|remedial">Remedial 1: Welcome! (30 Soalan)</option>
-                            <option value="Remedial 2 - Every Day|module2.js|remedial">Remedial 2: Every Day (30 Soalan)</option>
-                            <option value="Remedial 3 - Right Now|module3.js|remedial">Remedial 3: Right Now (30 Soalan)</option>
-                            <option value="Remedial 4 - Year In, Year Out|module4.js|remedial">Remedial 4: Year In, Year Out (30 Soalan)</option>
-                            <option value="Remedial 5 - My New House|module5.js|remedial">Remedial 5: My New House (30 Soalan)</option>
-                            <option value="Remedial 6 - Food, Food!|module6.js|remedial">Remedial 6: Food, Food! (30 Soalan)</option>
-                            <option value="Remedial 7 - Out and About|module7.js|remedial">Remedial 7: Out and About (30 Soalan)</option>
-                            <option value="Remedial 8 - Where Were You Yesterday?|module8.js|remedial">Remedial 8: Where Were You Yesterday? (30 Soalan)</option>
-                            <option value="Remedial 9 - On Holiday|module9.js|remedial">Remedial 9: On Holiday (30 Soalan)</option>
-                            <option value="Remedial 10 - The World Around Us|module10.js|remedial">Remedial 10: The World Around Us (30 Soalan)</option>
-                        </select>
-                    </div>
-                    <button type="button" class="btn-start btn-start-remedial" onclick="mulaDropdownModule('remedialSelect')">
-                        Start Remedial <i class="fa-solid fa-arrow-right"></i>
+                <!-- Kotak Remedial Set -->
+                <div class="card-box box-remedial">
+                    <i class="fa-solid fa-life-ring"></i>
+                    <span>Remedial Set<br><small>30 Questions</small></span>
+                    <button class="btn-card-action" onclick="bukaModalTopik('remedial')">
+                        START MODULE <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
 
@@ -491,15 +456,15 @@
             </div>
 
             <div class="button-grid">
-                <button class="btn-module btn-exp-read" onclick="bukaAktiviti('reading.html', 'EXPLORATION', 'Reading Comprehension')">
+                <button class="card-box btn-exp-read" onclick="bukaAktiviti('reading.html', 'EXPLORATION', 'Reading Comprehension')">
                     <i class="fa-solid fa-book-open"></i>
                     <span>Reading<br><small>Comprehension</small></span>
                 </button>
-                <button class="btn-module btn-exp-gram" onclick="bukaAktiviti('grammar.html', 'EXPLORATION', 'Grammar Language Rules')">
+                <button class="card-box btn-exp-gram" onclick="bukaAktiviti('grammar.html', 'EXPLORATION', 'Grammar Language Rules')">
                     <i class="fa-solid fa-pen-ruler"></i>
                     <span>Grammar<br><small>Language Rules</small></span>
                 </button>
-                <button class="btn-module btn-exp-sent" onclick="bukaAktiviti('sentence.html', 'EXPLORATION', 'Sentences Structure')">
+                <button class="card-box btn-exp-sent" onclick="bukaAktiviti('sentence.html', 'EXPLORATION', 'Sentences Structure')">
                     <i class="fa-solid fa-align-left"></i>
                     <span>Sentences<br><small>Structure</small></span>
                 </button>
@@ -511,15 +476,15 @@
             </div>
 
             <div class="button-grid">
-                <button class="btn-module btn-per-word" onclick="bukaAktiviti('wordpower.html', 'PERMATA ACTIVITIES', 'Word Power Vocabulary')">
+                <button class="card-box btn-per-word" onclick="bukaAktiviti('wordpower.html', 'PERMATA ACTIVITIES', 'Word Power Vocabulary')">
                     <i class="fa-solid fa-spell-check"></i>
                     <span>Word Power<br><small>Vocabulary</small></span>
                 </button>
-                <button class="btn-module btn-per-repeat" onclick="bukaAktiviti('readrepeat.html', 'PERMATA ACTIVITIES', 'Read and Repeat Pronunciation')">
+                <button class="card-box btn-per-repeat" onclick="bukaAktiviti('readrepeat.html', 'PERMATA ACTIVITIES', 'Read and Repeat Pronunciation')">
                     <i class="fa-solid fa-microphone"></i>
                     <span>Read and Repeat<br><small>Pronunciation</small></span>
                 </button>
-                <button class="btn-module btn-per-build" onclick="bukaAktiviti('buildsentence.html', 'PERMATA ACTIVITIES', 'Build Sentence Interactive Game')">
+                <button class="card-box btn-per-build" onclick="bukaAktiviti('buildsentence.html', 'PERMATA ACTIVITIES', 'Build Sentence Interactive Game')">
                     <i class="fa-solid fa-cubes"></i>
                     <span>Build Sentence<br><small>Interactive Game</small></span>
                 </button>
@@ -556,11 +521,52 @@
 
     </div>
 
+    <!-- MODAL POPUP UNTUK PILIHAN TOPIK -->
+    <div id="topicModal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <h3 id="modalTitle">Select Topic</h3>
+            <select id="topicSelect">
+                <!-- Pilihan akan dimasukkan secara dinamik oleh JS -->
+            </select>
+            <div class="modal-actions">
+                <button class="btn-modal-confirm" onclick="mulaDariModal()"><i class="fa-solid fa-play"></i> Start Quiz</button>
+                <button class="btn-modal-cancel" onclick="tutupModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript Kawalan Utama -->
     <script>
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLl1p92dgM9gkris5PhYuEZEeo7MiWlGxZ3-V_HiT0O0SJEJmAHBeSkBZxsgQJcUBr/exec";
         let activeQuestions = [];
         let userAnswers = {};
+        let activeMode = "getsmart";
+
+        const getSmartTopics = [
+            { name: "Module 1: Welcome! (30 Soalan)", val: "Module 1 - Welcome!|module1.js|getsmart" },
+            { name: "Module 2: Every Day (30 Soalan)", val: "Module 2 - Every Day|module2.js|getsmart" },
+            { name: "Module 3: Right Now (30 Soalan)", val: "Module 3 - Right Now|module3.js|getsmart" },
+            { name: "Module 4: Year In, Year Out (30 Soalan)", val: "Module 4 - Year In, Year Out|module4.js|getsmart" },
+            { name: "Module 5: My New House (30 Soalan)", val: "Module 5 - My New House|module5.js|getsmart" },
+            { name: "Module 6: Food, Food! (30 Soalan)", val: "Module 6 - Food, Food!|module6.js|getsmart" },
+            { name: "Module 7: Out and About (30 Soalan)", val: "Module 7 - Out and About|module7.js|getsmart" },
+            { name: "Module 8: Where Were You Yesterday? (30 Soalan)", val: "Module 8 - Where Were You Yesterday?|module8.js|getsmart" },
+            { name: "Module 9: On Holiday (30 Soalan)", val: "Module 9 - On Holiday|module9.js|getsmart" },
+            { name: "Module 10: The World Around Us (30 Soalan)", val: "Module 10 - The World Around Us|module10.js|getsmart" }
+        ];
+
+        const remedialTopics = [
+            { name: "Remedial 1: Welcome! (30 Soalan)", val: "Remedial 1 - Welcome!|module1.js|remedial" },
+            { name: "Remedial 2: Every Day (30 Soalan)", val: "Remedial 2 - Every Day|module2.js|remedial" },
+            { name: "Remedial 3: Right Now (30 Soalan)", val: "Remedial 3 - Right Now|module3.js|remedial" },
+            { name: "Remedial 4: Year In, Year Out (30 Soalan)", val: "Remedial 4 - Year In, Year Out|module4.js|remedial" },
+            { name: "Remedial 5: My New House (30 Soalan)", val: "Remedial 5 - My New House|module5.js|remedial" },
+            { name: "Remedial 6: Food, Food! (30 Soalan)", val: "Remedial 6 - Food, Food!|module6.js|remedial" },
+            { name: "Remedial 7: Out and About (30 Soalan)", val: "Remedial 7 - Out and About|module7.js|remedial" },
+            { name: "Remedial 8: Where Were You Yesterday? (30 Soalan)", val: "Remedial 8 - Where Were You Yesterday?|module8.js|remedial" },
+            { name: "Remedial 9: On Holiday (30 Soalan)", val: "Remedial 9 - On Holiday|module9.js|remedial" },
+            { name: "Remedial 10: The World Around Us (30 Soalan)", val: "Remedial 10 - The World Around Us|module10.js|remedial" }
+        ];
 
         function semakMaklumatMurid() {
             const elNama = document.getElementById('namaMurid');
@@ -569,19 +575,14 @@
             const nama = elNama.value.trim();
             const kelas = elKelas.value;
 
-            elNama.classList.remove('input-error');
-            elKelas.classList.remove('input-error');
-
             if (!nama) {
                 alert("⚠️ SILA MASUKKAN NAMA MURID TERLEBIH DAHULU!");
-                elNama.classList.add('input-error');
                 elNama.focus();
                 return false;
             }
 
             if (!kelas) {
                 alert("⚠️ SILA PILIH KELAS MURID TERLEBIH DAHULU!");
-                elKelas.classList.add('input-error');
                 elKelas.focus();
                 return false;
             }
@@ -591,18 +592,44 @@
             return { nama, kelas };
         }
 
-        function mulaDropdownModule(selectId) {
+        function bukaModalTopik(mode) {
+            if (!semakMaklumatMurid()) return;
+
+            activeMode = mode;
+            const modal = document.getElementById('topicModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const topicSelect = document.getElementById('topicSelect');
+
+            topicSelect.innerHTML = '';
+
+            const list = (mode === 'getsmart') ? getSmartTopics : remedialTopics;
+            modalTitle.textContent = (mode === 'getsmart') ? 'Select Get Smart Module' : 'Select Remedial Set';
+
+            list.forEach(item => {
+                const opt = document.createElement('option');
+                opt.value = item.val;
+                opt.textContent = item.name;
+                topicSelect.appendChild(opt);
+            });
+
+            modal.style.display = 'flex';
+        }
+
+        function tutupModal() {
+            document.getElementById('topicModal').style.display = 'none';
+        }
+
+        function mulaDariModal() {
+            const topicVal = document.getElementById('topicSelect').value;
+            tutupModal();
+            if (topicVal) {
+                prosesMulaKuiz(topicVal);
+            }
+        }
+
+        function prosesMulaKuiz(val) {
             const info = semakMaklumatMurid();
             if (!info) return;
-
-            const selectEl = document.getElementById(selectId);
-            const val = selectEl.value;
-
-            if (!val) {
-                alert("⚠️ SILA PILIH MODUL / SET SOALAN DARIPADA SENARAI!");
-                selectEl.focus();
-                return;
-            }
 
             const parts = val.split('|');
             const namaModul = parts[0];
